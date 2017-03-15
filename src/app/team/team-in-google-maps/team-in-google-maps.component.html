@@ -1,0 +1,28 @@
+<sebm-google-map [streetViewControl]="false" [zoom]="4" [latitude]="center.lat" [longitude]="center.lng"
+                 (boundsChange)="print($event)">
+
+    <sebm-google-map-marker [latitude]="center.lat" [longitude]="center.lng"
+                            iconUrl="./images/icons/footballfield.png">
+        <sebm-google-map-info-window [disableAutoPan]="true">
+            <div class="google-marker">
+                <h1>{{team.name}}</h1>
+                <p>Club Location:</p>
+                <p>{{team.location}}</p>
+                <img class="marker_img" [src]="team.emblemLink" alt="{{team.name}}">
+            </div>
+        </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+
+    <sebm-google-map-marker *ngFor="let markerInfoToDisplay of markersInfoToDisplay"
+                            [latitude]="markerInfoToDisplay.location.lat"
+                            [longitude]="markerInfoToDisplay.location.lng"
+                            iconUrl="./images/icons/football.png">
+        <sebm-google-map-info-window [disableAutoPan]="true">
+            <div class="google-marker">
+                <p>{{markerInfoToDisplay.object.name}}</p>
+                <p>{{markerInfoToDisplay.object.bornAddress}}</p>
+                <img class="marker_img" [src]="markerInfoToDisplay.object.imageLink" alt="{{markerInfoToDisplay.object.name}}">
+            </div>
+        </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+</sebm-google-map>
