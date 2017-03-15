@@ -9,12 +9,11 @@ import { AboutComponent } from "./about/about.component";
 import {GalleriaModule} from "primeng/primeng";
 import {HomeModule} from "./home/home.module";
 import {AppRoutingModule} from "./app-routing.module";
-import { PlayerDetailComponent } from './player/player-detail/player-detail.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        AboutComponent
+        AboutComponent,
     ],
     imports: [
         AgmCoreModule.forRoot({
