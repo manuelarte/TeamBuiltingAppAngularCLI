@@ -1,5 +1,6 @@
 import {Component, trigger, state, style, transition, animate} from "@angular/core";
 import {Router} from "@angular/router";
+import {Team} from "../team";
 
 @Component({
     selector: 'app-home',
@@ -31,7 +32,7 @@ import {Router} from "@angular/router";
 export class HomeComponent {
 
     images: any[];
-//    mostVisitedTeams: Team[] = [];
+    mostVisitedTeams: Team[] = [];
     mostVisitedTeamsLoaded: boolean = false;
 
     constructor(private router: Router,
@@ -57,7 +58,7 @@ export class HomeComponent {
         })*/
     }
 
-    gotoTeamDetails(team: any): void {
+    gotoTeamDetails(team: Team): void {
         let link = ['/team', team.id];
         this.router.navigate(link);
     }
