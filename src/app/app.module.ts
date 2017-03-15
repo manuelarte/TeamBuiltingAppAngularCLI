@@ -12,7 +12,7 @@ import {AppRoutingModule} from "./app-routing.module";
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
-function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
         tokenName: 'id_token',
     }), http, options);
