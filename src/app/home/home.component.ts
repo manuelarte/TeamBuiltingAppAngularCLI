@@ -1,5 +1,5 @@
 import {Component, trigger, state, style, transition, animate} from "@angular/core";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {Team} from "../team";
 import {TeamService} from "../services/team.service";
 import {StatisticService} from "../services/statistic.service";
@@ -39,6 +39,7 @@ export class HomeComponent {
     mostVisitedTeamsLoaded: boolean = false;
 
     constructor(private router: Router,
+                private route: ActivatedRoute,
                 private teamService: TeamService,
                 private statisticService: StatisticService
                 ) {}
@@ -62,7 +63,8 @@ export class HomeComponent {
     }
 
     gotoTeamDetails(team: Team): void {
-        let link = ['/team', team.id];
-        this.router.navigate(link);
+        let link = ['../team/ ' + team.id ];
+        this.router.navigate(['/team', team.id,]);
+        console.log("going to team details", team)
     }
 }

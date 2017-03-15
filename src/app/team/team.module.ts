@@ -6,6 +6,7 @@ import {TeamDetailComponent} from "./team-detail/team-detail.component";
 import {TeamInGoogleMapsComponent} from "./team-in-google-maps/team-in-google-maps.component";
 import {TeamDetailSportIntroComponent} from "./team-detail-sport-intro/team-detail-sport-intro.component";
 import {AgmCoreModule} from "angular2-google-maps/core";
+import {TeamSearchComponent} from "./team-search/team-search.component";
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import {AgmCoreModule} from "angular2-google-maps/core";
   declarations: [
       TeamDetailComponent,
       TeamDetailSportIntroComponent,
-      TeamInGoogleMapsComponent,]
+      TeamInGoogleMapsComponent,
+      TeamSearchComponent,
+  ],
+  exports: [TeamSearchComponent]
 })
 export class TeamModule { }
