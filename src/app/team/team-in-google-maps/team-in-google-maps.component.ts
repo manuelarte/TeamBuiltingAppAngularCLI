@@ -8,7 +8,8 @@ import {LatLngBounds} from "angular2-google-maps/core";
 @Component({
   selector: 'app-team-in-google-maps',
   templateUrl: 'team-in-google-maps.component.html',
-  styleUrls: ['team-in-google-maps.component.scss']
+  styleUrls: ['team-in-google-maps.component.scss'],
+  providers: [GoogleMapGeocodingService]
 })
 export class TeamInGoogleMapsComponent implements OnInit {
 

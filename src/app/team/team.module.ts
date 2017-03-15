@@ -4,13 +4,20 @@ import { CommonModule } from '@angular/common';
 import { TeamRoutingModule } from './team-routing.module';
 import {TeamDetailComponent} from "./team-detail/team-detail.component";
 import {TeamInGoogleMapsComponent} from "./team-in-google-maps/team-in-google-maps.component";
+import {TeamDetailSportIntroComponent} from "./team-detail-sport-intro/team-detail-sport-intro.component";
+import {AgmCoreModule} from "angular2-google-maps/core";
 
 @NgModule({
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
+    }),
     CommonModule,
     TeamRoutingModule,
-    TeamInGoogleMapsComponent
   ],
-  declarations: [TeamDetailComponent]
+  declarations: [
+      TeamDetailComponent,
+      TeamDetailSportIntroComponent,
+      TeamInGoogleMapsComponent,]
 })
 export class TeamModule { }

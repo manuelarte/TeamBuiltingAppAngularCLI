@@ -1,3 +1,54 @@
-<p>
-  team-detail works!
-</p>
+<nav class="sub-nav">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#" [routerLink]="['/home']"
+               [class.active]="true">Intro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" [class.active]="false">Players</a>
+        </li>
+    </ul>
+</nav>
+
+<div *ngIf="team && date" class="content-container">
+    <div class="content-area">
+
+        <app-team-detail-sport-intro [team]="team"></app-team-detail-sport-intro>
+
+        <h1 id="intro" #Intro>{{team.name}} Homepage</h1> <h2>since {{getFromYear()}}</h2> <h2 *ngIf="team.toDate">to {{getToYear()}}</h2>
+        <p class="p1">Hello everybody. I'm Stanley, a free handsome bootstrap theme coded by BlackTie.co. A really simple theme for those wanting to showcase their work with a cute & clean style.</p>
+        <p class="p2">Please, consider to register to <a href="http://eepurl.com/IcgkX">our newsletter</a> to be updated with our latest themes and freebies. Like always, you can use this theme in any project freely. Share it with your friends.</p>
+
+<!--        <div class="team-players">
+            <h1 id="players">The Players:</h1>
+            <div *ngIf="players && team" class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let player of players">
+                    <player-in-team #playerInTeam [player]="player" [season]="season" [team]="team">Loading players...</player-in-team>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="team-in-google-maps">
+            <h1 id="team-in-google-maps">Locations In the Map:</h1>
+            <app-team-in-google-maps *ngIf="players" [players]="players" [team]="team">Loading map...</app-team-in-google-maps>
+        </div>
+
+        <button class="btn btn-info-outline" (click)="goBack()">Back</button>
+
+    </div>
+    <!--    <nav class="sidenav">
+            <section class="sidenav-content">
+                <div class="nav-link select">
+                    <select id="season">
+                        <option *ngFor="let season of getSeasons()" [selected]="season === getCurrentSeason()">{{season}}</option>
+                    </select>
+                </div>
+                <a href="#intro" class="nav-link">
+                    Intro
+                </a>
+                <a href="#players" class="nav-link">
+                    Players
+                </a>
+            </section>
+        </nav>-->
+</div>

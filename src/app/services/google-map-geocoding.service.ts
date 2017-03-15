@@ -4,7 +4,7 @@ import {Http, URLSearchParams} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import Any = jasmine.Any;
-import {GoogleMapGeocoding} from "../components/geolocalization/pojos/google-map-geocoding";
+import {GoogleMapGeocoding} from "../google-map-geocoding";
 
 @Injectable()
 export class GoogleMapGeocodingService {
