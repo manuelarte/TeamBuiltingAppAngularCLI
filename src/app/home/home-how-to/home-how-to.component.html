@@ -1,0 +1,32 @@
+<div class="row flex-items-xs-center">
+    <div class="card yellow">
+        <div class="card-block">
+            <div class="card-media-block wrap green">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <img (click)="tabSelected='introduction'" [class.selected]="tabSelected=='introduction'"
+                             src="../../images/home/how-to/handball.png" class="card-media-image clickable">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <img (click)="tabSelected='login'" [class.selected]="tabSelected=='login'"
+                             src="../../images/home/how-to/internet-login.png" class="card-media-image clickable">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <img (click)="tabSelected='what-to-do'" [class.selected]="tabSelected=='what-to-do'"
+                             src="https://s3-eu-west-1.amazonaws.com/assets.timpik.com/images/newlanding/icon/whistle2.jpg" class="card-media-image clickable">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <img (click)="tabSelected='next'" [class.selected]="tabSelected=='next'"
+                             src="https://s3-eu-west-1.amazonaws.com/assets.timpik.com/images/newlanding/icon/whistle2.jpg" class="card-media-image clickable">
+                    </div>
+                </div>
+
+            </div>
+            <div [ngSwitch]="tabSelected" class="card-text">
+                <app-home-how-to-introduction *ngSwitchCase="'introduction'"></app-home-how-to-introduction>
+                <app-home-how-to-login *ngSwitchCase="'login'"></app-home-how-to-login>
+                <app-home-how-to-what-to-do *ngSwitchCase="'what-to-do'"></app-home-how-to-what-to-do>
+            </div>
+        </div>
+    </div>
+</div>

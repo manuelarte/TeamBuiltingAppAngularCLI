@@ -2,7 +2,7 @@ import {Component, trigger, state, style, transition, animate} from "@angular/co
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-home-how-to',
+    selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     animations: [
