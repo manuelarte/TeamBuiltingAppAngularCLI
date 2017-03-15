@@ -1,7 +1,7 @@
 {
     "project": {
-        "version": "1.0.0-beta.20-4",
-        "name": "clarity-seed"
+        "version": "0.1.0-SNAPSHOT",
+        "name": "teambuilting"
     },
     "apps": [
         {
@@ -20,6 +20,9 @@
             "styles": [
                 "../node_modules/clarity-icons/clarity-icons.min.css",
                 "../node_modules/clarity-ui/clarity-ui.min.css",
+				"../node_modules/primeng/resources/primeng.min.css",
+				"../node_modules/primeng/resources/themes/omega/theme.css",
+				"../node_modules/font-awesome/css/font-awesome.min.css",
                 "styles.css"
             ],
             "scripts": [

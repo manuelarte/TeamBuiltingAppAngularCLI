@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+	
+	checked: boolean;
+	
     constructor(private router: Router) {
     }
 }
