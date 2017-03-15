@@ -22,7 +22,7 @@ export class TeamService {
   }
 
   postTeam(team: Team): Promise<Team> {
-      return this.http.post(this.teamUrl, team).map(this.convertFromDateAndToDate).toPromise();
+      return this.authHttp.post(this.teamUrl, team).map(this.convertFromDateAndToDate).toPromise();
   }
 
   getPlayers(id: string, date: string = null): Promise<Player[]> {
