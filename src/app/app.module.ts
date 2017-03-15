@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ClarityModule } from 'clarity-angular';
 import { AppComponent } from './app.component';
-import { ROUTING } from "./app.routing";
 import { AboutComponent } from "./about/about.component";
 import {GalleriaModule} from "primeng/primeng";
 import {HomeModule} from "./home/home.module";
+import {AppRoutingModule} from "./app-routing.module";
+import { TeamDetailComponent } from './team/team-detail/team-detail.component';
 
 @NgModule({
     declarations: [
@@ -20,8 +21,8 @@ import {HomeModule} from "./home/home.module";
         FormsModule,
         HttpModule,
         ClarityModule.forRoot(),
-        ROUTING,
         HomeModule,
+        AppRoutingModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
