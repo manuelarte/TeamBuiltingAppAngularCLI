@@ -1,11 +1,14 @@
 import {Component, trigger, state, style, transition, animate} from "@angular/core";
 import {Router} from "@angular/router";
 import {Team} from "../team";
+import {TeamService} from "../services/team.service";
+import {StatisticService} from "../services/statistic.service";
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
+    providers: [TeamService, StatisticService],
     animations: [
 
         trigger('slideIn', [
@@ -36,8 +39,8 @@ export class HomeComponent {
     mostVisitedTeamsLoaded: boolean = false;
 
     constructor(private router: Router,
-                //private teamService: TeamService,
-                //private statisticService: StatisticService
+                private teamService: TeamService,
+                private statisticService: StatisticService
                 ) {}
 
     ngOnInit() {
@@ -48,14 +51,14 @@ export class HomeComponent {
         this.images.push({source:'../images/home/image4.jpg', alt:'Take a look at your sport career in a way you have never done before', title:'See Your Statistics'});
         this.images.push({source:'../images/home/image5.jpg', alt:'And share it with your friends', title:'Enjoy'});
 
-        /*this.statisticService.getTeamsMostVisited().then(response => {
+        this.statisticService.getTeamsMostVisited().then(response => {
             for(let entry of response.content) {
                 this.teamService.getTeam(entry.teamId).then(team => {
                     this.mostVisitedTeams.push(team);
                     this.mostVisitedTeamsLoaded = (this.mostVisitedTeams.length === response.content.length);
                 })
             }
-        })*/
+        })
     }
 
     gotoTeamDetails(team: Team): void {
