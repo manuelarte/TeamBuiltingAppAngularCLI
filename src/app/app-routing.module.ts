@@ -11,9 +11,14 @@ const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
-    }, {
+    },
+    {
         path: 'team',
         loadChildren: 'app/team/team.module#TeamModule'
+    },
+    {
+        path: 'player',
+        loadChildren: 'app/player/player.module#PlayerModule'
     }
 ];
 
