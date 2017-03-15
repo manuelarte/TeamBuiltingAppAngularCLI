@@ -6,11 +6,13 @@ import {HomeComponent} from "./home.component";
 import {HomeHowToLoginComponent} from "./home-how-to-login/home-how-to-login.component";
 import {HomeHowToIntroductionComponent} from "./home-how-to-introduction/home-how-to-introduction.component";
 import {HomeHowToWhatToDoComponent} from "./home-how-to-what-to-do/home-how-to-what-to-do.component";
+import {TeamModule} from "../team/team.module";
 
 @NgModule({
   imports: [
     GalleriaModule,
     CommonModule,
+    TeamModule,
   ],
   declarations: [
     HomeComponent,

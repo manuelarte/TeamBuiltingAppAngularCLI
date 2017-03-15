@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map'
 import {Team} from "../team";
 import {Player} from "../player";
 import {environment} from "../../environments/environment";
+import {AuthHttp} from "angular2-jwt";
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class TeamService {
   private backendUrl: string = `${environment.backendCoreUrl}`;
   private teamUrl = this.backendUrl + '/teams/';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private authHttp: AuthHttp) { }
 
   getTeam(id: string): Promise<Team> {
     return this.http.get(this.teamUrl + id).map(this.convertFromDateAndToDate).toPromise();
