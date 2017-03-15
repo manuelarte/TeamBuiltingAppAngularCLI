@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  prefix: 'api',
+  core: 'core',
+  statistics: 'statistics',
+  experience: 'experience',
+
+  backendCoreUrl: `http://localhost:8080/core`, // dev
+  backendStatisticsUrl: `http://localhost:8081/statistics`, // dev
+  backendExperienceUrl: `http://localhost:8082/experience`, // dev
+
 };
