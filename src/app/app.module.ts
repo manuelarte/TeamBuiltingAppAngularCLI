@@ -7,14 +7,18 @@ import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
+import { HomeHowToComponent } from './home-how-to/home-how-to.component';
+import {GalleriaModule} from "primeng/primeng";
 
 @NgModule({
     declarations: [
         AppComponent,
         AboutComponent,
-        HomeComponent
+        HomeComponent,
+        HomeHowToComponent
     ],
     imports: [
+        GalleriaModule,
         BrowserModule,
         FormsModule,
         HttpModule,

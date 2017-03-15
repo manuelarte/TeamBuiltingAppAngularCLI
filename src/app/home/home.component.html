@@ -1,17 +1,113 @@
-<p>This is a Clarity seed application. This is the default page that loads for the application.</p>
-
-<clr-dropdown [clrMenuPosition]="'bottom-right'">
-    <button class="btn btn-outline-primary" clrDropdownToggle>
-        Dropdown
-        <clr-icon shape="caret down"></clr-icon>
-    </button>
-    <div class="dropdown-menu">
-        <label class="dropdown-header">Dropdown header</label>
-        <a href="javascript://" clrDropdownItem>Action 1</a>
-        <a href="javascript://" clrDropdownItem>Action 2</a>
-        <a href="javascript://" class="disabled" clrDropdownItem>Disabled</a>
-        <div class="dropdown-divider"></div>
-        <a href="javascript://" clrDropdownItem>Link 1</a>
-        <a href="javascript://" clrDropdownItem>Link 2</a>
+<div class="row flex-items-xs-center">
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 galleria-container">
+        <p-galleria [images]="images" [panelWidth]="'100%'" panelHeight="316" [showCaption]="true" [transitionInterval]="4000" effectDuration="2000"></p-galleria>
     </div>
-</clr-dropdown>
+</div>
+<div id="intro">
+    <!--<home-how-to></home-how-to>-->
+</div>
+
+<div class="row flex-items-xs-center">
+
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                Search for a team!
+            </div>
+            <div class="card-block">
+                <img class="home-card-img" src="./images/stock-vector-cartoon-illustration-of-a-star-playing-soccer.jpg"
+                     alt="..."/>
+            </div>
+            <div class="card-block">
+                <span class="card-media-title">
+                            Use this search to look for a team:
+                </span>
+                <span class="card-media-text">
+                    <!--<team-search (teamClicked)="gotoTeamDetails($event)">Loading the search team component...</team-search>-->
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                Teams Most Visited!
+            </div>
+            <div class="card-block">
+                <div class="card-media-block">
+                    <img class="home-card-img"
+                         src="./images/soccer-goalkeeper-cartoon.jpg" alt="..."/>
+                    <div class="card-media-description">
+                        <span class="card-media-title">
+                            Use this search to look for a team:
+                        </span>
+                        <span class="card-media-text">
+                           <div class="progress-block">
+                               <label>Stacked Layout</label>
+                               <div class="progress-group">
+                                    <div class="progress-static labeled">
+                                        <div class="progress-meter" data-value="87" data-displayval="87%"></div>
+                                        <span>87%</span>
+                                    </div>
+                                    <div class="progress-static labeled">
+                                        <div class="progress-meter" data-value="50" data-displayval="50%"></div>
+                                        <span>50%</span>
+                                    </div>
+                                    <div class="progress-static labeled">
+                                        <div class="progress-meter" data-value="20" data-displayval="20%"></div>
+                                        <span>20%</span>
+                                    </div>
+                                </div>
+                            </div>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+
+    <div class="card">
+        <div class="card-header">
+            Rate the app and Suggestions!
+        </div>
+        <div class="card-block">
+            <div class="card-media-block">
+                <img class="home-card-img" src="./images/crazy-soccer-ball-cartoon.jpg" alt="..."/>
+                <div class="card-media-description">
+                        <span class="card-media-title">
+                            Use this search to look for a team:
+                        </span>
+                    <span class="card-media-text">
+                            List of teamm and number of visited!
+
+                        </span>
+                </div>
+            </div>
+            <div class="card-text">
+                <!--<rate-and-comments></rate-and-comments>-->
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+    <a href="javascript://" class="card clickable">
+        <div class="card-img">
+            <img class="home-card-img" src="./images/stock-vector-cartoon-illustration-of-a-star-playing-soccer.jpg"
+                 alt="..."/>
+        </div>
+    </a>
+</div>
+
+<!--
+
+<div *ngIf="mostVisitedTeamsLoaded" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <my-statistics></my-statistics>
+</div>
+-->
