@@ -34,9 +34,7 @@ import {CommonModule} from "@angular/common";
         ReactiveFormsModule,
         HttpModule,
         ClarityModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
-        }),
+        AgmCoreModule,
         // PrimeNG modules
         CalendarModule,
         DataListModule,

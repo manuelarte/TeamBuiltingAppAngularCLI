@@ -46,9 +46,7 @@ import {PlayerRoutingModule} from "./player-routing.module";
     ReactiveFormsModule,
     HttpModule,
     ClarityModule,
-    AgmCoreModule.forRoot({
-          apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
-    }),
+    AgmCoreModule,
     // PrimeNG modules
     CalendarModule,
     DataListModule,
