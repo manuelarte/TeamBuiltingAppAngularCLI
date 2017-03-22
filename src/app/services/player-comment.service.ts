@@ -16,7 +16,7 @@ export class PlayerCommentService {
   private playersUrl = this.backendUrl + this.commentsPrefix + '/players';
   private reasonsUrl = this.backendUrl + this.commentsPrefix + '/reasons';
 
-  constructor(private authHttp: AuthHttp, private http: Http) { }
+  constructor(private http: Http, private authHttp: AuthHttp) { }
 
   getPlayerComments(playerId: string): Promise<PlayerComment[]> {
     return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertWhenForArray)

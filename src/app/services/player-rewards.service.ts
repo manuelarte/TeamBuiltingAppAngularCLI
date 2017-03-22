@@ -2,11 +2,11 @@ import { Injectable }    from '@angular/core';
 import {Http, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map'
 
-import {AuthHttp} from "angular2-jwt";
-import {Auth} from "./auth-service";
 import {PlayerReward} from "../player-reward";
 import {environment} from "../../environments/environment";
+import {AuthHttp} from "angular2-jwt";
 
 @Injectable()
 export class PlayerRewardsService {
@@ -15,7 +15,7 @@ export class PlayerRewardsService {
   private rewardsPrefix = '/rewards';
   private playersUrl = this.backendUrl + this.rewardsPrefix + '/players';
 
-  constructor(private authHttp: AuthHttp, private http: Http) { }
+  constructor(private http: Http, private authHttp: AuthHttp) { }
 
   getPlayerRewards(playerId: string): Promise<PlayerReward[]> {
     return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertFromDatesAndToDatesForArray)
