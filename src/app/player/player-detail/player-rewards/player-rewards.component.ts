@@ -14,10 +14,9 @@ import {Team} from "../../../team";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'player-rewards',
   templateUrl: 'player-rewards.component.html',
-  styleUrls: ['player-rewards.component.css'],
+  styleUrls: ['player-rewards.component.scss'],
   providers: [PlayerService, TeamService, PlayerRewardsService, UserDataService, SeasonUtilService ]
 })
 export class PlayerRewardsComponent implements OnInit {

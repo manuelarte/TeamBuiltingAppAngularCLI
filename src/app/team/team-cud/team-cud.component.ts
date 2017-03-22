@@ -6,10 +6,9 @@ import {TeamSport} from "../../team-sports";
 import {FormGroup, FormControl, Validators, ValidatorFn, AbstractControl} from "@angular/forms";
 
 @Component({
-    moduleId: module.id,
     selector: 'team-cud',
     templateUrl: 'team-cud.component.html',
-    styleUrls: [ 'team-cud.component.css' ],
+    styleUrls: [ 'team-cud.component.scss' ],
     providers: [ TeamSportService, TeamService ]
 })
 export class TeamCudComponent implements OnInit {

@@ -6,10 +6,9 @@ import {Team} from "../../team";
 import {Page} from "../../page";
 
 @Component({
-  moduleId: module.id,
   selector: 'team-search',
   templateUrl: 'team-search.component.html',
-  styleUrls: [ 'team-search.component.css' ],
+  styleUrls: [ 'team-search.component.scss' ],
   providers: [TeamSearchService]
 })
 export class TeamSearchComponent implements OnInit {

@@ -7,10 +7,9 @@ import {TeamSportPosition} from "../../../team-sports";
 
 
 @Component({
-    moduleId: module.id,
     selector: 'player-position-icon',
     templateUrl: 'player-position-icon.component.html',
-    styleUrls: [ 'player-position-icon.component.css' ],
+    styleUrls: [ 'player-position-icon.component.scss' ],
 })
 export class PlayerPositionIconComponent implements OnInit {
 

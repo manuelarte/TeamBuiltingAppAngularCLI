@@ -9,7 +9,6 @@ import {AgmCoreModule} from "angular2-google-maps/core";
 import {AUTH_PROVIDERS} from "angular2-jwt";
 import {InputTextModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
-import {TranslateModule} from "ng2-translate";
 
 import {GrowlModule} from "primeng/primeng";
 import {DataListModule} from 'primeng/primeng';
@@ -34,7 +33,6 @@ import {CommonModule} from "@angular/common";
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        TranslateModule.forRoot(),
         ClarityModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'

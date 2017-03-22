@@ -6,7 +6,7 @@ import {Player} from "../../player";
 import {UserData} from "../../user-data";
 
 @Component({
-  styleUrls: ['my-profile.component.css'],
+  styleUrls: ['my-profile.component.scss'],
   templateUrl: 'my-profile.component.html',
   providers: [ Auth, PlayerService, UserDataService ],
 })

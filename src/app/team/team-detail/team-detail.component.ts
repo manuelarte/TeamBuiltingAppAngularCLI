@@ -8,10 +8,9 @@ import {Team} from "../../team";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'team-detail',
   templateUrl: 'team-detail.component.html',
-  styleUrls: ['team-detail.component.css'],
+  styleUrls: ['team-detail.component.scss'],
   providers: [TeamService, SeasonUtilService]
 })
 export class TeamDetailComponent implements OnInit {

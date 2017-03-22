@@ -7,10 +7,9 @@ import {PlayerComment} from "../../../../player-comment";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'show-player-comment',
   templateUrl: 'show-player-comment.component.html',
-  styleUrls: ['show-player-comment.component.css'],
+  styleUrls: ['show-player-comment.component.scss'],
   providers: [ ],
   animations: [
       trigger('cardplayercomment', [

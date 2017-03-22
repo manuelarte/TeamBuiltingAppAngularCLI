@@ -9,10 +9,9 @@ import {TeamSportPosition} from "../../team-sports";
 
 
 @Component({
-    moduleId: module.id,
     selector: 'player-football-position',
     templateUrl: 'player-football-position.component.html',
-    styleUrls: [ 'football-pitch.component.css' ],
+    styleUrls: [ 'football-pitch.component.scss' ],
     providers: [ TeamSportService ]
 })
 export class PlayerFootballPositionComponent implements OnInit {

@@ -14,10 +14,9 @@ import {Page} from "../../../page";
 
 
 @Component({
-    moduleId: module.id,
     selector: 'my-player-history-table',
     templateUrl: 'my-player-history-table.component.html',
-    styleUrls: [ 'my-player-history-table.component.css' ],
+    styleUrls: [ 'my-player-history-table.component.scss' ],
     providers: [ TeamService, TeamSearchService ]
 })
 export class MyPlayerHistoryTableComponent implements OnInit {

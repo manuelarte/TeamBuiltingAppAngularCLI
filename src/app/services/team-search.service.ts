@@ -2,14 +2,17 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map'
+
 import {Team} from "../team";
-import {environmentConfig} from "./environment.config";
 import {Page} from "../page";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class TeamSearchService {
 
-  private backendUrl: string = `${environmentConfig.backendCoreUrl}`;
+  private backendUrl: string = `${environment.backendCoreUrl}`;
 
   constructor(private http: Http) {}
 

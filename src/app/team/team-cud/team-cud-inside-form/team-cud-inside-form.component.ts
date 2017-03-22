@@ -7,10 +7,9 @@ import {GoogleMapGeocodingResultGeometryLocation} from "../../../google-map-geoc
 import {DatesService} from "../../../services/dates-service";
 
 @Component({
-    moduleId: module.id,
     selector: 'team-cud-inside-form',
     templateUrl: 'team-cud-inside-form.component.html',
-    styleUrls: [ 'team-cud-inside-form.component.css' ],
+    styleUrls: [ 'team-cud-inside-form.component.scss' ],
     providers: [ GoogleMapGeocodingService, DatesService ]
 })
 export class TeamCudInsideFormComponent implements OnInit {

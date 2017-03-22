@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'inside-how-to',
-  styleUrls: ['inside-how-to.component.css'],
+  styleUrls: ['inside-how-to.component.scss'],
   templateUrl: 'inside-how-to.component.html',
   providers: [  ],
 })

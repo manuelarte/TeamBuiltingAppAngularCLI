@@ -2,10 +2,9 @@ import {Component, OnInit, Input}      from '@angular/core';
 import {Team} from "../../../team";
 
 @Component({
-  moduleId: module.id,
   selector: 'team-detail-sport-intro',
   templateUrl: 'team-detail-sport-intro.component.html',
-  styleUrls: ['team-detail-sport-intro.component.css'],
+  styleUrls: ['team-detail-sport-intro.component.scss'],
   providers: []
 })
 export class TeamDetailSportIntroComponent implements OnInit {

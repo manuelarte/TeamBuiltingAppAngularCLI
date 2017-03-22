@@ -2,9 +2,8 @@ import {Component, OnInit, Input} from "@angular/core";
 import {Team} from "../../team";
 
 @Component({
-    moduleId: module.id,
     selector: 'my-podium',
-    styleUrls: ['./podium.component.css'],
+    styleUrls: ['./podium.component.scss'],
     templateUrl: 'podium.component.html',
     providers: [ ],
 })

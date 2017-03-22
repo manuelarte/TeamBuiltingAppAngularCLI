@@ -7,7 +7,7 @@ import {PlayerToTeam} from "../../player-to-team";
 
 @Component({
   selector: 'my-player-history',
-  styleUrls: ['my-player-history.component.css'],
+  styleUrls: ['my-player-history.component.scss'],
   templateUrl: 'my-player-history.component.html',
   providers: [ Auth, PlayerService ],
 })

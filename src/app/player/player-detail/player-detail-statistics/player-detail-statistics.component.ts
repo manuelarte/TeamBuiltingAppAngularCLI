@@ -5,10 +5,9 @@ import {PlayerToTeam} from "../../../player-to-team";
 import {PlayerToTeamSportDetails} from "../../../player-to-team-sport-details";
 
 @Component({
-  moduleId: module.id,
   selector: 'player-detail-statistics',
   templateUrl: 'player-detail-statistics.component.html',
-  styleUrls: ['player-detail-statistics.component.css'],
+  styleUrls: ['player-detail-statistics.component.scss'],
   providers: [ ]
 })
 export class PlayerDetailStatisticsComponent implements OnInit {

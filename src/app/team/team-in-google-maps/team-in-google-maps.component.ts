@@ -7,10 +7,9 @@ import {Team} from "../../team";
 import {LatLngBounds} from "angular2-google-maps/core";
 
 @Component({
-    moduleId: module.id,
     selector: 'team-in-google-maps',
     templateUrl: 'team-in-google-maps.component.html',
-    styleUrls: ['team-in-google-maps.component.css'],
+    styleUrls: ['team-in-google-maps.component.scss'],
     providers: [ GoogleMapGeocodingService ]
 })
 export class TeamInGoogleMapsComponent implements OnInit  {

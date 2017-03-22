@@ -10,7 +10,7 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'my-player-profile',
-  styleUrls: ['my-player-profile.component.css'],
+  styleUrls: ['my-player-profile.component.scss'],
   templateUrl: 'my-player-profile.component.html',
   providers: [ Auth, PlayerService, UserDataService ],
 })

@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  styleUrls: ['home.component.css'],
+  styleUrls: ['home.component.scss'],
   templateUrl: 'home.component.html',
   providers: [ TeamService, StatisticService ],
   animations: [

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'donate',
-  styleUrls: ['donate.component.css'],
+  styleUrls: ['donate.component.scss'],
   templateUrl: 'donate.component.html'
 })
 export class DonateComponent {

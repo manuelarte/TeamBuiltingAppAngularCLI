@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'home-how-to-introduction',
-  styleUrls: ['home-how-to-introduction.component.css'],
+  styleUrls: ['home-how-to-introduction.component.scss'],
   templateUrl: 'home-how-to-introduction.component.html',
   providers: [  ],
 })

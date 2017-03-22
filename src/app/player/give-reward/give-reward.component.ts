@@ -9,10 +9,9 @@ import {Season} from "../../services/season-utils.service";
 import {PlayerReward} from "../../player-reward";
 
 @Component({
-    moduleId: module.id,
     selector: 'give-reward',
     templateUrl: 'give-reward.component.html',
-    styleUrls: ['give-reward.component.css'],
+    styleUrls: ['give-reward.component.scss'],
     providers: [ PlayerRewardsService ]
 })
 export class GiveRewardComponent implements OnInit  {

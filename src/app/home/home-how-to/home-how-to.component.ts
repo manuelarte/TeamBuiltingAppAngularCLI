@@ -2,7 +2,7 @@ import {Component, OnInit, trigger, state, style, transition, animate} from "@an
 
 @Component({
   selector: 'home-how-to',
-  styleUrls: ['home-how-to.component.css'],
+  styleUrls: ['home-how-to.component.scss'],
   templateUrl: 'home-how-to.component.html',
   providers: [  ],
   animations: [

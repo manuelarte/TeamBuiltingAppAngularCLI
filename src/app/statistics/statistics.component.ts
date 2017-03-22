@@ -6,9 +6,8 @@ import {Page} from "../page";
 import {TeamStatistic} from "../team-statistic";
 
 @Component({
-    moduleId: module.id,
     selector: 'my-statistics',
-    styleUrls: ['./statistics.component.css'],
+    styleUrls: ['./statistics.component.scss'],
     templateUrl: 'statistics.component.html',
     providers: [ TeamService, StatisticService ],
 })

@@ -5,10 +5,9 @@ import {PlayerReward} from "../../../../player-reward";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'show-player-reward',
   templateUrl: 'show-player-reward.component.html',
-  styleUrls: ['show-player-reward.component.css'],
+  styleUrls: ['show-player-reward.component.scss'],
   providers: [SeasonUtilService ]
 })
 export class ShowPlayerRewardComponent implements OnInit {

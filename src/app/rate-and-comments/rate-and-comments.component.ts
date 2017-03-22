@@ -10,7 +10,7 @@ import {Auth} from "../services/auth-service";
   moduleId: module.id,
   selector: 'rate-and-comments',
   templateUrl: 'rate-and-comments.component.html',
-  styleUrls: ['rate-and-comments.component.css'],
+  styleUrls: ['rate-and-comments.component.scss'],
 })
 export class RateAndCommentsComponent {
   userProfile: any;

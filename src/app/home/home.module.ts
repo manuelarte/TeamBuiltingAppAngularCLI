@@ -5,7 +5,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
 import {AUTH_PROVIDERS} from "angular2-jwt";
-import {TranslateModule} from "ng2-translate";
 
 import {HomeComponent} from "./home.component";
 import {HomeHowToComponent} from "./home-how-to/home-how-to.component";
@@ -28,7 +27,6 @@ import {CommonModule} from "@angular/common";
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        TranslateModule.forRoot(),
         ClarityModule,
         GalleriaModule,
         RatingModule,

@@ -11,10 +11,9 @@ import {UserData} from "../../../user-data";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'player-comments',
   templateUrl: 'player-comments.component.html',
-  styleUrls: ['player-comments.component.css'],
+  styleUrls: ['player-comments.component.scss'],
   providers: [PlayerService, TeamService, PlayerCommentService, UserDataService ]
 })
 export class PlayerCommentsComponent implements OnInit {

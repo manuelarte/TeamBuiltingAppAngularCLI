@@ -13,10 +13,9 @@ import {Auth} from "../../../../services/auth-service";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'player-comment-form',
   templateUrl: 'player-comment-form.component.html',
-  styleUrls: ['player-comment-form.component.css'],
+  styleUrls: ['player-comment-form.component.scss'],
   providers: [PlayerService, TeamService, PlayerCommentService, UserDataService ],
   animations: [
         trigger('cardemail', [

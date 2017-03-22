@@ -9,7 +9,7 @@ import {Team} from "../../team";
 @Component({
   selector: 'my-admin-teams',
   templateUrl: 'my-admin-teams.component.html',
-  styleUrls: ['my-admin-teams.component.css'],
+  styleUrls: ['my-admin-teams.component.scss'],
   providers: [ TeamService ]
 })
 export class MyAdminTeams implements OnInit {

@@ -1,26 +1,31 @@
-import {NgModule, LOCALE_ID} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ClarityModule} from 'clarity-angular';
 
 import {AppComponent} from './app.component';
 import {AboutComponent} from './about/about.component';
-import {HttpModule} from "@angular/http";
+import {Http, HttpModule, RequestOptions} from "@angular/http";
 import {AgmCoreModule} from "angular2-google-maps/core";
 
-import {AUTH_PROVIDERS} from "angular2-jwt";
-import {TranslateModule} from "ng2-translate";
 import {DonateComponent} from "./donate/donate.component";
 import {ProfileModule} from "./profile/profile.module";
 import {HomeModule} from "./home/home.module";
 import {AppRoutingModule} from "./app-routing.module";
+
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+    return new AuthHttp(new AuthConfig({
+        tokenName: 'id_token',
+    }), http, options);
+}
 
 @NgModule({
     imports: [
         AppRoutingModule,
         BrowserModule,
         HttpModule,
-        TranslateModule.forRoot(),
-        ClarityModule,
+        ClarityModule.forRoot(),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
         }),
@@ -30,11 +35,14 @@ import {AppRoutingModule} from "./app-routing.module";
     declarations: [
         AppComponent,
         AboutComponent,
-        DonateComponent,
+        DonateComponent
     ],
     providers: [
-        {provide: LOCALE_ID, useValue: "nl"},
-        AUTH_PROVIDERS
+        {
+            provide: AuthHttp,
+            useFactory: authHttpServiceFactory,
+            deps: [Http, RequestOptions]
+        }
     ],
     bootstrap: [AppComponent]
 })

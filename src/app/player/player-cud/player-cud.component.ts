@@ -8,10 +8,9 @@ import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocodi
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
-    moduleId: module.id,
     selector: 'player-cud',
     templateUrl: 'player-cud.component.html',
-    styleUrls: [ 'player-cud.component.css' ],
+    styleUrls: [ 'player-cud.component.scss' ],
     providers: [ GoogleMapGeocodingService ]
 })
 export class PlayerCudComponent implements OnInit {

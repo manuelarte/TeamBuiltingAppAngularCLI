@@ -5,12 +5,12 @@ import 'rxjs/add/operator/toPromise';
 import {AuthHttp} from "angular2-jwt";
 import {Auth} from "./auth-service";
 import {UserData} from "../user-data";
-import {environmentConfig} from "./environment.config";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class UserDataService {
 
-  private backendUrl: string = `${environmentConfig.backendCoreUrl}`;
+  private backendUrl: string = `${environment.backendCoreUrl}`;
   private usersUrl = this.backendUrl + '/users/';
 
   constructor(private auth: Auth, private authHttp: AuthHttp) { }

@@ -2,16 +2,18 @@ import { Injectable }    from '@angular/core';
 import {Http, URLSearchParams} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map'
+
 import {Team} from "../team";
 import {Player} from "../player";
 import {AuthHttp} from "angular2-jwt";
-import {environmentConfig} from "./environment.config";
+import {environment} from "../../environments/environment";
 
 
 @Injectable()
 export class TeamService {
 
-  private backendUrl: string = `${environmentConfig.backendCoreUrl}`;
+  private backendUrl: string = `${environment.backendCoreUrl}`;
   private teamUrl = this.backendUrl + '/teams/';
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
