@@ -7,7 +7,6 @@ import {HttpModule} from "@angular/http";
 
 import {AgmCoreModule} from "angular2-google-maps/core";
 
-import {AUTH_PROVIDERS} from "angular2-jwt";
 import {InputTextModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
 
@@ -74,7 +73,6 @@ import {PlayerRoutingModule} from "./player-routing.module";
   ],
   providers: [
       { provide: LOCALE_ID, useValue: "nl" },
-      AUTH_PROVIDERS
   ],
     exports: [PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent ]
 })

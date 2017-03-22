@@ -4,8 +4,6 @@ import {ClarityModule} from 'clarity-angular';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
-import {AUTH_PROVIDERS} from "angular2-jwt";
-
 import {HomeComponent} from "./home.component";
 import {HomeHowToComponent} from "./home-how-to/home-how-to.component";
 import {HomeHowToIntroductionComponent} from "./home-how-to/home-how-to-introduction/home-how-to-introduction.component";
@@ -45,7 +43,6 @@ import {CommonModule} from "@angular/common";
     ],
     providers: [
         {provide: LOCALE_ID, useValue: "nl"},
-        AUTH_PROVIDERS
     ],
     exports: [HomeComponent]
 })
