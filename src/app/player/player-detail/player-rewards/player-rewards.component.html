@@ -1,0 +1,19 @@
+<div *ngIf="rewardsLoaded">
+
+    <div *ngIf="getRewards().length === 0">
+        <div class="alert alert-info">
+            <div class="alert-item">
+                <span class="alert-text">This player does not have any reward yet!</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="getRewards().length > 0 && userDataLoaded" class="row">
+        <div *ngFor="let playerReward of getRewards()" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <show-player-reward [playerReward]="playerReward" [team]="getTeam(playerReward.teamId)"
+                                [user]="getUserForUserId(playerReward.userId)"></show-player-reward>
+        </div>
+    </div>
+
+</div>

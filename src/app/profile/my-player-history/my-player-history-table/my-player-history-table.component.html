@@ -1,0 +1,51 @@
+<table *ngIf="model" class="table">
+    <thead>
+    <tr>
+        <th>Team</th>
+        <th>From:</th>
+        <th>To:</th>
+        <th><clr-icon shape="plus" [ngStyle]="{'opacity': areAllEntriesChecked() ? 1 : 0.3, 'cursor': 'pointer'}" (click)="createNewEntry()"></clr-icon>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let entry of model; let i = index">
+            <td>{{entry?.team?.name}}
+                <div *ngIf="!isEntryChecked(i)">
+                    <team-search (teamClicked)="selectTeam($event, i)"></team-search>
+                </div>
+            </td> <!-- Add the team search component -->
+            <td>
+                <p-calendar [(ngModel)]="entry.playerHistory.fromDate" [showIcon]="true" [minDate]="getMinDateForFromDate(i)" [disabled]="isEntryChecked(i)">
+                </p-calendar></td>
+            <td>
+                <p-calendar [(ngModel)]="entry.playerHistory.toDate" [showIcon]="true" [minDate]="getMinDateForToDate(i)" [disabled]="isEntryChecked(i) || isStillActive(i)">
+                </p-calendar>
+                Still playing: <input name="stillActive" type="checkbox" id="stillActive" [disabled]="isEntryChecked(i)"
+                       [checked]="isStillActive(i)" (click)="changeIsStillActive(i)">
+            </td>
+            <td>
+                <clr-icon *ngIf="isEntryChecked(i)" shape="edit" [ngStyle]="{'cursor': 'pointer'}"
+                          (click)="editEntry(i)" class="icon-color-info"></clr-icon>
+                <clr-icon *ngIf="!isEntryChecked(i)" shape="success"
+                          [ngStyle]="{'opacity': isEntryValid(i) ? 1 : 0.3, 'cursor': isEntryValid(i) ? 'pointer' : 'default' }"
+                          (click)="checkEntry(i)" class="icon-color-success"></clr-icon>
+                <clr-icon shape="remove" [ngStyle]="{'cursor': 'pointer'}" class="icon-color-danger"
+                          (click)="deletePlayerToTeamModalOpened = true"></clr-icon>
+
+                <clr-modal [(clrModalOpen)]="deletePlayerToTeamModalOpened">
+                    <h3 class="modal-title">Are you sure you want to delete the entry?</h3>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" (click)="deletePlayerToTeamModalOpened = false">Cancel</button>
+                        <button type="button" class="btn btn-primary" (click)="removeEntry(i); deletePlayerToTeamModalOpened = false">Ok</button>
+                    </div>
+                </clr-modal>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p-growl [value]="msgs"></p-growl>

@@ -2,24 +2,24 @@
     <div class="content-area">
         <h1 id="intro" #intro>{{player.name}} Homepage</h1>
 
- <!--       <div *ngIf="isEverythingLoaded()">
+        <div *ngIf="isEverythingLoaded()">
             <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
-        </div>-->
+        </div>
 
 
-  <!--      <div *ngIf="playerToTeamSportLoaded">
+        <div *ngIf="playerToTeamSportLoaded">
             <player-detail-team-sports [player]="player" [playerToTeamSport]="playerToTeamSport"></player-detail-team-sports>
-        </div>-->
+        </div>
 
-<!--        <div>
+        <div>
             <h1 id="comments" #comments>Comments</h1>
-            <app-player-comments [player]="player"></app-player-comments>
-        </div>-->
+            <player-comments [player]="player"></player-comments>
+        </div>
 
-        <!--<div>
+        <div>
             <h1 id="rewards" #rewards>Rewards</h1>
             <player-rewards [player]="player"></player-rewards>
-        </div>-->
+        </div>
 
         <button class="btn btn-info-outline" (click)="goBack()">Back</button>
 

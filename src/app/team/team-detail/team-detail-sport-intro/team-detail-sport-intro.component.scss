@@ -1,0 +1,42 @@
+.team-sport-header {
+    position: relative;
+    width: 100%; /* for IE 6 */
+}
+
+.team-sport-sport-image {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.team_emblem {
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    width: 20%;
+    height: auto;
+    max-height: 300px;
+}
+
+.text-inside {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+}
+
+h2 span {
+    color: white;
+    font: bold 24px/45px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+h2 span.spacer {
+    padding:0 5px;
+}

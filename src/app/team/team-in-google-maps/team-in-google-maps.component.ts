@@ -1,17 +1,19 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit }      from '@angular/core';
+
+import { GoogleMapGeocodingService } from '../../services/google-map-geocoding.service';
+import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocoding-result-geometry-location";
 import {Player} from "../../player";
 import {Team} from "../../team";
-import {GoogleMapGeocodingService} from "../../services/google-map-geocoding.service";
-import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocoding-result-geometry-location";
 import {LatLngBounds} from "angular2-google-maps/core";
 
 @Component({
-  selector: 'app-team-in-google-maps',
-  templateUrl: 'team-in-google-maps.component.html',
-  styleUrls: ['team-in-google-maps.component.scss'],
-  providers: [GoogleMapGeocodingService]
+    moduleId: module.id,
+    selector: 'team-in-google-maps',
+    templateUrl: 'team-in-google-maps.component.html',
+    styleUrls: ['team-in-google-maps.component.css'],
+    providers: [ GoogleMapGeocodingService ]
 })
-export class TeamInGoogleMapsComponent implements OnInit {
+export class TeamInGoogleMapsComponent implements OnInit  {
 
     @Input() players: Player[] = [];
     @Input() team: Team = new Team();
@@ -42,7 +44,7 @@ export class TeamInGoogleMapsComponent implements OnInit {
 
     private existDuplicates(newLocation: GoogleMapGeocodingResultGeometryLocation): boolean {
         return this.markersInfoToDisplay.filter(m => m.location.lat === newLocation.lat
-            && m.location.lng === newLocation.lng).length > 0
+        && m.location.lng === newLocation.lng).length > 0
     }
 
     print(event: LatLngBounds) {

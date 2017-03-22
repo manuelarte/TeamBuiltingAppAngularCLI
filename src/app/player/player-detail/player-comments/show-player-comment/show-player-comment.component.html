@@ -1,0 +1,24 @@
+<div class="card player-comment-card" [@cardplayercomment]>
+    <div class="card-header">
+        Comment written {{playerComment.when}}
+    </div>
+    <div class="card-block">
+        <div class="card-media-block">
+            <img [src]="user.picture" class="card-media-image">
+            <div class="card-media-description">
+                        <span class="card-media-title">
+                            {{user.nickname}}
+                        </span>
+                <span class="card-media-text">
+                            {{playerComment.reason}}
+                        </span>
+            </div>
+        </div>
+        <div class="card-text">
+            {{playerComment.comment}}
+        </div>
+    </div>
+    <div *ngIf="deleteable" class="card-footer">
+        <button class="btn btn-sm btn-link" (click)="deleteComment()">Delete</button>
+    </div>
+</div>

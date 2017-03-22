@@ -1,0 +1,72 @@
+<h3> Feedback about the website</h3>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                Do you find it useful:
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <p-rating [(ngModel)]="usefulMark"></p-rating>
+            </div>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <span>Do you like how the website looks like:</span>
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <p-rating [(ngModel)]="likeMark"></p-rating>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<form #rateAndCommentForm="ngForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
+    <section class="form-block">
+        <label>Send your comments</label>
+        <div class="form-group">
+            <label for="rateAndCommentName">Name</label>
+            <label for="rateAndCommentName"
+                   aria-haspopup="true"
+                   role="tooltip"
+                   class="tooltip tooltip-validation tooltip-md"
+                   [class.invalid]="rateAndCommentNameInput.invalid">
+                <input type="text" id="rateAndCommentName" placeholder="Enter your name" size="45"
+                       required
+                       name="rateAndCommentName"
+                       [(ngModel)]="name"
+                       [disabled]="userProfile" [value]="getName()"
+                       #rateAndCommentNameInput="ngModel">
+                <span class="tooltip-content">
+                    Name is Required.
+                </span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="email">Enter your email</label>
+            <input type="text" id="email" placeholder="Enter your email" size="35" [disabled]="userProfile" [value]="getEmail()" required>
+        </div>
+        <div class="form-group">
+            <label for="rateAndCommentComment">Comments:</label>
+            <label for="rateAndCommentComment"
+                   aria-haspopup="true"
+                   role="tooltip"
+                   class="tooltip tooltip-validation tooltip-md"
+                   [class.invalid]="rateAndCommentCommentTextArea.invalid">
+                <textarea id="rateAndCommentComment" placeholder="Enter your comment here"
+                          name="rateAndCommentComment"
+                          [(ngModel)]="comment"
+                          rows="3" required
+                          #rateAndCommentCommentTextArea="ngModel"></textarea>
+                <span class="tooltip-content">
+                    First Name is Required.
+                </span>
+            </label>
+
+        </div>
+    </section>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="rateAndCommentForm.form.invalid">Submit</button>
+</form>

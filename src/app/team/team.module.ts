@@ -1,27 +1,66 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule, LOCALE_ID} from '@angular/core';
+import {ClarityModule} from 'clarity-angular';
 
-import { TeamRoutingModule } from './team-routing.module';
-import {TeamDetailComponent} from "./team-detail/team-detail.component";
-import {TeamInGoogleMapsComponent} from "./team-in-google-maps/team-in-google-maps.component";
-import {TeamDetailSportIntroComponent} from "./team-detail-sport-intro/team-detail-sport-intro.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+
 import {AgmCoreModule} from "angular2-google-maps/core";
+
+import {AUTH_PROVIDERS} from "angular2-jwt";
+import {InputTextModule} from 'primeng/primeng';
+import {DropdownModule} from 'primeng/primeng';
+import {TranslateModule} from "ng2-translate";
+
+import {GrowlModule} from "primeng/primeng";
+import {DataListModule} from 'primeng/primeng';
+
+import {CalendarModule} from 'primeng/primeng';
+import {MultiSelectModule} from 'primeng/primeng';
 import {TeamSearchComponent} from "./team-search/team-search.component";
+import {TeamDetailComponent} from "./team-detail/team-detail.component";
+import {PlayerModule} from "../player/player.module";
+import {TeamInGoogleMapsComponent} from "./team-in-google-maps/team-in-google-maps.component";
+import {TeamCudComponent} from "./team-cud/team-cud.component";
+import {TeamCudInsideFormComponent} from "./team-cud/team-cud-inside-form/team-cud-inside-form.component";
+import {TeamDetailSportIntroComponent} from "./team-detail/team-detail-sport-intro/team-detail-sport-intro.component";
+import {TeamRoutingModule} from "./team-routing.module";
+import {CommonModule} from "@angular/common";
+
 
 @NgModule({
-  imports: [
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
-    }),
-    CommonModule,
-    TeamRoutingModule,
-  ],
-  declarations: [
-      TeamDetailComponent,
-      TeamDetailSportIntroComponent,
-      TeamInGoogleMapsComponent,
-      TeamSearchComponent,
-  ],
-  exports: [TeamSearchComponent]
+    imports: [
+        TeamRoutingModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        TranslateModule.forRoot(),
+        ClarityModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
+        }),
+        // PrimeNG modules
+        CalendarModule,
+        DataListModule,
+        DropdownModule,
+        GrowlModule,
+        InputTextModule,
+        MultiSelectModule,
+        PlayerModule,
+    ],
+    declarations: [
+        TeamSearchComponent,
+        TeamDetailComponent,
+        TeamDetailSportIntroComponent,
+        TeamCudComponent,
+        TeamCudInsideFormComponent,
+        TeamInGoogleMapsComponent,
+    ],
+    providers: [
+        {provide: LOCALE_ID, useValue: "nl"},
+        AUTH_PROVIDERS
+    ],
+    exports: [TeamSearchComponent, TeamDetailComponent, TeamCudComponent]
 })
-export class TeamModule { }
+export class TeamModule {
+}

@@ -1,0 +1,106 @@
+$pitch_width: 340px;
+$pitch_long: 550px;
+$pitch_border_lines: 2px;
+$pitch_center_dot: 2px;
+$pitch_extra_grass_sides: 20px; // Extra grass after the throw in lines
+$pitch_extra_grass_front_line: 20px; // Extra grass after the goal lines
+$pitch_circle_radius: $pitch_long * 0.16363;
+$penalty_width: 200px;
+$penalty_long: 80px;
+$inner_penalty_long: 35px;
+$background_color:blue;
+$lines_color:white;
+
+.pitch{
+    background-size: 75px 75px;
+    background: $background_color repeat -20px -20px;
+    width: $pitch_long + 2 * $pitch_extra_grass_sides;
+    height: $pitch_width + 2 * $pitch_extra_grass_front_line;
+    position: relative;
+}
+// This is to make the midfield line
+.pitch:after{
+    content: "";
+    border-left: $pitch_border_lines solid $lines_color;
+    position: absolute;
+    top : $pitch_extra_grass_sides;
+    left : ($pitch_long + 2 * $pitch_extra_grass_sides) / 2;
+    display: block;
+    height: $pitch_width;
+}
+// This is to make the lines of the complete field
+.pitch:before{
+    content: "";
+    border: $pitch_border_lines solid $lines_color;
+    position: absolute;
+    top : $pitch_extra_grass_sides;
+    left : $pitch_extra_grass_front_line;
+    display: block;
+    width: $pitch_long;
+    height: $pitch_width;
+}
+
+// This is to make the circle of the center
+.center-circle{
+    position: absolute;
+    top: $pitch_width / 2 + $pitch_extra_grass_sides - $pitch_circle_radius/2;
+    left: $pitch_long / 2 + $pitch_extra_grass_front_line - $pitch_circle_radius/2;
+    width: $pitch_circle_radius;
+    height: $pitch_circle_radius;
+    border: $pitch_border_lines solid $lines_color;
+    border-radius: 50%;
+}
+// This is to make the center point
+.center-circle:after{
+    position: absolute;
+    top: $pitch_circle_radius / 2 - $pitch_center_dot;
+    left: $pitch_circle_radius / 2 - $pitch_center_dot;
+    width: $pitch_border_lines;
+    height: $pitch_border_lines;
+    background-color:$lines_color;
+    content:"";
+    border: $pitch_border_lines solid $lines_color;
+}
+
+// The outer penalty area
+.penalty-area{
+    position: absolute;
+    height: $penalty_width;
+    width: $penalty_long;
+    top:  $pitch_width/2 - $penalty_width/2 + $pitch_extra_grass_sides;
+    border: $pitch_border_lines solid $lines_color;
+
+    border-radius: 100% / 50%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+}
+
+.left .penalty-area{
+    left: $pitch_extra_grass_sides;
+    border-left: 0;
+}
+
+.right .penalty-area{
+    right: $pitch_extra_grass_sides;
+    border-right: 0;
+    border-radius: 100% / 50%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.penalty-area:after{
+    position: absolute;
+    height: $pitch_border_lines + 4;
+    width: $pitch_border_lines + 4;
+    top: $penalty_width/2;
+    background-color:$lines_color;
+    border-radius: 50%;
+    content:"";
+}
+.left .penalty-area:after{
+    left: $penalty_long - 100% / 50%;
+}
+.right .penalty-area:after{
+    right: $penalty_long - 100% / 50%;
+}

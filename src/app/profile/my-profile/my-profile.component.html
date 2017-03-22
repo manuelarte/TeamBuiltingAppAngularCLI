@@ -1,0 +1,45 @@
+<div *ngIf="authenticatedAndWithUserProfile()" class="my-profile">
+    <h1>Your profile</h1>
+
+    <div *ngIf="errorRetrievingUserData" class="alert alert-danger">
+        <div class="alert-item">
+              <span>
+                  The user data cannot be retrieved!
+              </span>
+        </div>
+    </div>
+
+    <div *ngIf="!errorRetrievingUserData">
+
+        <div *ngIf="!isPlayerLoaded()" class="spinner">
+            Loading...
+        </div>
+
+        <div *ngIf="isPlayerLoaded()">
+
+            <my-player-profile [(originalPlayer)]="originalPlayer" [userData]="userData"></my-player-profile>
+
+            <div class="my-player-history">
+                OriginalPlayer: {{originalPlayer?.name}}
+                <my-player-history [(player)]="originalPlayer"></my-player-history>
+            </div>
+
+
+            <div>
+                <h2>My Teams</h2>
+                <my-admin-teams [teamIds]="userData.adminOfTeams"></my-admin-teams>
+            </div>
+
+            <div>
+                <h2>My Player Position</h2>
+                <my-player-position *ngIf="originalPlayer" [player]="originalPlayer"></my-player-position>
+            </div>
+
+        </div> <!-- Player loaded -->
+    </div> <!-- Div no errors in retrieving user data -->
+
+</div> <!-- Div to check authentication -->
+
+<div *ngIf="!auth.authenticated()">
+    You are not authenticated, please go to Log in()
+</div>

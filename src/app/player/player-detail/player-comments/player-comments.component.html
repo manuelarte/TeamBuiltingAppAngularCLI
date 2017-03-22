@@ -1,0 +1,34 @@
+<div>
+    <div *ngIf="commentsLoaded">
+
+        <div *ngIf="getComments().length === 0">
+            <div class="alert alert-info">
+                <div class="alert-item">
+                    <span class="alert-text">This player does not have any comment yet!</span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="userData && canUserWriteAComment()">
+            <player-comment-form [player]="player" [commentReasons]="commentReasons" (onSaved)="onSaved($event)"></player-comment-form>
+        </div>
+
+        <div *ngIf="!(auth.authenticated() && auth.userProfile)">
+            <div class="alert alert-info">
+                <div class="alert-item">
+                    <span class="alert-text">You should be authenticated if you want to write a comment.</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="!deleting && getComments().length > 0 && userDataLoaded" class="row">
+            <div *ngFor="let playerComment of getComments()" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flex-items-xs-center">
+                <show-player-comment [playerComment]="playerComment" [user]="getUserForUserId(playerComment.userId)"
+                                     [deleteable]="sameUserWhoWroteTheComment()" (onDeleted)="onDeleted($event)"></show-player-comment>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+<div class="podium">
+    <table id="ladder">
+        <tr>
+            <td class="podium-td">
+
+                    <div id="podium1">
+                        <img class="img-inside-podium" [src]="teams[1]?.emblemLink">
+                        <div id='silver' class="podium-center"></div>
+                    </div>
+            </td>
+            <td class="podium-td">
+                <div id="podium0">
+                        <img class="img-inside-podium" [src]="teams[0]?.emblemLink">
+                        <div id='gold' class="podium-center"></div>
+                </div>
+            </td>
+            <td class="podium-td">
+                <div id="podium2">
+                    <img class="img-inside-podium" [src]="teams[2]?.emblemLink">
+                    <div id='bronze' class="podium-center"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="podium-name"><h3>{{[teams[1]?.name]}}</h3></td>
+            <td class="podium-name"><h3>{{[teams[0]?.name]}}</h3></td>
+            <td class="podium-name"><h3>{{[teams[2]?.name]}}</h3></td>
+        </tr>
+    </table>
+</div>

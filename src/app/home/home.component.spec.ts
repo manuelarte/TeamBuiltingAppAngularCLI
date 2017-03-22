@@ -3,45 +3,24 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { async, TestBed, ComponentFixture } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { ClarityModule } from 'clarity-angular';
 import { HomeComponent } from './home.component';
 
+describe('HomeComponent with TCB', function () {
 
-describe('HomeComponent', () => {
-
-    let expectedMsg: string = 'This is a Clarity seed application. This is the default page that loads for the application.';
-
-    let fixture: ComponentFixture<any>;
-    let compiled: any;
-
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                HomeComponent
-            ],
-            imports: [
-                ClarityModule.forRoot()
-            ]
-        });
-
-        fixture = TestBed.createComponent(HomeComponent);
-        fixture.detectChanges();
-        compiled = fixture.nativeElement;
-
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ClarityModule],
+      declarations: [HomeComponent]
     });
+  });
 
-    afterEach(() => {
-        fixture.destroy();
+  it('should instantiate HomeComponent', async(() => {
+    TestBed.compileComponents().then(() => {
+      let fixture: ComponentFixture<any> = TestBed.createComponent(HomeComponent);
+      fixture.detectChanges();
+      expect(fixture.componentInstance instanceof HomeComponent).toBe(true, 'should create HomeComponent');
     });
-
-    it('should create the home page', async(() => {
-        expect(compiled).toBeTruthy();
-    }));
-
-    it(`should display: "${expectedMsg}"`, async(() => {
-        expect(compiled.querySelector("p").textContent).toMatch(expectedMsg);
-    }));
-
-
+  }));
 });

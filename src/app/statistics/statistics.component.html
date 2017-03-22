@@ -1,0 +1,22 @@
+<div *ngIf="loadSuccessful && teams">
+    <h1>Teams most visited:</h1>
+    <my-podium [teams]="teams"></my-podium>
+
+    <table class="table table-noborder">
+        <thead>
+        <tr>
+            <th class="left">Ranking</th>
+            <th>Team Name</th>
+            <th class="left">Visits</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let team of teams; let i = index">
+                <td class="left">{{i+1}}</td>
+                <td>{{team.name}}</td>
+                <td class="left">{{findTeamStatisticsFor(team).timesVisited}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

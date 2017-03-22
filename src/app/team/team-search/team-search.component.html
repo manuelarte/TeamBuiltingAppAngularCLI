@@ -1,5 +1,5 @@
 <div id="search-component">
-    <h4>Team Search</h4>
+  <h4>Team Search</h4>
 
     <!--  <input #searchBox id="search-box" placeholder="Introduce team name..." (keyup)="search(searchBox.value)" />
   <div>
@@ -13,12 +13,12 @@
 -->
 
 
-    <label for="search_input">
-        <input #searchInput id="search_input" type="text" placeholder="Search for a Team..." (keyup)="search(searchInput.value)"/>
+<label for="search_input">
+    <input #searchInput id="search_input" type="text" placeholder="Search for a Team..." (keyup)="search(searchInput.value)"/>
 
-        <ul class="list" [ngStyle]="{'clickable': true, 'cursor': 'pointer'}">
-            <li class="team-entry" *ngFor="let team of (teamsPage | async)?.content" (click)="onTeamClicked(team)">{{team.name}}</li>
-        </ul>
-    </label>
+    <ul class="list" [ngStyle]="{'clickable': true, 'cursor': 'pointer'}">
+       <li class="team-entry" *ngFor="let team of (teamsPage | async)?.content" (click)="onTeamClicked(team)">{{team.name}}</li>
+   </ul>
+</label>
 
 </div>

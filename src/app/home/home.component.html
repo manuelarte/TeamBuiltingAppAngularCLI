@@ -4,7 +4,7 @@
     </div>
 </div>
 <div id="intro">
-    <app-home-how-to></app-home-how-to>
+    <home-how-to></home-how-to>
 </div>
 
 <div class="row flex-items-xs-center">
@@ -15,15 +15,15 @@
                 Search for a team!
             </div>
             <div class="card-block">
-                <img class="home-card-img" src="./images/stock-vector-cartoon-illustration-of-a-star-playing-soccer.jpg"
-                     alt="..."/>
+                <img class="homeCardImg" src="./images/stock-vector-cartoon-illustration-of-a-star-playing-soccer.jpg"
+                         alt="..."/>
             </div>
             <div class="card-block">
                 <span class="card-media-title">
                             Use this search to look for a team:
                 </span>
                 <span class="card-media-text">
-                    <app-team-search (teamClicked)="gotoTeamDetails($event)">Loading the search team component...</app-team-search>
+                    <team-search (teamClicked)="gotoTeamDetails($event)">Loading the search team component...</team-search>
                 </span>
             </div>
         </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="card-block">
                 <div class="card-media-block">
-                    <img class="home-card-img"
+                    <img class="homeCardImg"
                          src="./images/soccer-goalkeeper-cartoon.jpg" alt="..."/>
                     <div class="card-media-description">
                         <span class="card-media-title">
@@ -78,7 +78,7 @@
         </div>
         <div class="card-block">
             <div class="card-media-block">
-                <img class="home-card-img" src="./images/crazy-soccer-ball-cartoon.jpg" alt="..."/>
+                <img class="homeCardImg" src="./images/crazy-soccer-ball-cartoon.jpg" alt="..."/>
                 <div class="card-media-description">
                         <span class="card-media-title">
                             Use this search to look for a team:
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="card-text">
-                <!--<rate-and-comments></rate-and-comments>-->
+                <rate-and-comments></rate-and-comments>
             </div>
         </div>
     </div>
@@ -99,15 +99,13 @@
 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
     <a href="javascript://" class="card clickable">
         <div class="card-img">
-            <img class="home-card-img" src="./images/stock-vector-cartoon-illustration-of-a-star-playing-soccer.jpg"
+            <img class="homeCardImg" src="./images/stock-vector-cartoon-illustration-of-a-star-playing-soccer.jpg"
                  alt="..."/>
         </div>
     </a>
 </div>
 
-<!--
 
 <div *ngIf="mostVisitedTeamsLoaded" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <my-statistics></my-statistics>
 </div>
--->

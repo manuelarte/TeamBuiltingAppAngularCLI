@@ -1,48 +1,47 @@
-import {Component, trigger, state, style, transition, animate} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
-import {Team} from "../team";
+
+import {Component, OnInit, trigger, state, style, transition, animate} from "@angular/core";
 import {TeamService} from "../services/team.service";
 import {StatisticService} from "../services/statistic.service";
+import {Team} from "../team";
+import {Router} from "@angular/router";
+
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    providers: [TeamService, StatisticService],
-    animations: [
+  styleUrls: ['home.component.css'],
+  templateUrl: 'home.component.html',
+  providers: [ TeamService, StatisticService ],
+  animations: [
 
-        trigger('slideIn', [
-            state('*', style({
-                '-ms-transform': 'translate3D(0px, 0px, 0px)',
-                '-webkit-transform': 'translate3D(0px, 0px, 0px)',
-                '-moz-transform': 'translate3D(0px, 0px, 0px)',
-                '-o-transform':'translate3D(0px, 0px, 0px)',
-                transform:'translate3D(0px, 0px, 0px)',
-                opacity: 1})),
-            transition('void => *', [
-                style({opacity: 0,
-                    '-ms-transform': 'translate3D(0px, 150px, 0px)',
-                    '-webkit-transform': 'translate3D(0px, 150px, 0px)',
-                    '-moz-transform': 'translate3D(0px, 150px, 0px)',
-                    '-o-transform':'translate3D(0px, 150px, 0px)',
-                    transform:'translate3D(0px, 150px, 0px)',
-                }),
-                animate('1.3s 0.25s ease-out')
-            ])
-        ]),
-    ]
+      trigger('slideIn', [
+          state('*', style({
+              '-ms-transform': 'translate3D(0px, 0px, 0px)',
+              '-webkit-transform': 'translate3D(0px, 0px, 0px)',
+              '-moz-transform': 'translate3D(0px, 0px, 0px)',
+              '-o-transform':'translate3D(0px, 0px, 0px)',
+              transform:'translate3D(0px, 0px, 0px)',
+              opacity: 1})),
+          transition('void => *', [
+              style({opacity: 0,
+                  '-ms-transform': 'translate3D(0px, 150px, 0px)',
+                  '-webkit-transform': 'translate3D(0px, 150px, 0px)',
+                  '-moz-transform': 'translate3D(0px, 150px, 0px)',
+                  '-o-transform':'translate3D(0px, 150px, 0px)',
+                  transform:'translate3D(0px, 150px, 0px)',
+              }),
+              animate('1.3s 0.25s ease-out')
+          ])
+      ]),
+  ]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
     images: any[];
     mostVisitedTeams: Team[] = [];
     mostVisitedTeamsLoaded: boolean = false;
 
     constructor(private router: Router,
-                private route: ActivatedRoute,
                 private teamService: TeamService,
-                private statisticService: StatisticService
-                ) {}
+                private statisticService: StatisticService) {}
 
     ngOnInit() {
         this.images = [];
@@ -63,8 +62,8 @@ export class HomeComponent {
     }
 
     gotoTeamDetails(team: Team): void {
-        let link = ['../team/ ' + team.id ];
-        this.router.navigate(['/team', team.id,]);
-        console.log("going to team details", team)
+        let link = ['/team', team.id];
+        this.router.navigate(link);
     }
+
 }

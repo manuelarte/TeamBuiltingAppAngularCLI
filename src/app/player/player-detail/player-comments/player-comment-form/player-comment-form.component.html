@@ -1,0 +1,53 @@
+<form [formGroup]="playerCommentForm">
+    <div class="card" [@cardemail]>
+        <div class="card-header">
+            Write a comment
+        </div>
+        <div class="card-block">
+            <div class="card-media-block">
+                <img [src]="auth.userProfile.picture" class="card-media-image">
+                <div class="card-media-description">
+                            <span class="card-media-title">
+                                {{auth.userProfile.given_name}} {{auth.userProfile.family_name}}
+                            </span>
+                    <span class="card-media-text">
+                                <div class="select">
+                                    <label for="reason"
+                                           aria-haspopup="true"
+                                           role="tooltip"
+                                           class="tooltip tooltip-validation tooltip-sm"
+                                           [class.invalid]="playerCommentForm.get('reason').invalid && playerCommentForm.get('reason').dirty">
+                                        <select #reason name="reason" [(ngModel)]="model.reason"
+                                                formControlName="reason" [disabled]="playerCommentSubmitting"
+                                                id="reason">
+                                            <option [selected]="true"
+                                                    [disabled]="true">How do you know this player?</option>
+                                            <option *ngFor="let reason of commentReasons">{{reason}}</option>
+                                        </select>
+                                       <span class="tooltip-content">Comment is required.</span>
+                                    </label>
+                                </div>
+                            </span>
+                </div>
+            </div>
+            <div class="card-text">
+                <label for="comment">Comment: </label>
+                <label for="comment"
+                       aria-haspopup="true"
+                       role="tooltip"
+                       class="tooltip tooltip-validation tooltip-sm"
+                       [class.invalid]="playerCommentForm.get('comment').invalid">
+                        <textarea #comment name="comment" [(ngModel)]="model.comment"
+                                  [disabled]="playerCommentSubmitting" formControlName="comment" id="comment" cols="50"
+                                  rows="5" [required]></textarea>
+                    <span class="tooltip-content">Comment is required.</span>
+                </label>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button [disabled]="playerCommentForm.invalid || playerCommentSubmitting" class="btn btn-sm btn-link"
+                    (click)="submitComment()">Submit
+            </button>
+        </div>
+    </div>
+</form>

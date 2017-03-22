@@ -1,0 +1,31 @@
+<clr-modal [(clrModalOpen)]="addRewardModalOpened" [clrModalSize]="'lg'">
+    <h3 class="modal-title">Add reward to {{player?.name}}</h3>
+    <div class="modal-body">
+        <form [formGroup]="playerRewardForm">
+            <section class="form-block">
+                <label>Reward for season {{season?.startDate.getFullYear()}}-{{season?.endDate.getFullYear()}}</label>
+                <div class="form-group">
+                    <label for="reward" [class.invalid]="playerRewardForm.get('reward').invalid && playerRewardForm.get('reward').dirty">Reward:</label>
+                    <div class="select">
+                        <select #reward id="reward" [(ngModel)]="model.reward" formControlName="reward" required>
+                            <option [selected]="true"
+                                    [disabled]="true">Select a reward...</option>
+                            <option *ngFor="let reward of rewards">{{reward}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" rows="5" [(ngModel)]="model.comment" formControlName="comment"></textarea>
+                </div>
+            </section>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="closeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" [disabled]="playerRewardForm.invalid" (click)="onSubmit()">Ok</button>
+    </div>
+</clr-modal>
+
+<p-growl [value]="msgs" [life]="3000"></p-growl>

@@ -1,0 +1,23 @@
+.team-players {
+    position:relative;
+    background-color: lightgray;
+}
+
+.team-players:after {
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px;
+    width: 0;
+    height: 0;
+    border-top: solid 50px lightgray;
+    border-left: solid 50px transparent;
+    border-right: solid 50px transparent;
+    z-index:99;
+}
+
+.team-in-google-maps {
+    position:relative;
+    background-color: lightgoldenrodyellow;
+}

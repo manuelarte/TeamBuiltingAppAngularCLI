@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-header">
+        My Player Career
+    </div>
+    <div class="card-block">
+        <div class="card-title">
+            Add from when to when you played in which team
+        </div>
+        <div class="card-text">
+
+            <div *ngIf="!player" class="alert alert-warning">
+                <div class="alert-item">
+                            <span class="alert-text">
+                                You haven't added a player yet
+                            </span>
+                </div>
+            </div>
+
+            <div *ngIf="player && !isPlayerHistoryLoaded()"  class="spinner">
+                Loading...
+            </div>
+            <div *ngIf="player && isPlayerHistoryLoaded()">
+                <div *ngIf="noEntries()">
+                    <div class="alert alert-warning">
+                        <div class="alert-item">
+                            <span class="alert-text">You haven't added any entry in your history</span>
+                            <div class="alert-actions">
+                                <div (click)="opened = !opened" [ngClass]="{'open': opened == true}"
+                                     class="alert-action dropdown bottom-right open">
+                                    <button class="dropdown-toggle">
+                                        Actions
+                                        <clr-icon shape="caret down"></clr-icon>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="...">Add a new team</a>
+                                        <a class="dropdown-item" href="...">Suspend</a>
+                                        <a class="dropdown-item" href="...">Reboot</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <my-player-history-table [(playerHistory)]="playerHistory" [player]="player"></my-player-history-table>
+            </div>
+
+        </div>
+    </div>
+</div>

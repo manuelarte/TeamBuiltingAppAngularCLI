@@ -1,0 +1,29 @@
+<div *ngIf="teamsLoaded">
+    <h1>Teams I am admin:</h1>
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" *ngFor="let team of teams">
+          <div (click)="teamClicked = team; editTeamModalOpened = true" class="card clickable">
+              <div class="card-img">
+                  <img class="img-card" [src]="team.emblemLink">
+              </div>
+              <div class="card-block">
+                  <h4 class="card-title">{{team.name}}</h4>
+              </div>
+          </div>
+      </div>
+    </div><!-- /row -->
+</div>
+
+<team-cud [model]="teamClicked" [(teamModalOpened)]="editTeamModalOpened"></team-cud>
+<div *ngIf="editTeamModalOpened" class="modal-backdrop" aria-hidden="true"></div>
+
+<div *ngIf="!teams || teams.length == 0">
+    <div class="alert alert-warning">
+        <div class="alert-item">
+              <span class="alert-text">
+                  You cannot edit any team
+              </span>
+        </div>
+    </div>
+
+</div>

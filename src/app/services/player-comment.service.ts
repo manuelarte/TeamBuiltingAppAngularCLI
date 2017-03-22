@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map'
 
 import {PlayerComment} from "../player-comment";
 import {environment} from "../../environments/environment";
+import {AuthHttp} from "angular2-jwt";
 
 @Injectable()
 export class PlayerCommentService {
@@ -15,7 +16,7 @@ export class PlayerCommentService {
   private playersUrl = this.backendUrl + this.commentsPrefix + '/players';
   private reasonsUrl = this.backendUrl + this.commentsPrefix + '/reasons';
 
-  constructor(private http: Http) { }
+  constructor(private authHttp: AuthHttp, private http: Http) { }
 
   getPlayerComments(playerId: string): Promise<PlayerComment[]> {
     return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertWhenForArray)
@@ -23,11 +24,11 @@ export class PlayerCommentService {
   }
 
   postNewPlayerComment(playerComment: PlayerComment): Promise<PlayerComment> {
-      return this.http.post(`${this.playersUrl}`, playerComment).map(this.convertWhen).toPromise();
+      return this.authHttp.post(`${this.playersUrl}`, playerComment).map(this.convertWhen).toPromise();
   }
 
   deletePlayerComment(id: string): Promise<any> {
-      return this.http.delete(`${this.playersUrl}/${id}`).toPromise();
+      return this.authHttp.delete(`${this.playersUrl}/${id}`).toPromise();
   }
 
   getCommentReasons(): Promise<string[]> {

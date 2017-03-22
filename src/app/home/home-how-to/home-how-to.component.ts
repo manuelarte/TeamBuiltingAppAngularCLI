@@ -1,9 +1,10 @@
-import {Component, OnInit, trigger, state, style, transition, animate} from '@angular/core';
+import {Component, OnInit, trigger, state, style, transition, animate} from "@angular/core";
 
 @Component({
-  selector: 'app-home-how-to',
+  selector: 'home-how-to',
+  styleUrls: ['home-how-to.component.css'],
   templateUrl: 'home-how-to.component.html',
-  styleUrls: ['home-how-to.component.scss'],
+  providers: [  ],
   animations: [
         trigger('slideIn', [
             state('*', style({
@@ -24,15 +25,16 @@ import {Component, OnInit, trigger, state, style, transition, animate} from '@an
                 animate('1.3s 0.25s ease-out')
             ])
         ]),
-    ]
+  ]
 })
 export class HomeHowToComponent implements OnInit {
 
-  tabSelected: string = "introduction";
+    tabSelected: string = "introduction";
 
-  constructor() { }
+    constructor() {}
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+
+    }
 
 }

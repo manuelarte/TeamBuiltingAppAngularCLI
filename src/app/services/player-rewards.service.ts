@@ -2,8 +2,9 @@ import { Injectable }    from '@angular/core';
 import {Http, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map'
 
+import {AuthHttp} from "angular2-jwt";
+import {Auth} from "./auth-service";
 import {PlayerReward} from "../player-reward";
 import {environment} from "../../environments/environment";
 
@@ -14,7 +15,7 @@ export class PlayerRewardsService {
   private rewardsPrefix = '/rewards';
   private playersUrl = this.backendUrl + this.rewardsPrefix + '/players';
 
-  constructor(private http: Http) { }
+  constructor(private authHttp: AuthHttp, private http: Http) { }
 
   getPlayerRewards(playerId: string): Promise<PlayerReward[]> {
     return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertFromDatesAndToDatesForArray)
@@ -22,11 +23,11 @@ export class PlayerRewardsService {
   }
 
   postNewPlayerReward(playerReward: PlayerReward): Promise<PlayerReward> {
-      return this.http.post(`${this.backendUrl}${this.rewardsPrefix}`, playerReward).map(this.convertFromDateAndToDate).toPromise();
+      return this.authHttp.post(`${this.backendUrl}${this.rewardsPrefix}`, playerReward).map(this.convertFromDateAndToDate).toPromise();
   }
 
   deletePlayerReward(id: string): Promise<any> {
-      return this.http.delete(`${this.playersUrl}/${id}`).toPromise();
+      return this.authHttp.delete(`${this.playersUrl}/${id}`).toPromise();
   }
 
   getRewards(): Promise<string[]> {
