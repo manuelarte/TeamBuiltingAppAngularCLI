@@ -76,7 +76,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
                 this.showEntrySubmitted();
                 this.model[index].entryChecked = true;
                 this.playerHistory.push(this.model[index].playerHistory);
-            }).catch();
+            }).catch(error => console.log(error));
 
         }
     }

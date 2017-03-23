@@ -30,7 +30,7 @@ export class MyPlayerHistoryComponent implements OnInit, OnChanges  {
                 console.log("loading player history for ", this.player)
                 this.playerHistory = playerHistory;
                 this.playerHistoryLoaded = true;
-            }).catch()
+            }).catch(error => console.log(error))
         }
     }
 

@@ -91,7 +91,7 @@ export class MyPlayerPositionComponent implements OnInit, OnChanges  {
             this.playerService.deletePlayerToTeamSportDetails(this.dictModel[sport].playerToTeamSportDetail).then(result => {
                 this.dictModel[sport] = null;
                 this.showEntryDeletedMessage();
-            }).catch()
+            }).catch(error => console.log(error))
         } else {
             this.dictModel[sport] = null;
         }

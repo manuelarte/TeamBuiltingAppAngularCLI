@@ -3650,6 +3650,12 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+ng2-charts@^1.4.4:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/ng2-charts/-/ng2-charts-1.5.0.tgz#72556a1ff0f6758c21abc7eccfe71984c82e9c2d"
+  dependencies:
+    chart.js "^2.4.0"
+
 no-case@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.1.tgz#7aeba1c73a52184265554b7dc03baf720df80081"
@@ -5688,11 +5694,11 @@ typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-"typescript@>=2.0.0 <2.2.0", typescript@~2.0.3:
+"typescript@>=2.0.0 <2.2.0":
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.10.tgz#ccdd4ed86fd5550a407101a0814012e1b3fac3dd"
 
-typescript@>=2.1.4, typescript@^2.0.3:
+typescript@>=2.1.4, typescript@^2.0.3, typescript@^2.1.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.1.tgz#4862b662b988a4c8ff691cc7969622d24db76ae9"
 

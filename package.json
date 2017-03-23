@@ -8,8 +8,7 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test --single-run",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor",
-    "postinstall": "ng build --aot -prod"
+    "e2e": "protractor"
   },
   "private": true,
   "dependencies": {
@@ -62,7 +61,7 @@
     "protractor": "4.0.9",
     "ts-node": "1.2.1",
     "tslint": "^4.1.1",
-    "typescript": "~2.0.3",
+    "typescript": "^2.1.0",
     "typings": "^1.4.0",
     "webdriver-manager": "10.2.5"
   },

@@ -87,13 +87,17 @@ export class PlayerRewardsComponent implements OnInit {
   }
 
   getRewards(): PlayerReward[] {
-      let values: {user: any, playerRewards: PlayerReward}[] = Object.values(this.userAndReward);
+      let values: {user: any, playerRewards: PlayerReward}[] = this.values(this.userAndReward);
       return [].concat.apply([], values.filter(entry => entry != null).map(entry => entry.playerRewards));
   }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  private values<Y>(data: {[key: string]: any}): any {
+    return Object.keys(data).map(key=>data[key])
   }
 
 }

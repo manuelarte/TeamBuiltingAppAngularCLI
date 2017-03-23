@@ -4,8 +4,6 @@ import {
 }      from '@angular/core';
 import {PlayerComment} from "../../../../player-comment";
 
-
-
 @Component({
   selector: 'show-player-comment',
   templateUrl: 'show-player-comment.component.html',

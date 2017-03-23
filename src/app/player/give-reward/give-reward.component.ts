@@ -52,7 +52,7 @@ export class GiveRewardComponent implements OnInit  {
         this.playerRewardService.postNewPlayerReward(this.model).then(team => {
             this.showSuccessMessage();
             this.closeModal();
-        }).catch()
+        }).catch(error => console.log(error))
     }
 
     closeModal() {

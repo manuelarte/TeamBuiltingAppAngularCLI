@@ -4,7 +4,6 @@ import {TeamService} from "../../../services/team.service";
 import {PlayerCommentService} from "../../../services/player-comment.service";
 import {Auth} from "../../../services/auth-service";
 import {UserDataService} from "../../../services/user-data.service";
-import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {PlayerComment} from "../../../player-comment";
 import {Player} from "../../../player";
 import {UserData} from "../../../user-data";
@@ -37,7 +36,7 @@ export class PlayerCommentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.playerCommentService.getCommentReasons().then(commentReasons => this.commentReasons = commentReasons).catch();
+    this.playerCommentService.getCommentReasons().then(commentReasons => this.commentReasons = commentReasons).catch(error => console.log(error));
 
     this.playerCommentService.getPlayerComments(this.player.id).then(comments => {
         comments.forEach(comment => {
@@ -99,8 +98,12 @@ export class PlayerCommentsComponent implements OnInit {
   }
 
   getComments(): PlayerComment[] {
-      let values: {user: any, playerComment: PlayerComment}[] = Object.values(this.userAndComment);
+      let values: {user: any, playerComment: PlayerComment}[] = this.values(this.userAndComment);
       return values.filter(entry => entry != null).map(entry => entry.playerComment);
+  }
+
+  private values<Y>(data: {[key: string]: Y}): Y[] {
+      return Object.keys(data).map(key=>data[key])
   }
 
   private handleError(error: any): Promise<any> {

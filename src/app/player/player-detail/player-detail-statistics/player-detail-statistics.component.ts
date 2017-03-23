@@ -114,7 +114,7 @@ export class PlayerDetailStatisticsComponent implements OnInit {
       this.playerHistory.forEach(entry => {
           dict[this.getTeamOfId(entry.teamId).sport] = dict[this.getTeamOfId(entry.teamId).sport] ? dict[this.getTeamOfId(entry.teamId).sport] + 1 : 1;
       });
-      return {labels: Object.keys(dict), data: Object.values(dict)};
+      return {labels: Object.keys(dict), data: this.values(dict)};
   }
 
   private getTeamsForSport(sport: string): Team[] {
@@ -139,6 +139,10 @@ export class PlayerDetailStatisticsComponent implements OnInit {
     let years: number = Math.floor(months/12);
 
     return {years: years, months: months, days: days};
+  }
+
+  private values<Y>(data: {[key: string]: Y}): Y[] {
+    return Object.keys(data).map(key=>data[key])
   }
 
 }
