@@ -26,12 +26,19 @@
             </td>
             <td>
                 <clr-icon *ngIf="isEntryChecked(i)" shape="edit" [ngStyle]="{'cursor': 'pointer'}"
-                          (click)="editEntry(i)" class="icon-color-info"></clr-icon>
+                          (click)="editEntry(i)" class="icon-color-info tooltip tooltip-sm tooltip-left"
+                          role="tooltip" aria-haspopup="true">
+                    <span class="tooltip-content">Edit entry</span>
+                </clr-icon>
                 <clr-icon *ngIf="!isEntryChecked(i)" shape="success"
                           [ngStyle]="{'opacity': isEntryValid(i) ? 1 : 0.3, 'cursor': isEntryValid(i) ? 'pointer' : 'default' }"
-                          (click)="checkEntry(i)" class="icon-color-success"></clr-icon>
-                <clr-icon shape="remove" [ngStyle]="{'cursor': 'pointer'}" class="icon-color-danger"
-                          (click)="deletePlayerToTeamModalOpened = true"></clr-icon>
+                          (click)="checkEntry(i)" class="icon-color-success tooltip tooltip-sm tooltip-left">
+                    <span class="tooltip-content">Check entry</span>
+                </clr-icon>
+                <clr-icon shape="remove" [ngStyle]="{'cursor': 'pointer'}" class="icon-color-danger tooltip tooltip-sm tooltip-left"
+                          (click)="deletePlayerToTeamModalOpened = true">
+                    <span class="tooltip-content">Delete entry</span>
+                </clr-icon>
 
                 <clr-modal [(clrModalOpen)]="deletePlayerToTeamModalOpened">
                     <h3 class="modal-title">Are you sure you want to delete the entry?</h3>
