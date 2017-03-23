@@ -10,7 +10,6 @@ export class SeasonUtilService {
 
     getYearsBetweenTwoYears(startYear: number, endYear: number ): number[] {
         if (startYear > endYear) {
-            console.log(startYear, endYear);
             throw "Start year must be before endYear";
         }
         let years: number[] = [];
