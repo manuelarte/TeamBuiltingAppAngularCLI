@@ -3,35 +3,30 @@
         Player Position
     </div>
     <div class="card-block">
-        <div class="card-text">
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <label>Select the Sport:</label>
-                    <div class="select">
-                        <select [(ngModel)]="sportSelected" id="sports">
-                            <option value="Select the sport..." [selected]="sportSelected == null" disabled>Select the sport...</option>
-                            <option [selected]="sportSelected === sport" *ngFor="let sport of getSportsPlayed()">
-                                {{sport}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                    <div [ngSwitch]="sportSelected">
-                        <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
-                                                  [playersDetails]="[playerToTeamSport['Football']]">Loading football
-                            position...
-                        </player-football-position>
-                        <player-futsal-position *ngSwitchCase="'Futsal'" [players]="[player]"
-                                                [playersDetails]="[playerToTeamSport['Futsal']]">Loading futsal
-                            position...
-                        </player-futsal-position>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <p *ngIf="sportSelected">{{playerToTeamSport[sportSelected]?.bio}}</p>
-                </div>
-            </div>
+        <label>Select the Sport:</label>
+        <div class="select">
+            <select [(ngModel)]="sportSelected" id="sports">
+                <option value="Select the sport..." [selected]="sportSelected == null" disabled>Select the sport...
+                </option>
+                <option [selected]="sportSelected === sport" *ngFor="let sport of getSportsPlayed()">
+                    {{sport}}
+                </option>
+            </select>
         </div>
+    </div>
+    <div class="card-block">
+        <div [ngSwitch]="sportSelected">
+            <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
+                                      [playersDetails]="[playerToTeamSport['Football']]">Loading football
+                position...
+            </player-football-position>
+            <player-futsal-position *ngSwitchCase="'Futsal'" [players]="[player]"
+                                    [playersDetails]="[playerToTeamSport['Futsal']]">Loading futsal
+                position...
+            </player-futsal-position>
+        </div>
+    </div>
+    <div class="card-footer">
+        <p *ngIf="sportSelected">{{playerToTeamSport[sportSelected]?.bio}}</p>
     </div>
 </div>
