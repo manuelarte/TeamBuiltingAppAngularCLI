@@ -27,13 +27,11 @@ export class MyPlayerHistoryComponent implements OnInit, OnChanges  {
     ngOnChanges(changes: SimpleChanges): void {
         if (this.player) {
             this.playerService.getPlayerHistory(this.player.id).then(playerHistory => {
-                console.log("loading player history for ", this.player)
                 this.playerHistory = playerHistory;
                 this.playerHistoryLoaded = true;
             }).catch(error => console.log(error))
         }
     }
-
 
     isPlayerHistoryLoaded(): boolean {
         return this.playerHistoryLoaded;

@@ -49,7 +49,6 @@ export class MyPlayerProfileComponent implements OnInit {
     }
 
     set originalPlayer(val) {
-        console.log("emitting value ", val)
         this.originalPlayerValue = val;
         this.originalPlayerChange.emit(this.originalPlayerValue);
     }

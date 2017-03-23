@@ -2,6 +2,8 @@
     <div class="content-area">
         <h1 id="intro" #intro>{{player.name}} Homepage</h1>
 
+        <img class="player_image" [src]="player.imageLink" alt="{{player.name}}">
+
         <div *ngIf="isEverythingLoaded()">
             <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
         </div>
@@ -24,18 +26,4 @@
         <button class="btn btn-info-outline" (click)="goBack()">Back</button>
 
     </div>
-    <nav class="sidenav">
-        <img class="player_image" [src]="player.imageLink" alt="{{player.name}}">
-        <section class="sidenav-content">
-            <a href="#intro" class="nav-link">
-                Intro
-            </a>
-            <a href="#comments" class="nav-link">
-                Comments
-            </a>
-            <a href="#rewards" class="nav-link">
-                Rewards
-            </a>
-        </section>
-    </nav>
 </div>
