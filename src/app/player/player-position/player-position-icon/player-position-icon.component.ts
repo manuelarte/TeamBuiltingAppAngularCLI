@@ -40,11 +40,19 @@ export class PlayerPositionIconComponent implements OnInit {
         return {x: teamSportPosition.y, y: teamSportPosition.x};
     }
 
+    getLeft(): string {
+        let axialCoordinates: AxialCoordinates = this.adjustPositionToHorizontalField(this.teamSportPosition)
+        return axialCoordinates.x*100 + '%';
+    }
+
+    getTop(): string {
+        let axialCoordinates: AxialCoordinates = this.adjustPositionToHorizontalField(this.teamSportPosition)
+        return axialCoordinates.y*100 + '%';
+    }
+
     private getTranslatedPositionFor(axialCoordinates: AxialCoordinates): string {
-        let unNormalizeY: number = this.pitch_width;
-        let unNormalizeX: number = this.pitch_long;
-        return `translateX(${Math.round(axialCoordinates.x * unNormalizeX) - this.playerCard_width/2}px) 
-         translateY(${Math.round(axialCoordinates.y * unNormalizeY) - this.playerCard_height/2}px )`;
+        return `translateX(${Math.round(axialCoordinates.x*100)}%) 
+         translateY(${Math.round(axialCoordinates.y*100)}%)`;
     }
 
     changeIsActive(): void {
@@ -75,5 +83,5 @@ export class MarketInField {
 
 export class AxialCoordinates {
     x: number;
-    y: number;
+    y
 }

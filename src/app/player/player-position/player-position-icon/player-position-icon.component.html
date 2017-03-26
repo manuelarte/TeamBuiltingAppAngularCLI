@@ -1,5 +1,5 @@
 <div [ngClass]="getJsPlayerClass()" (click)="changeIsActive()"
-     [ngStyle]="{ 'display': 'block', 'opacity': 1, 'transform': getTranslatedPosition() }">
+     [ngStyle]="{ 'display': 'block', 'opacity': 1, 'left': getLeft(), 'top': getTop() }">
 
     <div class="player__placeholder"></div>
     <div class="player__card" [ngStyle]="getPlayerCardStyle()">

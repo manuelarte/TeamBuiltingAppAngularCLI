@@ -1,60 +1,77 @@
-$pitch_width: 340px;
-$pitch_long: 550px;
+$pitch_long_percentage: 100%;
+$pitch_width-long-ration_percentage: 40%;
+
 $pitch_border_lines: 2px;
 $pitch_center_dot: 2px;
-$pitch_extra_grass_sides: 20px; // Extra grass after the throw in lines
-$pitch_extra_grass_front_line: 20px; // Extra grass after the goal lines
-$pitch_circle_radius: $pitch_long * 0.16363;
-$penalty_width: 140px;
-$penalty_long: 80px;
-$inner_penalty_long: 35px;
+
+$pitch_extra_grass_sides_percentage: 5%; // Extra grass after the throw in lines
+$pitch_extra_grass_front_line_percentage: 1%; // Extra grass after the goal lines
+
+$pitch_circle_radius_percentage: 10%;
+
+$penalty_width_percentage: 40%;
+$penalty_long_percentage: 15%;
+
+$inner_penalty_long_percentage: 25%; // of the penalty area
+$inner_penalty_height_percentage: 30%;
+
 
 .pitch{
     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/grass2.png");
     background-repeat: repeat;
     background-size: 75px 75px;
     background-position: -20px -20px;
-    width: $pitch_long + 2 * $pitch_extra_grass_sides;
-    height: $pitch_width + 2 * $pitch_extra_grass_front_line;
+    width: $pitch_long_percentage;
+    padding-bottom: $pitch_width-long-ration_percentage;
     position: relative;
 }
-// This is to make the midfield line
-.pitch:after{
-    content: "";
-    border-left: $pitch_border_lines solid white;
-    position: absolute;
-    top : $pitch_extra_grass_sides;
-    left : ($pitch_long + 2 * $pitch_extra_grass_sides) / 2;
-    display: block;
-    height: $pitch_width;
-}
+
 // This is to make the lines of the complete field
 .pitch:before{
     content: "";
     border: $pitch_border_lines solid white;
     position: absolute;
-    top : $pitch_extra_grass_sides;
-    left : $pitch_extra_grass_front_line;
+    top : $pitch_extra_grass_sides_percentage;
+    left : $pitch_extra_grass_front_line_percentage;
+    width: $pitch_long_percentage - 2*$pitch_extra_grass_front_line_percentage;
+    height: 100% - 2*$pitch_extra_grass_sides_percentage;
     display: block;
-    width: $pitch_long;
-    height: $pitch_width;
+}
+
+// This is to make the midfield line
+.pitch:after{
+    content: "";
+    border-left: $pitch_border_lines solid white;
+    position: absolute;
+    top : $pitch_extra_grass_sides_percentage;
+    left : ($pitch_long_percentage/2); //($pitch_long + 2 * $pitch_extra_grass_sides) / 2;
+    display: block;
+    height: 100% - 2*$pitch_extra_grass_sides_percentage;
+}
+
+.middle {
+    position: absolute;
+    top:50%;
+    width: 100%;
+    background-color:white;
+    border: $pitch_border_lines solid white;
 }
 
 // This is to make the circle of the center
 .center-circle{
     position: absolute;
-    top: $pitch_width / 2 + $pitch_extra_grass_sides - $pitch_circle_radius/2;
-    left: $pitch_long / 2 + $pitch_extra_grass_front_line - $pitch_circle_radius/2;
-    width: $pitch_circle_radius;
-    height: $pitch_circle_radius;
+    top: 37%; // no idea how is calculated
+    left: $pitch_long_percentage / 2 - $pitch_circle_radius_percentage/2;
+    width: $pitch_circle_radius_percentage;
+    padding-bottom: $pitch_circle_radius_percentage;
     border: $pitch_border_lines solid white;
     border-radius: 50%;
 }
 // This is to make the center point
 .center-circle:after{
     position: absolute;
-    top: $pitch_circle_radius / 2 - $pitch_center_dot;
-    left: $pitch_circle_radius / 2 - $pitch_center_dot;
+    top: 50%;
+    left: 50%;
     width: $pitch_border_lines;
     height: $pitch_border_lines;
     background-color:white;
@@ -65,28 +82,28 @@ $inner_penalty_long: 35px;
 // The outer penalty area
 .penalty-area{
     position: absolute;
-    height: $penalty_width;
-    width: $penalty_long;
-    top:  $pitch_width/2 - $penalty_width/2 + $pitch_extra_grass_sides;
+    height: $penalty_width_percentage;
+    width: $penalty_long_percentage;
+    top:  50% - $penalty_width_percentage/2;
     border: $pitch_border_lines solid white;
 }
 
 .left .penalty-area{
-    left: $pitch_extra_grass_sides;
+    left: $pitch_extra_grass_front_line_percentage;
     border-left: 0;
 }
 
 .right .penalty-area{
-    right: $pitch_extra_grass_sides;
+    right: $pitch_extra_grass_front_line_percentage;
     border-right: 0;
 }
 
 // The inner penalty area
 .penalty-area:before{
     position: absolute;
-    height: $penalty_width / 2;
-    width: $inner_penalty_long;
-    top: $penalty_width / 4;
+    height: $inner_penalty_height_percentage;
+    width: $inner_penalty_long_percentage;
+    top: 50% - $inner_penalty_height_percentage / 2;
     border: $pitch_border_lines solid white;
     content:"";
 }
@@ -103,13 +120,13 @@ $inner_penalty_long: 35px;
     position: absolute;
     height: $pitch_border_lines;
     width: $pitch_border_lines;
-    top: $penalty_width/2;
+    top: 50%;
     background-color:white;
     content:"";
 }
 .left .penalty-area:after{
-    right: 15px;
+    right: 50%;
 }
 .right .penalty-area:after{
-    left: 15px;
+    left: 50%;
 }
