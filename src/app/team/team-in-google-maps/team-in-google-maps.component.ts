@@ -5,6 +5,7 @@ import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocodi
 import {Player} from "../../player";
 import {Team} from "../../team";
 import {LatLngBounds} from "angular2-google-maps/core";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'team-in-google-maps',
@@ -21,6 +22,7 @@ export class TeamInGoogleMapsComponent implements OnInit  {
 
     constructor(
         private googleMapGeocodingService: GoogleMapGeocodingService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -44,6 +46,11 @@ export class TeamInGoogleMapsComponent implements OnInit  {
     private existDuplicates(newLocation: GoogleMapGeocodingResultGeometryLocation): boolean {
         return this.markersInfoToDisplay.filter(m => m.location.lat === newLocation.lat
         && m.location.lng === newLocation.lng).length > 0
+    }
+
+    gotoPlayerDetails(player: Player): void {
+        let link = ['/player', player.id];
+        this.router.navigate(link);
     }
 
     print(event: LatLngBounds) {
