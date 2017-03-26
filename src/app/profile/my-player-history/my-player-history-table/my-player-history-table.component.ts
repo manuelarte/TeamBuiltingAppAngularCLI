@@ -11,6 +11,7 @@ import {Message} from "primeng/primeng";
 import {Team} from "../../../team";
 import {PlayerService} from "../../../services/player.service";
 import {Page} from "../../../page";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -33,6 +34,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
         private playerService: PlayerService,
         private teamService: TeamService,
         private teamSearchService: TeamSearchService,
+        private router: Router,
     ) {}
 
     ngOnInit(): void {
@@ -152,6 +154,11 @@ export class MyPlayerHistoryTableComponent implements OnInit {
 
     search(term: string): void {
         this.searchTerms.next(term);
+    }
+
+    gotoTeamDetails(team: Team): void {
+        let link = ['/team', team.id];
+        this.router.navigate(link);
     }
 
 }

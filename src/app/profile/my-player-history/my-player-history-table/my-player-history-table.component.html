@@ -10,7 +10,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let entry of model; let i = index">
-            <td>{{entry?.team?.name}}
+            <td><div class="team-entry-name" (click)="gotoTeamDetails(entry.team)">{{entry?.team?.name}}</div>
                 <div *ngIf="!isEntryChecked(i)">
                     <team-search (teamClicked)="selectTeam($event, i)"></team-search>
                 </div>
