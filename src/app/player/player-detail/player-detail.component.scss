@@ -1,6 +1,25 @@
-.player_image {
+
+$max_width: 80%;
+$max_height_img1: 300px;
+$max_height_player-profile: $max_height_img1 * 0.8;
+
+
+#container {
+    width: $max_width;
+    position:relative;
+}
+
+.img1 {
     width: 100%;
-    height: auto;
-    max-height: 300px;
+    max-height: $max_height_img1;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.player_image {
+    max-height: $max_height_player-profile;
     border-radius: 50%;
+    position: absolute;
+    left: 20%;
+    bottom: 10%;
 }

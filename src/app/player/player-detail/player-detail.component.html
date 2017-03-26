@@ -2,7 +2,11 @@
     <div class="content-area">
         <h1 id="intro" #intro>{{player.name}} Homepage</h1>
 
-        <img class="player_image" [src]="player.imageLink" alt="{{player.name}}">
+        <div id="container">
+            <img src="../images/home/image5.jpg" class="img1" />
+            <img class="player_image" [src]="player.imageLink" alt="{{player.name}}">
+        </div>
+
 
         <div *ngIf="isEverythingLoaded()">
             <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
