@@ -21,10 +21,6 @@ export class PlayerPositionIconComponent implements OnInit {
     @Input() teamSportPosition: TeamSportPosition;
 
     isActive: boolean = false;
-    pitch_width: number = 340; //px Total number of pixel of the pitch_width of the pitch
-    pitch_long: number = 550; //px Total number of pixel of the pitch_long of the pitch
-    playerCard_width: number = 65;
-    playerCard_height: number = 88;
 
     constructor() {}
 
@@ -41,10 +37,8 @@ export class PlayerPositionIconComponent implements OnInit {
     }
 
     private getTranslatedPositionFor(axialCoordinates: AxialCoordinates): string {
-        let unNormalizeY: number = this.pitch_width;
-        let unNormalizeX: number = this.pitch_long;
-        return `translateX(${Math.round(axialCoordinates.x * unNormalizeX) - this.playerCard_width/2}px) 
-         translateY(${Math.round(axialCoordinates.y * unNormalizeY) - this.playerCard_height/2}px )`;
+        return `translateX(${Math.round(axialCoordinates.x)}%) 
+         translateY(${Math.round(axialCoordinates.y)}%)`;
     }
 
     changeIsActive(): void {
