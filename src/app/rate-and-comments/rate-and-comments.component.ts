@@ -7,7 +7,6 @@ import {Auth} from "../services/auth-service";
  * @since 11/12/2016.
  */
 @Component({
-  moduleId: module.id,
   selector: 'rate-and-comments',
   templateUrl: 'rate-and-comments.component.html',
   styleUrls: ['rate-and-comments.component.scss'],
