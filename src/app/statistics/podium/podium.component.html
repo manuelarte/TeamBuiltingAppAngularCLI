@@ -1,30 +1,61 @@
-<div class="podium">
-    <table id="ladder">
-        <tr>
-            <td class="podium-td">
+<div class="container">
+    <div class="row">
+        <div id="main-div" class="col-sm-12 col-md-12 col-lg-12">
 
-                    <div id="podium1">
-                        <img class="img-inside-podium" [src]="teams[1]?.emblemLink">
-                        <div id='silver' class="podium-center"></div>
+            <div class="col-sm-4 col-md-4 col-lg-4 podium-cols">
+                <div id="podium-left-top" class="podium-top">
+
+                    <div class="user-info">
+                        <img [src]="teams[1]?.emblemLink" alt="Second Most Visited" width="88px" />
+                        <h2 class="user-name">{{teams[1]?.name}}</h2>
                     </div>
-            </td>
-            <td class="podium-td">
-                <div id="podium0">
-                        <img class="img-inside-podium" [src]="teams[0]?.emblemLink">
-                        <div id='gold' class="podium-center"></div>
+
                 </div>
-            </td>
-            <td class="podium-td">
-                <div id="podium2">
-                    <img class="img-inside-podium" [src]="teams[2]?.emblemLink">
-                    <div id='bronze' class="podium-center"></div>
+                <div id="podium-left-bottom" class="podium-bottom">
+
+                    <div>
+                        <span class="rank">#2</span>
+                    </div>
+
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="podium-name"><h3>{{[teams[1]?.name]}}</h3></td>
-            <td class="podium-name"><h3>{{[teams[0]?.name]}}</h3></td>
-            <td class="podium-name"><h3>{{[teams[2]?.name]}}</h3></td>
-        </tr>
-    </table>
+            </div>
+
+            <div class="col-sm-4 col-md-4 col-lg-4 podium-cols">
+                <div id="podium-middle-top" class="podium-top">
+
+                    <div class="user-info">
+                        <img [src]="teams[0]?.emblemLink" alt="Most Visited" width="88px" />
+                        <h2 class="user-name">{{teams[0]?.name}}</h2>
+                    </div>
+
+                </div>
+                <div id="podium-middle-bottom" class="podium-bottom">
+
+                    <div>
+                        <span class="rank">#1</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-md-4 col-lg-4 podium-cols">
+                <div id="podium-right-top" class="podium-top">
+
+                    <div class="user-info">
+                        <img [src]="teams[2]?.emblemLink" alt="Third Most Visited" width="88px" />
+                        <h2 class="user-name">{{teams[2]?.name}}</h2>
+                    </div>
+
+                </div>
+                <div id="podium-right-bottom" class="podium-bottom">
+
+                    <div>
+                        <span class="rank">#3</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

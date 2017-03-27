@@ -1,135 +1,91 @@
-$podium_width: 150px;
-$medal_width: 30px;
-$medal_height: 30px;
-$laces_width: 12px;
-$laces_height: 42px;
+$border-radius: 10px;
 
-.podium-td {
-    height: 300px;
-    vertical-align: bottom;
-    padding: 5px;
-}
-#podium0, #podium1, #podium2 {
-    width: $podium_width;
-    background: gray;
-    z-index: -2;
-}
-#podium0 { /* gold */
-    height: 250px;
-}
-#podium1 { /* silver */
-    height: 200px;
-}
-#podium2 { /* bronze */
-    height: 150px;
+.container,
+.row,
+#main-div,
+.podium-cols {
+    height: 100%;
 }
 
-#gold {
-    float: left;
-    width: $medal_width;
-    height: $medal_height;
-    background: #fdb23b linear-gradient(45deg, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0) 50%);
-    border: $medal_width/15 solid #fff;
-    border-radius: 50%;
-    position: relative;
-}
-#gold:before {
-    content: "";
-    width: $medal_width/2.5;
-    height: $medal_width/0.7;
-    background: #8d457f;
-    transform: rotate(15deg);
-    position: absolute;
-    top:  $medal_width/-0.7;
-    left: $medal_width/1.6;
-    z-index: 0;
-}
-#gold:after {
-    content: "";
-    width: $medal_width/2.5;
-    height: $medal_width/0.7;
-    background: #ad589d;
-    transform: rotate(-15deg);
-    position: absolute;
-    top: $medal_width/-0.7;
-    z-index: 0;
+.podium-cols {
+    border: none;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    .podium-top {
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .podium-bottom {
+        border: none;
+        background: url(http://goo.gl/wBWDCW);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 22px;
+        font-size: 57px;
+        font-weight: bold;
+    }
 }
 
-#silver {
-    float: left;
-    width: $medal_width;
-    height: $medal_height;
-    background: #b9b7b5 linear-gradient(45deg, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0) 50%);
-    border: 1.66667px solid #fff;
-    border-radius: 50%;
-    position: relative;
-}
-#silver:before {
-    content: "";
-    width: $medal_width/2.5;
-    height: $medal_width/0.7;
-    background: #654395;
-    transform: rotate(15deg);
-    position: absolute;
-    top:  $medal_width/-0.7;
-    left: $medal_width/1.6;
-    z-index: 0;
-}
-#silver:after {
-    content: "";
-    width: $medal_width/2.5;
-    height: $medal_width/0.7;
-    background: #7e57b4;
-    transform: rotate(-15deg);
-    position: absolute;
-    top: $medal_width/-0.7;
-    z-index: 0;
+#podium-left-top {
+    flex: 0.70;
 }
 
-#bronze {
-    float: left;
-    margin: 30px;
-    width: $medal_width;
-    height: $medal_height;
-    background: #d78c36 linear-gradient(45deg, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0) 50%);
-    border: 1.33333px solid #fff;
-    border-radius: 50%;
-    position: relative;
-}
-#bronze:before {
-    content: "";
-    width: $medal_width/2.5;
-    height: $medal_width/0.7;
-    background: #434f95;
-    transform: rotate(15deg);
-    position: absolute;
-    top:  $medal_width/-0.7;
-    left: $medal_width/1.6;
-    z-index: 0;
-}
-#bronze:after {
-    content: "";
-    width: $medal_width/2.5;
-    height: $medal_width/0.7;
-    background: #5765b4;
-    transform: rotate(-15deg);
-    position: absolute;
-    top: $medal_width/-0.7;
-    z-index: 0;
+#podium-left-bottom {
+    flex: 0.30;
+    border-right: none;
+    border-top-left-radius: $border-radius;
+    color: silver;
 }
 
-.podium-center {
-    position: relative;
-    left: $podium_width/2
+#podium-middle-top {
+    flex: 0.60;
 }
 
-.img-inside-podium {
-    width: 100%;
-    height: auto;
-    max-height: 100px;
-    top: 50%;
+#podium-middle-bottom {
+    flex: 0.40;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    color: gold;
 }
 
-.podium-name {
-    max-width: $podium_width;
+#podium-right-top {
+    flex: 0.80;
+}
+
+#podium-right-bottom {
+    flex: 0.20;
+    border-left: none;
+    border-top-right-radius: $border-radius;
+    color: #CD7F32;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    .user-points {
+        margin-top: 0;
+        font-style: italic;
+        font-size: 16px;
+    }
+    img {
+        border-radius: 20px;
+        filter: grayscale(30%);
+        /*animation: roll 3s infinite;
+        transform: rotate(30deg);*/
+    }
+}
+
+@keyframes roll {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
