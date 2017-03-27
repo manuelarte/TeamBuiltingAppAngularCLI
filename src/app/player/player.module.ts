@@ -33,6 +33,7 @@ import {ShowPlayerRewardComponent} from "./player-detail/player-rewards/show-pla
 import {PlayerCudComponent} from "./player-cud/player-cud.component";
 import {CommonModule} from "@angular/common";
 import {PlayerRoutingModule} from "./player-routing.module";
+import {PlayerSearchComponent} from "./player-search/player-search.component";
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import {PlayerRoutingModule} from "./player-routing.module";
       PlayerFutsalPositionComponent,
       PlayerPositionIconComponent,
       PlayerInTeamComponent,
+      PlayerSearchComponent,
 
       GiveRewardComponent,
       ShowPlayerCommentComponent,
