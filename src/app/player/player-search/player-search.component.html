@@ -15,13 +15,13 @@
 
 <label for="search_input">
     <input #searchInput id="search_input" type="text" placeholder="Search for a Team..." (keyup)="search(searchInput.value)"/>
-    <div *ngIf="searchInput.value && (teamsPage | async)?.content == null">
+    <div *ngIf="searchInput.value && (playersPage | async)?.content == null">
         <span class="spinner spinner-sm">Loading...</span>
     </div>
 
     <ul class="list" [ngStyle]="{'clickable': true, 'cursor': 'pointer'}">
-       <li class="not-found" *ngIf="(teamsPage | async)?.content?.length == 0" disabled>Teams not found</li>
-       <li class="team-entry" *ngFor="let team of (teamsPage | async)?.content" (click)="onTeamClicked(team)">{{team.name}}</li>
+       <li class="not-found" *ngIf="(playersPage | async)?.content?.length == 0" disabled>Players not found</li>
+       <li class="team-entry" *ngFor="let player of (playersPage | async)?.content" (click)="onPlayerClicked(player)">{{player.name}}</li>
    </ul>
 </label>
 
