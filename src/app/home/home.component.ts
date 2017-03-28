@@ -4,6 +4,7 @@ import {TeamService} from "../services/team.service";
 import {StatisticService} from "../services/statistic.service";
 import {Team} from "../team";
 import {Router} from "@angular/router";
+import {Player} from "../player";
 
 
 @Component({
@@ -63,6 +64,11 @@ export class HomeComponent implements OnInit {
 
     gotoTeamDetails(team: Team): void {
         let link = ['/team', team.id];
+        this.router.navigate(link);
+    }
+
+    gotoPlayerDetails(player: Player): void {
+        let link = ['/player', player.id];
         this.router.navigate(link);
     }
 

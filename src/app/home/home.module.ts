@@ -17,6 +17,7 @@ import {StatisticsComponent} from "../statistics/statistics.component";
 import {RateAndCommentsComponent} from "../rate-and-comments/rate-and-comments.component";
 import {PodiumComponent} from "../statistics/podium/podium.component";
 import {CommonModule} from "@angular/common";
+import {PlayerModule} from "../player/player.module";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {CommonModule} from "@angular/common";
         GalleriaModule,
         RatingModule,
         TeamModule,
+        PlayerModule,
     ],
     declarations: [
         HomeComponent,

@@ -76,7 +76,7 @@ import {PlayerSearchComponent} from "./player-search/player-search.component";
   providers: [
       { provide: LOCALE_ID, useValue: "nl" },
   ],
-    exports: [PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent ]
+    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent ]
 })
 export class PlayerModule {
 }
