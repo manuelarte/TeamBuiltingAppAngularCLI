@@ -29,7 +29,6 @@ export class TeamCudInsideFormComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        console.log(this.model)
         if (this.model.location) {
             this.searchLocation(this.model.location)
             this.stillActive = this.model.toDate == null;
@@ -74,8 +73,8 @@ export class TeamCudInsideFormComponent implements OnInit {
     }
 
     getFromDate(): string {
-        if (this.model) {
-            return this.datesService.dateToString(this.model.fromDate);
+        if (this.model && this.model.fromDate) {
+            return this.datesService.dateToString(new Date(this.model.fromDate));
         }
         return "";
     }
