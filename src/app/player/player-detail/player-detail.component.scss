@@ -11,15 +11,18 @@ $max_height_player-profile: $max_height_img1 * 0.8;
 
 .img1 {
     width: 100%;
+    min-height: $max_height_player-profile;
     max-height: $max_height_img1;
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 .player_image {
+    width: 50%;
+    height: auto;
     max-height: $max_height_player-profile;
     border-radius: 50%;
     position: absolute;
-    left: 20%;
-    bottom: 10%;
+    bottom: 0%;
+    transform: translate(50%, 50%);
 }
