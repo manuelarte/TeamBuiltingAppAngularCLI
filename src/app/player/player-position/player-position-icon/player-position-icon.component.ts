@@ -21,10 +21,6 @@ export class PlayerPositionIconComponent implements OnInit {
     @Input() teamSportPosition: TeamSportPosition;
 
     isActive: boolean = false;
-    pitch_width: number = 340; //px Total number of pixel of the pitch_width of the pitch
-    pitch_long: number = 550; //px Total number of pixel of the pitch_long of the pitch
-    playerCard_width: number = 65;
-    playerCard_height: number = 88;
 
     constructor() {}
 

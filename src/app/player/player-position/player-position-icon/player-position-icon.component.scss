@@ -1,9 +1,9 @@
-$pitch_extra_grass_sides: 20px; // Extra grass after the throw in lines
+@import "../_pitch.scss";
 
 .player {
     position: absolute;
-    top : $pitch_extra_grass_sides;
-    left : $pitch_extra_grass_sides;
+    top : $pitch_extra_grass_sides_percentage;
+    left : $pitch_extra_grass_sides_percentage;
     height: 88px;
     width: 65px;
     z-index: 9;
@@ -14,6 +14,7 @@ $pitch_extra_grass_sides: 20px; // Extra grass after the throw in lines
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
     cursor: pointer;
+    transform: translate(-50%, -50%);
 }
 .player .player__placeholder {
     position: absolute;
