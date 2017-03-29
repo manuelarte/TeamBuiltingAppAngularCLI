@@ -7,6 +7,7 @@
     background-position: -20px -20px;
     width: $pitch_long_percentage;
     min-width: $pitch_long_min_width;
+    min-height: calc(#{$pitch_long_min_width} * #{$pitch_width-long-ration_percentage});
     padding-bottom: $pitch_width-long-ration_percentage;
     position: relative;
 }
