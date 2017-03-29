@@ -14,8 +14,9 @@ import {FormGroup, FormControl, Validators, ValidatorFn, AbstractControl} from "
 export class TeamCudComponent implements OnInit {
     @Input() model: Team = new Team();
     @Input() compact: boolean = false;
-    @Input() teamModalOpened: boolean = true;
-    @Output() teamModalOpenedChange = new EventEmitter();
+    @Input() private teamModalOpened: boolean = true;
+    @Output() teamModalOpenedChange: EventEmitter<boolean> = new EventEmitter();
+    @Output() teamUpdated: EventEmitter<Team> = new EventEmitter();
     sports: TeamSport[];
     submitted: boolean = false;
     isBusy: boolean = true;
@@ -47,12 +48,17 @@ export class TeamCudComponent implements OnInit {
         });
     }
 
+    isTeamModalOpened() {
+        return this.teamModalOpened;
+    }
+
     onSubmit() {
         this.isBusy = true;
         this.teamService.postTeam(this.model).then(team => {
             this.model = team;
             this.submitted = true;
             this.isBusy = false;
+            this.teamUpdated.emit(team);
             this.closeModal();
         }).catch(error => {
             this.isBusy = false;
@@ -64,13 +70,6 @@ export class TeamCudComponent implements OnInit {
     closeModal() {
         this.teamModalOpened = false;
         this.teamModalOpenedChange.emit(this.teamModalOpened);
-    }
-
-    validatorDateAfterStartDate(c: FormControl): { [s: string]: boolean } {
-        console.log(c, this.model)
-      return  (this.model.fromDate && this.model.toDate && c && c.value && this.model.fromDate.getTime() < new Date(c.value).getTime()) ? null : {
-                validatorDateAfterStartDate: false
-            };
     }
 
     private handleError(error: any): Promise<any> {
