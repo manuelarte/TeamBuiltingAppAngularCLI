@@ -57,12 +57,6 @@ export class Auth {
         return tokenNotExpired();
     };
 
-    public getClient(id: string): Promise<any> {
-        let params: URLSearchParams = new URLSearchParams();
-        params.set('fields', "user_id,email,name,nickname,picture");
-        return this.authHttp.get(`${this.usersUrl}/${id}`, params).map(response => response.json()).toPromise();
-    }
-
     public logout() {
         // Remove token and profile from localStorage
         localStorage.removeItem('id_token');

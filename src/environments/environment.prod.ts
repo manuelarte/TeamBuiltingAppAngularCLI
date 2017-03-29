@@ -7,5 +7,6 @@ export const environment = {
 
   backendCoreUrl: `https://teambuiltingcore.herokuapp.com/core`,
   backendStatisticsUrl: `https://teambuiltingstatistics.herokuapp.com/statistics`,
-  backendExperienceUrl: `https://teambuiltingexperience.herokuapp.com/experience`
+  backendExperienceUrl: `https://teambuiltingexperience.herokuapp.com/experience`,
+  backendUsersUrl: `https://teambuiltingusers.herokuapp.com`
 };

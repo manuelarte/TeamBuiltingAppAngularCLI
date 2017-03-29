@@ -13,5 +13,6 @@ export const environment = {
   backendCoreUrl: `http://localhost:8080/core`, // dev
   backendStatisticsUrl: `http://localhost:8081/statistics`, // dev
   backendExperienceUrl: `http://localhost:8082/experience`, // dev
+  backendUsersUrl: `http://localhost:8090`,
 
 };
