@@ -84,7 +84,8 @@ $inner_penalty_height_percentage: 30%;
     position: absolute;
     height: $penalty_width_percentage;
     width: $penalty_long_percentage;
-    top:  50% - $penalty_width_percentage/2;
+    top:  50%;
+    transform: translate(0%, -50%);
     border: $pitch_border_lines solid white;
 }
 
@@ -103,7 +104,8 @@ $inner_penalty_height_percentage: 30%;
     position: absolute;
     height: $inner_penalty_height_percentage;
     width: $inner_penalty_long_percentage;
-    top: 50% - $inner_penalty_height_percentage / 2;
+    top: 50%;
+    transform: translate(0%, -50%);
     border: $pitch_border_lines solid white;
     content:"";
 }
