@@ -5,6 +5,7 @@ import {TeamService} from "../../services/team.service";
 import {SeasonUtilService, Season} from "../../services/season-utils.service";
 import {Player} from "../../player";
 import {Team} from "../../team";
+import {ExceptionMessageBackend} from "app/exception-message-backend";
 
 
 @Component({
@@ -40,7 +41,7 @@ export class TeamDetailComponent implements OnInit {
               this.teamService.getTeam(id)
                   .then(team => this.team = team).catch(error => {
                       this.handleError(error);
-                      this.forwardError(error)
+                      this.forwardError(error.json().error)
               });
               this.teamService.getPlayers(id, date)
                   .then(players => this.players = players).catch(this.handleError);
@@ -81,9 +82,12 @@ export class TeamDetailComponent implements OnInit {
     return Promise.reject(error.message || error);
   }
 
-  private forwardError(error: any) {
-      let link = ['/error', '0001'];
-      this.router.navigate(link);
+  private forwardError(error: ExceptionMessageBackend) {
+      console.log("Forward:", error)
+      if (error.errorCode) {
+          let link = ['/error', error.errorCode];
+          this.router.navigate(link);
+      }
   }
 
 }
