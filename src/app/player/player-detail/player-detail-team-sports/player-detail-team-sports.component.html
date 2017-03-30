@@ -27,6 +27,9 @@
         </div>
     </div>
     <div class="card-footer">
-        <p *ngIf="sportSelected">{{playerToTeamSport[sportSelected]?.bio}}</p>
+        <div *ngIf="sportSelected">
+            <p>Main Position: {{playerToTeamSport[sportSelected]?.mainPosition}}</p>
+            <p>Bio: {{playerToTeamSport[sportSelected]?.bio}}</p>
+        </div>
     </div>
 </div>
