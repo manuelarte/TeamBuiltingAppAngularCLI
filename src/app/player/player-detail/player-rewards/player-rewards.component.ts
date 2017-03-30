@@ -11,13 +11,14 @@ import {PlayerReward} from "../../../player-reward";
 import {Player} from "../../../player";
 import {UserData} from "../../../user-data";
 import {Team} from "../../../team";
+import {UserService} from "../../../services/user.service";
 
 
 @Component({
   selector: 'player-rewards',
   templateUrl: 'player-rewards.component.html',
   styleUrls: ['player-rewards.component.scss'],
-  providers: [PlayerService, TeamService, PlayerRewardsService, UserDataService, SeasonUtilService ]
+  providers: [PlayerService, TeamService, PlayerRewardsService, UserService, UserDataService, SeasonUtilService ]
 })
 export class PlayerRewardsComponent implements OnInit {
 
@@ -34,13 +35,14 @@ export class PlayerRewardsComponent implements OnInit {
     private auth: Auth,
     private teamService: TeamService,
     private playerRewardsService: PlayerRewardsService,
+    private userService: UserService,
     private userDataService: UserDataService
   ) {}
 
   ngOnInit(): void {
     this.playerRewardsService.getPlayerRewards(this.player.id).then(playerRewards => {
         playerRewards.forEach(playerReward => {
-            this.auth.getClient(playerReward.userId).then(user => {
+            this.userService.getUser(playerReward.userId).then(user => {
                 this.teamService.getTeam(playerReward.teamId).then(team => {
                     this.userAndReward[playerReward.userId] = {user: user, playerRewards: this.addAndRetrievePlayerRewardForUser(playerReward)};
                     if (!this.teams[playerReward.teamId]) {
