@@ -11,7 +11,7 @@ export class UserService {
 
     constructor(private http: Http) {}
 
-    public getClient(user_id: string): Promise<User> {
+    public getUser(user_id: string): Promise<User> {
         return this.http.get(`${this.usersUrl}/${user_id}`).map(response => response.json()).toPromise();
     }
 
