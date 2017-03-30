@@ -7,6 +7,7 @@ import {Player} from "../../player";
 import {Team} from "../../team";
 import {Season} from "../../services/season-utils.service";
 import {PlayerReward} from "../../player-reward";
+import {Auth} from "../../services/auth-service";
 
 @Component({
     selector: 'give-reward',
@@ -36,6 +37,7 @@ export class GiveRewardComponent implements OnInit  {
     });
 
     constructor(
+        private auth: Auth,
         private playerRewardService: PlayerRewardsService
     ) {}
 
@@ -62,6 +64,10 @@ export class GiveRewardComponent implements OnInit  {
 
     showSuccessMessage() {
         this.msgs.push({severity:'info', summary:'Player reward saved', detail:'Player Reward saved'});
+    }
+
+    isAuthenticated(): boolean {
+        return this.auth.authenticated();
     }
 
 }
