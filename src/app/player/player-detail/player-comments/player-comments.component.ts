@@ -7,13 +7,14 @@ import {UserDataService} from "../../../services/user-data.service";
 import {PlayerComment} from "../../../player-comment";
 import {Player} from "../../../player";
 import {UserData} from "../../../user-data";
+import {UserService} from "../../../services/user.service";
 
 
 @Component({
   selector: 'player-comments',
   templateUrl: 'player-comments.component.html',
   styleUrls: ['player-comments.component.scss'],
-  providers: [PlayerService, TeamService, PlayerCommentService, UserDataService ]
+  providers: [PlayerService, TeamService, PlayerCommentService, UserService, UserDataService ]
 })
 export class PlayerCommentsComponent implements OnInit {
 
@@ -32,6 +33,7 @@ export class PlayerCommentsComponent implements OnInit {
   constructor(
     private auth: Auth,
     private playerCommentService: PlayerCommentService,
+    private userService: UserService,
     private userDataService: UserDataService,
   ) {}
 
@@ -40,7 +42,7 @@ export class PlayerCommentsComponent implements OnInit {
 
     this.playerCommentService.getPlayerComments(this.player.id).then(comments => {
         comments.forEach(comment => {
-            this.auth.getClient(comment.userId).then(user => {
+            this.userService.getUser(comment.userId).then(user => {
                 this.userAndComment[comment.userId] = {user: user, playerComment: comment};
                 this.commentsLoaded = Object.keys(this.userAndComment).length === comments.length;
             })
