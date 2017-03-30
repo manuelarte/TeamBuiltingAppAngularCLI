@@ -3,6 +3,7 @@ import {
     animate
 }      from '@angular/core';
 import {PlayerComment} from "../../../../player-comment";
+import {User} from "../../../../user";
 
 @Component({
   selector: 'show-player-comment',
@@ -35,7 +36,7 @@ export class ShowPlayerCommentComponent implements OnInit {
 
   @Input() playerComment: PlayerComment = new PlayerComment();
   @Input() deleteable: boolean = false;
-  @Input() user: any;
+  @Input() user: User;
 
   @Output() onDeleted: EventEmitter<PlayerComment> = new EventEmitter<PlayerComment>();
 
@@ -43,6 +44,10 @@ export class ShowPlayerCommentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+  }
+
+  getUsername(): string {
+      return this.user.given_name + this.user.family_name;
   }
 
   deleteComment(): void {

@@ -25,7 +25,7 @@
         <div *ngIf="!deleting && getComments().length > 0" class="row">
             <div *ngFor="let playerComment of getComments()" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flex-items-xs-center">
                 <show-player-comment [playerComment]="playerComment" [user]="getUserForUserId(playerComment.userId)"
-                                     [deleteable]="sameUserWhoWroteTheComment()" (onDeleted)="onDeleted($event)"></show-player-comment>
+                                     [deleteable]="sameUserWhoWroteTheComment(getUserForUserId(playerComment.userId))" (onDeleted)="onDeleted($event)"></show-player-comment>
             </div>
         </div>
 

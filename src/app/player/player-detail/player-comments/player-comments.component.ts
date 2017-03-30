@@ -8,6 +8,7 @@ import {PlayerComment} from "../../../player-comment";
 import {Player} from "../../../player";
 import {UserData} from "../../../user-data";
 import {UserService} from "../../../services/user.service";
+import {User} from "../../../user";
 
 
 @Component({
@@ -72,7 +73,7 @@ export class PlayerCommentsComponent implements OnInit {
       return this.auth.authenticated() && !this.sameUser() && noPreviousComment;
   }
 
-  getUserForUserId(userId: string): any {
+  getUserForUserId(userId: string): User {
       return this.userAndComment[userId].user;
   }
 
@@ -80,8 +81,8 @@ export class PlayerCommentsComponent implements OnInit {
       return this.userData.playerId ? this.userData.playerId === this.player.id : false;
   }
 
-  sameUserWhoWroteTheComment(): boolean {
-    return this.userData.userId && this.auth.userProfile ? this.userData.userId === this.auth.userProfile.user_id : false;
+  sameUserWhoWroteTheComment(user: User): boolean {
+    return this.userData && this.userData.userId && this.auth.userProfile ? this.userData.userId === user.user_id : false;
   }
 
   onSaved(playerComment: PlayerComment): void {
