@@ -14,6 +14,8 @@ import {AppRoutingModule} from "./app-routing.module";
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import {ErrorHandlingModule} from "./error-handling/error-handling.module";
+import { GoogleChartComponentComponent } from './google-chart-component/google-chart-component.component';
+import {GoogleChart} from "./directives/angular2-google-chart.directive";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -38,6 +40,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AppComponent,
         AboutComponent,
         DonateComponent,
+        GoogleChartComponentComponent,
+        GoogleChart,
     ],
     providers: [
         {
