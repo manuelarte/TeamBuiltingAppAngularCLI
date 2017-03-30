@@ -27,6 +27,7 @@ export class TeamDetailComponent implements OnInit {
     private teamService: TeamService,
     private seasonUtilService: SeasonUtilService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {}
 
@@ -37,7 +38,10 @@ export class TeamDetailComponent implements OnInit {
           this.route.params.forEach((params: Params) => {
               let id = params['id'];
               this.teamService.getTeam(id)
-                  .then(team => this.team = team).catch(this.handleError);
+                  .then(team => this.team = team).catch(error => {
+                      this.handleError(error);
+                      this.forwardError(error)
+              });
               this.teamService.getPlayers(id, date)
                   .then(players => this.players = players).catch(this.handleError);
           });
@@ -75,6 +79,11 @@ export class TeamDetailComponent implements OnInit {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  private forwardError(error: any) {
+      let link = ['/error', '0001'];
+      this.router.navigate(link);
   }
 
 }

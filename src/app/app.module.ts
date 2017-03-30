@@ -13,6 +13,7 @@ import {HomeModule} from "./home/home.module";
 import {AppRoutingModule} from "./app-routing.module";
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import {ErrorHandlingModule} from "./error-handling/error-handling.module";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -31,11 +32,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         }),
         HomeModule,
         ProfileModule,
+        ErrorHandlingModule,
     ],
     declarations: [
         AppComponent,
         AboutComponent,
-        DonateComponent
+        DonateComponent,
     ],
     providers: [
         {

@@ -23,6 +23,7 @@ import {TeamCudInsideFormComponent} from "./team-cud/team-cud-inside-form/team-c
 import {TeamDetailSportIntroComponent} from "./team-detail/team-detail-sport-intro/team-detail-sport-intro.component";
 import {TeamRoutingModule} from "./team-routing.module";
 import {CommonModule} from "@angular/common";
+import {ErrorHandlingModule} from "../error-handling/error-handling.module";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {CommonModule} from "@angular/common";
         InputTextModule,
         MultiSelectModule,
         PlayerModule,
+        ErrorHandlingModule,
     ],
     declarations: [
         TeamSearchComponent,

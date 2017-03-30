@@ -25,6 +25,11 @@ const routes: Routes = [
         loadChildren: 'app/player/player.module#PlayerModule'
     },
     { path: 'statistics', component: StatisticsComponent },
+    {
+        // Point the loadChildren to your team module
+        path: 'error',
+        loadChildren: 'app/error-handling/error-handling.module#ErrorHandlingModule'
+    },
 ];
 
 @NgModule({
