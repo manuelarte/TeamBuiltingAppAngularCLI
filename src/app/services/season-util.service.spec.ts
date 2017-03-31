@@ -15,9 +15,7 @@ describe('SeasonUtilService with TCB', function () {
     it('Should throw an exception', () => {
         let startYear: number = 2002;
         let endYear: number = 2010;
-        let years = service.getYearsBetweenTwoYears(endYear, startYear);
-
-        expect(years).toThrow();
+        expect(() => service.getYearsBetweenTwoYears(endYear, startYear)).toThrowError();
     });
 
 });

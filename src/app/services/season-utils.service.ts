@@ -8,9 +8,9 @@ export interface Season {
 @Injectable()
 export class SeasonUtilService {
 
-    getYearsBetweenTwoYears(startYear: number, endYear: number ): number[] {
+    public getYearsBetweenTwoYears(startYear: number, endYear: number ): number[] {
         if (startYear > endYear) {
-            throw "Start year must be before endYear";
+            throw new Error("Start year must be before endYear");
         }
         let years: number[] = [];
         let isOver: boolean = false;
@@ -29,7 +29,7 @@ export class SeasonUtilService {
         return years;
     }
 
-    getSeasonForDate(date: Date, seasonStartsInMonth: number): Season {
+    public getSeasonForDate(date: Date, seasonStartsInMonth: number): Season {
         if(date.getMonth() < seasonStartsInMonth) {
             let startDate: Date = new Date(date);
             startDate.setFullYear(startDate.getFullYear() - 1);
