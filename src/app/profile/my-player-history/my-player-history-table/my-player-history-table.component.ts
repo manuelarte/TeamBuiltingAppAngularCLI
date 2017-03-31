@@ -10,6 +10,7 @@ import {Player} from "../../../player";
 import {Message} from "primeng/primeng";
 import {Team} from "../../../team";
 import {PlayerService} from "../../../services/player.service";
+import {PlayerHistoryUtilsService} from "../../../services/player-history-utils.service";
 import {Page} from "../../../page";
 import {Router} from "@angular/router";
 
@@ -18,7 +19,7 @@ import {Router} from "@angular/router";
     selector: 'my-player-history-table',
     templateUrl: 'my-player-history-table.component.html',
     styleUrls: [ 'my-player-history-table.component.scss' ],
-    providers: [ TeamService, TeamSearchService ]
+    providers: [ TeamService, TeamSearchService, PlayerHistoryUtilsService ]
 })
 export class MyPlayerHistoryTableComponent implements OnInit {
 
@@ -34,11 +35,12 @@ export class MyPlayerHistoryTableComponent implements OnInit {
         private playerService: PlayerService,
         private teamService: TeamService,
         private teamSearchService: TeamSearchService,
+        private playerHistoryUtilsService: PlayerHistoryUtilsService,
         private router: Router,
     ) {}
 
     ngOnInit(): void {
-        this.playerHistory.forEach(entry => {
+        this.playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => {
            this.teamService.getTeam(entry.teamId).then(team => {
                this.model.push( {team: team, playerHistory: entry, stillActive: !entry.toDate, entryChecked: true} )
            })
