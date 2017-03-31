@@ -83,7 +83,6 @@ export class TeamDetailComponent implements OnInit {
   }
 
   private forwardError(error: ExceptionMessageBackend) {
-      console.log("Forward:", error)
       if (error.errorCode) {
           let link = ['/error', error.errorCode];
           this.router.navigate(link);
