@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-declare var google: any;
 
 @Component({
     selector: 'app-google-chart-component',
@@ -164,16 +163,12 @@ export class GoogleChartComponentComponent implements OnInit {
     public map_ChartOptions = {};
 
     getTimeLineData() {
-        let dataTable: any = new google.visualization.DataTable();
-        console.log("dataTable:", dataTable)
-        dataTable.addColumn({ type: 'string', id: 'President' });
-        dataTable.addColumn({ type: 'date', id: 'Start' });
-        dataTable.addColumn({ type: 'date', id: 'End' });
-        dataTable.addRows([
-            [ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
-            [ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
-            [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]]);
-        return dataTable;
+        return [
+			['President', 'Start', 'End'],
+			[ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
+			[ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
+			[ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]
+		]
     }
 
 }
