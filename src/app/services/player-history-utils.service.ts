@@ -16,5 +16,12 @@ export class PlayerHistoryUtilsService {
       });
       return toReturn;
   }
+  
+  public sortByFromDate(a: PlayerToTeam, b: PlayerToTeam): number {
+      if (!a || !b) {
+          throw "Input cannot be null";
+      }
+      return a.fromDate.getTime() - b.fromDate.getTime();
+  }
 
 }

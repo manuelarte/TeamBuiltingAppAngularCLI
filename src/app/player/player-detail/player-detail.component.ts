@@ -87,6 +87,13 @@ export class PlayerDetailComponent implements OnInit {
       return toReturn;
   }
 
+  indexTeams(): {[id: string]: Team} {
+      return this.teams.reduce(function(map, obj) {
+          map[obj.id] = obj;
+          return map;
+      }, {});
+  }
+
   goBack(): void {
     this.location.back();
   }

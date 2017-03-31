@@ -7,6 +7,7 @@
             <img class="player_image" [src]="player.imageLink" alt="{{player.name}}">
         </div>
 
+        <app-player-detail-intro *ngIf="playerHistoryLoaded && teamsLoaded" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
 
         <div *ngIf="isEverythingLoaded()">
             <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
