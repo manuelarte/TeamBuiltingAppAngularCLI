@@ -23,12 +23,10 @@ export class PlayerDetailIntroComponent implements OnInit {
   }
 
   getTimelineData() {
-    console.log(this.playerHistory)
     let rows = [];
     rows.push(['Team Name', 'From Date', 'To Date']);
 	this.playerHistory.forEach(entry => rows.push([this.teamsByTeamId[entry.teamId].name, entry.fromDate, entry.toDate ? entry.toDate : new Date() ]))
-	console.log("rows:", rows);
-      return rows;
+	return rows;
   }
 
 }
