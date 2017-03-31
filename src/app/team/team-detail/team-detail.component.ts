@@ -41,7 +41,7 @@ export class TeamDetailComponent implements OnInit {
               this.teamService.getTeam(id)
                   .then(team => this.team = team).catch(error => {
                       this.handleError(error);
-                      this.forwardError(error.json().error)
+                      this.forwardError(error.json())
               });
               this.teamService.getPlayers(id, date)
                   .then(players => this.players = players).catch(this.handleError);
