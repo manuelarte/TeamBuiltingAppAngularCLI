@@ -5,12 +5,13 @@ import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocodi
 import {Player} from "../../player";
 import {Team} from "../../team";
 import {Router} from "@angular/router";
+import {RouterUtilsService} from "../../services/router-utils.service";
 
 @Component({
     selector: 'team-in-google-maps',
     templateUrl: 'team-in-google-maps.component.html',
     styleUrls: ['team-in-google-maps.component.scss'],
-    providers: [ GoogleMapGeocodingService ]
+    providers: [ GoogleMapGeocodingService, RouterUtilsService ]
 })
 export class TeamInGoogleMapsComponent implements OnInit  {
 
@@ -21,7 +22,7 @@ export class TeamInGoogleMapsComponent implements OnInit  {
 
     constructor(
         private googleMapGeocodingService: GoogleMapGeocodingService,
-        private router: Router
+        private routerUtilsService: RouterUtilsService,
     ) {}
 
     ngOnInit(): void {
@@ -47,10 +48,6 @@ export class TeamInGoogleMapsComponent implements OnInit  {
         && m.location.lng === newLocation.lng).length > 0
     }
 
-    gotoPlayerDetails(player: Player): void {
-        let link = ['/player', player.id];
-        this.router.navigate(link);
-    }
 
 }
 

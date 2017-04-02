@@ -3,7 +3,7 @@ import {TeamSportService} from "../../services/sports-service";
 import {TeamService} from "../../services/team.service";
 import {Team} from "../../team";
 import {TeamSport} from "../../team-sports";
-import {FormGroup, FormControl, Validators, ValidatorFn, AbstractControl} from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
     selector: 'team-cud',
@@ -27,7 +27,7 @@ export class TeamCudComponent implements OnInit {
         sport: new FormControl('', Validators.required),
         bio: new FormControl('', Validators.maxLength(500)),
         fromDate: new FormControl('', Validators.required),
-        toDate: new FormControl({disabled: this.stillActive ? true : false}, ),
+        toDate: new FormControl({disabled: this.stillActive}, ),
         emblemLink: new FormControl('', Validators.compose([Validators.minLength(6), Validators.maxLength(500)])),
         location: new FormControl('', Validators.compose([Validators.minLength(6), Validators.maxLength(200)])),
     });

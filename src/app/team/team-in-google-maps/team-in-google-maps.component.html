@@ -1,5 +1,4 @@
-<sebm-google-map [streetViewControl]="false" [zoom]="4" [latitude]="center.lat" [longitude]="center.lng"
-                 (boundsChange)="print($event)">
+<sebm-google-map [streetViewControl]="false" [zoom]="4" [latitude]="center.lat" [longitude]="center.lng">
 
     <sebm-google-map-marker [latitude]="center.lat" [longitude]="center.lng"
                             iconUrl="./images/icons/footballfield.png">
@@ -28,7 +27,7 @@
 
                     <div class="card__content card__padding">
                         <div class="card__share">
-                            <div id="share" class="share-toggle share-icon" (click)="gotoPlayerDetails(markerInfoToDisplay.object)"></div>
+                            <div id="share" class="share-toggle share-icon" (click)="routerUtilsService.gotoPlayerDetails(markerInfoToDisplay.object)"></div>
                         </div>
 
                         <div class="card__meta">

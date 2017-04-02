@@ -5,12 +5,13 @@ import {StatisticService} from "../services/statistic.service";
 import {Team} from "../team";
 import {Router} from "@angular/router";
 import {Player} from "../player";
+import {RouterUtilsService} from "../services/router-utils.service";
 
 
 @Component({
   styleUrls: ['home.component.scss'],
   templateUrl: 'home.component.html',
-  providers: [ TeamService, StatisticService ],
+  providers: [ TeamService, StatisticService, RouterUtilsService ],
   animations: [
 
       trigger('slideIn', [
@@ -40,9 +41,9 @@ export class HomeComponent implements OnInit {
     mostVisitedTeams: Team[] = [];
     mostVisitedTeamsLoaded: boolean = false;
 
-    constructor(private router: Router,
-                private teamService: TeamService,
-                private statisticService: StatisticService) {}
+    constructor(private teamService: TeamService,
+                private statisticService: StatisticService,
+                private routerUtils: RouterUtilsService) {}
 
     ngOnInit() {
         this.images = [];
@@ -60,16 +61,6 @@ export class HomeComponent implements OnInit {
                 })
             }
         })
-    }
-
-    gotoTeamDetails(team: Team): void {
-        let link = ['/team', team.id];
-        this.router.navigate(link);
-    }
-
-    gotoPlayerDetails(player: Player): void {
-        let link = ['/player', player.id];
-        this.router.navigate(link);
     }
 
 }

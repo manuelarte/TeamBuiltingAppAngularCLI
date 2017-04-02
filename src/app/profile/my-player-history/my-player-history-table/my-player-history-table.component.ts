@@ -12,14 +12,14 @@ import {Team} from "../../../team";
 import {PlayerService} from "../../../services/player.service";
 import {PlayerHistoryUtilsService} from "../../../services/player-history-utils.service";
 import {Page} from "../../../page";
-import {Router} from "@angular/router";
+import {RouterUtilsService} from "../../../services/router-utils.service";
 
 
 @Component({
     selector: 'my-player-history-table',
     templateUrl: 'my-player-history-table.component.html',
     styleUrls: [ 'my-player-history-table.component.scss' ],
-    providers: [ TeamService, TeamSearchService, PlayerHistoryUtilsService ]
+    providers: [ TeamService, TeamSearchService, PlayerHistoryUtilsService, RouterUtilsService ]
 })
 export class MyPlayerHistoryTableComponent implements OnInit {
 
@@ -36,7 +36,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
         private teamService: TeamService,
         private teamSearchService: TeamSearchService,
         private playerHistoryUtilsService: PlayerHistoryUtilsService,
-        private router: Router,
+        private routerUtilsService: RouterUtilsService,
     ) {}
 
     ngOnInit(): void {
@@ -156,11 +156,6 @@ export class MyPlayerHistoryTableComponent implements OnInit {
 
     search(term: string): void {
         this.searchTerms.next(term);
-    }
-
-    gotoTeamDetails(team: Team): void {
-        let link = ['/team', team.id];
-        this.router.navigate(link);
     }
 
 }

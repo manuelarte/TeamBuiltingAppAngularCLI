@@ -30,27 +30,9 @@ export class TeamCudInsideFormComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.model.location) {
-            this.searchLocation(this.model.location)
+            this.searchLocation(this.model.location);
             this.stillActive = this.model.toDate == null;
         }
-    }
-
-    invalidTeamName(name: string): boolean {
-        return name.length === 0;
-    }
-
-    invalidFromDate(startDate: string): boolean {
-        return startDate === null;
-    }
-
-    invalidToDate(): boolean {
-        let bothDatesExists: boolean = this.model.toDate != null && this.model.fromDate != null;
-        return  bothDatesExists && this.model.fromDate.getTime() < this.model.toDate.getTime();
-    }
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
     }
 
     searchLocation(address: string): void {
@@ -60,7 +42,7 @@ export class TeamCudInsideFormComponent implements OnInit {
         });
     }
 
-    getCenter(): GoogleMapGeocodingResultGeometryLocation {
+    public getCenter(): GoogleMapGeocodingResultGeometryLocation {
         return this.isValidLocation() ? this.location : {lat: 0, lng: 0};
     }
 
@@ -68,18 +50,14 @@ export class TeamCudInsideFormComponent implements OnInit {
         return this.validLocation && this.location != null;
     }
 
-    getMinimumToDate(): Date {
-        return this.model.fromDate ? this.model.fromDate : new Date(-2208992400);
-    }
-
-    getFromDate(): string {
+    public getFromDate(): string {
         if (this.model && this.model.fromDate) {
             return this.datesService.dateToString(new Date(this.model.fromDate));
         }
         return "";
     }
 
-    getToDate(): string {
+    public getToDate(): string {
         if (this.model && this.model.toDate) {
             return this.datesService.dateToString(this.model.toDate);
         }

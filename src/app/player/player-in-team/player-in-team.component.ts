@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Season} from "../../services/season-utils.service";
 import {Player} from "../../player";
 import {Team} from "../../team";
+import {RouterUtilsService} from "../../services/router-utils.service";
 /**
  * Created by Manuel on 05/11/2016.
  */
@@ -11,6 +12,7 @@ import {Team} from "../../team";
   selector: 'player-in-team',
   templateUrl: 'player-in-team.component.html',
   styleUrls: ['player-in-team.component.scss', 'player-card.scss'],
+  providers: [RouterUtilsService]
 })
 export class PlayerInTeamComponent implements OnInit {
 
@@ -25,14 +27,10 @@ export class PlayerInTeamComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private router: Router) {}
+  constructor(private routerUtilsService: RouterUtilsService) {}
 
   getPicture() {
     return this.player.imageLink;
-  }
-
-  gotoPlayerDetails(): void {
-      this.router.navigateByUrl(`/player/${this.player.id}`);
   }
 
   openAddReward(): void {

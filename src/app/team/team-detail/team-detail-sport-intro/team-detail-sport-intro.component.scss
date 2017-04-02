@@ -25,9 +25,10 @@
 
 .text-inside {
     position: absolute;
-    top: 40%;
+    top: 0;
     left: 0;
     width: 100%;
+    transform: translateY(-10%);
 }
 
 h2 span {

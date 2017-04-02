@@ -23,7 +23,7 @@
                             Use this search to look for a team:
                 </span>
                 <span class="card-media-text">
-                    <team-search (teamClicked)="gotoTeamDetails($event)">Loading the search team component...</team-search>
+                    <team-search (teamClicked)="routerUtils.gotoTeamDetails($event)">Loading the search team component...</team-search>
                 </span>
             </div>
         </div>
@@ -43,7 +43,7 @@
                             Use this search to look for a player:
                 </span>
                 <span class="card-media-text">
-                    <player-search (playerClicked)="gotoPlayerDetails($event)">Loading the search player component...</player-search>
+                    <player-search (playerClicked)="routerUtils.gotoPlayerDetails($event)">Loading the search player component...</player-search>
                 </span>
             </div>
         </div>
