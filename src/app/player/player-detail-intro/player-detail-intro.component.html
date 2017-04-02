@@ -1,5 +1,12 @@
-<p>
-  player-detail-intro works!
-</p>
+<h1 id="invtro" #intro>Timeline</h1>
 
-<div id="timeline" [chartData]="getTimelineData()" chartType="Timeline" GoogleChart></div>
+<div *ngIf="playerHistory.length > 0">
+    <div id="timeline" [chartData]="getTimelineData()" chartType="Timeline" GoogleChart></div>
+</div>
+<div *ngIf="playerHistory.length == 0">
+    <div class="alert alert-info">
+        <div class="alert-item">
+            <span class="alert-text">This player did not add any entry in his history.</span>
+        </div>
+    </div>
+</div>
