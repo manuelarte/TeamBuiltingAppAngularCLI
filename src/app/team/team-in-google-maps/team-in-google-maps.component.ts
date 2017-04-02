@@ -4,7 +4,6 @@ import { GoogleMapGeocodingService } from '../../services/google-map-geocoding.s
 import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocoding-result-geometry-location";
 import {Player} from "../../player";
 import {Team} from "../../team";
-import {LatLngBounds} from "angular2-google-maps/core";
 import {Router} from "@angular/router";
 
 @Component({
@@ -51,11 +50,6 @@ export class TeamInGoogleMapsComponent implements OnInit  {
     gotoPlayerDetails(player: Player): void {
         let link = ['/player', player.id];
         this.router.navigate(link);
-    }
-
-    print(event: LatLngBounds) {
-        console.log("north east", event.getNorthEast().lat(), event.getNorthEast().lng());
-        console.log("south west", event.getSouthWest().lat(), event.getSouthWest().lng());
     }
 
 }
