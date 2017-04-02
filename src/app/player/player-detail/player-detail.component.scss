@@ -20,6 +20,7 @@ $max_height_player-profile: $max_height_img1 * 0.8;
 
 .player_image {
     width: 50%;
+    border-radius: 50%;
     height: auto;
     max-height: $max_height_player-profile;
     border-radius: 50%;

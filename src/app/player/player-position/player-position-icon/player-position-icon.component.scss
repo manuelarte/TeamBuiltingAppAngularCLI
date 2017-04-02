@@ -1,11 +1,13 @@
 @import "../_pitch.scss";
 
+$player_width: 6vw;
+
 .player {
     position: absolute;
     top : $pitch_extra_grass_sides_percentage;
     left : $pitch_extra_grass_sides_percentage;
-    height: 88px;
-    width: 65px;
+    height: $player_width;
+    width: auto;
     z-index: 9;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -166,11 +168,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 65px;
-    height: 65px;
+    width: $player_width;
+    border-radius: 50%;
+    height: auto;
     z-index: 4;
     overflow: hidden;
-    border-radius: 32.5px;
     background-color: #000;
     border: solid 1px #fff;
     -webkit-backface-visibility: hidden;
@@ -186,7 +188,7 @@
 }
 .player .player__label {
     position: absolute;
-    height: 20px;
+    height: 6vw;
     display: inline-block;
     width: auto;
     overflow: visible;
@@ -197,13 +199,13 @@
     padding: 0 10px;
     line-height: 20px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 50%;
     bottom: 0;
     opacity: 0;
     text-transform: upppercase;
     -webkit-transition: opacity 0.2s;
     transition: opacity 0.2s;
-    z-index: 2;
+    z-index: 5;
     pointer-events: none;
 }
 .player .player__label span {
