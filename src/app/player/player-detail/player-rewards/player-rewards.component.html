@@ -17,3 +17,11 @@
     </div>
 
 </div>
+
+<div *ngIf="!rewardsLoaded">
+    <div class="alert alert-info">
+        <div class="alert-item">
+            <span class="alert-text">The player rewards cannot be loaded.</span>
+        </div>
+    </div>
+</div>

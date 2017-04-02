@@ -30,5 +30,12 @@
         </div>
 
     </div>
+    <div *ngIf="!commentsLoaded">
+        <div class="alert alert-info">
+            <div class="alert-item">
+                <span class="alert-text">The comments could not be loaded.</span>
+            </div>
+        </div>
+    </div>
 
 </div>

@@ -32,7 +32,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline" (click)="closeModal()">Cancel</button>
-        <button type="button" class="btn btn-primary" [disabled]="!isAuthenticated() || playerRewardForm.invalid" (click)="onSubmit()">Ok</button>
+        <button type="button" class="btn btn-primary" [disabled]="isNotAuthenticated() || playerRewardForm.invalid || submittingReward" (click)="onSubmit()">Ok</button>
     </div>
 </clr-modal>
 

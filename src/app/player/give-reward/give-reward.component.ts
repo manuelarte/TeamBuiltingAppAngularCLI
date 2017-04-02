@@ -28,6 +28,7 @@ export class GiveRewardComponent implements OnInit  {
     rewards: string[];
     errorLoadingRewards = false;
     cannotLoadScreen: boolean = false;
+    submittingReward = false;
 
     @Output() addRewardModalOpenedChange = new EventEmitter();
 
@@ -50,11 +51,15 @@ export class GiveRewardComponent implements OnInit  {
     }
 
     onSubmit() {
-        console.debug("Submitting player reward:", this.model);
-        this.playerRewardService.postNewPlayerReward(this.model).then(team => {
+        this.submittingReward = true;
+        this.playerRewardService.postNewPlayerReward(this.model).then(playerReward => {
+            this.submittingReward = false;
             this.showSuccessMessage();
             this.closeModal();
-        }).catch(error => console.log(error))
+        }).catch(error =>  {
+            this.submittingReward = false;
+            console.log(error)
+        })
     }
 
     closeModal() {
@@ -68,6 +73,10 @@ export class GiveRewardComponent implements OnInit  {
 
     isAuthenticated(): boolean {
         return this.auth.authenticated();
+    }
+
+    isNotAuthenticated(): boolean {
+        return !this.auth.authenticated();
     }
 
 }
