@@ -7,13 +7,14 @@ import {Player} from "../../player";
 import {PlayerToTeam} from "../../player-to-team";
 import {PlayerToTeamSportDetails} from "../../player-to-team-sport-details";
 import {Team} from "../../team";
+import {PlayerHistoryUtilsService} from "../../services/player-history-utils.service";
 
 
 @Component({
   selector: 'player-detail',
   templateUrl: 'player-detail.component.html',
   styleUrls: ['player-detail.component.scss'],
-  providers: [PlayerService, TeamService]
+  providers: [PlayerService, TeamService, PlayerHistoryUtilsService]
 })
 export class PlayerDetailComponent implements OnInit {
   player: Player;
@@ -32,6 +33,7 @@ export class PlayerDetailComponent implements OnInit {
   constructor(
     private playerService: PlayerService,
     private teamService: TeamService,
+    private playerHistoryUtilsService: PlayerHistoryUtilsService,
     private route: ActivatedRoute,
     private location: Location
   ) {}
@@ -72,8 +74,17 @@ export class PlayerDetailComponent implements OnInit {
 
   }
 
+  public areTeamsLoaded(): boolean {
+      if (this.playerHistory) {
+        let teamIdAndPlayerHistory: {[teamId: string]: PlayerToTeam[]} = this.playerHistoryUtilsService.getPlayerHistoryPerTeam(this.playerHistory);
+        return this.teams.length == Object.keys(teamIdAndPlayerHistory).length;
+      } else {
+          return true
+      }
+  }
+
   isEverythingLoaded(): boolean {
-      return this.playerLoaded && this.playerHistoryLoaded && this.playerToTeamSportLoaded && this.teamsLoaded;
+      return this.playerLoaded && this.playerHistoryLoaded && this.playerToTeamSportLoaded && this.areTeamsLoaded();
   }
 
   private createDict(playerToTeamSportsDetails: PlayerToTeamSportDetails[]): {[sport: string]: PlayerToTeamSportDetails} {
