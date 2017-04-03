@@ -47,7 +47,7 @@ export class ShowPlayerCommentComponent implements OnInit {
   }
 
   getUsername(): string {
-      return this.user.given_name + this.user.family_name;
+      return this.user.given_name + " " + this.user.family_name;
   }
 
   deleteComment(): void {
