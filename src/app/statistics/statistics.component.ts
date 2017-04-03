@@ -30,7 +30,7 @@ export class StatisticsComponent implements OnInit {
                     this.loadSuccessful = (this.teams.length === response.content.length);
                 })
             }
-        }).then(error => {
+        }).catch(error => {
             this.isBusy = false;
             this.loadSuccessful = false;
         })
