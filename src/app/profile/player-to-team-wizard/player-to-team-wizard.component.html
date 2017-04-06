@@ -4,20 +4,22 @@
     </div>
 
     <clr-wizard-step>Select the team</clr-wizard-step>
-    <clr-wizard-step>Wizard complete</clr-wizard-step>
+    <clr-wizard-step>Add the dates</clr-wizard-step>
+    <clr-wizard-step>Entry added</clr-wizard-step>
 
-    <clr-wizard-page [clrWizardPageNextDisabled]="!myForm.form.valid">
+    <clr-wizard-page [clrWizardPageNextDisabled]="!team">
         <div class="row flex-items-xs-center">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <team-search (teamClicked)="setTeam($event)"></team-search>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div *ngIf="team" class="team-container">
-                    <img [src]="team.emblemLink" class="team-emblem" alt="No img found">
+                    <img [src]="team.emblemLink" class="team-emblem" alt="{{team.name}}">
                 </div>
             </div>
         </div>
-
+    </clr-wizard-page>
+    <clr-wizard-page [clrWizardPageNextDisabled]="!myForm.form.valid">
         <form #myForm="ngForm">
             <section class="form-block">
                 <label>My Form</label>
