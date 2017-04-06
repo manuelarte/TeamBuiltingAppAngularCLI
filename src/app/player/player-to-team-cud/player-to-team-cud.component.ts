@@ -10,7 +10,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./player-to-team-cud.component.scss'],
   providers: [DatesService]
 })
-export class PlayerToTeamCudComponent implements OnInit, OnChanges {
+export class PlayerToTeamCudComponent implements OnInit {
 
   @Input() team: Team = new Team();
   @Input() model: PlayerToTeam = new PlayerToTeam();
@@ -28,11 +28,6 @@ export class PlayerToTeamCudComponent implements OnInit, OnChanges {
           fromDate: new FormControl('', Validators.required),
           toDate: new FormControl({disabled: this.stillActive}, ),
       });
-  }
-
-  ngOnChanges() {
-      console.log("emitting");
-      this.form.emit(this.playerToTeamForm);
   }
 
   getMinDateForFromDate(): Date {

@@ -19,7 +19,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
                 <label for="fromDateInput" aria-haspopup="true" role="tooltip"
-                       [class.invalid]="toDate.touched && playerToTeamForm.get('toDate').invalid"
+                       [class.invalid]="playerToTeamForm.get('toDate').invalid"
                        class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
                     <input id="toDateInput_1" type="date" [(ngModel)]="model.toDate" [value]="getToDate()"
                        formControlName="toDate" #toDate>
