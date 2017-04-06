@@ -46,10 +46,11 @@ export class HomeHowToComponent implements OnInit {
             }
         }, {
            label: 'Log in',
+           disabled: this.auth.authenticated(),
            command: (event: any) => {
                 this.activeIndex = 1;
-            },
-            disabled: this.auth.authenticated()
+           },
+
         }, {
            label: 'what-to-do',
            command: (event: any) => {
