@@ -5,7 +5,6 @@
 
     <clr-wizard-step>Select the team</clr-wizard-step>
     <clr-wizard-step>Add the dates</clr-wizard-step>
-    <clr-wizard-step>Entry added</clr-wizard-step>
 
     <clr-wizard-page [clrWizardPageNextDisabled]="!team">
         <div class="row flex-items-xs-center">
@@ -19,10 +18,10 @@
             </div>
         </div>
     </clr-wizard-page>
-    <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm()" (clrWizardPageOnCommit) = submitEntry()>
+    <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
         <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
-    </clr-wizard-page>
-    <clr-wizard-page>
-        Congratulations! You are done with this wizard.
+        <div class="spinner" *ngIf="submitting">
+            Submitting...
+        </div>
     </clr-wizard-page>
 </clr-wizard>

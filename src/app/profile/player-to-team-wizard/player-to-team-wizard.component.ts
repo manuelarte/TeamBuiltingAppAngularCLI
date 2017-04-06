@@ -1,9 +1,10 @@
-import {Component, ViewChild, OnInit, Input} from '@angular/core';
+import {Component, ViewChild, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {Wizard} from "clarity-angular";
 import {PlayerToTeam} from "../../player-to-team";
 import {Team} from "../../team";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PlayerService} from "../../services/player.service";
+import {Player} from "../../player";
 
 @Component({
   selector: 'app-player-to-team-wizard',
@@ -14,14 +15,18 @@ import {PlayerService} from "../../services/player.service";
 export class PlayerToTeamWizardComponent implements OnInit {
   @ViewChild("wizard") wizard: Wizard;
 
+  @Input() player: Player;
   @Input() open: boolean = false;
   model: PlayerToTeam = new PlayerToTeam();
   team: Team;
-  playerToTeamForm: FormGroup;
+  private playerToTeamForm: FormGroup;
+  submitting: boolean = false;
+  @Output() entrySaved: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
 
   constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
+      this.model.playerId = this.player.id;
   }
 
   public setTeam(team: Team): void {
@@ -38,8 +43,16 @@ export class PlayerToTeamWizardComponent implements OnInit {
   }
 
   submitEntry(): void {
-      console.log("submitting");
-      // this.playerService.savePlayerToTeam(this.model).then()
+      this.submitting = true;
+      this.playerService.savePlayerToTeam(this.model).then(playerToTeam => {
+          this.submitting = false;
+          this.model = playerToTeam;
+          this.entrySaved.emit(playerToTeam);
+          this.wizard.next();
+          this.wizard.close();
+      }).catch(error => {
+          this.submitting = false;
+      })
   }
 
 }

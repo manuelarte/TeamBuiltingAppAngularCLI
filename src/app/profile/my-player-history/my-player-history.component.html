@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary" (click)="openWizard = true">Open wizard</button>
-                <app-player-to-team-wizard [(open)]="openWizard"></app-player-to-team-wizard>
+                <app-player-to-team-wizard [player]="player" [(open)]="openWizard" (entrySaved)="playerHistory.push($event)"></app-player-to-team-wizard>
                 <my-player-history-table [(playerHistory)]="playerHistory" [player]="player"></my-player-history-table>
             </div>
 
