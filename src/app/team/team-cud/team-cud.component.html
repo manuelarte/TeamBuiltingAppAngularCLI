@@ -15,13 +15,11 @@
                         <span class="alert-text">Add team form cannot be loaded</span>
                     </div>
                 </div>
-                <form *ngIf="!isBusy && sports" class="compact">
-                    <team-cud-inside-form [model]="model" [sports]="sports" [(teamForm)]="teamForm" [(stillActive)]="stillActive"></team-cud-inside-form>
-                </form>
+                <team-cud-inside-form *ngIf="!isBusy && sports" class="compact" [model]="model" [sports]="sports" (form)="setTeamForm($event)"></team-cud-inside-form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" type="button" (click)="closeModal()">Cancel</button>
-                <button [disabled]="teamForm.invalid || isBusy" class="btn btn-primary" type="button" (click)="onSubmit()">Ok</button>
+                <button [disabled]="!formValid() || isBusy" class="btn btn-primary" type="button" (click)="onSubmit()">Ok</button>
             </div>
         </div>
     </div>

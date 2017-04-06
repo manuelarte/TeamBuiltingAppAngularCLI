@@ -22,15 +22,7 @@ export class TeamCudComponent implements OnInit {
     isBusy: boolean = true;
     stillActive: boolean = true;
 
-    teamForm = new FormGroup({
-        name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(200)])),
-        sport: new FormControl('', Validators.required),
-        bio: new FormControl('', Validators.maxLength(500)),
-        fromDate: new FormControl('', Validators.required),
-        toDate: new FormControl({disabled: this.stillActive}, ),
-        emblemLink: new FormControl('', Validators.compose([Validators.minLength(6), Validators.maxLength(500)])),
-        location: new FormControl('', Validators.compose([Validators.minLength(6), Validators.maxLength(200)])),
-    });
+    teamForm: FormGroup;
 
     constructor(
         private teamService: TeamService,
@@ -75,6 +67,14 @@ export class TeamCudComponent implements OnInit {
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
+    }
+
+    setTeamForm(teamForm: FormGroup): void {
+       this.teamForm = teamForm;
+    }
+
+    formValid(): boolean {
+        return this.teamForm ? this.teamForm.valid : false;
     }
 
 }

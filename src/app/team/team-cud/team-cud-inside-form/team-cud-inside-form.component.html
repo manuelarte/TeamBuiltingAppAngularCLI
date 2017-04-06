@@ -1,4 +1,4 @@
-<div [formGroup]="teamForm">
+<form [formGroup]="teamForm" (change)="emitForm()">
     <section class="form-block">
         <label>Team information</label>
         <div class="form-group">
@@ -112,4 +112,4 @@
 
     </section>
 
-</div>
+</form>

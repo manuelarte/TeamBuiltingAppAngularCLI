@@ -1,5 +1,5 @@
-import {Component, OnInit, Input}      from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {Component, OnInit, Input, EventEmitter, Output}      from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {GoogleMapGeocodingService} from "../../../services/google-map-geocoding.service";
 import {TeamSport} from "../../../team-sports";
 import {Team} from "../../../team";
@@ -14,14 +14,23 @@ import {DatesService} from "../../../services/dates-service";
 })
 export class TeamCudInsideFormComponent implements OnInit {
     @Input() sports: TeamSport[] = [];
-
-    @Input() stillActive: boolean = true;
-
     @Input() model: Team = new Team();
+
+    stillActive: boolean = true;
     location: GoogleMapGeocodingResultGeometryLocation;
     private validLocation: boolean = false;
 
-    @Input() teamForm: FormGroup;
+    teamForm = new FormGroup({
+        name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(200)])),
+        sport: new FormControl('', Validators.required),
+        bio: new FormControl('', Validators.maxLength(500)),
+        fromDate: new FormControl('', Validators.required),
+        toDate: new FormControl({disabled: this.stillActive}, ),
+        emblemLink: new FormControl('', Validators.compose([Validators.minLength(6), Validators.maxLength(500)])),
+        location: new FormControl('', Validators.compose([Validators.minLength(6), Validators.maxLength(200)])),
+    });
+
+    @Output() form: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
     constructor(
         private googleMapGeocodingService: GoogleMapGeocodingService,
@@ -62,6 +71,10 @@ export class TeamCudInsideFormComponent implements OnInit {
             return this.datesService.dateToString(this.model.toDate);
         }
         return "";
+    }
+
+    emitForm(): void {
+        this.form.emit(this.teamForm);
     }
 
 }
