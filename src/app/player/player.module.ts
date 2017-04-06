@@ -36,6 +36,7 @@ import {PlayerRoutingModule} from "./player-routing.module";
 import {PlayerSearchComponent} from "./player-search/player-search.component";
 import {PlayerDetailIntroComponent} from "./player-detail-intro/player-detail-intro.component";
 import {GoogleChart} from "app/directives/angular2-google-chart.directive";
+import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.component";
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import {GoogleChart} from "app/directives/angular2-google-chart.directive";
       PlayerDetailIntroComponent,
       PlayerCommentsComponent,
       PlayerCudComponent,
+      PlayerToTeamCudComponent,
       PlayerDetailStatisticsComponent,
       PlayerDetailTeamSportsComponent,
       PlayerCommentFormComponent,
@@ -78,7 +80,7 @@ import {GoogleChart} from "app/directives/angular2-google-chart.directive";
   providers: [
       { provide: LOCALE_ID, useValue: "nl" },
   ],
-    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent ]
+    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent, PlayerToTeamCudComponent ]
 })
 export class PlayerModule {
 }

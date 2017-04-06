@@ -10,9 +10,7 @@
 
             <div *ngIf="!player" class="alert alert-warning">
                 <div class="alert-item">
-                            <span class="alert-text">
-                                You haven't added a player yet
-                            </span>
+                    <span class="alert-text">You haven't added a player yet</span>
                 </div>
             </div>
 
@@ -20,9 +18,6 @@
                 Loading...
             </div>
             <div *ngIf="player && isPlayerHistoryLoaded()">
-                <button type="submit" class="btn btn-primary" (click)="open = true">Open wizard</button>
-
-                <app-player-to-team-wizard [(open)]="open"></app-player-to-team-wizard>
                 <div *ngIf="noEntries()">
                     <div class="alert alert-warning">
                         <div class="alert-item">
@@ -30,7 +25,8 @@
                         </div>
                     </div>
                 </div>
-
+                <button type="submit" class="btn btn-primary" (click)="openWizard = true">Open wizard</button>
+                <app-player-to-team-wizard [(open)]="openWizard"></app-player-to-team-wizard>
                 <my-player-history-table [(playerHistory)]="playerHistory" [player]="player"></my-player-history-table>
             </div>
 

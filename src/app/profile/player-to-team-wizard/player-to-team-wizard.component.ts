@@ -2,6 +2,7 @@ import {Component, ViewChild, OnInit, Input} from '@angular/core';
 import {Wizard} from "clarity-angular";
 import {PlayerToTeam} from "../../player-to-team";
 import {Team} from "../../team";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-player-to-team-wizard',
@@ -22,6 +23,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
 
   public setTeam(team: Team): void {
       this.team = team;
+      this.model.teamId = this.team.id;
   }
 
 }
