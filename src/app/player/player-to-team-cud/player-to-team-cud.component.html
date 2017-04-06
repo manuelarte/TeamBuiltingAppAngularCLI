@@ -1,0 +1,37 @@
+<form [formGroup]="playerToTeamForm" (change)="emitForm()">
+    isValid:{{playerToTeamForm?.valid}}
+    <section class="form-block">
+        <label>Dates</label>
+        <div class="form-group">
+            <label for="fromDateInput" class="required">From Date</label>
+            <label for="fromDateInput" aria-haspopup="true" role="tooltip"
+                   [class.invalid]="fromDate.touched && playerToTeamForm.get('fromDate').invalid"
+                   class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                <input id="fromDateInput" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()" required
+                       formControlName="fromDate" #fromDate>
+                <span class="tooltip-content">The start date cannot be empty!</span>
+            </label>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="toDateInput_1">To Date</label>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+                <label for="fromDateInput" aria-haspopup="true" role="tooltip"
+                       [class.invalid]="toDate.touched && playerToTeamForm.get('toDate').invalid"
+                       class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                    <input id="toDateInput_1" type="date" [(ngModel)]="model.toDate" [value]="getToDate()"
+                       formControlName="toDate" #toDate>
+                    <span class="tooltip-content">The end date cannot be empty if you are not playing in the team anymore!</span>
+                </label>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                Still Active: <input id="toDateInput_2" name="stillActive" type="checkbox" id="stillActive"
+                                     [checked]="isStillActive()" name="stillActive" (click)="changeIsStillActive()">
+            </div>
+        </div>
+
+    </section>
+</form>
+
