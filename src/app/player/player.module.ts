@@ -37,6 +37,7 @@ import {PlayerSearchComponent} from "./player-search/player-search.component";
 import {PlayerDetailIntroComponent} from "./player-detail-intro/player-detail-intro.component";
 import {GoogleChart} from "app/directives/angular2-google-chart.directive";
 import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.component";
+import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/player-to-sport-details-cud.component";
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.
       PlayerCommentsComponent,
       PlayerCudComponent,
       PlayerToTeamCudComponent,
+      PlayerToSportDetailsCudComponent,
       PlayerDetailStatisticsComponent,
       PlayerDetailTeamSportsComponent,
       PlayerCommentFormComponent,
