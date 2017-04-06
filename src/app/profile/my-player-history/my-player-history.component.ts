@@ -18,6 +18,7 @@ export class MyPlayerHistoryComponent implements OnInit, OnChanges  {
 
     playerHistorySavedMessage: Message[] = [];
     private playerHistoryLoaded: boolean = false;
+    msgs: Message[] = [];
 
     constructor(private auth: Auth, private playerService: PlayerService) {}
 
@@ -73,6 +74,10 @@ export class MyPlayerHistoryComponent implements OnInit, OnChanges  {
 
     updatePlayerHistory(playerToTeam: PlayerToTeam): void {
         this.playerHistory.push(playerToTeam);
+    }
+
+    showEntrySaved(): void {
+        this.msgs.push({severity: 'success', summary: 'Player to team saved', detail: 'Player to team saved'});
     }
 
 }

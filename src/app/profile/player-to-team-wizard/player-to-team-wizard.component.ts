@@ -2,7 +2,7 @@ import {Component, ViewChild, OnInit, Input, EventEmitter, Output} from '@angula
 import {Wizard} from "clarity-angular";
 import {PlayerToTeam} from "../../player-to-team";
 import {Team} from "../../team";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 import {PlayerService} from "../../services/player.service";
 import {Player} from "../../player";
 
