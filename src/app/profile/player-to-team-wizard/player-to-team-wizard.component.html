@@ -19,8 +19,8 @@
             </div>
         </div>
     </clr-wizard-page>
-    <clr-wizard-page [clrWizardPageNextDisabled]="!valid">
-        <app-player-to-team-cud [(model)]="model" [team]="team" (form)="valid = $event.valid"></app-player-to-team-cud>
+    <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm()" (clrWizardPageOnCommit) = submitEntry()>
+        <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
     </clr-wizard-page>
     <clr-wizard-page>
         Congratulations! You are done with this wizard.
