@@ -1,4 +1,6 @@
-import {Component, OnInit, trigger, state, style, transition, animate} from "@angular/core";
+import {Component, OnInit, trigger, state, style, transition, animate, ViewEncapsulation} from "@angular/core";
+import {MenuItem} from "primeng/primeng";
+import {Auth} from "../../services/auth-service";
 
 @Component({
   selector: 'home-how-to',
@@ -25,16 +27,35 @@ import {Component, OnInit, trigger, state, style, transition, animate} from "@an
                 animate('1.3s 0.25s ease-out')
             ])
         ]),
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeHowToComponent implements OnInit {
 
-    tabSelected: string = "introduction";
+    private items: MenuItem[];
 
-    constructor() {}
+	activeIndex: number = 0;
+
+    constructor(private auth: Auth) {}
 
     ngOnInit() {
-
-    }
+        this.items = [{
+            label: 'Introduction',
+            command: (event: any) => {
+                this.activeIndex = 0;
+            }
+        }, {
+           label: 'Log in',
+           command: (event: any) => {
+                this.activeIndex = 1;
+            },
+            disabled: this.auth.authenticated()
+        }, {
+           label: 'what-to-do',
+           command: (event: any) => {
+                this.activeIndex = 2;
+           }
+        }];
+    };
 
 }

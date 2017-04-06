@@ -14,6 +14,11 @@
             <li><span>Enjoy!</span></li>
         </ul>
 
+        <div *ngIf="authenticated()">
+            <h3>Go to my Profile to start adding your career:</h3>
+            <button type="submit" class="btn btn-primary" (click)="routerUtils.gotoMyProfile()">My Profile</button>
+        </div>
+
     </div>
 
 </div>

@@ -18,4 +18,9 @@ export class RouterUtilsService {
     return this.router.navigate(link);
   }
 
+  public gotoMyProfile(): Promise<boolean> {
+    let link = ['/myProfile', ""];
+    return this.router.navigate(link);
+  }
+
 }

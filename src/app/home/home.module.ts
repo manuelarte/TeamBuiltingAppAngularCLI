@@ -18,6 +18,7 @@ import {RateAndCommentsComponent} from "../rate-and-comments/rate-and-comments.c
 import {PodiumComponent} from "../statistics/podium/podium.component";
 import {CommonModule} from "@angular/common";
 import {PlayerModule} from "../player/player.module";
+import {StepsModule} from 'primeng/primeng';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {PlayerModule} from "../player/player.module";
         HttpModule,
         ClarityModule,
         GalleriaModule,
+        StepsModule,
         RatingModule,
         TeamModule,
         PlayerModule,
