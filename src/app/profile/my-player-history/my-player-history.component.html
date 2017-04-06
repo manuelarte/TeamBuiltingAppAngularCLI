@@ -20,7 +20,7 @@
                 Loading...
             </div>
             <div *ngIf="player && isPlayerHistoryLoaded()">
-                <button type="submit" (click)="open = true">Open wizard</button>
+                <button type="submit" class="btn btn-primary" (click)="open = true">Open wizard</button>
 
                 <app-player-to-team-wizard [(open)]="open"></app-player-to-team-wizard>
                 <div *ngIf="noEntries()">

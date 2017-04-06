@@ -1,0 +1,45 @@
+<clr-wizard #wizard [(clrWizardOpen)]="open">
+    <div class="wizard-title">
+        Form to add your player history
+    </div>
+
+    <clr-wizard-step>Select the team</clr-wizard-step>
+    <clr-wizard-step>Wizard complete</clr-wizard-step>
+
+    <clr-wizard-page [clrWizardPageNextDisabled]="!myForm.form.valid">
+        <div class="row flex-items-xs-center">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <team-search (teamClicked)="setTeam($event)"></team-search>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div *ngIf="team" class="team-container">
+                    <img [src]="team.emblemLink" class="team-emblem" alt="No img found">
+                </div>
+            </div>
+        </div>
+
+        <form #myForm="ngForm">
+            <section class="form-block">
+                <label>My Form</label>
+                <div class="form-group">
+                    <label class="required">Name</label>
+                    <label for="nameInput" aria-haspopup="true" role="tooltip"
+                           [class.invalid]="name.touched && !name.valid"
+                           class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                        <input type="text" id="nameInput" required [(ngModel)]="model.name" name="name" #name="ngModel">
+                        <span class="tooltip-content">
+                          This field cannot be empty!
+                      </span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="favInput">Favorite food</label>
+                    <input type="text" id="favInput" [(ngModel)]="model.favorite" name="favorite">
+                </div>
+            </section>
+        </form>
+    </clr-wizard-page>
+    <clr-wizard-page>
+        Congratulations! You are done with this wizard.
+    </clr-wizard-page>
+</clr-wizard>
