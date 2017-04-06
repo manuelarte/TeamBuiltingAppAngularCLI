@@ -71,4 +71,8 @@ export class MyPlayerHistoryComponent implements OnInit, OnChanges  {
         return this.playerHistory.length == 0;
     }
 
+    updatePlayerHistory(playerToTeam: PlayerToTeam): void {
+        this.playerHistory.push(playerToTeam);
+    }
+
 }
