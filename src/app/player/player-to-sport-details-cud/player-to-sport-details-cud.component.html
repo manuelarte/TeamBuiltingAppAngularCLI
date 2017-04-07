@@ -38,31 +38,19 @@
             </div>
 
         </section>
-        <div class="row">
-            <div class="col-xs-4">
-
-                <label for="selects_1">Select the Sport:</label>
-                <div class="select">
-                    <select id="selects_1">
-                        <option [class.active]="true" disabled>Select a sport...</option>
-                        <option *ngFor="let sport of sports">{{sport.name}}</option>
-                    </select>
-                </div>
-
-            </div>
-            <div class="col-xs-6">
-
-                <span>6</span>
-            </div>
-
-            <div class="col-xs-2">
-                <span>2</span>
-            </div>
-        </div>
     </form>
 
     <div class="row">
-        Field
+        <div *ngIf="model.sport && model.mainPosition" [ngSwitch]="model.sport">
+            <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
+                                      [playersDetails]="[model]">Loading football
+                position...
+            </player-football-position>
+            <player-futsal-position *ngSwitchCase="'Futsal'" [players]="[player]"
+                                    [playersDetails]="[model]">Loading futsal
+                position...
+            </player-futsal-position>
+        </div>
     </div>
 
 

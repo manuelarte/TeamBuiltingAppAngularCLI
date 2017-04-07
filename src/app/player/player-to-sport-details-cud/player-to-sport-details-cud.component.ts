@@ -3,6 +3,7 @@ import {TeamSport, TeamSportPosition} from "../../team-sports";
 import {TeamSportService} from "../../services/sports-service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PlayerToTeamSportDetails} from "../../player-to-team-sport-details";
+import {Player} from "../../player";
 
 @Component({
   selector: 'app-player-to-sport-details-cud',
@@ -12,6 +13,7 @@ import {PlayerToTeamSportDetails} from "../../player-to-team-sport-details";
 })
 export class PlayerToSportDetailsCudComponent implements OnInit {
 
+  @Input() player: Player;
   @Input() model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
   sports: TeamSport[];
   isBusyLoadingSports: boolean = true;
@@ -26,6 +28,7 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
   constructor(private teamSportService: TeamSportService) { }
 
   ngOnInit() {
+      this.model.playerId = this.player.id;
       this.teamSportService.getTeamSportsAvailable().then(sports => {
           this.isBusyLoadingSports = false;
           this.sports = sports;
