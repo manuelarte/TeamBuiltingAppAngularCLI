@@ -17,6 +17,7 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
   @Input() model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
   sports: TeamSport[];
   isBusyLoadingSports: boolean = true;
+  @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
   sportDetailsForm: FormGroup = new FormGroup({
         sport: new FormControl('', Validators.required),

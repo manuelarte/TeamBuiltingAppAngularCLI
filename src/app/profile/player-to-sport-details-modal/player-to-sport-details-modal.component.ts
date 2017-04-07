@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Modal} from "clarity-angular";
 import {Player} from "../../player";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-player-to-sport-details-modal',
@@ -13,6 +14,7 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
 
   @Input() player: Player;
   openValue: boolean = false;
+  form: FormGroup = new FormGroup({});
   @Output() openChange = new EventEmitter<boolean>();
 
   constructor() { }
