@@ -35,6 +35,23 @@
                         </label>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div *ngIf="model.sport" >
+                        <label for="sportInput_otherPositions">Multi Select</label>
+                        <div class="sportInput_otherPositions">
+                            <select id="sportInput_otherPositions" multiple [(ngModel)]="model.otherPositions" formControlName="otherPositions" #otherPositions>
+                                <option [selected]="true" disabled>Select your other positions...</option>
+                                <option *ngFor="let position of getSparePositions(model.sport)" [value]="position.abbreviation">{{position.fullName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="sportInput_bio">Bio</label>
+                <textarea id="sportInput_bio" rows="5" [(ngModel)]="model.bio" formControlName="bio" #bio></textarea>
             </div>
 
         </section>

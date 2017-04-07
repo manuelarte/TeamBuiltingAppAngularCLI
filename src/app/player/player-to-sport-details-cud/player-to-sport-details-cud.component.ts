@@ -22,6 +22,8 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
   sportDetailsForm: FormGroup = new FormGroup({
         sport: new FormControl('', Validators.required),
         mainPosition: new FormControl('', Validators.required),
+        otherPositions: new FormControl('', ),
+        bio: new FormControl('', Validators.maxLength(500)),
   });
   @Output() form: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
@@ -47,7 +49,19 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
   }
 
   getPositions(sportName: string): TeamSportPosition[] {
-      return this.sports.filter(sport => sport.name == sportName)[0].sportPositions;
+      if (this.sports && this.sports.filter(sport => sport.name == sportName).length > 0) {
+        return this.sports.filter(sport => sport.name == sportName)[0].sportPositions;
+      } else {
+          return [];
+      }
+  }
+
+  getSparePositions(sportName: string): TeamSportPosition[] {
+      if (this.sports) {
+          return this.getPositions(sportName).filter(position => position.abbreviation != this.model.mainPosition);
+      } else {
+          return [];
+      }
   }
 
 }

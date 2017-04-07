@@ -1,7 +1,7 @@
 /**
  * Created by Manuel on 22/11/2016.
  */
-import {Component, OnInit, Input}      from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {TeamService} from "../../../services/team.service";
 import {TeamSearchService} from "../../../services/team-search.service";
@@ -24,7 +24,8 @@ import {RouterUtilsService} from "../../../services/router-utils.service";
 export class MyPlayerHistoryTableComponent implements OnInit {
 
     @Input() private player: Player;
-    @Input() private playerHistory: PlayerToTeam[];
+    private playerHistoryValue: PlayerToTeam[];
+    @Output() playerHistoryChange: EventEmitter<PlayerToTeam[]> = new EventEmitter<PlayerToTeam[]>();
     model: PlayerHistoryEntry[] = [];
     msgs: Message[] = [];
 
@@ -59,6 +60,16 @@ export class MyPlayerHistoryTableComponent implements OnInit {
                 console.log(error);
                 return Observable.of<Page<Team>>(new Page<Team>());
             });
+    }
+
+    @Input()
+    get playerHistory(): PlayerToTeam[] {
+        return this.playerHistoryValue;
+    }
+
+    set playerHistory(val: PlayerToTeam[]) {
+        this.playerHistoryValue = val;
+        this.playerHistoryChange.emit(this.playerHistoryValue);
     }
 
     isEntryChecked(index: number): boolean {

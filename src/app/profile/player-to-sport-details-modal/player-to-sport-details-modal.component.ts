@@ -22,7 +22,8 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
   msgs: Message[] = [];
   openValue: boolean = false;
   form: FormGroup = new FormGroup({});
-  @Output() openChange = new EventEmitter<boolean>();
+  @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
   constructor(private playerService: PlayerService) { }
 
@@ -44,6 +45,7 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
       this.submitting = true;
       this.playerService.savePlayerToTeamSportDetails(this.model).then(saved => {
           this.submitting = false;
+          this.entrySaved.emit(saved);
           this.open = false;
       }).catch(error => {
           this.showMessageInEntry("error", "Entry cannot be saved", "");

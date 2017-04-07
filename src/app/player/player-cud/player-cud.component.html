@@ -43,7 +43,7 @@
             <label><strong>Link to your image:</strong></label>
             <label for="imageLink" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm"
                    [class.invalid]="playerForm.get('imageLink').invalid">
-                <input #imageLink type="text" placeholder="Enter the link to your image" size="35"
+                <input #imageLink type="url" placeholder="Enter the link to your image" size="35"
                        [(ngModel)]="model.imageLink" id="imageLink" name="imageLink" formControlName="imageLink">
                 <span class="tooltip-content">The player image link is not valid!</span>
             </label>
