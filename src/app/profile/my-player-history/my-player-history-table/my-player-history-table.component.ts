@@ -42,7 +42,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.createPlayerHistoryEntry(this.playerHistoryValue);
+        this.model = this.createPlayerHistoryEntry(this.playerHistoryValue);
 
         this.teams = this.searchTerms
             .debounceTime(300)        // wait for 300ms pause in events
@@ -59,20 +59,15 @@ export class MyPlayerHistoryTableComponent implements OnInit {
             });
     }
 
-    createPlayerHistoryEntry(playerHistory: PlayerToTeam[]) {
-        this.model = [];
+    createPlayerHistoryEntry(playerHistory: PlayerToTeam[]): PlayerHistoryEntry[] {
+        let model: PlayerHistoryEntry[] = [];
         playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => {
             this.teamService.getTeam(entry.teamId).then(team => {
-                console.log("pushing entry", entry)
-                this.model.push( {team: team, playerHistory: entry, stillActive: !entry.toDate, entryChecked: true} );
+                model.push( {team: team, playerHistory: entry, stillActive: !entry.toDate, entryChecked: true} );
                 this.isBusy = false;
             })
         });
-    }
-
-    getEntries() {
-        console.log("this.model:", this.model)
-        return this.model;
+        return model;
     }
 
     @Input()
@@ -81,9 +76,9 @@ export class MyPlayerHistoryTableComponent implements OnInit {
     }
 
     set playerHistory(val: PlayerToTeam[]) {
-        this.model = [];
         this.playerHistoryValue = val;
         this.playerHistoryChange.emit(this.playerHistoryValue);
+        console.log(val)
         this.createPlayerHistoryEntry(val);
     }
 
