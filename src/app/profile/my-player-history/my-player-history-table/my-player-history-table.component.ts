@@ -26,6 +26,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
     @Input() private player: Player;
     private playerHistoryValue: PlayerToTeam[];
     @Output() playerHistoryChange: EventEmitter<PlayerToTeam[]> = new EventEmitter<PlayerToTeam[]>();
+	isBusy: boolean = true;
     model: PlayerHistoryEntry[] = [];
     msgs: Message[] = [];
 
@@ -41,11 +42,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => {
-           this.teamService.getTeam(entry.teamId).then(team => {
-               this.model.push( {team: team, playerHistory: entry, stillActive: !entry.toDate, entryChecked: true} )
-           })
-        });
+        this.createPlayerHistoryEntry(this.playerHistoryValue);
 
         this.teams = this.searchTerms
             .debounceTime(300)        // wait for 300ms pause in events
@@ -62,14 +59,32 @@ export class MyPlayerHistoryTableComponent implements OnInit {
             });
     }
 
+    createPlayerHistoryEntry(playerHistory: PlayerToTeam[]) {
+        this.model = [];
+        playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => {
+            this.teamService.getTeam(entry.teamId).then(team => {
+                console.log("pushing entry", entry)
+                this.model.push( {team: team, playerHistory: entry, stillActive: !entry.toDate, entryChecked: true} );
+                this.isBusy = false;
+            })
+        });
+    }
+
+    getEntries() {
+        console.log("this.model:", this.model)
+        return this.model;
+    }
+
     @Input()
     get playerHistory(): PlayerToTeam[] {
         return this.playerHistoryValue;
     }
 
     set playerHistory(val: PlayerToTeam[]) {
+        this.model = [];
         this.playerHistoryValue = val;
         this.playerHistoryChange.emit(this.playerHistoryValue);
+        this.createPlayerHistoryEntry(val);
     }
 
     isEntryChecked(index: number): boolean {
@@ -90,7 +105,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
                 this.model[index].playerHistory = playerToTeamSaved;
                 this.showEntrySubmitted();
                 this.model[index].entryChecked = true;
-                this.playerHistory.push(this.model[index].playerHistory);
+                this.playerHistoryValue.push(this.model[index].playerHistory);
             }).catch(error => console.log(error));
 
         }
@@ -111,7 +126,7 @@ export class MyPlayerHistoryTableComponent implements OnInit {
     removeEntry(index: number): void {
         if (this.model[index].playerHistory.id) {
             this.playerService.deletePlayerToTeam(this.model[index].playerHistory).then(result => {
-                this.playerHistory.splice(index);
+                this.playerHistoryValue.splice(index);
                 this.model.splice(index);
                 this.showEntryDeleted();
             }).catch(error => {
