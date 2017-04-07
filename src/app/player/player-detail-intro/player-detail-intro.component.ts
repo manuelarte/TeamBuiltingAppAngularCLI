@@ -29,4 +29,8 @@ export class PlayerDetailIntroComponent implements OnInit {
 	return rows;
   }
 
+  public pie_ChartOptions = {
+        height: 300
+    };
+
 }

@@ -31,7 +31,7 @@
       <div class="header-actions">
           <clr-dropdown class="dropdown bottom-right">
               <button class="nav-icon" clrDropdownToggle>
-                  <clr-icon shape="user"></clr-icon>
+                  <clr-icon shape="user" [class.has-alert]="auth.authenticated()"></clr-icon>
                   <clr-icon shape="caret down"></clr-icon>
               </button>
 
