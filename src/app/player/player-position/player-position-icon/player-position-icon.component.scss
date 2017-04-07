@@ -1,13 +1,13 @@
 @import "../_pitch.scss";
 
-$player_width: 6vw;
+$player_width: 10%;
 
 .player {
     position: absolute;
     top : $pitch_extra_grass_sides_percentage;
     left : $pitch_extra_grass_sides_percentage;
-    height: $player_width;
-    width: auto;
+    width: $player_width;
+    height: auto;
     z-index: 9;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -165,10 +165,10 @@ $player_width: 6vw;
     pointer-events: none;
 }
 .player .player__img {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
-    width: $player_width;
+    width: 100%;
     border-radius: 50%;
     height: auto;
     z-index: 4;
