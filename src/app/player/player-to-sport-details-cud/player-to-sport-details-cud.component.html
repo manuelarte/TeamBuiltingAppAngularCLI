@@ -1,3 +1,22 @@
 <p>
   player-to-sport-details-cud works!
 </p>
+
+<div *ngIf="isBusyLoadingSports" class="spinner">Loading...</div>
+
+<div *ngIf="!isBusyLoadingSports && !isErrorLoadingSports()">
+    <label for="selects_1">This is a select box</label>
+    <div class="select">
+        <select id="selects_1">
+            <option [class.active]="true" disabled>Select a sport...</option>
+            <option *ngFor="let sport of sports">{{sport.name}}</option>
+        </select>
+    </div>
+
+
+</div>
+
+
+<div *ngIf="isErrorLoadingSports()">
+    Error loading the sports, try again.
+</div>
