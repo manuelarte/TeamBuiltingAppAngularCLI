@@ -25,6 +25,7 @@ import {MyPlayerProfileComponent} from "./my-player-profile/my-player-profile.co
 import {MyProfileComponent} from "./my-profile/my-profile.component";
 import {TeamModule} from "../team/team.module";
 import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-team-wizard.component";
+import {PlayerToSportDetailsModalComponent} from "./player-to-sport-details-modal/player-to-sport-details-modal.component";
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-tea
         MyPlayerHistoryTableComponent,
         MyPlayerPositionComponent,
         PlayerToTeamWizardComponent,
+        PlayerToSportDetailsModalComponent,
         MyAdminTeams,
     ],
     providers: [

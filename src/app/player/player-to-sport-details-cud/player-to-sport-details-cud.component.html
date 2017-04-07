@@ -1,16 +1,68 @@
-<p>
-  player-to-sport-details-cud works!
-</p>
-
 <div *ngIf="isBusyLoadingSports" class="spinner">Loading...</div>
 
 <div *ngIf="!isBusyLoadingSports && !isErrorLoadingSports()">
-    <label for="selects_1">This is a select box</label>
-    <div class="select">
-        <select id="selects_1">
-            <option [class.active]="true" disabled>Select a sport...</option>
-            <option *ngFor="let sport of sports">{{sport.name}}</option>
-        </select>
+    <form [formGroup]="sportDetailsForm" (change)="emitForm()">
+        <section class="form-block">
+
+            <div class="form-group row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="sportInput_name">Sport</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label for="sportInput_name" aria-haspopup="true" role="tooltip"
+                           [class.invalid]="sportDetailsForm.get('sport').invalid"
+                           class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                        <div class="select">
+                            <select id="sportInput_name" [(ngModel)]="model.sport" formControlName="sport" #sport>
+                                <option [selected]="true" disabled>Select a sport...</option>
+                                <option *ngFor="let sport of sports">{{sport.name}}</option>
+                            </select>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div *ngIf="model.sport">
+                        <label for="sportInput_mainPosition" aria-haspopup="true" role="tooltip"
+                               [class.invalid]="sportDetailsForm.get('mainPosition').invalid"
+                               class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                            <div class="select">
+                                <select id="sportInput_mainPosition" [(ngModel)]="model.mainPosition" formControlName="mainPosition" #mainPosition>
+                                    <option [selected]="true" disabled>Select your main position...</option>
+                                    <option *ngFor="let position of getPositions(model.sport)" [value]="position.abbreviation">{{position.fullName}}</option>
+                                </select>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <div class="row">
+            <div class="col-xs-4">
+
+                <label for="selects_1">Select the Sport:</label>
+                <div class="select">
+                    <select id="selects_1">
+                        <option [class.active]="true" disabled>Select a sport...</option>
+                        <option *ngFor="let sport of sports">{{sport.name}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-xs-6">
+
+                <span>6</span>
+            </div>
+
+            <div class="col-xs-2">
+                <span>2</span>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        Field
     </div>
 
 

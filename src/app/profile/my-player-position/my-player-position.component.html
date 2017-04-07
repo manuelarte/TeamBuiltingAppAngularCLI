@@ -1,3 +1,7 @@
+<button type="submit" class="btn btn-primary" (click)="open = true" [disabled]="open">Add Sport Position</button>
+<app-player-to-sport-details-modal [(open)]="open"></app-player-to-sport-details-modal>
+
+
 <table *ngIf="sportPositionsLoaded" class="table table-noborder">
     <thead>
     <tr>
