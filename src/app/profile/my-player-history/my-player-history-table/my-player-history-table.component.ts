@@ -1,7 +1,7 @@
 /**
  * Created by Manuel on 22/11/2016.
  */
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {TeamService} from "../../../services/team.service";
 import {TeamSearchService} from "../../../services/team-search.service";
@@ -21,7 +21,7 @@ import {RouterUtilsService} from "../../../services/router-utils.service";
     styleUrls: [ 'my-player-history-table.component.scss' ],
     providers: [ TeamService, TeamSearchService, PlayerHistoryUtilsService, RouterUtilsService ]
 })
-export class MyPlayerHistoryTableComponent implements OnInit {
+export class MyPlayerHistoryTableComponent implements OnInit, OnChanges {
 
     @Input() private player: Player;
     private playerHistoryValue: PlayerToTeam[];
@@ -59,6 +59,10 @@ export class MyPlayerHistoryTableComponent implements OnInit {
             });
     }
 
+    ngOnChanges() {
+        this.model = this.createPlayerHistoryEntry(this.playerHistoryValue);
+    }
+
     createPlayerHistoryEntry(playerHistory: PlayerToTeam[]): PlayerHistoryEntry[] {
         let model: PlayerHistoryEntry[] = [];
         playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => {
@@ -78,8 +82,6 @@ export class MyPlayerHistoryTableComponent implements OnInit {
     set playerHistory(val: PlayerToTeam[]) {
         this.playerHistoryValue = val;
         this.playerHistoryChange.emit(this.playerHistoryValue);
-        console.log(val)
-        this.createPlayerHistoryEntry(val);
     }
 
     isEntryChecked(index: number): boolean {
