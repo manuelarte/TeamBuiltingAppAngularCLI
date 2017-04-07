@@ -27,7 +27,6 @@ export class PlayerFutsalPositionComponent implements OnInit {
     ngOnInit(): void {
         this.teamSportService.getTeamSportPositions("Futsal").then(teamSportPositions => {
             teamSportPositions.forEach(position => {
-                console.log(position)
                 this.futsalPositionMap[position.abbreviation] = position
             });
             this.positionsMapLoaded = true;
