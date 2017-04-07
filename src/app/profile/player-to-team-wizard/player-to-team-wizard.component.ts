@@ -22,6 +22,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   private playerToTeamForm: FormGroup;
   submitting: boolean = false;
   @Output() entrySaved: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
+  @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private playerService: PlayerService) { }
 
@@ -50,9 +51,15 @@ export class PlayerToTeamWizardComponent implements OnInit {
           this.entrySaved.emit(playerToTeam);
           this.wizard.next();
           this.wizard.close();
+          this.open = false;
       }).catch(error => {
           this.submitting = false;
       })
+  }
+
+  closeWizard(): void {
+      this.onCancel.emit();
+      this.open = false;
   }
 
 }

@@ -1,4 +1,4 @@
-<clr-wizard #wizard [(clrWizardOpen)]="open">
+<clr-wizard #wizard [(clrWizardOpen)]="open" (clrWizardOnCancel)="closeWizard()">
     <div class="wizard-title">
         Form to add your player history
     </div>
