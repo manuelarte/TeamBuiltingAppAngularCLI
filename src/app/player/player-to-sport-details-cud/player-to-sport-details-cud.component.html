@@ -41,15 +41,11 @@
     </form>
 
     <div class="row">
-        <div *ngIf="model.sport && model.mainPosition" [ngSwitch]="model.sport">
+        <div *ngIf="sportDetailsForm.valid" [ngSwitch]="model.sport">
             <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
-                                      [playersDetails]="[model]">Loading football
-                position...
-            </player-football-position>
+                                      [playersDetails]="[model]">Loading football position...</player-football-position>
             <player-futsal-position *ngSwitchCase="'Futsal'" [players]="[player]"
-                                    [playersDetails]="[model]">Loading futsal
-                position...
-            </player-futsal-position>
+                                    [playersDetails]="[model]">Loading futsal position...</player-futsal-position>
         </div>
     </div>
 
