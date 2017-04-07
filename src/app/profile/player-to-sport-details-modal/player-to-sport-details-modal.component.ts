@@ -2,24 +2,32 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angula
 import {Modal} from "clarity-angular";
 import {Player} from "../../player";
 import {FormGroup} from "@angular/forms";
+import {PlayerService} from "../../services/player.service";
+import {PlayerToTeamSportDetails} from "../../player-to-team-sport-details";
+import {Message} from "primeng/primeng";
 
 @Component({
   selector: 'app-player-to-sport-details-modal',
   templateUrl: './player-to-sport-details-modal.component.html',
-  styleUrls: ['./player-to-sport-details-modal.component.scss']
+  styleUrls: ['./player-to-sport-details-modal.component.scss'],
+  providers: [PlayerService]
 })
 export class PlayerToSportDetailsModalComponent implements OnInit {
 
   @ViewChild("modal") modal: Modal;
 
   @Input() player: Player;
+  model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
+  submitting: boolean = false;
+  msgs: Message[] = [];
   openValue: boolean = false;
   form: FormGroup = new FormGroup({});
   @Output() openChange = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
+    this.model.playerId = this.player.id;
   }
 
   @Input()
@@ -30,6 +38,21 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
   set open(val: boolean) {
       this.openValue = val;
       this.openChange.emit(this.open);
+  }
+
+  onSubmit(): void {
+      this.submitting = true;
+      this.playerService.savePlayerToTeamSportDetails(this.model).then(saved => {
+          this.submitting = false;
+          this.open = false;
+      }).catch(error => {
+          this.showMessageInEntry("error", "Entry cannot be saved", "");
+          this.submitting = false;
+      })
+  }
+
+  private showMessageInEntry(severity: string, summary: string, detail: string): any {
+        return {severity: severity, summary: summary, detail: detail}
   }
 
 }
