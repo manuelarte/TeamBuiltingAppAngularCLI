@@ -57,7 +57,7 @@
         </section>
     </form>
 
-    <div *ngIf="sportDetailsForm.valid">
+    <div *ngIf="isShowSportField()">
         <h1>Position:</h1>
         <div [ngSwitch]="model.sport">
             <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
