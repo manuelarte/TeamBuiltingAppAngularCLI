@@ -38,7 +38,7 @@
 
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div *ngIf="model.sport" >
-                        <label for="sportInput_otherPositions">Multi Select</label>
+                        <label for="sportInput_otherPositions">Other Positions:</label>
                         <div class="sportInput_otherPositions">
                             <select id="sportInput_otherPositions" multiple [(ngModel)]="model.otherPositions" formControlName="otherPositions" #otherPositions>
                                 <option [selected]="true" disabled>Select your other positions...</option>
