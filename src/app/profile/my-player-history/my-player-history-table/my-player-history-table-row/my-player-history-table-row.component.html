@@ -1,0 +1,73 @@
+<td>
+    <div *ngIf="model">
+
+        <div class="team-entry-name" (click)="routerUtilsService.gotoTeamDetails(model.team)">{{model?.team?.name}}
+        </div>
+        <div *ngIf="!isEntryChecked()">
+            <team-search (teamClicked)="selectTeam($event)"></team-search>
+        </div>
+
+    </div>
+</td> <!-- Add the team search component -->
+<td>
+
+    <div *ngIf="model">
+
+        <p-calendar [(ngModel)]="model.playerHistory.fromDate" [showIcon]="true" [minDate]="getMinDateForFromDate()"
+                    [disabled]="isEntryChecked()">
+        </p-calendar>
+
+    </div>
+
+</td>
+
+<td>
+
+    <div *ngIf="model">
+
+        <p-calendar [(ngModel)]="model.playerHistory.toDate" [showIcon]="true" [minDate]="getMinDateForToDate()"
+                    [disabled]="isEntryChecked() || isStillActive()">
+        </p-calendar>
+        Still playing: <input name="stillActive" type="checkbox" id="stillActive" [disabled]="isEntryChecked()"
+                              [checked]="isStillActive()" (click)="changeIsStillActive()">
+
+    </div>
+
+</td>
+
+<td>
+
+    <div *ngIf="model">
+
+        <clr-icon *ngIf="isEntryChecked()" shape="edit" [ngStyle]="{'cursor': 'pointer'}"
+                  (click)="editEntry()" class="icon-color-info tooltip tooltip-sm tooltip-left"
+                  role="tooltip" aria-haspopup="true">
+            <span class="tooltip-content">Edit entry</span>
+        </clr-icon>
+        <clr-icon *ngIf="!isEntryChecked()" shape="success"
+                  [ngStyle]="{'opacity': isEntryValid() ? 1 : 0.3, 'cursor': isEntryValid(i) ? 'pointer' : 'default' }"
+                  (click)="checkEntry()" class="icon-color-success tooltip tooltip-sm tooltip-left">
+            <span class="tooltip-content">Check entry</span>
+        </clr-icon>
+        <clr-icon shape="remove" [ngStyle]="{'cursor': 'pointer'}"
+                  class="icon-color-danger tooltip tooltip-sm tooltip-left"
+                  (click)="deletePlayerToTeamModalOpened = true">
+            <span class="tooltip-content">Delete entry</span>
+        </clr-icon>
+
+        <clr-modal [(clrModalOpen)]="deletePlayerToTeamModalOpened">
+            <h3 class="modal-title">Are you sure you want to delete the entry?</h3>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" (click)="deletePlayerToTeamModalOpened = false">Cancel
+                </button>
+                <button type="button" class="btn btn-primary"
+                        (click)="removeEntry(); deletePlayerToTeamModalOpened = false">Ok
+                </button>
+            </div>
+        </clr-modal>
+
+    </div>
+
+</td>
