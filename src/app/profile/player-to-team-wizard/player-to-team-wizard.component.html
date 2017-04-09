@@ -4,9 +4,9 @@
     </div>
 
     <clr-wizard-step>Select the team</clr-wizard-step>
-    <clr-wizard-step>Add the dates teamForm:{{theTeamForm && theTeamForm?.valid}}</clr-wizard-step>
+    <clr-wizard-step>Add the dates</clr-wizard-step>
 
-    <clr-wizard-page [clrWizardPageNextDisabled]="(!team && addTeam == false) || (addTeam == true && !theTeamForm || (theTeamForm && !theTeamForm.valid))">
+    <clr-wizard-page [clrWizardPageNextDisabled]="(!addTeam || addTeam == false && !team) || (addTeam == true && (!theTeamForm || !theTeamForm.valid))">
         <div class="row flex-items-xs-center">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <team-search (teamClicked)="setTeam($event)"></team-search>
@@ -18,10 +18,10 @@
                 </div>
             </div>
         </div>
-
+        theTeamForm.valid: {{theTeamForm?.valid}}
         <p>Or, if yoy don't find your football team, you can add it</p>
         <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">Add a new team</button>
-        <team-cud-inside-form *ngIf="addTeam" (form)="theTeamForm"></team-cud-inside-form>
+        <team-cud-inside-form *ngIf="addTeam" (form)="theTeamForm = $event"></team-cud-inside-form>
     </clr-wizard-page>
     <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
         <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
