@@ -1,4 +1,4 @@
-<form [formGroup]="teamForm" (change)="emitForm()">
+<form *ngIf="!isBusy" [formGroup]="teamForm" (change)="emitForm()">
     <section class="form-block">
         <label>Team information</label>
         <div class="form-group">
@@ -113,3 +113,11 @@
     </section>
 
 </form>
+
+<div *ngIf="isBusy" class="spinner">
+</div>
+<div *ngIf="!isBusy && !sports" class="alert alert-danger">
+    <div class="alert-item">
+        <span class="alert-text">Add team form cannot be loaded</span>
+    </div>
+</div>

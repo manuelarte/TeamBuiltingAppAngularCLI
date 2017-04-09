@@ -17,27 +17,17 @@ export class TeamCudComponent implements OnInit {
     @Input() private teamModalOpened: boolean = true;
     @Output() teamModalOpenedChange: EventEmitter<boolean> = new EventEmitter();
     @Output() teamUpdated: EventEmitter<Team> = new EventEmitter();
-    sports: TeamSport[];
     submitted: boolean = false;
     isBusy: boolean = true;
-    stillActive: boolean = true;
 
     teamForm: FormGroup;
 
     constructor(
         private teamService: TeamService,
-        private teamSportService: TeamSportService,
     ) {
     }
 
     ngOnInit(): void {
-        this.teamSportService.getTeamSportsAvailable().then(sports => {
-            this.sports = sports;
-            this.isBusy = false;
-        }).catch(error => {
-            this.isBusy = false;
-            this.handleError(error);
-        });
     }
 
     isTeamModalOpened() {

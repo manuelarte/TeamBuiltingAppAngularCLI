@@ -8,14 +8,7 @@
                 <h3 class="modal-title">Team details:</h3>
             </div>
             <div class="modal-body">
-                <div *ngIf="isBusy" class="spinner">
-                </div>
-                <div *ngIf="!isBusy && !sports" class="alert alert-danger">
-                    <div class="alert-item">
-                        <span class="alert-text">Add team form cannot be loaded</span>
-                    </div>
-                </div>
-                <team-cud-inside-form *ngIf="!isBusy && sports" class="compact" [model]="model" [sports]="sports" (form)="setTeamForm($event)"></team-cud-inside-form>
+                <team-cud-inside-form class="compact" [model]="model" (form)="setTeamForm($event)"></team-cud-inside-form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline" type="button" (click)="closeModal()">Cancel</button>

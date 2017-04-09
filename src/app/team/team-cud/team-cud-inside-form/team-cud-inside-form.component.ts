@@ -5,17 +5,20 @@ import {TeamSport} from "../../../team-sports";
 import {Team} from "../../../team";
 import {GoogleMapGeocodingResultGeometryLocation} from "../../../google-map-geocoding-result-geometry-location";
 import {DatesService} from "../../../services/dates-service";
+import {TeamSportService} from "../../../services/sports-service";
 
 @Component({
     selector: 'team-cud-inside-form',
     templateUrl: 'team-cud-inside-form.component.html',
     styleUrls: [ 'team-cud-inside-form.component.scss' ],
-    providers: [ GoogleMapGeocodingService, DatesService ]
+    providers: [ GoogleMapGeocodingService, DatesService, TeamSportService ]
 })
 export class TeamCudInsideFormComponent implements OnInit {
-    @Input() sports: TeamSport[] = [];
+
     @Input() model: Team = new Team();
 
+    sports: TeamSport[] = [];
+    isBusy: boolean = true;
     stillActive: boolean = true;
     location: GoogleMapGeocodingResultGeometryLocation;
     private validLocation: boolean = false;
@@ -33,6 +36,7 @@ export class TeamCudInsideFormComponent implements OnInit {
     @Output() form: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
     constructor(
+        private teamSportService: TeamSportService,
         private googleMapGeocodingService: GoogleMapGeocodingService,
         private datesService: DatesService,
     ) {}
@@ -42,6 +46,12 @@ export class TeamCudInsideFormComponent implements OnInit {
             this.searchLocation(this.model.location);
             this.stillActive = this.model.toDate == null;
         }
+        this.teamSportService.getTeamSportsAvailable().then(sports => {
+            this.sports = sports;
+            this.isBusy = false;
+        }).catch(error => {
+            this.isBusy = false;
+        });
     }
 
     searchLocation(address: string): void {

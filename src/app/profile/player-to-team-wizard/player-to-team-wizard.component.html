@@ -4,9 +4,9 @@
     </div>
 
     <clr-wizard-step>Select the team</clr-wizard-step>
-    <clr-wizard-step>Add the dates</clr-wizard-step>
+    <clr-wizard-step>Add the dates teamForm:{{theTeamForm && theTeamForm?.valid}}</clr-wizard-step>
 
-    <clr-wizard-page [clrWizardPageNextDisabled]="!team">
+    <clr-wizard-page [clrWizardPageNextDisabled]="(!team && addTeam == false) || (addTeam == true && !theTeamForm || (theTeamForm && !theTeamForm.valid))">
         <div class="row flex-items-xs-center">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <team-search (teamClicked)="setTeam($event)"></team-search>
