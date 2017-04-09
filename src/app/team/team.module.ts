@@ -56,7 +56,7 @@ import {ErrorHandlingModule} from "../error-handling/error-handling.module";
     providers: [
         {provide: LOCALE_ID, useValue: "nl"},
     ],
-    exports: [TeamSearchComponent, TeamDetailComponent, TeamCudComponent]
+    exports: [TeamSearchComponent, TeamDetailComponent, TeamCudComponent, TeamCudInsideFormComponent]
 })
 export class TeamModule {
 }

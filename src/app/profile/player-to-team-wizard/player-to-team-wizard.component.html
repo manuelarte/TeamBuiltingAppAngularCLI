@@ -17,6 +17,10 @@
                 </div>
             </div>
         </div>
+
+        <p>Or, if yoy don't find your football team, you can add it</p>
+        <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">Add a new team</button>
+        <team-cud-inside-form *ngIf="addTeam" (form)="theTeamForm"></team-cud-inside-form>
     </clr-wizard-page>
     <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
         <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
