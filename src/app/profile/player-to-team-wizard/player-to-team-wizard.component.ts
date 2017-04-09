@@ -49,6 +49,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
           this.submitting = false;
           this.model = playerToTeam;
           this.entrySaved.emit(playerToTeam);
+          this.team = null;
           this.wizard.next();
           this.wizard.close();
           this.open = false;
@@ -58,6 +59,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   }
 
   closeWizard(): void {
+      this.team = null;
       this.onCancel.emit();
       this.open = false;
   }

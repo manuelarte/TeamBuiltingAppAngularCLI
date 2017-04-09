@@ -1,15 +1,15 @@
-<table *ngIf="model" class="table">
+<table *ngIf="playerHistory" class="table">
     <thead>
     <tr>
         <th>Team</th>
         <th>From:</th>
         <th>To:</th>
-        <th><clr-icon shape="plus" [ngStyle]="{'opacity': areAllEntriesChecked() ? 1 : 0.3, 'cursor': 'pointer'}" (click)="createNewEntry()"></clr-icon>
+        <th><clr-icon shape="plus" [ngStyle]="{'opacity': 1, 'cursor': 'pointer'}" (click)="createNewEntry()"></clr-icon>
         </th>
     </tr>
     </thead>
     <tbody>
-        <tr app-my-player-history-table-row *ngFor="let entry of model" [(playerToTeam)]="entry.playerHistory"></tr>
+        <tr app-my-player-history-table-row *ngFor="let entry of playerHistory; let i = index" [(playerToTeam)]="playerHistory[i]"></tr>
     </tbody>
 </table>
 

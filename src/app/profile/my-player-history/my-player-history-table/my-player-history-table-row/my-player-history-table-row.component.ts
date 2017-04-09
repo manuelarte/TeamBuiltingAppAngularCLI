@@ -64,7 +64,6 @@ export class MyPlayerHistoryTableRowComponent implements OnInit, OnChanges {
         this.teamService.getTeam(this.playerToTeamValue.teamId).then(team => {
           this.model = {team: team, playerHistory: this.playerToTeamValue, stillActive: !this.playerToTeamValue.toDate, entryChecked: true};
           this.isBusy = false;
-          console.log("model", this.model)
         });
     }
 
