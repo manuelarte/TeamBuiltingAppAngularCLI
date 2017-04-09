@@ -3,7 +3,7 @@
 
 
 <label for="search_input">
-    <input #searchInput id="search_input" type="text" placeholder="Search for a Team..." (keyup)="search(searchInput.value)"/>
+    <input #searchInput id="search_input" type="text" placeholder="Search for a Team..." [disabled]="disabled" (keyup)="search(searchInput.value)"/>
     <div *ngIf="searchInput.value && (teamsPage | async)?.content == null">
         <span class="spinner spinner-sm">Loading...</span>
     </div>

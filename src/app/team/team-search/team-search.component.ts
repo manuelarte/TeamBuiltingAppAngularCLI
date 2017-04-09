@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
 import {TeamSearchService} from "../../services/team-search.service";
@@ -12,6 +12,7 @@ import {Page} from "../../page";
   providers: [TeamSearchService]
 })
 export class TeamSearchComponent implements OnInit {
+  @Input() disabled: boolean = false;
   teamsPage: Observable<Page<Team>>;
   private searchTerms = new Subject<string>();
 

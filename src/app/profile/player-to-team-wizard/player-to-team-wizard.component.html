@@ -6,10 +6,10 @@
     <clr-wizard-step>Select the team</clr-wizard-step>
     <clr-wizard-step>Add the dates</clr-wizard-step>
 
-    <clr-wizard-page [clrWizardPageNextDisabled]="(!addTeam || addTeam == false && !team) || (addTeam == true && (!theTeamForm || !theTeamForm.valid))">
+    <clr-wizard-page [clrWizardPageNextDisabled]="submittingTeam || ((!addTeam || addTeam == false) && !team) || (addTeam == true && (!theTeamForm || !theTeamForm.valid))" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = teamSelected(addTeam)>
         <div class="row flex-items-xs-center">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <team-search (teamClicked)="setTeam($event)"></team-search>
+                <team-search (teamClicked)="setTeam($event)" [disabled]="addTeam == true"></team-search>
                 <clr-icon *ngIf = "team != null" shape="remove" class="clickable is-danger" size="36" (click)="team = null"></clr-icon>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -18,10 +18,10 @@
                 </div>
             </div>
         </div>
-        theTeamForm.valid: {{theTeamForm?.valid}}
+
         <p>Or, if yoy don't find your football team, you can add it</p>
-        <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">Add a new team</button>
-        <team-cud-inside-form *ngIf="addTeam" (form)="theTeamForm = $event"></team-cud-inside-form>
+        <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">{{(!addTeam || addTeam == false) ? 'Add a new team': 'Close Add a new team'}}</button>
+        <team-cud-inside-form *ngIf="addTeam" [(model)]="teamModel" (form)="theTeamForm = $event"></team-cud-inside-form>
     </clr-wizard-page>
     <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
         <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
