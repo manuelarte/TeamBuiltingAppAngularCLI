@@ -8,6 +8,7 @@ import {Team} from "../team";
 import {Player} from "../player";
 import {AuthHttp} from "angular2-jwt";
 import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
 
 
 @Injectable()
@@ -24,6 +25,10 @@ export class TeamService {
 
   postTeam(team: Team): Promise<Team> {
       return this.authHttp.post(this.teamUrl, team).map(this.convertFromDateAndToDate).toPromise();
+  }
+
+  postTeamObservable(team: Team): Observable<Team> {
+        return this.authHttp.post(this.teamUrl, team).map(this.convertFromDateAndToDate);
   }
 
   getPlayers(id: string, date: string = null): Promise<Player[]> {

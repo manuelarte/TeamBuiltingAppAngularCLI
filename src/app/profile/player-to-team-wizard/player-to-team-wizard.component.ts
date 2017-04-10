@@ -22,6 +22,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   team: Team;
   teamModel: Team = new Team();
   submittingTeam: boolean = false;
+  teamSubmitErrorFlag: boolean = false;
 
   private playerToTeamForm: FormGroup;
   submitting: boolean = false;
@@ -49,20 +50,22 @@ export class PlayerToTeamWizardComponent implements OnInit {
 
   teamSelected(addTeam: boolean): void {
       if (addTeam == null || (addTeam == false && this.team)) {
-
+          this.wizard.next();
       } else {
         this.submittingTeam = true;
-        this.teamService.postTeam(this.teamModel).then(team => {
-          this.team = this.teamModel;
+        this.teamService.postTeamObservable(this.teamModel).subscribe(data => {
+          this.setTeam(data);
           this.teamModel = new Team();
           this.submittingTeam = false;
           this.cdRef.detectChanges();
-         }).catch(error => {
+          this.wizard.next();
+         }, error => {
           this.submittingTeam = false;
           this.team = null;
+          this.teamSubmitErrorFlag = true;
          });
       }
-      this.wizard.next();
+
   }
 
   submitEntry(): void {
