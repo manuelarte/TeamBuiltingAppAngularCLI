@@ -23,7 +23,14 @@
         <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">{{(!addTeam || addTeam == false) ? 'Add a new team': 'Close Add a new team'}}</button>
         <team-cud-inside-form *ngIf="addTeam" [(model)]="teamModel" (form)="theTeamForm = $event"></team-cud-inside-form>
     </clr-wizard-page>
-    <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
+    <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting || !team" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
+        <div *ngIf="submittingTeam">
+            <span class="spinner spinner-inline"></span>
+            <span>Submitting the team...</span>
+        </div>
+        <div *ngIf="submittingTeam == false && !team">
+            The team could not be added, please try again.
+        </div>
         <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
         <div class="spinner" *ngIf="submitting">
             Submitting...

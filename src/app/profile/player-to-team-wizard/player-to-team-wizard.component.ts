@@ -49,19 +49,20 @@ export class PlayerToTeamWizardComponent implements OnInit {
 
   teamSelected(addTeam: boolean): void {
       if (addTeam == null || (addTeam == false && this.team)) {
-        this.wizard.next();
+
       } else {
         this.submittingTeam = true;
         this.teamService.postTeam(this.teamModel).then(team => {
-          this.wizard.next();
-          this.team = team;
+          this.team = this.teamModel;
           this.teamModel = new Team();
           this.submittingTeam = false;
           this.cdRef.detectChanges();
          }).catch(error => {
           this.submittingTeam = false;
-         })
+          this.team = null;
+         });
       }
+      this.wizard.next();
   }
 
   submitEntry(): void {
