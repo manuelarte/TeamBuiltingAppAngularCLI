@@ -10,7 +10,6 @@ import {AppRoutingModule} from "./app-routing.module";
 import {ProfileModule} from "./profile/profile.module";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {DonateComponent} from "./donate/donate.component";
-import {GoogleChartComponentComponent} from "./google-chart-component/google-chart-component.component";
 import {GoogleChart} from "app/directives/angular2-google-chart.directive";
 
 describe('AppComponent', () => {
@@ -26,7 +25,6 @@ describe('AppComponent', () => {
                 HomeComponent,
                 StatisticsComponent,
                 DonateComponent,
-                GoogleChartComponentComponent,
                 GoogleChart,
             ],
             imports: [

@@ -1,6 +1,5 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {ClarityModule} from 'clarity-angular';
-
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
@@ -19,6 +18,8 @@ import {PodiumComponent} from "../statistics/podium/podium.component";
 import {CommonModule} from "@angular/common";
 import {PlayerModule} from "../player/player.module";
 import {StepsModule} from 'primeng/primeng';
+import {MaterialModule} from "@angular/material";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {StepsModule} from 'primeng/primeng';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        BrowserAnimationsModule,
         HttpModule,
         ClarityModule,
         GalleriaModule,
@@ -33,6 +35,7 @@ import {StepsModule} from 'primeng/primeng';
         RatingModule,
         TeamModule,
         PlayerModule,
+        MaterialModule.forRoot()
     ],
     declarations: [
         HomeComponent,
