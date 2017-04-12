@@ -26,6 +26,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
 
   private playerToTeamForm: FormGroup;
   submitting: boolean = false;
+  errorSubmittingFlag: boolean = false;
   @Output() entrySaved: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
@@ -54,10 +55,10 @@ export class PlayerToTeamWizardComponent implements OnInit {
       } else {
         this.submittingTeam = true;
         this.teamService.postTeamObservable(this.teamModel).subscribe(data => {
+          this.submittingTeam = false;
+          this.teamSubmitErrorFlag = false
           this.setTeam(data);
           this.teamModel = new Team();
-          this.submittingTeam = false;
-          this.cdRef.detectChanges();
           this.wizard.next();
          }, error => {
           this.submittingTeam = false;
@@ -75,11 +76,12 @@ export class PlayerToTeamWizardComponent implements OnInit {
           this.model = playerToTeam;
           this.entrySaved.emit(playerToTeam);
           this.team = null;
-          this.wizard.next();
           this.wizard.close();
           this.open = false;
+          this.errorSubmittingFlag = false;
       }).catch(error => {
           this.submitting = false;
+          this.errorSubmittingFlag = true
       })
   }
 

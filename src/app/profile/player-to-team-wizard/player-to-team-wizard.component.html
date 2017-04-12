@@ -6,6 +6,7 @@
     <clr-wizard-step>Select the team</clr-wizard-step>
     <clr-wizard-step>Add the dates</clr-wizard-step>
 
+    <!-- Page to select or add a team -->
     <clr-wizard-page [clrWizardPageNextDisabled]="submittingTeam || ((!addTeam || addTeam == false) && !team) || (addTeam == true && (!theTeamForm || !theTeamForm.valid))" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = teamSelected(addTeam)>
         <div class="row flex-items-xs-center">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -14,6 +15,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div *ngIf="team" class="team-container">
+                    <p>{{team.name}}</p>
                     <img [src]="team.emblemLink" class="team-emblem" alt="{{team.name}}">
                 </div>
             </div>
@@ -33,13 +35,20 @@
         </div>
 
     </clr-wizard-page>
-    <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting || !team" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
-        <div >
 
+    <!-- Page to add the dates-->
+    <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
+        <div >
+            Here you can add the dates from where you played in {{team.name}}.
         </div>
         <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
         <div class="spinner" *ngIf="submitting">
             Submitting...
+        </div>
+        <div *ngIf="errorSubmittingFlag" class="alert alert-danger">
+            <div class="alert-item">
+                <span class="alert-text">The entry could not be added, please try again.</span>
+            </div>
         </div>
     </clr-wizard-page>
 </clr-wizard>
