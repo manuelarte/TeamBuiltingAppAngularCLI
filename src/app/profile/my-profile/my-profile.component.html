@@ -24,7 +24,7 @@
             </div>
 
 
-            <div>
+            <div *ngIf="adminTeamsLoaded">
                 <h2>My Teams</h2>
                 <my-admin-teams [teamIds]="userData.adminOfTeams"></my-admin-teams>
             </div>

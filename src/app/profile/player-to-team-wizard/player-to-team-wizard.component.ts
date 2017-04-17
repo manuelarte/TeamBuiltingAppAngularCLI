@@ -33,6 +33,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   constructor(private teamService: TeamService, private playerService: PlayerService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
+      console.log("inputs:", this.player)
       this.model.playerId = this.player.id;
   }
 
