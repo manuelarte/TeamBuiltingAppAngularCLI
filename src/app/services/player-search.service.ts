@@ -12,7 +12,7 @@ import {Player} from "../player";
 @Injectable()
 export class PlayerSearchService {
 
-    private backendUrl: string = `${environment.backendCoreUrl}`;
+    private backendUrl: string = `${environment.backendPlayersUrl}`;
 
     constructor(private http: Http) {
     }

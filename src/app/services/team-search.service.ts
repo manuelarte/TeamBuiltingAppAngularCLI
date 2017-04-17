@@ -12,13 +12,13 @@ import {environment} from "../../environments/environment";
 @Injectable()
 export class TeamSearchService {
 
-  private backendUrl: string = `${environment.backendCoreUrl}`;
+  private backendUrl: string = `${environment.backendTeamsUrl}`;
 
   constructor(private http: Http) {}
 
   search(term: string): Observable<Page<Team>> {
     return this.http
-               .get(`${this.backendUrl}/teams?name=${term}`)
+               .get(`${this.backendUrl}?name=${term}`)
                .map((r: Response) => this.convertFromDatesAndToDatesForArray(r) as Page<Team>);
   }
 

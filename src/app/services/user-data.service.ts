@@ -10,21 +10,23 @@ import {environment} from "../../environments/environment";
 @Injectable()
 export class UserDataService {
 
-  private backendUrl: string = `${environment.backendCoreUrl}`;
-  private usersUrl = this.backendUrl + '/users/';
+  private backendPlayersUrl: string = `${environment.backendPlayersUrl}`;
+  private backendTeamsUrl: string = `${environment.backendTeamsUrl}`;
+
+  private userPlayerUrl = this.backendPlayersUrl + '/players/user/';
+
+  private userTeamsUrl = this.backendTeamsUrl + '/user/';
 
   constructor(private auth: Auth, private authHttp: AuthHttp) { }
 
-  getUserData(): Promise<UserData> {
-    return this.authHttp.get(this.usersUrl).map(response => <UserData> response.json())
+  getUserPlayerData(): Promise<UserData> {
+    return this.authHttp.get(this.userPlayerUrl).map(response => <UserData> response.json())
       .toPromise();
   }
 
-  updateUserData(userData: any): Promise<UserData> {
-    return this.authHttp.post(this.usersUrl, userData).map(response => <UserData> response.json())
-         .toPromise();
+  getUserTeamsData(): Promise<UserData> {
+    return this.authHttp.get(this.userTeamsUrl).map(response => <UserData> response.json())
+            .toPromise();
   }
-
-
 
 }

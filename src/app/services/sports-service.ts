@@ -8,8 +8,8 @@ import {environment} from "../../environments/environment";
 @Injectable()
 export class TeamSportService {
 
-    private backendUrl: string = `${environment.backendCoreUrl}`;
-    private teamSportsUrl = this.backendUrl + '/sports';
+    private backendUrl: string = `${environment.backendSportsUrl}`;
+    private teamSportsUrl = this.backendUrl + '/';
 
     constructor(private http: Http) { }
 

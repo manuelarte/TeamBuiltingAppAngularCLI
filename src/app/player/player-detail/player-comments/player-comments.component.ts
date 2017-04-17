@@ -54,7 +54,7 @@ export class PlayerCommentsComponent implements OnInit {
     });
 
     if (this.auth.authenticated()) {
-        this.userDataService.getUserData().then(userData => {
+        this.userDataService.getUserPlayerData().then(userData => {
             this.userData = userData;
             this.userDataLoaded = true;
         }).catch(error => {

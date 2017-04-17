@@ -10,7 +10,9 @@ export const environment = {
   statistics: 'statistics',
   experience: 'experience',
 
-  backendCoreUrl: `http://localhost:8080/core`, // dev
+  backendTeamsUrl: `http://localhost:8090/teams`,
+  backendPlayersUrl: `http://localhost:8091`,
+  backendSportsUrl: `http://localhost:8092/sports`,
   backendStatisticsUrl: `http://localhost:8081/statistics`, // dev
   backendExperienceUrl: `http://localhost:8082/experience`, // dev
   backendUsersUrl: `http://localhost:8090`,

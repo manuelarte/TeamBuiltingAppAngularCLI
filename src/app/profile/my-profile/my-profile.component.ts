@@ -14,15 +14,16 @@ export class MyProfileComponent implements OnInit {
 
     originalPlayer: Player;
     originalPlayerLoaded: boolean = false;
+    adminTeamsLoaded: boolean = false;
     errorRetrievingUserData: boolean = false;
-    userData: UserData;
+    userData: UserData = new UserData();
 
     constructor(private auth: Auth,
                 private userDataService: UserDataService,
                 private playerService: PlayerService) {}
 
     ngOnInit() {
-        this.userDataService.getUserData()
+        this.userDataService.getUserPlayerData()
             .then(userData => {
                 this.userData = userData;
                 if (this.userData.playerId) {
@@ -36,6 +37,10 @@ export class MyProfileComponent implements OnInit {
                 } else {
                     this.originalPlayerLoaded = true;
                 }
+                this.userDataService.getUserTeamsData().then(userData => {
+                    this.userData.adminOfTeams = userData.adminOfTeams
+                    this.adminTeamsLoaded = true;
+                })
             }).catch(error => {
                 this.errorRetrievingUserData = true;
                 this.handleError(error);

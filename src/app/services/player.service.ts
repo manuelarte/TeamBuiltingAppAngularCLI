@@ -13,8 +13,13 @@ import {AuthHttp} from "angular2-jwt";
 @Injectable()
 export class PlayerService {
 
-  private backendUrl: string = `${environment.backendCoreUrl}`;
-  private playerUrl = this.backendUrl + '/players';
+  private backendPlayersUrl: string = `${environment.backendPlayersUrl}`;
+
+  private backendSportsUrl: string = `${environment.backendSportsUrl}`;
+
+  private playerUrl = this.backendPlayersUrl + '/players';
+  private playerToTeamUrl = this.backendPlayersUrl + '/playersToTeams';
+  private sportsUrl: string = this.backendSportsUrl;
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
@@ -32,36 +37,36 @@ export class PlayerService {
   }
 
   getPlayerToTeamSportDetails(playerId: string): Promise<PlayerToTeamSportDetails[]> {
-    return this.http.get(`${this.playerUrl}/${playerId}/details`).map(response => <PlayerToTeamSportDetails[]> response.json())
+    return this.http.get(`${this.sportsUrl}/players/${playerId}`).map(response => <PlayerToTeamSportDetails[]> response.json())
       .toPromise();
   }
 
   getPlayerToTeamSportDetailsFor(playerId: string, sport: string): Promise<PlayerToTeamSportDetails> {
-      return this.http.get(`${this.playerUrl}/${playerId}/details/${sport}`).map(response => <PlayerToTeamSportDetails> response.json())
+      return this.http.get(`${this.sportsUrl}/players/${playerId}/${sport}`).map(response => <PlayerToTeamSportDetails> response.json())
           .toPromise();
   }
 
   savePlayerToTeamSportDetails(playerToTeamSportDetails: PlayerToTeamSportDetails): Promise<PlayerToTeamSportDetails> {
-    return this.authHttp.post(`${this.playerUrl}/${playerToTeamSportDetails.playerId}/details`, playerToTeamSportDetails).map(response => <PlayerToTeamSportDetails> response.json())
+    return this.authHttp.post(`${this.sportsUrl}/players/${playerToTeamSportDetails.playerId}`, playerToTeamSportDetails).map(response => <PlayerToTeamSportDetails> response.json())
       .toPromise();
   }
 
   deletePlayerToTeamSportDetails(playerToTeamSportDetails: PlayerToTeamSportDetails): Promise<Response> {
-    return this.authHttp.delete(`${this.playerUrl}/${playerToTeamSportDetails.playerId}/details/${playerToTeamSportDetails.id}`).toPromise();
+    return this.authHttp.delete(`${this.sportsUrl}/players/${playerToTeamSportDetails.playerId}/details/${playerToTeamSportDetails.id}`).toPromise();
   }
 
   getPlayerHistory(playerId: string): Promise<PlayerToTeam[]> {
-    return this.http.get(`${this.playerUrl}/${playerId}/teams`).map(this.convertFromDatesAndToDatesForArray)
+    return this.http.get(`${this.playerToTeamUrl}?playerId=${playerId}`).map(this.convertFromDatesAndToDatesForArray)
       .toPromise();
   }
 
   savePlayerToTeam(playerToTeam: PlayerToTeam): Promise<PlayerToTeam> {
-    return this.authHttp.post(`${this.playerUrl}/${playerToTeam.playerId}/teams`, playerToTeam).map(this.convertFromDateAndToDate)
+    return this.authHttp.post(`${this.playerToTeamUrl}`, playerToTeam).map(this.convertFromDateAndToDate)
       .toPromise();
   }
 
   deletePlayerToTeam(playerToTeam: PlayerToTeam): Promise<Response> {
-      return this.authHttp.delete(`${this.playerUrl}/${playerToTeam.playerId}/teams/${playerToTeam.id}`).toPromise();
+      return this.authHttp.delete(`${this.playerToTeamUrl}/${playerToTeam.id}`).toPromise();
   }
 
 

@@ -14,8 +14,10 @@ import {Observable} from "rxjs";
 @Injectable()
 export class TeamService {
 
-  private backendUrl: string = `${environment.backendCoreUrl}`;
-  private teamUrl = this.backendUrl + '/teams/';
+  private backendTeamsUrl: string = `${environment.backendTeamsUrl}`;
+  private backendPlayersUrl: string = `${environment.backendPlayersUrl}`;
+  private teamUrl = this.backendTeamsUrl + '/';
+  private playerToTeamsUrl: string = this.backendPlayersUrl + '/playersToTeams'
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
@@ -34,7 +36,7 @@ export class TeamService {
   getPlayers(id: string, date: string = null): Promise<Player[]> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('date', date);
-    return this.http.get(`${this.teamUrl}/${id}/players`, {search: params}).map(response => <Player[]> response.json())
+    return this.http.get(`${this.playerToTeamsUrl}/teams/${id}`, {search: params}).map(response => <Player[]> response.json())
       .toPromise();
   }
 
