@@ -18,6 +18,22 @@ export class AppComponent {
   constructor(private router: Router, private auth: Auth,) {
   }
 
+  getRouter(): Router {
+      return this.router;
+  }
+
+  isAuthenticated(): boolean {
+      return this.auth.authenticated();
+  }
+
+  login(): void {
+      this.auth.login();
+  }
+
+  logout(): void {
+      this.auth.logout();
+  }
+
 }
 
 export const title: string = "Team Builting App";

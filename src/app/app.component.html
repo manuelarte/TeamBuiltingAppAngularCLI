@@ -1,5 +1,5 @@
 <clr-main-container>
-    <clr-alert [hidden]="!auth.authenticated()">
+    <clr-alert [hidden]="!isAuthenticated()">
         <div class="alert-item">
               <span class="alert-text">
                    Welcome back!
@@ -31,20 +31,20 @@
       <div class="header-actions">
           <clr-dropdown class="dropdown bottom-right">
               <button class="nav-icon" clrDropdownToggle>
-                  <clr-icon shape="user" [class.has-alert]="auth.authenticated()"></clr-icon>
+                  <clr-icon shape="user" [class.has-alert]="isAuthenticated()"></clr-icon>
                   <clr-icon shape="caret down"></clr-icon>
               </button>
 
               <div class="dropdown-menu">
-                  <div *ngIf="!auth.authenticated() && (router.url==='/home' || router.url==='/')">
-                      <div (click)="auth.login()" clrDropdownItem>Log in</div>
+                  <div *ngIf="!isAuthenticated() && (getRouter().url==='/home' || getRouter().url==='/')">
+                      <div (click)="login()" clrDropdownItem>Log in</div>
                   </div>
-                  <div *ngIf="!auth.authenticated() && !(router.url==='/home' || router.url==='/')">
+                  <div *ngIf="!isAuthenticated() && !(getRouter().url==='/home' || getRouter().url==='/')">
                       <a href="home" clrDropdownItem>Go to home to Log in</a>
                   </div>
-                  <div *ngIf="auth.authenticated()">
+                  <div *ngIf="isAuthenticated()">
                       <a href="myProfile" clrDropdownItem>My Profile</a>
-                      <div (click)="auth.logout()" clrDropdownItem>Log out</div>
+                      <div (click)="logout()" clrDropdownItem>Log out</div>
                   </div>
               </div>
           </clr-dropdown>
