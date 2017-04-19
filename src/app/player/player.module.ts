@@ -38,6 +38,8 @@ import {PlayerDetailIntroComponent} from "./player-detail-intro/player-detail-in
 import {GoogleChart} from "app/directives/angular2-google-chart.directive";
 import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.component";
 import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/player-to-sport-details-cud.component";
+import {PlayerToTeamShowComponent} from "./player-to-team-show/player-to-team-show.component";
+import {MdCardModule} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -57,12 +59,14 @@ import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/pl
     GrowlModule,
     InputTextModule,
     MultiSelectModule,
+    MdCardModule,
   ],
   declarations: [
       PlayerDetailComponent,
       PlayerDetailIntroComponent,
       PlayerCommentsComponent,
       PlayerCudComponent,
+      PlayerToTeamShowComponent,
       PlayerToTeamCudComponent,
       PlayerToSportDetailsCudComponent,
       PlayerDetailStatisticsComponent,
@@ -82,7 +86,7 @@ import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/pl
   providers: [
       { provide: LOCALE_ID, useValue: "nl" },
   ],
-    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent ]
+    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent, PlayerToTeamShowComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent ]
 })
 export class PlayerModule {
 }
