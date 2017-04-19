@@ -18,7 +18,8 @@ import {PodiumComponent} from "../statistics/podium/podium.component";
 import {CommonModule} from "@angular/common";
 import {PlayerModule} from "../player/player.module";
 import {StepsModule} from 'primeng/primeng';
-import {MaterialModule} from "@angular/material";
+import {MdButtonModule, MdCheckboxModule, MdInputModule} from "@angular/material";
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -35,7 +36,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         RatingModule,
         TeamModule,
         PlayerModule,
-        MaterialModule.forRoot()
+        MdButtonModule,
+        MdCheckboxModule,
+        MdInputModule,
     ],
     declarations: [
         HomeComponent,
