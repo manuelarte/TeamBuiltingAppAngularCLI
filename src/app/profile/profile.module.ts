@@ -27,6 +27,7 @@ import {TeamModule} from "../team/team.module";
 import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-team-wizard.component";
 import {PlayerToSportDetailsModalComponent} from "./player-to-sport-details-modal/player-to-sport-details-modal.component";
 import {MyPlayerHistoryTableRowComponent} from "./my-player-history/my-player-history-table/my-player-history-table-row/my-player-history-table-row.component";
+import {MdButtonModule} from "@angular/material";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {MyPlayerHistoryTableRowComponent} from "./my-player-history/my-player-hi
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
         }),
+        MdButtonModule,
         // PrimeNG modules
         CalendarModule,
         DataListModule,

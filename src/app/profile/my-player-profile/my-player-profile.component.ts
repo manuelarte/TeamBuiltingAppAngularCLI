@@ -23,7 +23,7 @@ export class MyPlayerProfileComponent implements OnInit {
     editedPlayer: Player;
     submitting: boolean = false;
 
-    playerForm = new FormGroup({
+    playerForm: FormGroup = new FormGroup({
         name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])),
         nickname: new FormControl('', Validators.compose([Validators.minLength(2), Validators.maxLength(20)])),
         bornAddress: new FormControl('', Validators.compose([Validators.minLength(6), Validators.maxLength(200)])),
@@ -75,6 +75,7 @@ export class MyPlayerProfileComponent implements OnInit {
     }
 
     savePlayer(): void {
+        console.log("saving player")
         this.submitting = true;
         this.playerService.createNewPlayer(this.editedPlayer).then(playerCreated => {
             this.userData.playerId = playerCreated.id;
