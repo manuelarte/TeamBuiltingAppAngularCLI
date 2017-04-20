@@ -3,7 +3,6 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from "./home/home.component";
-import { AboutComponent } from "./about/about.component";
 import { ClarityModule } from "clarity-angular";
 import { APP_BASE_HREF } from "@angular/common";
 import {AppRoutingModule} from "./app-routing.module";
@@ -21,7 +20,6 @@ describe('AppComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
-                AboutComponent,
                 HomeComponent,
                 StatisticsComponent,
                 DonateComponent,
