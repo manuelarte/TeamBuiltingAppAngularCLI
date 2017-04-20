@@ -33,7 +33,7 @@ import {Auth} from "../../services/auth-service";
 })
 export class HomeHowToComponent implements OnInit {
 
-    private items: MenuItem[];
+    items: MenuItem[];
 
 	activeIndex: number = 0;
 

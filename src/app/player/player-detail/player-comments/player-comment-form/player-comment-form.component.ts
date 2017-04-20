@@ -56,7 +56,7 @@ export class PlayerCommentFormComponent implements OnInit {
   });
 
   constructor(
-    private auth: Auth,
+    public auth: Auth,
     private playerCommentService: PlayerCommentService
   ) {}
 

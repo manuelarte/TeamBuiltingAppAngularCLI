@@ -27,7 +27,7 @@ export class PlayerInTeamComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private routerUtilsService: RouterUtilsService) {}
+  constructor(public routerUtilsService: RouterUtilsService) {}
 
   getPicture() {
     return this.player.imageLink;

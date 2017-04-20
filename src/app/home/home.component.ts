@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
 
     constructor(private teamService: TeamService,
                 private statisticService: StatisticService,
-                private routerUtils: RouterUtilsService) {}
+                public routerUtils: RouterUtilsService) {}
 
     ngOnInit() {
         this.images = [];

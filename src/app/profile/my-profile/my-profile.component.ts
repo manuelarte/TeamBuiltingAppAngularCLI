@@ -18,7 +18,7 @@ export class MyProfileComponent implements OnInit {
     errorRetrievingUserData: boolean = false;
     userData: UserData = new UserData();
 
-    constructor(private auth: Auth,
+    constructor(public auth: Auth,
                 private userDataService: UserDataService,
                 private playerService: PlayerService) {}
 
