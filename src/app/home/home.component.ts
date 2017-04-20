@@ -1,10 +1,8 @@
-
-import {Component, OnInit, trigger, state, style, transition, animate} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {animate, state, style, transition, trigger } from '@angular/animations'
 import {TeamService} from "../services/team.service";
 import {StatisticService} from "../services/statistic.service";
 import {Team} from "../team";
-import {Router} from "@angular/router";
-import {Player} from "../player";
 import {RouterUtilsService} from "../services/router-utils.service";
 
 

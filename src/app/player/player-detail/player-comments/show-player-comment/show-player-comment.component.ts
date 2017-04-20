@@ -1,7 +1,5 @@
-import {
-    Component, OnInit, Input, Output, EventEmitter, trigger, state, transition, style,
-    animate
-}      from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {animate, state, style, transition, trigger } from '@angular/animations'
 import {PlayerComment} from "../../../../player-comment";
 import {User} from "../../../../user";
 
