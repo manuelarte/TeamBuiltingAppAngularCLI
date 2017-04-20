@@ -1,4 +1,5 @@
-import {Component, OnInit, trigger, state, style, transition, animate, ViewEncapsulation} from "@angular/core";
+import {Component, OnInit, ViewEncapsulation} from "@angular/core";
+import {animate, state, style, transition, trigger } from '@angular/animations'
 import {MenuItem} from "primeng/primeng";
 import {Auth} from "../../services/auth-service";
 
