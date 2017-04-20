@@ -1,7 +1,5 @@
-import {
-    Component, OnInit, Input, EventEmitter, Output, trigger, state, style, transition,
-    animate
-}      from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {animate, state, style, transition, trigger } from '@angular/animations'
 import {PlayerService} from "../../../../services/player.service";
 import {TeamService} from "../../../../services/team.service";
 import {PlayerCommentService} from "../../../../services/player-comment.service";

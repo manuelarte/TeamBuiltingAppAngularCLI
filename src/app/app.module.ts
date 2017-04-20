@@ -4,7 +4,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ClarityModule} from 'clarity-angular';
 
 import {AppComponent} from './app.component';
-import {AboutComponent} from './about/about.component';
 import {Http, HttpModule, RequestOptions} from "@angular/http";
 import {AgmCoreModule} from "angular2-google-maps/core";
 
@@ -39,7 +38,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     declarations: [
         AppComponent,
-        AboutComponent,
         DonateComponent
     ],
     providers: [
