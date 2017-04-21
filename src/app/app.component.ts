@@ -18,10 +18,6 @@ export class AppComponent {
   constructor(private router: Router, private auth: Auth,) {
   }
 
-  getRouter(): Router {
-      return this.router;
-  }
-
   isAuthenticated(): boolean {
       return this.auth.authenticated();
   }

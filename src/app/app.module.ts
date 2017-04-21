@@ -15,6 +15,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import {ErrorHandlingModule} from "./error-handling/error-handling.module";
 import {MaterialModule} from "@angular/material";
+import { ProfileSidenavComponent } from './profile-sidenav/profile-sidenav.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -38,7 +39,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     declarations: [
         AppComponent,
-        DonateComponent
+        DonateComponent,
+        ProfileSidenavComponent
     ],
     providers: [
         {

@@ -39,7 +39,7 @@ import {GoogleChart} from "app/directives/angular2-google-chart.directive";
 import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.component";
 import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/player-to-sport-details-cud.component";
 import {PlayerToTeamShowComponent} from "./player-to-team-show/player-to-team-show.component";
-import {MdCardModule} from "@angular/material";
+import {MdButtonModule, MdCardModule} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -60,6 +60,7 @@ import {MdCardModule} from "@angular/material";
     InputTextModule,
     MultiSelectModule,
     MdCardModule,
+    MdButtonModule,
   ],
   declarations: [
       PlayerDetailComponent,

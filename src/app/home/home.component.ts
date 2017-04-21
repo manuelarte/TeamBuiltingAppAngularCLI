@@ -4,12 +4,13 @@ import {TeamService} from "../services/team.service";
 import {StatisticService} from "../services/statistic.service";
 import {Team} from "../team";
 import {RouterUtilsService} from "../services/router-utils.service";
+import {Auth} from "../services/auth-service";
 
 
 @Component({
   styleUrls: ['home.component.scss'],
   templateUrl: 'home.component.html',
-  providers: [ TeamService, StatisticService, RouterUtilsService ],
+  providers: [ Auth, TeamService, StatisticService, RouterUtilsService ],
   animations: [
 
       trigger('slideIn', [
@@ -39,9 +40,11 @@ export class HomeComponent implements OnInit {
     mostVisitedTeams: Team[] = [];
     mostVisitedTeamsLoaded: boolean = false;
 
-    constructor(private teamService: TeamService,
-                private statisticService: StatisticService,
-                public routerUtils: RouterUtilsService) {}
+    constructor(
+        private auth: Auth,
+        private teamService: TeamService,
+        private statisticService: StatisticService,
+        private routerUtils: RouterUtilsService) {}
 
     ngOnInit() {
         this.images = [];

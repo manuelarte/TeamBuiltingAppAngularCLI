@@ -1,99 +1,19 @@
-<clr-main-container>
-    <clr-alert [hidden]="!isAuthenticated()">
-        <div class="alert-item">
-              <span class="alert-text">
-                   Welcome back!
-              </span>
-        </div>
-    </clr-alert>
-    <md-sidenav-container class="example-sidenav-fab-container">
-        <md-sidenav #sidenav mode="side" class="app-sidenav">
-            Sidenav
-        </md-sidenav>
+<md-sidenav-container class="example-sidenav-fab-container">
+    <md-sidenav #sidenav mode="side" class="app-sidenav" opened="false">
+        <app-profile-sidenav></app-profile-sidenav>
+    </md-sidenav>
 
-        <md-toolbar color="primary">
-            <i (click)="sidenav.toggle()" class="material-icons app-toolbar-menu clickable">menu</i>
-            <span>TeamBuilting App</span>
-            <span>Home</span>
-            <span class="example-fill-remaining-space"></span>
-        </md-toolbar>
-    </md-sidenav-container>
+    <md-toolbar #header id="header" class="header" color="primary">
+        <i (click)="sidenav.toggle()" class="material-icons app-toolbar-menu clickable">menu</i>
+        <span>TeamBuilting App</span>
+        <span class="example-fill-remaining-space"></span>
+    </md-toolbar>
 
 
-    <clr-header>
-      <div class="branding">
-        <a href="#" class="nav-link">
-          <span class="clr-icon clr-clarity-logo"></span>
-          <span class="title">{{title}}</span>
-        </a>
-      </div>
-      <div class="header-nav">
-            <a href="/home" class="active nav-link"><span class="nav-text">Home</span></a>
-      </div>
-<!--        <div class="settings">
-            <clr-dropdown class="dropdown bottom-right">
-                <button class="nav-icon" clrDropdownToggle>
-                    Language
-                    <clr-icon shape="caret down"></clr-icon>
-                </button>
-                <div class="dropdown-menu">
-                    <div *ngFor="let language of languagesAvailable" clrDropdownItem (click)="setLanguage(language)">{{language.toUpperCase()}}<img [ngStyle]="{'width': '50px'}" src="{{getFlag(language)}}"></div>
-                </div>
-            </clr-dropdown>
-        </div>-->
-      <div class="header-actions">
-          <clr-dropdown class="dropdown bottom-right">
-              <button class="nav-icon" clrDropdownToggle>
-                  <clr-icon shape="user" [class.has-alert]="isAuthenticated()"></clr-icon>
-                  <clr-icon shape="caret down"></clr-icon>
-              </button>
-
-              <div class="dropdown-menu">
-                  <div *ngIf="!isAuthenticated() && (getRouter().url==='/home' || getRouter().url==='/')">
-                      <div (click)="login()" clrDropdownItem>Log in</div>
-                  </div>
-                  <div *ngIf="!isAuthenticated() && !(getRouter().url==='/home' || getRouter().url==='/')">
-                      <a href="home" clrDropdownItem>Go to home to Log in</a>
-                  </div>
-                  <div *ngIf="isAuthenticated()">
-                      <a href="myProfile" clrDropdownItem>My Profile</a>
-                      <div (click)="logout()" clrDropdownItem>Log out</div>
-                  </div>
-              </div>
-          </clr-dropdown>
-      </div>
-    </clr-header>
-
-    <div class="content-container">
-      <div class="content-area">
-        <router-outlet></router-outlet>
-          <div class="footer">
-              <div class="row">
-                  <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                      Help the application to be up and running
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
-                      <donate></donate>
-                  </div>
-              </div>
-          </div>
-          <md-toolbar color="primary">
-              <span>Custom Toolbar</span>
-
-              <md-toolbar-row>
-                  <span>Second Line</span>
-                  <span class="example-spacer"></span>
-                  <md-icon class="example-icon">verified_user</md-icon>
-              </md-toolbar-row>
-
-              <md-toolbar-row>
-                  <span>Third Line</span>
-                  <span class="example-spacer"></span>
-                  <md-icon class="example-icon">favorite</md-icon>
-                  <md-icon class="example-icon">delete</md-icon>
-              </md-toolbar-row>
-          </md-toolbar>
-      </div>
+    <div class="app-content">
+      <router-outlet></router-outlet>
     </div>
-
-</clr-main-container>
+    <md-toolbar #footer class="footer" color="primary">
+        <span><donate></donate></span>
+    </md-toolbar>
+</md-sidenav-container>

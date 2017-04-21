@@ -1,26 +1,24 @@
-.clickable {
-    cursor: pointer;
+#header span {
+
 }
 
-.clr-icon {
-  &.clr-clarity-logo {
-    background-image: url(../images/clarity_logo.svg);
-  }
+#footer {
+ padding-top: 10px;
 }
 
-.footer * {
+#footer * {
     position: relative;
     color: white;
-    background-color: #565656;
     height: 100%;
 }
 
-.example-icon {
-    padding: 0 14px;
+.app-content {
+    padding: 20px;
 }
 
-.example-spacer {
-    flex: 1 1 auto;
+.app-sidenav {
+    padding: 10px;
+    width: 40%;
 }
 
 .example-fill-remaining-space {
