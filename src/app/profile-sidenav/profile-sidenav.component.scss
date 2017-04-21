@@ -1,0 +1,21 @@
+#profileHeader {
+    position:relative;
+    height: 30%;
+}
+
+.profile-background {
+    width: 100%;
+    max-height: 200px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.user-image {
+    position: absolute;
+    width: 20%;
+    border-radius: 50%;
+    height: auto;
+    border-radius: 50%;
+    bottom: 0%;
+    transform: translate(50%, 0%);
+}
