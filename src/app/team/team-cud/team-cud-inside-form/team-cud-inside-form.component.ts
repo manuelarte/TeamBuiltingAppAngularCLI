@@ -73,14 +73,14 @@ export class TeamCudInsideFormComponent implements OnInit {
         if (this.model && this.model.fromDate) {
             return this.datesService.dateToString(new Date(this.model.fromDate));
         }
-        return "";
+        return '';
     }
 
     public getToDate(): string {
         if (this.model && this.model.toDate) {
             return this.datesService.dateToString(this.model.toDate);
         }
-        return "";
+        return '';
     }
 
     emitForm(): void {

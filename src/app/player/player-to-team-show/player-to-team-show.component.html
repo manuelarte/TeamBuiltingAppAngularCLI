@@ -4,20 +4,23 @@
         <md-card-subtitle>{{team.name}}</md-card-subtitle>
     </md-card-header>
     <img md-card-image *ngIf="!loadingTeamFlag" class="playerToTeam-background" [src]="getPictureBasedOnSport()">
+    <img *ngIf="!loadingTeamFlag" class="playerToTeam-team-img" [src]="team.emblemLink">
+    <img *ngIf="!loadingPlayerFlag" class="playerToTeam-player-img" [src]="player.imageLink">
     <md-card-content>
 
         <md-input-container>
-            <input mdInput placeholder="From date" [value]="'2017-01-01'" type="date" [disabled]="!editing" required>
+            <input mdInput placeholder="From date" [value]="datesService.dateToString(playerToTeam.fromDate)" type="date" [disabled]="!editing" required>
         </md-input-container>
 
-        <md-input-container>
-            <input mdInput placeholder="To date" [value]="'2017-01-01'" type="date" [disabled]="!editing">
-        </md-input-container>
-        <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-        </p>
+        <div *ngIf="playerToTeam.toDate">
+            <md-input-container>
+                <input mdInput placeholder="To date" [value]="datesService.dateToString(playerToTeam.toDate)" type="date" [disabled]="!editing">
+            </md-input-container>
+        </div>
+        <div *ngIf="!playerToTeam.toDate">
+            Still Active.
+        </div>
+
     </md-card-content>
     <!--
     <md-card-actions>
@@ -25,7 +28,9 @@
         <button md-button>SHARE</button>
     </md-card-actions>
     -->
-    <md-card-footer>
-        <md-icon>dialpad</md-icon>
+    <md-card-footer *ngIf="userData && userCanEdit()">
+        <md-icon class="clickable" *ngIf="editing == false" (click)="editing = true">mode_edit</md-icon>
+        <md-icon class="clickable" *ngIf="editing == true">save</md-icon>
+        <md-icon class="clickable">delete</md-icon>
     </md-card-footer>
 </md-card>

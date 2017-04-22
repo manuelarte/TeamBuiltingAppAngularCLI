@@ -3,5 +3,5 @@ export class Player {
     name: string;
     nickname: string;
     bornAddress: string;
-    imageLink: string
+    imageLink: string;
 }

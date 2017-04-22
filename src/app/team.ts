@@ -1,6 +1,6 @@
 import {Timeslice} from "./timeslice";
 
-export class Team implements Timeslice{
+export class Team implements Timeslice {
   id: string;
   name: string;
   location: string;
@@ -8,5 +8,5 @@ export class Team implements Timeslice{
   bio: string;
   fromDate: Date;
   toDate: Date;
-  emblemLink: string
+  emblemLink: string;
 }

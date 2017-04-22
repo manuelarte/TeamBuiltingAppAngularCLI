@@ -1,30 +1,39 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerToTeam} from "../../player-to-team";
-import {TeamService} from "../../services/team.service";
-import {Team} from "../../team";
-import {Player} from "../../player";
-import {PlayerService} from "../../services/player.service";
+import {PlayerToTeam} from '../../player-to-team';
+import {TeamService} from '../../services/team.service';
+import {Team} from '../../team';
+import {Player} from '../../player';
+import {PlayerService} from '../../services/player.service';
+import {Auth} from '../../services/auth-service';
+import {UserDataService} from '../../services/user-data.service';
+import {UserData} from '../../user-data';
+import {DatesService} from '../../services/dates-service';
 
 @Component({
   selector: 'app-player-to-team-show',
   templateUrl: './player-to-team-show.component.html',
   styleUrls: ['./player-to-team-show.component.scss'],
-  providers: [PlayerService, TeamService]
+  providers: [PlayerService, TeamService, UserDataService, DatesService, Auth]
 })
 export class PlayerToTeamShowComponent implements OnInit {
 
   @Input() playerToTeam: PlayerToTeam = new PlayerToTeam();
   team: Team;
-  loadingTeamFlag: boolean = true;
-  errorLoadingTeam: boolean = false;
+  loadingTeamFlag = true;
+  errorLoadingTeam = false;
 
   player: Player;
-  loadingPlayerFlag: boolean = true;
-  errorLoadingPlayer: boolean = false;
+  loadingPlayerFlag = true;
+  errorLoadingPlayer = false;
 
-  editing: boolean = false;
+  userData: UserData;
+  loadingUserDataFlag = true;
+  errorLoadingUserData = false;
 
-  constructor(private playerService: PlayerService, private teamService: TeamService) { }
+  editing = false;
+
+  constructor(private playerService: PlayerService, private teamService: TeamService, private userDataService: UserDataService,
+              private datesService: DatesService, private auth: Auth) { }
 
   ngOnInit() {
       if (this.playerToTeam.teamId) {
@@ -36,7 +45,7 @@ export class PlayerToTeamShowComponent implements OnInit {
         }).catch(error => {
             this.loadingTeamFlag = false;
             this.errorLoadingTeam = true;
-        })
+        });
       }
 
       if (this.playerToTeam.playerId) {
@@ -48,29 +57,48 @@ export class PlayerToTeamShowComponent implements OnInit {
           }).catch(error => {
               this.loadingPlayerFlag = false;
               this.errorLoadingPlayer = true;
-          })
+          });
       }
+
+       if (this.auth.authenticated()) {
+          this.loadingUserDataFlag = true;
+          this.userDataService.getUserPlayerData().then(userData => {
+              this.userData = userData;
+              this.loadingUserDataFlag = false;
+              this.errorLoadingUserData = false;
+              console.log(userData);
+          }).catch(error => {
+              this.loadingUserDataFlag = false;
+              this.errorLoadingUserData = true;
+          });
+      }
+
+
   }
 
   getPictureBasedOnSport(): string {
-      let pictureUrl: string = "../../images/sports/football.jpg";
+      let pictureUrl = '../../images/sports/football.jpg';
       if (this.team) {
-          switch(this.team.sport) {
+          switch (this.team.sport) {
               case 'Football': {
-                  pictureUrl = "../../images/sports/football.jpg"
+                  pictureUrl = '../../images/sports/football.jpg'
                   break;
               }
               case 'Futsal': {
-                  //statements;
+                  // statements;
                   break;
               }
               default: {
-                  //statements;
+                  // statements;
                   break;
               }
           }
       }
       return pictureUrl;
+  }
+
+  userCanEdit(): boolean {
+      return this.auth.userProfile ? this.auth.userProfile.user_id === this.userData.userId : false;
   }
 
 }

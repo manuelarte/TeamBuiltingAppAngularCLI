@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 /**
  * Created by manuel.doncel.martos on 14-3-2017.
  */
@@ -13,7 +13,7 @@ export class DatesService {
      */
     public dateToString(date: Date): string {
         if (date == null) {
-            throw "Date cannot be null";
+            throw new Error('Date cannot be null');
         }
         return date.toISOString().substr(0, 10);
     }
