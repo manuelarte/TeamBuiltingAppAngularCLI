@@ -1,22 +1,28 @@
-<p>
-  player-to-team-show works!
-</p>
-
 <md-card class="example-card">
-    <md-card-header>
-        <md-card-title>Shiba Inu</md-card-title>
-        <md-card-subtitle>Dog Breed</md-card-subtitle>
+    <md-card-header *ngIf="team && player">
+        <md-card-title >{{player.name}} at</md-card-title>
+        <md-card-subtitle>{{team.name}}</md-card-subtitle>
     </md-card-header>
-    <img md-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+    <img md-card-image *ngIf="!loadingTeamFlag" class="playerToTeam-background" [src]="getPictureBasedOnSport()">
     <md-card-content>
+
+        <md-input-container>
+            <input mdInput placeholder="From date" [value]="'2017-01-01'" type="date" [disabled]="!editing" required>
+        </md-input-container>
+
+        <md-input-container>
+            <input mdInput placeholder="To date" [value]="'2017-01-01'" type="date" [disabled]="!editing">
+        </md-input-container>
         <p>
             The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
             A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
             bred for hunting.
         </p>
     </md-card-content>
+    <!--
     <md-card-actions>
         <button md-button>LIKE</button>
         <button md-button>SHARE</button>
     </md-card-actions>
+    -->
 </md-card>
