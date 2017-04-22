@@ -66,7 +66,6 @@ export class PlayerToTeamShowComponent implements OnInit {
               this.userData = userData;
               this.loadingUserDataFlag = false;
               this.errorLoadingUserData = false;
-              console.log(userData);
           }).catch(error => {
               this.loadingUserDataFlag = false;
               this.errorLoadingUserData = true;

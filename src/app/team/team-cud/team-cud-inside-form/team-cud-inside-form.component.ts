@@ -1,11 +1,11 @@
-import {Component, OnInit, Input, EventEmitter, Output}      from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {GoogleMapGeocodingService} from "../../../services/google-map-geocoding.service";
-import {TeamSport} from "../../../team-sports";
-import {Team} from "../../../team";
-import {GoogleMapGeocodingResultGeometryLocation} from "../../../google-map-geocoding-result-geometry-location";
-import {DatesService} from "../../../services/dates-service";
-import {TeamSportService} from "../../../services/sports-service";
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {GoogleMapGeocodingService} from '../../../services/google-map-geocoding.service';
+import {TeamSport} from '../../../team-sports';
+import {Team} from '../../../team';
+import {GoogleMapGeocodingResultGeometryLocation} from '../../../google-map-geocoding-result-geometry-location';
+import {DatesService} from '../../../services/dates-service';
+import {TeamSportService} from '../../../services/sports-service';
 
 @Component({
     selector: 'team-cud-inside-form',
@@ -18,10 +18,10 @@ export class TeamCudInsideFormComponent implements OnInit {
     @Input() model: Team = new Team();
 
     sports: TeamSport[] = [];
-    isBusy: boolean = true;
-    stillActive: boolean = true;
+    isBusy = true;
+    stillActive = true;
     location: GoogleMapGeocodingResultGeometryLocation;
-    private validLocation: boolean = false;
+    private validLocation = false;
 
     teamForm = new FormGroup({
         name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(200)])),
