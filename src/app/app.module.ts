@@ -29,7 +29,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         BrowserModule,
         HttpModule,
         ClarityModule.forRoot(),
-        MaterialModule.forRoot(),
+        MaterialModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
         }),

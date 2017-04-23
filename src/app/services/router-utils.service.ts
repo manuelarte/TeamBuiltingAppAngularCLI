@@ -9,17 +9,22 @@ export class RouterUtilsService {
   constructor(private router: Router) { }
 
   public gotoTeamDetails(team: Team): Promise<boolean> {
-    let link = ['/team', team.id];
+    const link = ['/team', team.id];
     return this.router.navigate(link);
   }
 
   public gotoPlayerDetails(player: Player): Promise<boolean> {
-    let link = ['/player', player.id];
+    const link = ['/player', player.id];
     return this.router.navigate(link);
   }
 
   public gotoMyProfile(): Promise<boolean> {
-    let link = ['/myProfile', ""];
+      const link = ['/myProfile', ''];
+    return this.router.navigate(link);
+  }
+
+  public gotoHome(): Promise<boolean> {
+    const link = ['/home', ''];
     return this.router.navigate(link);
   }
 

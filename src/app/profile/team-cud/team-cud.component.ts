@@ -1,9 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {TeamSportService} from "../../services/sports-service";
-import {TeamService} from "../../services/team.service";
-import {Team} from "../../team";
-import {TeamSport} from "../../team-sports";
-import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {TeamSportService} from '../../services/sports-service';
+import {TeamService} from '../../services/team.service';
+import {Team} from '../../team';
+import {FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'team-cud',
@@ -13,18 +12,16 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 })
 export class TeamCudComponent implements OnInit {
     @Input() model: Team = new Team();
-    @Input() compact: boolean = false;
-    @Input() private teamModalOpened: boolean = true;
-    @Output() teamModalOpenedChange: EventEmitter<boolean> = new EventEmitter();
+    @Input() compact = false;
+    @Input() private teamModalOpened = true;
+    @Output() teamModalOpenedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() teamUpdated: EventEmitter<Team> = new EventEmitter();
-    submitted: boolean = false;
-    isBusy: boolean = true;
+    submitted = false;
+    isBusy = true;
 
     teamForm: FormGroup;
 
-    constructor(
-        private teamService: TeamService,
-    ) {
+    constructor(private teamService: TeamService) {
     }
 
     ngOnInit(): void {
@@ -40,12 +37,12 @@ export class TeamCudComponent implements OnInit {
             this.model = team;
             this.submitted = true;
             this.isBusy = false;
-            this.teamUpdated.emit(team);
+            this.teamUpdated.emit(this.model);
             this.closeModal();
         }).catch(error => {
             this.isBusy = false;
             this.handleError;
-        })
+        });
 
     }
 

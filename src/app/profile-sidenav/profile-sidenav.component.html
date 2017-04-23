@@ -9,6 +9,10 @@
 
     <md-nav-list>
         <md-list-item>
+            <md-icon md-list-icon>home</md-icon>
+            <h3 md-line (click)="routerUtilsService.gotoHome()">Home</h3>
+        </md-list-item>
+        <md-list-item>
             <md-icon md-list-icon>accessibility</md-icon>
             <h3 md-line (click)="routerUtilsService.gotoMyProfile()">My Profile</h3>
         </md-list-item>

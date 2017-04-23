@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-import {MyProfileComponent} from "./profile/my-profile/my-profile.component";
-import {TeamCudComponent} from "./team/team-cud/team-cud.component";
-import {StatisticsComponent} from "./statistics/statistics.component";
+import {HomeComponent} from './home/home.component';
+import {MyProfileComponent} from './profile/my-profile/my-profile.component';
+import {TeamCudComponent} from './profile/team-cud/team-cud.component';
+import {StatisticsComponent} from './statistics/statistics.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },

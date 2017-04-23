@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Auth} from "../services/auth-service";
-import {RouterUtilsService} from "../services/router-utils.service";
+import {Auth} from '../services/auth-service';
+import {RouterUtilsService} from '../services/router-utils.service';
 
 @Component({
   selector: 'app-profile-sidenav',

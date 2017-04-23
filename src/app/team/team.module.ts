@@ -18,8 +18,7 @@ import {TeamSearchComponent} from "./team-search/team-search.component";
 import {TeamDetailComponent} from "./team-detail/team-detail.component";
 import {PlayerModule} from "../player/player.module";
 import {TeamInGoogleMapsComponent} from "./team-in-google-maps/team-in-google-maps.component";
-import {TeamCudComponent} from "./team-cud/team-cud.component";
-import {TeamCudInsideFormComponent} from "./team-cud/team-cud-inside-form/team-cud-inside-form.component";
+import {TeamCudInsideFormComponent} from "../profile/team-cud/team-cud-inside-form/team-cud-inside-form.component";
 import {TeamDetailSportIntroComponent} from "./team-detail/team-detail-sport-intro/team-detail-sport-intro.component";
 import {TeamRoutingModule} from "./team-routing.module";
 import {CommonModule} from "@angular/common";
@@ -49,14 +48,12 @@ import {ErrorHandlingModule} from "../error-handling/error-handling.module";
         TeamSearchComponent,
         TeamDetailComponent,
         TeamDetailSportIntroComponent,
-        TeamCudComponent,
-        TeamCudInsideFormComponent,
         TeamInGoogleMapsComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: "nl"},
     ],
-    exports: [TeamSearchComponent, TeamDetailComponent, TeamCudComponent, TeamCudInsideFormComponent]
+    exports: [TeamSearchComponent, TeamDetailComponent]
 })
 export class TeamModule {
 }

@@ -12,7 +12,7 @@
         </button>
 
         <md-menu #menu="mdMenu">
-            <button md-menu-item>
+            <button md-menu-item (click)="openAddTeamModal = true">
                 <md-icon svgIcon="team"></md-icon>
                 <span>Add a Team</span>
             </button>
@@ -35,3 +35,5 @@
         <span><donate></donate></span>
     </md-toolbar>
 </md-sidenav-container>
+
+<team-cud [(teamModalOpened)]="openAddTeamModal"></team-cud>

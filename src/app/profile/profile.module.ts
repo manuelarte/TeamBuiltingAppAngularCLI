@@ -28,6 +28,8 @@ import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-tea
 import {PlayerToSportDetailsModalComponent} from "./player-to-sport-details-modal/player-to-sport-details-modal.component";
 import {MyPlayerHistoryTableRowComponent} from "./my-player-history/my-player-history-table/my-player-history-table-row/my-player-history-table-row.component";
 import {MdButtonModule} from "@angular/material";
+import {TeamCudComponent} from "./team-cud/team-cud.component";
+import {TeamCudInsideFormComponent} from "./team-cud/team-cud-inside-form/team-cud-inside-form.component";
 
 
 @NgModule({
@@ -63,12 +65,14 @@ import {MdButtonModule} from "@angular/material";
         MyPlayerPositionComponent,
         PlayerToTeamWizardComponent,
         PlayerToSportDetailsModalComponent,
+        TeamCudComponent,
+        TeamCudInsideFormComponent,
         MyAdminTeams,
     ],
     providers: [
-        {provide: LOCALE_ID, useValue: "nl"},
+        {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: []
+    exports: [TeamCudComponent]
 })
 export class ProfileModule {
 }
