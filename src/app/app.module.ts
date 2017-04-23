@@ -4,17 +4,17 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ClarityModule} from 'clarity-angular';
 
 import {AppComponent} from './app.component';
-import {Http, HttpModule, RequestOptions} from "@angular/http";
-import {AgmCoreModule} from "angular2-google-maps/core";
+import {Http, HttpModule, RequestOptions} from '@angular/http';
+import {AgmCoreModule} from 'angular2-google-maps/core';
 
-import {DonateComponent} from "./donate/donate.component";
-import {ProfileModule} from "./profile/profile.module";
-import {HomeModule} from "./home/home.module";
-import {AppRoutingModule} from "./app-routing.module";
+import {DonateComponent} from './donate/donate.component';
+import {ProfileModule} from './profile/profile.module';
+import {HomeModule} from './home/home.module';
+import {AppRoutingModule} from './app-routing.module';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import {ErrorHandlingModule} from "./error-handling/error-handling.module";
-import {MaterialModule} from "@angular/material";
+import {ErrorHandlingModule} from './error-handling/error-handling.module';
+import {MaterialModule} from '@angular/material';
 import { ProfileSidenavComponent } from './profile-sidenav/profile-sidenav.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {

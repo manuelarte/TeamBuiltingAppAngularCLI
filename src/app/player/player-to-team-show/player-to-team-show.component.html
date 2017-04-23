@@ -16,8 +16,8 @@
     </md-card-actions>
     -->
     <md-card-footer *ngIf="userData && userCanEdit()">
-        <md-icon class="clickable" *ngIf="editing == false" (click)="editing = true">mode_edit</md-icon>
-        <md-icon class="clickable" [class.invalid]="!playerToTeamForm || !playerToTeamForm.valid" *ngIf="editing == true">save</md-icon>
-        <md-icon class="clickable">delete</md-icon>
+        <button md-button *ngIf="editing == false" (click)="editing = true"><md-icon>mode_edit</md-icon></button>
+        <button md-button *ngIf="editing == true" [disabled]="!playerToTeamForm || !playerToTeamForm.valid"><md-icon>save</md-icon></button>
+        <button md-button><md-icon >delete</md-icon></button>
     </md-card-footer>
 </md-card>

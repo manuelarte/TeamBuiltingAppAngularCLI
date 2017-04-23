@@ -1,21 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {Auth} from "./services/auth-service";
+import {MdIconRegistry} from "@angular/material";
+import {DomSanitizer} from "@angular/platform-browser";
+
+export const title = 'Team Builting App';
 
 @Component({
   selector: 'my-app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
-  providers: [ Auth ],
+  providers: [ Auth, MdIconRegistry ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title: string = title;
 
   languagesAvailable: string[] = [];
 
+  constructor(private router: Router, private auth: Auth, private mdIconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
+      this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/soccer-jersey.svg'));
+  }
 
-  constructor(private router: Router, private auth: Auth,) {
+  ngOnInit(): void {
   }
 
   isAuthenticated(): boolean {
@@ -31,5 +38,3 @@ export class AppComponent {
   }
 
 }
-
-export const title: string = "Team Builting App";
