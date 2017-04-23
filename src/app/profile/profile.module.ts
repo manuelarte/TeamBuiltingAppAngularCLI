@@ -27,7 +27,7 @@ import {TeamModule} from "../team/team.module";
 import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-team-wizard.component";
 import {PlayerToSportDetailsModalComponent} from "./player-to-sport-details-modal/player-to-sport-details-modal.component";
 import {MyPlayerHistoryTableRowComponent} from "./my-player-history/my-player-history-table/my-player-history-table-row/my-player-history-table-row.component";
-import {MdButtonModule} from "@angular/material";
+import {MdButtonModule, MdCheckboxModule, MdInputModule, MdSelectModule} from "@angular/material";
 import {TeamCudComponent} from "./team-cud/team-cud.component";
 import {TeamCudInsideFormComponent} from "./team-cud/team-cud-inside-form/team-cud-inside-form.component";
 
@@ -53,6 +53,11 @@ import {TeamCudInsideFormComponent} from "./team-cud/team-cud-inside-form/team-c
         GrowlModule,
         InputTextModule,
         MultiSelectModule,
+        // Material Modules,
+        MdInputModule,
+        MdSelectModule,
+        MdCheckboxModule,
+        // Other modules
         TeamModule,
         PlayerModule,
     ],

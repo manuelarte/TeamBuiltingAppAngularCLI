@@ -1,19 +1,9 @@
-<div *ngIf="isTeamModalOpened()" class="modal">
-    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button aria-label="Close" class="close" type="button" (click)="closeModal()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h3 class="modal-title">Team details:</h3>
-            </div>
-            <div class="modal-body">
-                <team-cud-inside-form class="compact" [model]="model" (form)="setTeamForm($event)"></team-cud-inside-form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" type="button" (click)="closeModal()">Cancel</button>
-                <button [disabled]="!formValid() || isBusy" class="btn btn-primary" type="button" (click)="onSubmit()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
+<h3 md-dialog-title>Team details:</h3>
+<md-dialog-content>
+    <team-cud-inside-form class="compact" [model]="model" (form)="teamForm = $event"></team-cud-inside-form>
+</md-dialog-content>
+<md-dialog-actions>
+    <button md-raised-button color="primary" md-dialog-close (click)="closeDialog()">Cancel</button>
+    <button [disabled]="teamForm == null || !teamForm.valid || flagSubmittingTeam" type="button" (click)="onSubmit()">Ok
+    </button>
+</md-dialog-actions>

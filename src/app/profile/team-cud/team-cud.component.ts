@@ -2,66 +2,48 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {TeamSportService} from '../../services/sports-service';
 import {TeamService} from '../../services/team.service';
 import {Team} from '../../team';
-import {FormGroup} from '@angular/forms';
+import {MdDialogRef} from '@angular/material';
 
 @Component({
-    selector: 'team-cud',
+    selector: 'app-team-cud-dialog',
     templateUrl: 'team-cud.component.html',
     styleUrls: [ 'team-cud.component.scss' ],
     providers: [ TeamSportService, TeamService ]
 })
 export class TeamCudComponent implements OnInit {
     @Input() model: Team = new Team();
-    @Input() compact = false;
-    @Input() private teamModalOpened = true;
-    @Output() teamModalOpenedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() teamUpdated: EventEmitter<Team> = new EventEmitter();
-    submitted = false;
-    isBusy = true;
+    flagSubmittingTeam = false;
+    flagErrorSubmittingTeam = false;
 
-    teamForm: FormGroup;
-
-    constructor(private teamService: TeamService) {
+    constructor(private teamService: TeamService, public dialogRef: MdDialogRef<TeamCudComponent>) {
     }
 
     ngOnInit(): void {
     }
 
-    isTeamModalOpened() {
-        return this.teamModalOpened;
-    }
-
     onSubmit() {
-        this.isBusy = true;
+        this.flagSubmittingTeam = true;
         this.teamService.postTeam(this.model).then(team => {
             this.model = team;
-            this.submitted = true;
-            this.isBusy = false;
             this.teamUpdated.emit(this.model);
-            this.closeModal();
+            this.flagSubmittingTeam = false;
+            this.closeDialog();
         }).catch(error => {
-            this.isBusy = false;
-            this.handleError;
+            this.flagSubmittingTeam = false;
+            this.flagErrorSubmittingTeam = true;
+            this.handleError(error);
         });
 
     }
 
-    closeModal() {
-        this.teamModalOpened = false;
-        this.teamModalOpenedChange.emit(this.teamModalOpened);
+    closeDialog() {
+        this.dialogRef.close();
     }
 
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
-    }
-
-    setTeamForm(teamForm: FormGroup): void {
-       this.teamForm = teamForm;
-    }
-
-    formValid(): boolean {
-        return this.teamForm ? this.teamForm.valid : false;
     }
 
 }

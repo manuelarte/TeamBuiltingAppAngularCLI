@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {Auth} from "./services/auth-service";
-import {MdIconRegistry} from "@angular/material";
+import {MdDialog, MdIconRegistry} from "@angular/material";
 import {DomSanitizer} from "@angular/platform-browser";
+import {TeamCudComponent} from "./profile/team-cud/team-cud.component";
 
 export const title = 'Team Builting App';
 
@@ -18,8 +19,7 @@ export class AppComponent implements OnInit {
 
   languagesAvailable: string[] = [];
 
-  constructor(private router: Router, private auth: Auth, private mdIconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
-      this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/soccer-jersey.svg'));
+  constructor(private router: Router, private auth: Auth) {
   }
 
   ngOnInit(): void {

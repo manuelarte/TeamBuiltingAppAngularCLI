@@ -1,61 +1,8 @@
 <form *ngIf="!isBusy" [formGroup]="teamForm" (change)="emitForm()">
-    <section class="form-block">
-        <label>Team information</label>
-        <div class="form-group">
-            <label for="name">Team name</label>
-            <label for="name" aria-haspopup="true" role="tooltip"
-                   class="tooltip tooltip-validation tooltip-sm"
-                   [class.invalid]="teamForm.get('name').invalid">
-                <input id="name" type="text" formControlName="name" [(ngModel)]="model.name" required>
-                <span class="tooltip-content">Name is required.</span>
-            </label>
-
-            <label for="sport">Select sport:</label>
-            <label for="sport" aria-haspopup="true" role="tooltip"
-                   class="tooltip tooltip-validation tooltip-sm"
-                   [class.invalid]="teamForm.get('sport').invalid && teamForm.get('sport').dirty">
-                <div class="select">
-                    <select id="selects_1" [(ngModel)]="model.sport" id="sport" name="sport"
-                            formControlName="sport" required>
-                        <option value="" [selected]="!model.sport" [disabled]="true">Select a sport...</option>
-                        <option *ngFor="let sport of sports" [selected]="model.sport == sport.name">{{sport.name}}</option>
-                    </select>
-                </div>
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label for="bio">Description:</label>
-            <label for="bio" aria-haspopup="true" role="tooltip"
-                   class="tooltip tooltip-validation tooltip-sm"
-                   [class.invalid]="teamForm.get('bio').invalid">
-        <textarea rows="3" placeholder="(Optional) Insert here the bio of your team"
-                  [(ngModel)]="model.bio" id="bio" name="bio" formControlName="bio"></textarea>
-            </label>
-        </div>
-
-    </section>
 
     <section class="form-block">
         <label>Team Dates</label>
         <div class="form-group">
-            <label for="fromDate">From Date</label>
-            <label for="fromDate" aria-haspopup="true" role="tooltip"
-                   class="tooltip tooltip-validation tooltip-sm"
-                   [class.invalid]="teamForm.get('fromDate').invalid">
-                <input id="fromDate" type="date" formControlName="fromDate" [(ngModel)]="model.fromDate" [value]="getFromDate()" required>
-                <span class="tooltip-content">From Date is not valid.</span>
-            </label>
-
-            <label for="toDate">To Date</label>
-            <label for="toDate" aria-haspopup="true" role="tooltip"
-                   class="tooltip tooltip-validation tooltip-sm"
-                   [class.invalid]="teamForm.get('toDate').invalid">
-                <input id="toDate" type="date" formControlName="toDate" [(ngModel)]="model.toDate" [value]="getToDate()"
-                      [required]="!stillActive">
-                <span class="tooltip-content">To Date is not valid.</span>
-            </label>
-
             <input name="stillActive" type="checkbox" id="checkrads_1" [(ngModel)]="stillActive" [ngModelOptions]="{standalone: true}">
             <label for="checkrads_1">Still active</label>
 
@@ -64,36 +11,6 @@
 
     <section class="form-block">
         <label>More Team Details</label>
-        <div class="form-group row">
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <label for="emblemLink" class="required">Enter team logo link:</label>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                <label for="emblemLink" aria-haspopup="true" role="tooltip"
-                       class="tooltip tooltip-validation tooltip-sm"
-                       [class.invalid]="teamForm.get('emblemLink').invalid">
-                 <input #emblemLink type="url" placeholder="Enter link here" size="20"
-                        formControlName="emblemLink" [(ngModel)]="model.emblemLink" id="emblemLink" name="emblemLink">
-                </label>
-            </div>
-
-
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <label for="emblemLink">Enter team location:</label>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                <label for="location" aria-haspopup="true" role="tooltip"
-                       class="tooltip tooltip-validation tooltip-sm"
-                       [class.invalid]="teamForm.get('location').invalid">
-                <input #theLocation type="text" placeholder="Enter location here" size="20"
-                       [(ngModel)]="model.location" id="location" name="location" formControlName="location">
-                </label>
-                <clr-icon shape="search" [class.clickable]="theLocation.value" (click)="searchLocation(theLocation.value)"></clr-icon>
-            </div>
-
-        </div>
 
         <div class="form-group row">
             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -111,6 +28,50 @@
         </div>
 
     </section>
+
+    <section>
+        <label>Team Info</label>
+        <md-input-container class="example-full-width">
+            <input mdInput type="text" placeholder="Team Name" formControlName="name" [(ngModel)]="model.name" required>
+            <md-error>Name is required.</md-error>
+        </md-input-container>
+
+        <md-select placeholder="Sport" [(ngModel)]="model.sport" formControlName="sport" required>
+            <md-option value="" [disabled]="true">Select a sport...</md-option>
+            <md-option *ngFor="let sport of sports" [value]="sport.name">{{sport.name}}</md-option>
+        </md-select>
+
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Description" rows="3" [(ngModel)]="model.bio" id="bio" name="bio" formControlName="bio"></textarea>
+            <md-error>Description of the team not valid.</md-error>
+        </md-input-container>
+    </section>
+
+    <section>
+        <label>Team Dates</label>
+
+        <md-input-container>
+            <input #fromDate mdInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
+                   formControlName="fromDate" required>
+            <md-error *ngIf="teamForm.get('fromDate').invalid">Not valid</md-error>
+        </md-input-container>
+
+        <md-input-container>
+            <input #toDate mdInput placeholder="To date" id="toDate" type="date" formControlName="toDate" [(ngModel)]="model.toDate" [value]="getToDate()"
+                   [required]="!stillActive">
+            <md-error *ngIf="teamForm.get('toDate').invalid">Not valid</md-error>
+        </md-input-container>
+    </section>
+
+    <md-input-container>
+        <input #emblemLink mdInput placeholder="Team Emblem Link" id="emblemLink" type="url" formControlName="emblemLink" [(ngModel)]="model.emblemLink">
+        <md-error *ngIf="teamForm.get('emblemLink').invalid">Not valid</md-error>
+    </md-input-container>
+
+    <md-input-container>
+        <input mdInput #theLocation placeholder="Team Location" id="location" type="url" formControlName="location" [(ngModel)]="model.location">
+        <button md-button [disabled]="!theLocation.value" (click)="searchLocation(theLocation.value)"><i class="material-icons app-input-icon" md-placeholder>search</i></button>
+    </md-input-container>
 
 </form>
 

@@ -14,9 +14,6 @@
     </div><!-- /row -->
 </div>
 
-<team-cud [model]="teamClicked" [(teamModalOpened)]="editTeamModalOpened"></team-cud>
-<div *ngIf="editTeamModalOpened" class="modal-backdrop" aria-hidden="true"></div>
-
 <div *ngIf="!teams || teams.length == 0">
     <div class="alert alert-warning">
         <div class="alert-item">
