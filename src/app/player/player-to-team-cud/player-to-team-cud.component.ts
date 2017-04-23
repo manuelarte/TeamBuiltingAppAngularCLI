@@ -1,8 +1,8 @@
-import {Component, Input, OnInit, OnChanges, Output, EventEmitter} from '@angular/core';
-import {PlayerToTeam} from "../../player-to-team";
-import {Team} from "../../team";
-import {DatesService} from "../../services/dates-service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {PlayerToTeam} from '../../player-to-team';
+import {Team} from '../../team';
+import {DatesService} from '../../services/dates-service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-player-to-team-cud',
@@ -14,27 +14,27 @@ export class PlayerToTeamCudComponent implements OnInit {
 
   @Input() team: Team = new Team();
   @Input() model: PlayerToTeam = new PlayerToTeam();
-  private stillActive: boolean = true;
+  @Input() private editing = false;
+  private stillActive = true;
   playerToTeamForm: FormGroup = new FormGroup({
-        fromDate: new FormControl('', Validators.required),
-        toDate: new FormControl({disabled: this.stillActive}, ),
+        fromDate: new FormControl({disabled: !this.editing}, Validators.required),
+        toDate: new FormControl({disabled: !this.editing || this.stillActive}, ),
     });
   @Output() form: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   constructor(private datesService: DatesService) { }
 
   ngOnInit() {
-      this.playerToTeamForm = new FormGroup({
-          fromDate: new FormControl('', Validators.required),
-          toDate: new FormControl({disabled: this.stillActive}, ),
-      });
+      if (this.model.toDate) {
+          this.stillActive = false;
+      }
   }
 
   getMinDateForFromDate(): Date {
-    if (this.team) {
+    if (this.team && this.team.fromDate) {
       return this.team.fromDate;
     } else {
-      return new Date(-2208992400)
+      return new Date(-2208992400);
     }
   }
 
@@ -46,14 +46,14 @@ export class PlayerToTeamCudComponent implements OnInit {
     if (this.model && this.model.fromDate) {
       return this.datesService.dateToString(new Date(this.model.fromDate));
     }
-    return "";
+    return '';
   }
 
     public getToDate(): string {
         if (this.model && this.model.toDate) {
             return this.datesService.dateToString(new Date(this.model.toDate));
         }
-        return "";
+        return '';
     }
 
   isStillActive(): boolean {
@@ -66,6 +66,28 @@ export class PlayerToTeamCudComponent implements OnInit {
 
   emitForm(): void {
       this.form.emit(this.playerToTeamForm);
+  }
+
+  changeStillActive(): void {
+      if (this.editing) {
+        this.stillActive = !this.stillActive;
+        if (this.stillActive) {
+          this.model.toDate = null;
+        }
+      }
+  }
+
+  isEditing(): boolean {
+    return this.editing;
+  }
+
+  toDateIsAfterFromDate(): boolean {
+      let toReturn = false;
+      if (this.model.fromDate) {
+        toReturn = this.stillActive ? true :
+          this.model.toDate ? new Date(this.model.fromDate).getTime() < new Date(this.model.toDate).getTime() : true;
+      }
+      return toReturn;
   }
 
 }

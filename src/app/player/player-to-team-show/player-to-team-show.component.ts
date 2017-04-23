@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlayerToTeam} from '../../player-to-team';
 import {TeamService} from '../../services/team.service';
 import {Team} from '../../team';
@@ -30,7 +30,8 @@ export class PlayerToTeamShowComponent implements OnInit {
   loadingUserDataFlag = true;
   errorLoadingUserData = false;
 
-  editing = false;
+  editingValue = false;
+  @Output() editingChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private playerService: PlayerService, private teamService: TeamService, private userDataService: UserDataService,
               private datesService: DatesService, private auth: Auth) { }
@@ -71,8 +72,16 @@ export class PlayerToTeamShowComponent implements OnInit {
               this.errorLoadingUserData = true;
           });
       }
+  }
 
+   @Input()
+  get editing(): boolean {
+    return this.editingValue;
+  }
 
+  set editing(value: boolean) {
+    this.editingValue = value;
+    this.editingChange.emit(this.editingValue);
   }
 
   getPictureBasedOnSport(): string {

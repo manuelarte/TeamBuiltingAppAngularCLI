@@ -1,36 +1,19 @@
 <form [formGroup]="playerToTeamForm" (change)="emitForm()">
-    <section class="form-block">
-        <label>Dates</label>
-        <div class="form-group">
-            <label for="fromDateInput" class="required">From Date</label>
-            <label for="fromDateInput" aria-haspopup="true" role="tooltip"
-                   [class.invalid]="fromDate.touched && playerToTeamForm.get('fromDate').invalid"
-                   class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                <input id="fromDateInput" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()" required
-                       formControlName="fromDate" #fromDate>
-                <span class="tooltip-content">The start date cannot be empty!</span>
-            </label>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="toDateInput_1">To Date</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
-                <label for="fromDateInput" aria-haspopup="true" role="tooltip"
-                       [class.invalid]="playerToTeamForm.get('toDate').invalid"
-                       class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                    <input id="toDateInput_1" type="date" [(ngModel)]="model.toDate" [value]="getToDate()"
-                       formControlName="toDate" #toDate>
-                    <span class="tooltip-content">The end date cannot be empty if you are not playing in the team anymore!</span>
-                </label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                Still Active: <input id="toDateInput_2" name="stillActive" type="checkbox" id="stillActive"
-                                     [checked]="isStillActive()" name="stillActive" (click)="changeIsStillActive()">
-            </div>
-        </div>
+    <md-input-container>
+        <input #fromDate mdInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
+               formControlName="fromDate" required>
+        <md-error *ngIf="playerToTeamForm.get('fromDate').invalid">Not valid</md-error>
+    </md-input-container>
 
-    </section>
+    <md-input-container *ngIf="!isStillActive()">
+        <input #toDate mdInput placeholder="To date" type="date" [(ngModel)]="model.toDate" [value]="getToDate()"
+               formControlName="toDate" [required]="!isStillActive()">
+        <md-error *ngIf="playerToTeamForm.get('toDate').invalid">Not valid</md-error>
+        <md-error *ngIf="!isStillActive() && toDate.value == null">Required</md-error>
+        <md-error *ngIf="!toDateIsAfterFromDate()">To Date is before From Date</md-error>
+    </md-input-container>
+
+    <md-checkbox [disabled]="!isEditing()" [checked]="isStillActive()" (change)="changeStillActive()">Still Playing</md-checkbox>
 </form>
 

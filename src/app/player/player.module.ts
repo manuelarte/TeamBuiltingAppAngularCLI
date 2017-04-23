@@ -39,7 +39,10 @@ import {GoogleChart} from 'app/directives/angular2-google-chart.directive';
 import {PlayerToTeamCudComponent} from './player-to-team-cud/player-to-team-cud.component';
 import {PlayerToSportDetailsCudComponent} from './player-to-sport-details-cud/player-to-sport-details-cud.component';
 import {PlayerToTeamShowComponent} from './player-to-team-show/player-to-team-show.component';
-import {MdButtonModule, MdCardModule, MdGridListModule, MdIconModule, MdInputModule} from '@angular/material';
+import {
+    MdButtonModule, MdCardModule, MdCheckboxModule, MdGridListModule, MdIconModule,
+    MdInputModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -65,6 +68,7 @@ import {MdButtonModule, MdCardModule, MdGridListModule, MdIconModule, MdInputMod
     MdInputModule,
     MdIconModule,
     MdGridListModule,
+    MdCheckboxModule,
   ],
   declarations: [
       PlayerDetailComponent,
