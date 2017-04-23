@@ -71,9 +71,6 @@ export class PlayerToTeamCudComponent implements OnInit {
   changeStillActive(): void {
       if (this.editing) {
         this.stillActive = !this.stillActive;
-        if (this.stillActive) {
-          this.model.toDate = null;
-        }
       }
   }
 
