@@ -18,7 +18,6 @@ import {TeamSearchComponent} from "./team-search/team-search.component";
 import {TeamDetailComponent} from "./team-detail/team-detail.component";
 import {PlayerModule} from "../player/player.module";
 import {TeamInGoogleMapsComponent} from "./team-in-google-maps/team-in-google-maps.component";
-import {TeamCudInsideFormComponent} from "../profile/team-cud/team-cud-inside-form/team-cud-inside-form.component";
 import {TeamDetailSportIntroComponent} from "./team-detail/team-detail-sport-intro/team-detail-sport-intro.component";
 import {TeamRoutingModule} from "./team-routing.module";
 import {CommonModule} from "@angular/common";

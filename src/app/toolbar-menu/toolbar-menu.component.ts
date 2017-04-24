@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdDialog, MdIconRegistry} from '@angular/material';
-import {TeamCudComponent} from '../profile/team-cud/team-cud.component';
+import {TeamCudDialogComponent} from '../profile/team-cud-dialog/team-cud.component';
 import {PlayerToSportDetailsModalComponent} from '../player/player-to-sport-details-modal/player-to-sport-details-modal.component';
 
 @Component({
@@ -20,7 +20,7 @@ export class ToolbarMenuComponent implements OnInit {
   }
 
   openTeamDialog() {
-    const dialogRef = this.dialog.open(TeamCudComponent);
+    const dialogRef = this.dialog.open(TeamCudDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
       });
   }

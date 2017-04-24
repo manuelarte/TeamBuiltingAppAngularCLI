@@ -5,7 +5,7 @@ import {ClarityModule} from 'clarity-angular';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
-import {AgmCoreModule} from "angular2-google-maps/core";
+import {AgmCoreModule} from 'angular2-google-maps/core';
 
 import {InputTextModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
@@ -19,11 +19,11 @@ import {MultiSelectModule} from 'primeng/primeng';
 import {
     MdButtonModule, MdCheckboxModule, MdIconModule, MdInputModule, MdProgressSpinnerModule,
     MdSelectModule
-} from "@angular/material";
-import {TeamCudComponent} from "./team-cud/team-cud.component";
-import {TeamCudInsideFormComponent} from "./team-cud/team-cud-inside-form/team-cud-inside-form.component";
-import {SportModule} from "../sport/sport.module";
-import {PlayerCudComponent} from "../player/player-cud/player-cud.component";
+} from '@angular/material';
+import {SportModule} from '../sport/sport.module';
+import {PlayerCudComponent} from '../player/player-cud/player-cud.component';
+import {TeamCudInsideFormComponent} from './team-cud-dialog/team-cud-inside-form/team-cud-inside-form.component';
+import {TeamCudDialogComponent} from './team-cud-dialog/team-cud.component';
 
 
 @NgModule({
@@ -58,14 +58,14 @@ import {PlayerCudComponent} from "../player/player-cud/player-cud.component";
     ],
     declarations: [
         PlayerCudComponent,
-        TeamCudComponent,
+        TeamCudDialogComponent,
         TeamCudInsideFormComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    entryComponents: [TeamCudComponent],
-    exports: [PlayerCudComponent, TeamCudComponent]
+    entryComponents: [TeamCudDialogComponent],
+    exports: [PlayerCudComponent, TeamCudDialogComponent]
 })
 export class ProfileModule {
 }

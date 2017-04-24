@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import {Auth} from "./services/auth-service";
-import {MdDialog, MdIconRegistry} from "@angular/material";
-import {DomSanitizer} from "@angular/platform-browser";
-import {TeamCudComponent} from "./profile/team-cud/team-cud.component";
+import {Auth} from './services/auth-service';
 
 export const title = 'Team Builting App';
 
@@ -11,7 +8,7 @@ export const title = 'Team Builting App';
   selector: 'my-app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
-  providers: [ Auth, MdIconRegistry ],
+  providers: [Auth],
 })
 export class AppComponent implements OnInit {
 

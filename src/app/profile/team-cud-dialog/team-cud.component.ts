@@ -10,13 +10,13 @@ import {MdDialogRef, MdSnackBar} from '@angular/material';
     styleUrls: [ 'team-cud.component.scss' ],
     providers: [ TeamSportService, TeamService ]
 })
-export class TeamCudComponent implements OnInit {
+export class TeamCudDialogComponent implements OnInit {
     @Input() model: Team = new Team();
     @Output() teamUpdated: EventEmitter<Team> = new EventEmitter();
     flagSubmittingTeam = false;
     flagErrorSubmittingTeam = false;
 
-    constructor(private teamService: TeamService, public dialogRef: MdDialogRef<TeamCudComponent>, public snackBar: MdSnackBar) {
+    constructor(private teamService: TeamService, public dialogRef: MdDialogRef<TeamCudDialogComponent>, public snackBar: MdSnackBar) {
     }
 
     ngOnInit(): void {
