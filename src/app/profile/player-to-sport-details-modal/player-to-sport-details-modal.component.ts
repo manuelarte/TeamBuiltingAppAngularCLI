@@ -4,6 +4,7 @@ import {PlayerService} from '../../services/player.service';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {Message} from 'primeng/primeng';
 import {UserDataService} from '../../services/user-data.service';
+import {MdDialogRef, MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-player-to-sport-details-modal',
@@ -19,7 +20,8 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
   msgs: Message[] = [];
   @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
-  constructor(private userDataService: UserDataService, private playerService: PlayerService) { }
+  constructor(private userDataService: UserDataService, private playerService: PlayerService,
+              public dialogRef: MdDialogRef<PlayerToSportDetailsModalComponent>, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
     this.userDataService.getUserPlayerData().then(userData => {
@@ -39,6 +41,10 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
           this.showMessageInEntry('error', 'Entry cannot be saved', '');
           this.submitting = false;
       });
+  }
+
+  closeDialog(): void {
+      this.dialogRef.close();
   }
 
   private showMessageInEntry(severity: string, summary: string, detail: string): any {
