@@ -3,7 +3,7 @@
     <app-team-cud class="compact" [model]="model" (form)="teamForm = $event"></app-team-cud>
 </md-dialog-content>
 <md-dialog-actions class="footer">
-    <button md-raised-button color="warn" md-dialog-close (click)="closeDialog()">Cancel</button>
+    <button md-button color="primary" md-dialog-close (click)="closeDialog()">Cancel</button>
     <button md-raised-button color="primary" [disabled]="teamForm == null || !teamForm.valid || flagSubmittingTeam" type="button" (click)="onSubmit()">Ok
     </button>
 </md-dialog-actions>
