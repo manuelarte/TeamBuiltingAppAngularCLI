@@ -3,13 +3,13 @@
 
 <div *ngIf="!isBusyLoadingSports && !isErrorLoadingSports()">
 
-    <md-select #sport placeholder="Select the Sport" [(ngModel)]="model.sport" formControlName="sport" (change)="emitForm()" required>
+    <md-select #sport placeholder="Select the Sport" [(ngModel)]="model.sport" required>
         <md-option *ngFor="let sport of sports" [value]="sport.name">
             {{sport.name}}
         </md-option>
     </md-select>
 
-    <app-player-to-sport-details-common-cud *ngIf="model.sport" [sport]="filterTeamSportBySportName(model.sport)[0]" [(model)]="model"></app-player-to-sport-details-common-cud>
+    <app-player-to-sport-details-common-cud *ngIf="model.sport" [sport]="filterTeamSportBySportName(model.sport)[0]" [(model)]="model" (form)="emitForm($event)"></app-player-to-sport-details-common-cud>
 
     <div *ngIf="isShowSportField()">
         <h1>Position:</h1>

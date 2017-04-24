@@ -1,0 +1,29 @@
+<form *ngIf="sport" [formGroup]="sportDetailsForm" (change)="emitForm()">
+
+    <section>
+
+        <md-select #mainPosition placeholder="Select Your Main Position" [(ngModel)]="model.mainPosition"
+                   formControlName="mainPosition" (change)="emitForm()" required>
+            <md-option *ngFor="let position of getPositions(model.sport)" [value]="position.abbreviation">
+                {{position.fullName}}
+            </md-option>
+        </md-select>
+
+        <md-select #otherPositions placeholder="Select Your Other Positions" [multiple]="true"
+                   [(ngModel)]="model.otherPositions" formControlName="otherPositions" (change)="emitForm()">
+            <md-option *ngFor="let position of getSparePositions(model.sport)" [value]="position.abbreviation">
+                {{position.fullName}}
+            </md-option>
+        </md-select>
+
+    </section>
+
+    <section>
+        <md-input-container class="example-full-width">
+            <textarea #bio mdInput placeholder="Bio" rows="5" [(ngModel)]="model.bio" formControlName="bio" id="bio"
+                      name="bio"></textarea>
+            <md-error>Description of the position not valid.</md-error>
+        </md-input-container>
+    </section>
+
+</form>
