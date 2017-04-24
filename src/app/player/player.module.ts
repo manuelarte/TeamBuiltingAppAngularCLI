@@ -35,7 +35,7 @@ import {GoogleChart} from 'app/directives/angular2-google-chart.directive';
 import {PlayerToTeamCardComponent} from './player-to-team-card/player-to-team-card.component';
 import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdGridListModule, MdIconModule,
-    MdInputModule
+    MdInputModule, MdOptionModule, MdProgressSpinnerModule, MdSelectModule, MdSnackBarModule
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
@@ -65,6 +65,10 @@ import {ProfileModule} from '../profile/profile.module';
     MdIconModule,
     MdGridListModule,
     MdCheckboxModule,
+    MdSnackBarModule,
+    MdProgressSpinnerModule,
+    MdSelectModule,
+    MdOptionModule,
     // Other modules
     SportModule,
     ProfileModule,

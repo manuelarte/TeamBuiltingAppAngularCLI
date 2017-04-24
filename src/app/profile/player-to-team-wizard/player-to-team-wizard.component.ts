@@ -14,19 +14,19 @@ import {TeamService} from "../../services/team.service";
   providers: [TeamService, PlayerService]
 })
 export class PlayerToTeamWizardComponent implements OnInit {
-  @ViewChild("wizard") wizard: Wizard;
+  @ViewChild('wizard') wizard: Wizard;
 
   @Input() player: Player;
-  @Input() open: boolean = false;
+  @Input() open = false;
   model: PlayerToTeam = new PlayerToTeam();
   team: Team;
   teamModel: Team = new Team();
-  submittingTeam: boolean = false;
-  teamSubmitErrorFlag: boolean = false;
+  submittingTeam = false;
+  teamSubmitErrorFlag = false;
 
   private playerToTeamForm: FormGroup;
-  submitting: boolean = false;
-  errorSubmittingFlag: boolean = false;
+  submitting = false;
+  errorSubmittingFlag = false;
   @Output() entrySaved: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 

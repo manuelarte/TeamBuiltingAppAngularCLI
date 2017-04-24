@@ -9,13 +9,14 @@ import {PlayerToTeam} from "../player-to-team";
 import {PlayerToTeamSportDetails} from "../player-to-team-sport-details";
 import {environment} from "../../environments/environment";
 import {AuthHttp} from "angular2-jwt";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class PlayerService {
 
-  private backendPlayersUrl: string = `${environment.backendPlayersUrl}`;
+  private backendPlayersUrl = `${environment.backendPlayersUrl}`;
 
-  private backendSportsUrl: string = `${environment.backendSportsUrl}`;
+  private backendSportsUrl = `${environment.backendSportsUrl}`;
 
   private playerUrl = this.backendPlayersUrl + '/players';
   private playerToTeamUrl = this.backendPlayersUrl + '/playersToTeams';
@@ -47,8 +48,8 @@ export class PlayerService {
   }
 
   savePlayerToTeamSportDetails(playerToTeamSportDetails: PlayerToTeamSportDetails): Promise<PlayerToTeamSportDetails> {
-    return this.authHttp.post(`${this.sportsUrl}/players/${playerToTeamSportDetails.playerId}`, playerToTeamSportDetails).map(response => <PlayerToTeamSportDetails> response.json())
-      .toPromise();
+    return this.authHttp.post(`${this.sportsUrl}/players/${playerToTeamSportDetails.playerId}`, playerToTeamSportDetails)
+        .map(response => <PlayerToTeamSportDetails> response.json()).toPromise();
   }
 
   deletePlayerToTeamSportDetails(playerToTeamSportDetails: PlayerToTeamSportDetails): Promise<Response> {

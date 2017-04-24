@@ -4,7 +4,7 @@ import {PlayerService} from '../../services/player.service';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {Message} from 'primeng/primeng';
 import {UserDataService} from '../../services/user-data.service';
-import {MdDialogRef, MdSnackBar} from "@angular/material";
+import {MdDialogRef, MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-player-to-sport-details-modal',
@@ -37,8 +37,10 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
       this.playerService.savePlayerToTeamSportDetails(this.model).then(saved => {
           this.submitting = false;
           this.entrySaved.emit(saved);
+          this.showSnackBar('Entry Saved');
+          this.dialogRef.close();
       }).catch(error => {
-          this.showMessageInEntry('error', 'Entry cannot be saved', '');
+          this.showSnackBar('Entry cannot be saved: ' + error.toString());
           this.submitting = false;
       });
   }
@@ -47,8 +49,8 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
       this.dialogRef.close();
   }
 
-  private showMessageInEntry(severity: string, summary: string, detail: string): any {
-        return {severity: severity, summary: summary, detail: detail}
+  showSnackBar(message: string): void {
+    this.snackBar.open(message, null, {duration: 2000});
   }
 
 }

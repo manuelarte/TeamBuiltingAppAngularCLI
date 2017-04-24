@@ -49,11 +49,11 @@ export class PlayerToTeamCudComponent implements OnInit {
     return '';
   }
 
-    public getToDate(): string {
-        if (this.model && this.model.toDate) {
-            return this.datesService.dateToString(new Date(this.model.toDate));
-        }
-        return '';
+  public getToDate(): string {
+    if (this.model && this.model.toDate) {
+      return this.datesService.dateToString(new Date(this.model.toDate));
+    }
+      return '';
     }
 
   isStillActive(): boolean {

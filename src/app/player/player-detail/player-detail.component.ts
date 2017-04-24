@@ -88,7 +88,7 @@ export class PlayerDetailComponent implements OnInit {
   }
 
   private createDict(playerToTeamSportsDetails: PlayerToTeamSportDetails[]): {[sport: string]: PlayerToTeamSportDetails} {
-      let toReturn: {[sport: string]: PlayerToTeamSportDetails} = {};
+      const toReturn: {[sport: string]: PlayerToTeamSportDetails} = {};
       playerToTeamSportsDetails.forEach(entry => {
           toReturn[entry.sport] = entry;
           if (!this.sportSelected) {
@@ -112,6 +112,11 @@ export class PlayerDetailComponent implements OnInit {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  removePlayerToTeamEntry(playerToTeam: PlayerToTeam): void {
+      const index: number = this.playerHistory.indexOf(playerToTeam, 0);
+      this.playerHistory.splice(index, 1);
   }
 
 }

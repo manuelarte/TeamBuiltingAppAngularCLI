@@ -7,13 +7,13 @@ import {PlayerService} from '../../services/player.service';
 import {Auth} from '../../services/auth-service';
 import {UserDataService} from '../../services/user-data.service';
 import {UserData} from '../../user-data';
-import {DatesService} from '../../services/dates-service';
+import {MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-player-to-team-card',
   templateUrl: './player-to-team-card.component.html',
   styleUrls: ['./player-to-team-card.component.scss'],
-  providers: [PlayerService, TeamService, UserDataService, DatesService, Auth]
+  providers: [PlayerService, TeamService, UserDataService, Auth]
 })
 export class PlayerToTeamCardComponent implements OnInit {
 
@@ -33,8 +33,13 @@ export class PlayerToTeamCardComponent implements OnInit {
   editingValue = false;
   @Output() editingChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  submittingFlag = false;
+  errorSubmittingFlag = false;
+  @Output() entryEdited: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
+  @Output() entryDeleted: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
+
   constructor(private playerService: PlayerService, private teamService: TeamService, private userDataService: UserDataService,
-              private datesService: DatesService, private auth: Auth) { }
+              private auth: Auth, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
       if (this.playerToTeam.teamId) {
@@ -74,7 +79,7 @@ export class PlayerToTeamCardComponent implements OnInit {
       }
   }
 
-   @Input()
+  @Input()
   get editing(): boolean {
     return this.editingValue;
   }
@@ -107,6 +112,40 @@ export class PlayerToTeamCardComponent implements OnInit {
 
   userCanEdit(): boolean {
       return this.auth.userProfile ? this.auth.userProfile.user_id === this.userData.userId : false;
+  }
+
+  editEntry(): void {
+    this.submittingFlag = true;
+    this.playerService.savePlayerToTeam(this.playerToTeam).then(playerToTeam => {
+      this.showSnackBar('Entry Updated');
+      this.submittingFlag = false;
+      this.playerToTeam = playerToTeam;
+      this.entryEdited.emit(this.playerToTeam);
+      this.errorSubmittingFlag = false;
+      this.editingValue = false;
+    }).catch(error => {
+      this.showSnackBar('Error updating the entry: ' + error.toString());
+      this.submittingFlag = false;
+      this.errorSubmittingFlag = true;
+    });
+  }
+
+  showSnackBar(message: string): void {
+    this.snackBar.open(message, null, {duration: 1000});
+  }
+
+  deleteEntry(): void {
+      this.submittingFlag = true;
+      this.playerService.deletePlayerToTeam(this.playerToTeam).then(response => {
+          this.submittingFlag = false;
+          this.errorSubmittingFlag = false;
+          this.entryDeleted.emit(this.playerToTeam);
+          this.showSnackBar('Entry deleted');
+      }).catch(error => {
+          this.submittingFlag = false;
+          this.errorSubmittingFlag = true;
+          this.showSnackBar('Error Deleting the Entry');
+      });
   }
 
 }
