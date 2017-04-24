@@ -2,7 +2,7 @@
     <md-icon>more_vert</md-icon>
 </button>
 <md-menu #menu="mdMenu">
-    <button md-menu-item (click)="openDialog()">
+    <button md-menu-item (click)="openTeamDialog()">
         <md-icon svgIcon="team"></md-icon>
         <span>Add a Team</span>
     </button>
@@ -10,8 +10,8 @@
         <md-icon>voicemail</md-icon>
         <span>Check voicemail</span>
     </button>
-    <button md-menu-item>
-        <md-icon>notifications_off</md-icon>
-        <span>Disable alerts</span>
+    <button md-menu-item (click)="openSportPositionDialog()">
+        <md-icon svgIcon="sport-position"></md-icon>
+        <span>Add a Sport Position</span>
     </button>
 </md-menu>
