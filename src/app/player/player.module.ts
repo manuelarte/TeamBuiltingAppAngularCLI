@@ -17,15 +17,12 @@ import {CalendarModule} from 'primeng/primeng';
 import {ChartModule} from 'primeng/primeng';
 import {ChartsModule} from 'ng2-charts';
 import {MultiSelectModule} from 'primeng/primeng';
-import {PlayerFootballPositionComponent} from './player-position/player-football-position.component';
-import {PlayerFutsalPositionComponent} from './player-position/player-futsal-position.component';
 import {PlayerDetailComponent} from './player-detail/player-detail.component';
 import {PlayerInTeamComponent} from './player-in-team/player-in-team.component';
 import {PlayerCommentsComponent} from './player-detail/player-comments/player-comments.component';
 import {PlayerDetailStatisticsComponent} from './player-detail/player-detail-statistics/player-detail-statistics.component';
 import {PlayerRewardsComponent} from './player-detail/player-rewards/player-rewards.component';
 import {GiveRewardComponent} from './give-reward/give-reward.component';
-import {PlayerPositionIconComponent} from './player-position/player-position-icon/player-position-icon.component';
 import {PlayerDetailTeamSportsComponent} from './player-detail/player-detail-team-sports/player-detail-team-sports.component';
 import {ShowPlayerCommentComponent} from './player-detail/player-comments/show-player-comment/show-player-comment.component';
 import {PlayerCommentFormComponent} from './player-detail/player-comments/player-comment-form/player-comment-form.component';
@@ -43,6 +40,7 @@ import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdGridListModule, MdIconModule,
     MdInputModule
 } from '@angular/material';
+import {SportModule} from "../sport/sport.module";
 
 @NgModule({
   imports: [
@@ -69,6 +67,8 @@ import {
     MdIconModule,
     MdGridListModule,
     MdCheckboxModule,
+    // Other modules
+    SportModule,
   ],
   declarations: [
       PlayerDetailComponent,
@@ -82,15 +82,12 @@ import {
       PlayerDetailTeamSportsComponent,
       PlayerCommentFormComponent,
       PlayerRewardsComponent,
-      PlayerFootballPositionComponent,
-      PlayerFutsalPositionComponent,
-      PlayerPositionIconComponent,
       PlayerInTeamComponent,
       PlayerSearchComponent,
       GiveRewardComponent,
       ShowPlayerCommentComponent,
       ShowPlayerRewardComponent,
-	  GoogleChart,
+      GoogleChart,
   ],
   providers: [
       { provide: LOCALE_ID, useValue: "nl" },

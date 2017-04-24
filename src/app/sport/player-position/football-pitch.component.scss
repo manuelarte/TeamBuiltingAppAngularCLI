@@ -1,10 +1,10 @@
-@import "/_pitch.scss";
-
-$lines_color: white;
-$background_color: blue;
+@import "/_pitch";
 
 .pitch{
-    background: $background_color repeat -20px -20px;
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/grass2.png");
+    background-repeat: repeat;
+    background-size: 75px 75px;
+    background-position: -20px -20px;
     width: $pitch_long_percentage;
     min-width: $pitch_long_min_width;
     min-height: calc(#{$pitch_long_min_width} * #{$pitch_width-long-ration_percentage});
@@ -33,6 +33,14 @@ $background_color: blue;
     left : ($pitch_long_percentage/2); //($pitch_long + 2 * $pitch_extra_grass_sides) / 2;
     display: block;
     height: 100% - 2*$pitch_extra_grass_sides_percentage;
+}
+
+.middle {
+    position: absolute;
+    top:50%;
+    width: 100%;
+    background-color:white;
+    border: $pitch_border_lines solid white;
 }
 
 // This is to make the circle of the center
@@ -65,11 +73,6 @@ $background_color: blue;
     top:  50%;
     transform: translate(0%, -50%);
     border: $pitch_border_lines solid white;
-
-    border-radius: 100% / 50%;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-
 }
 
 .left .penalty-area{
@@ -80,9 +83,25 @@ $background_color: blue;
 .right .penalty-area{
     right: $pitch_extra_grass_front_line_percentage;
     border-right: 0;
-    border-radius: 100% / 50%;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+}
+
+// The inner penalty area
+.penalty-area:before{
+    position: absolute;
+    height: $inner_penalty_height_percentage;
+    width: $inner_penalty_long_percentage;
+    top: 50%;
+    transform: translate(0%, -50%);
+    border: $pitch_border_lines solid white;
+    content:"";
+}
+.left .penalty-area:before{
+    left:0px;
+    border-left:0;
+}
+.right .penalty-area:before{
+    right:0px;
+    border-right:0;
 }
 
 .penalty-area:after{
@@ -90,11 +109,9 @@ $background_color: blue;
     height: $pitch_border_lines;
     width: $pitch_border_lines;
     top: 50%;
-    background-color:$lines_color;
-    border-radius: 50%;
+    background-color:white;
     content:"";
 }
-
 .left .penalty-area:after{
     right: 50%;
 }
