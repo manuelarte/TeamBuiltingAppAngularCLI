@@ -1,10 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TeamSport, TeamSportPosition} from "../../team-sports";
-import {TeamSportService} from "../../services/sports-service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {PlayerToTeamSportDetails} from "../../player-to-team-sport-details";
-import {Player} from "../../player";
-import {Team} from "../../team";
+import {TeamSport, TeamSportPosition} from '../../team-sports';
+import {TeamSportService} from '../../services/sports-service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
+import {Player} from '../../player';
 
 @Component({
   selector: 'app-player-to-sport-details-cud',

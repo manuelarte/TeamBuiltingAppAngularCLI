@@ -1,9 +1,0 @@
-<h3 md-dialog-title>Player to Team Sport Details:</h3>
-<md-dialog-content>
-        <!--<app-player-to-sport-details-cud *ngIf="player" [(model)]="model" [player]="player" (form)="form = $event"></app-player-to-sport-details-cud>-->
-</md-dialog-content>
-<md-dialog-actions class="footer">
-        <button type="button" class="btn" [disabled]="submitting" (click)="open = false">Cancel</button>
-        <button type="button" class="btn btn-primary" [disabled]="submitting || !form || !form.valid" (click)="onSubmit()">Submit</button>
-</md-dialog-actions>
-<p-growl [value]="msgs"></p-growl>

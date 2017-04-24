@@ -14,13 +14,10 @@ import {Message} from "primeng/primeng";
 })
 export class PlayerToSportDetailsModalComponent implements OnInit {
 
-  @ViewChild("modal") modal: Modal;
-
   @Input() player: Player;
   model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
-  submitting: boolean = false;
+  submitting = false;
   msgs: Message[] = [];
-  openValue: boolean = false;
   form: FormGroup = new FormGroup({});
   @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
@@ -31,26 +28,15 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
     this.model.playerId = this.player.id;
   }
 
-  @Input()
-  get open(): boolean {
-      return this.openValue
-  }
-
-  set open(val: boolean) {
-      this.openValue = val;
-      this.openChange.emit(this.open);
-  }
-
   onSubmit(): void {
       this.submitting = true;
       this.playerService.savePlayerToTeamSportDetails(this.model).then(saved => {
           this.submitting = false;
           this.entrySaved.emit(saved);
-          this.open = false;
       }).catch(error => {
           this.showMessageInEntry("error", "Entry cannot be saved", "");
           this.submitting = false;
-      })
+      });
   }
 
   private showMessageInEntry(severity: string, summary: string, detail: string): any {

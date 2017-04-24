@@ -34,7 +34,7 @@ import {PlayerSearchComponent} from './player-search/player-search.component';
 import {PlayerDetailIntroComponent} from './player-detail-intro/player-detail-intro.component';
 import {GoogleChart} from 'app/directives/angular2-google-chart.directive';
 import {PlayerToTeamCudComponent} from './player-to-team-cud/player-to-team-cud.component';
-import {PlayerToSportDetailsCudComponent} from './player-to-sport-details-cud/player-to-sport-details-cud.component';
+import {PlayerToSportDetailsCudComponent} from '../profile/player-to-sport-details-cud/player-to-sport-details-cud.component';
 import {PlayerToTeamShowComponent} from './player-to-team-show/player-to-team-show.component';
 import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdGridListModule, MdIconModule,
@@ -78,7 +78,6 @@ import {ProfileModule} from "../profile/profile.module";
       PlayerCommentsComponent,
       PlayerToTeamShowComponent,
       PlayerToTeamCudComponent,
-      PlayerToSportDetailsCudComponent,
       PlayerDetailStatisticsComponent,
       PlayerDetailTeamSportsComponent,
       PlayerCommentFormComponent,
@@ -93,7 +92,7 @@ import {ProfileModule} from "../profile/profile.module";
   providers: [
       { provide: LOCALE_ID, useValue: "nl" },
   ],
-    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerToTeamShowComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent ]
+    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerToTeamShowComponent, PlayerToTeamCudComponent ]
 })
 export class PlayerModule {
 }
