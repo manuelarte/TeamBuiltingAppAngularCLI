@@ -56,6 +56,7 @@ import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.
         MdCheckboxModule,
         MdIconModule,
         MdProgressSpinnerModule,
+        MdButtonModule,
         // Other modules
         SportModule,
     ],

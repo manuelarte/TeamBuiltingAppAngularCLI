@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Player} from '../../player';
 import {PlayerService} from '../../services/player.service';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
-import {Message} from 'primeng/primeng';
 import {UserDataService} from '../../services/user-data.service';
 import {MdDialogRef, MdSnackBar} from '@angular/material';
 
@@ -17,7 +16,6 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
   player: Player;
   model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
   submitting = false;
-  msgs: Message[] = [];
   @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
   constructor(private userDataService: UserDataService, private playerService: PlayerService,

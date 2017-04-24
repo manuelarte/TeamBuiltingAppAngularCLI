@@ -21,8 +21,8 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
 
     sportDetailsForm: FormGroup = new FormGroup({
         sport: new FormControl('', Validators.required),
-        mainPosition: new FormControl('', Validators.required),
-        otherPositions: new FormControl('',),
+        mainPosition: new FormControl({disabled: !this.model.sport}, Validators.required),
+        otherPositions: new FormControl({disabled: !this.model.sport}, ),
         bio: new FormControl('', Validators.maxLength(500)),
     });
     @Output() form: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
