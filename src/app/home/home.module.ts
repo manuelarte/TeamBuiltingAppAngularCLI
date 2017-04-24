@@ -4,11 +4,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
 import {HomeComponent} from "./home.component";
-import {HomeHowToComponent} from "./home-how-to/home-how-to.component";
-import {HomeHowToIntroductionComponent} from "./home-how-to/home-how-to-introduction/home-how-to-introduction.component";
-import {HomeHowToLoginComponent} from "./home-how-to/home-how-to-login/home-how-to-login.component";
-import {HomeHowToWhatToDoComponent} from "./home-how-to/home-how-to-what-to-do/home-how-to-what-to-do.component";
-import {InsideHowToComponent} from "./home-how-to/inside-how-to/inside-how-to.component";
 import {GalleriaModule} from "primeng/primeng";
 import {TeamModule} from "../team/team.module";
 import {RatingModule} from "primeng/components/rating/rating";
@@ -42,11 +37,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ],
     declarations: [
         HomeComponent,
-        HomeHowToComponent,
-        HomeHowToIntroductionComponent,
-        HomeHowToLoginComponent,
-        HomeHowToWhatToDoComponent,
-        InsideHowToComponent,
         StatisticsComponent,
         RateAndCommentsComponent,
         PodiumComponent

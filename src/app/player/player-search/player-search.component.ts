@@ -1,9 +1,11 @@
 import {Component, OnInit, EventEmitter, Output} from '@angular/core';
-import { Observable }        from 'rxjs/Observable';
-import { Subject }           from 'rxjs/Subject';
-import {PlayerSearchService} from "../../services/player-search.service";
-import {Player} from "../../player";
-import {Page} from "../../page";
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import {PlayerSearchService} from '../../services/player-search.service';
+import {Player} from '../../player';
+import {Page} from '../../page';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'player-search',
@@ -26,7 +28,7 @@ export class PlayerSearchComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let defaultPage: Page<Player> = new Page<Player>();
+        const defaultPage: Page<Player> = new Page<Player>();
         this.playersPage = this.searchTerms
             .debounceTime(300)        // wait for 300ms pause in events
             .distinctUntilChanged()   // ignore if next search term is same as previous
@@ -44,5 +46,4 @@ export class PlayerSearchComponent implements OnInit {
     onPlayerClicked(player: Player): void {
         this.playerClicked.emit(player);
     }
-    
 }

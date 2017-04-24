@@ -1,9 +1,11 @@
 import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
-import { Observable }        from 'rxjs/Observable';
-import { Subject }           from 'rxjs/Subject';
-import {TeamSearchService} from "../../services/team-search.service";
-import {Team} from "../../team";
-import {Page} from "../../page";
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import {TeamSearchService} from '../../services/team-search.service';
+import {Team} from '../../team';
+import {Page} from '../../page';
 
 @Component({
   selector: 'team-search',
@@ -12,7 +14,7 @@ import {Page} from "../../page";
   providers: [TeamSearchService]
 })
 export class TeamSearchComponent implements OnInit {
-  @Input() disabled: boolean = false;
+  @Input() disabled = false;
   teamsPage: Observable<Page<Team>>;
   private searchTerms = new Subject<string>();
 
@@ -27,7 +29,7 @@ export class TeamSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let defaultPage: Page<Team> = new Page<Team>();
+    const defaultPage: Page<Team> = new Page<Team>();
     this.teamsPage = this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous

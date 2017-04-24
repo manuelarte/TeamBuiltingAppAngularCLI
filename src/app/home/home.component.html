@@ -7,29 +7,6 @@
 
 <div *ngIf="auth.authenticated(); else login">
 
-    <div *ngIf="true" class="card">
-        <div class="card-block">
-            <div class="alert alert-warning alert-sm">
-                <button type="button" class="close" aria-label="Close">
-                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                </button>
-                <div class="alert-item">
-                    <span class="alert-text">
-                        You did not add your Player profile and history, go to my profile to start doing it.
-                    </span>
-                </div>
-            </div>
-            <p class="card-text">
-                Now that you are registered, you can start adding your career history.
-                <button type="submit" class="btn btn-primary" (click)="routerUtils.gotoMyProfile()">My Profile</button>
-            </p>
-        </div>
-    </div>
-
-    <div id="intro">
-        <home-how-to></home-how-to>
-    </div>
-
     <div class="row flex-items-xs-center">
 
         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
