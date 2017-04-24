@@ -41,6 +41,7 @@ import {
     MdInputModule
 } from '@angular/material';
 import {SportModule} from "../sport/sport.module";
+import {ProfileModule} from "../profile/profile.module";
 
 @NgModule({
   imports: [
@@ -69,12 +70,12 @@ import {SportModule} from "../sport/sport.module";
     MdCheckboxModule,
     // Other modules
     SportModule,
+    ProfileModule,
   ],
   declarations: [
       PlayerDetailComponent,
       PlayerDetailIntroComponent,
       PlayerCommentsComponent,
-      PlayerCudComponent,
       PlayerToTeamShowComponent,
       PlayerToTeamCudComponent,
       PlayerToSportDetailsCudComponent,
@@ -92,7 +93,7 @@ import {SportModule} from "../sport/sport.module";
   providers: [
       { provide: LOCALE_ID, useValue: "nl" },
   ],
-    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudComponent, PlayerToTeamShowComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent ]
+    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerToTeamShowComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent ]
 })
 export class PlayerModule {
 }
