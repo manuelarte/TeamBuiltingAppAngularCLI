@@ -16,7 +16,7 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
     @Input() player: Player;
     @Input() model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
     sports: TeamSport[];
-    isBusyLoadingSports: boolean = true;
+    isBusyLoadingSports = true;
     @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
     sportDetailsForm: FormGroup = new FormGroup({
@@ -50,11 +50,11 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
     }
 
     filterTeamSportBySportName(sportName: string): TeamSport[] {
-        return this.sports.filter(sport => sport.name == sportName);
+        return this.sports.filter(sport => sport.name === sportName);
     }
 
     getPositions(sportName: string): TeamSportPosition[] {
-        if (this.sports && this.filterTeamSportBySportName(sportName).length == 1) {
+        if (this.sports && this.filterTeamSportBySportName(sportName).length === 1) {
             return this.filterTeamSportBySportName(sportName)[0].sportPositions;
         } else {
             return [];
