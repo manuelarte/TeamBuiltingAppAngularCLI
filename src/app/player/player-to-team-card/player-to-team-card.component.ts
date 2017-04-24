@@ -7,7 +7,7 @@ import {PlayerService} from '../../services/player.service';
 import {Auth} from '../../services/auth-service';
 import {UserDataService} from '../../services/user-data.service';
 import {UserData} from '../../user-data';
-import {MdSnackBar} from "@angular/material";
+import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-player-to-team-card',

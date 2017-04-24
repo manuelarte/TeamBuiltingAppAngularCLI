@@ -9,7 +9,7 @@
     </md-card-header>
     <md-card-content>
 
-        <app-player-to-sport-details-common-cud *ngIf="sportSelected && !loadingSportsFlag && sports[sportSelected]" [(model)]="playerToTeamSport[sportSelected]" [sport]="sports[sportSelected]"></app-player-to-sport-details-common-cud>
+        <app-player-to-sport-details-common-cud *ngIf="sportSelected && !loadingSportsFlag && sports[sportSelected]" [(model)]="playerToTeamSport[sportSelected]" [sport]="sports[sportSelected]" (form)="form"></app-player-to-sport-details-common-cud>
         <div [ngSwitch]="sportSelected">
             <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
                                       [playersDetails]="[playerToTeamSport['Football']]">Loading football position...</player-football-position>
@@ -18,4 +18,11 @@
         </div>
 
     </md-card-content>
+    <md-card-footer *ngIf="sportSelected && userData && userCanEdit()">
+        <button md-button *ngIf="editing == false" [disabled]="submittingFlag" (click)="editing = true"><md-icon>mode_edit</md-icon></button>
+        <button md-button *ngIf="editing == true" [disabled]="submittingFlag || !form || !form.valid" (click)="editEntry()">
+            <md-icon>save</md-icon>
+        </button>
+        <button md-button [disabled]="submittingFlag" (click)="deleteEntry()"><md-icon>delete</md-icon></button>
+    </md-card-footer>
 </md-card>
