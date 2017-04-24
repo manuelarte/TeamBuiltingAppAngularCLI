@@ -15,15 +15,16 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
 
     @Input() player: Player;
     @Input() model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
+    @Input() editing = false;
     sports: TeamSport[];
     isBusyLoadingSports = true;
     @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
     sportDetailsForm: FormGroup = new FormGroup({
-        sport: new FormControl('', Validators.required),
-        mainPosition: new FormControl({disabled: !this.model.sport}, Validators.required),
-        otherPositions: new FormControl({disabled: !this.model.sport}, ),
-        bio: new FormControl('', Validators.maxLength(500)),
+        sport: new FormControl({disabled: !this.editing}, Validators.required),
+        mainPosition: new FormControl({disabled: !this.editing || !this.model.sport}, Validators.required),
+        otherPositions: new FormControl({disabled: !this.editing || !this.model.sport}, ),
+        bio: new FormControl({disabled: !this.editing || !this.model.sport}, Validators.maxLength(500)),
     });
     @Output() form: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
@@ -38,11 +39,11 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
             this.sports = sports;
         }).catch(error => {
             this.isBusyLoadingSports = false;
-        })
+        });
     }
 
     isErrorLoadingSports(): boolean {
-        return this.isBusyLoadingSports == false && this.sports == null;
+        return this.isBusyLoadingSports === false && this.sports == null;
     }
 
     emitForm(): void {

@@ -2,6 +2,7 @@
 </md-progress-spinner>
 
 <div *ngIf="!isBusyLoadingSports && !isErrorLoadingSports()">
+
     <form [formGroup]="sportDetailsForm" (change)="emitForm()">
 
         <section>
