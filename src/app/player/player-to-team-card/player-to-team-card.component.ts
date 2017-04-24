@@ -10,12 +10,12 @@ import {UserData} from '../../user-data';
 import {DatesService} from '../../services/dates-service';
 
 @Component({
-  selector: 'app-player-to-team-show',
-  templateUrl: './player-to-team-show.component.html',
-  styleUrls: ['./player-to-team-show.component.scss'],
+  selector: 'app-player-to-team-card',
+  templateUrl: './player-to-team-card.component.html',
+  styleUrls: ['./player-to-team-card.component.scss'],
   providers: [PlayerService, TeamService, UserDataService, DatesService, Auth]
 })
-export class PlayerToTeamShowComponent implements OnInit {
+export class PlayerToTeamCardComponent implements OnInit {
 
   @Input() playerToTeam: PlayerToTeam = new PlayerToTeam();
   team: Team;
