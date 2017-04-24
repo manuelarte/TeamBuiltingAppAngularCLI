@@ -15,26 +15,7 @@
             Loading...
         </div>
 
-        <div *ngIf="isPlayerLoaded()">
 
-            <my-player-profile [(originalPlayer)]="originalPlayer" [userData]="userData"></my-player-profile>
-
-            <div class="my-player-history">
-                <my-player-history [(player)]="originalPlayer"></my-player-history>
-            </div>
-
-
-            <div *ngIf="adminTeamsLoaded">
-                <h2>My Teams</h2>
-                <my-admin-teams [teamIds]="userData.adminOfTeams"></my-admin-teams>
-            </div>
-
-            <div>
-                <h2>My Player Position</h2>
-                <my-player-position *ngIf="originalPlayer" [player]="originalPlayer"></my-player-position>
-            </div>
-
-        </div> <!-- Player loaded -->
     </div> <!-- Div no errors in retrieving user data -->
 
 </div> <!-- Div to check authentication -->
