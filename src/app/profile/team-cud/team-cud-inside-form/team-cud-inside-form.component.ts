@@ -55,6 +55,7 @@ export class TeamCudInsideFormComponent implements OnInit {
     }
 
     searchLocation(address: string): void {
+        this.validLocation = false;
         this.googleMapGeocodingService.getGeocoding(address).then(geocoding => {
             this.location = geocoding.results[0].geometry.location;
             this.validLocation = true;
