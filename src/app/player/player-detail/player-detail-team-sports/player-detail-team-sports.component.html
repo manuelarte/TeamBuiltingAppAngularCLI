@@ -10,13 +10,9 @@
     <md-card-content>
         <div [ngSwitch]="sportSelected">
             <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
-                                      [playersDetails]="[playerToTeamSport['Football']]">Loading football
-                position...
-            </player-football-position>
+                                      [playersDetails]="[playerToTeamSport['Football']]">Loading football position...</player-football-position>
             <player-futsal-position *ngSwitchCase="'Futsal'" [players]="[player]"
-                                    [playersDetails]="[playerToTeamSport['Futsal']]">Loading futsal
-                position...
-            </player-futsal-position>
+                                    [playersDetails]="[playerToTeamSport['Futsal']]">Loading futsal position...</player-futsal-position>
         </div>
 
         <div *ngIf="sportSelected">
