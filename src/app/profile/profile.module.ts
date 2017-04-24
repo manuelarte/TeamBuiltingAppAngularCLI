@@ -24,9 +24,9 @@ import {SportModule} from '../sport/sport.module';
 import {PlayerCudComponent} from '../player/player-cud/player-cud.component';
 import {TeamCudComponent} from './team-cud/team-cud.component';
 import {PlayerToSportDetailsModalComponent} from './player-to-sport-details-modal/player-to-sport-details-modal.component';
-import {PlayerToTeamSportDetails} from "../player-to-team-sport-details";
-import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/player-to-sport-details-cud.component";
-import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.component";
+import {PlayerToSportDetailsCudComponent} from './player-to-sport-details-cud/player-to-sport-details-cud.component';
+import {PlayerToTeamCudComponent} from './player-to-team-cud/player-to-team-cud.component';
+import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-common-cud/player-to-sport-details-common-cud.component';
 
 
 @NgModule({
@@ -65,6 +65,7 @@ import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.
         PlayerToTeamCudComponent,
         TeamCudComponent,
         PlayerToSportDetailsCudComponent,
+        PlayerToSportDetailsCommonCudComponent,
         PlayerToSportDetailsModalComponent,
     ],
     entryComponents: [PlayerToSportDetailsModalComponent],
