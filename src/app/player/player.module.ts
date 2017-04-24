@@ -27,21 +27,18 @@ import {PlayerDetailTeamSportsComponent} from './player-detail/player-detail-tea
 import {ShowPlayerCommentComponent} from './player-detail/player-comments/show-player-comment/show-player-comment.component';
 import {PlayerCommentFormComponent} from './player-detail/player-comments/player-comment-form/player-comment-form.component';
 import {ShowPlayerRewardComponent} from './player-detail/player-rewards/show-player-reward/show-player-reward.component';
-import {PlayerCudComponent} from './player-cud/player-cud.component';
 import {CommonModule} from '@angular/common';
 import {PlayerRoutingModule} from './player-routing.module';
 import {PlayerSearchComponent} from './player-search/player-search.component';
 import {PlayerDetailIntroComponent} from './player-detail-intro/player-detail-intro.component';
 import {GoogleChart} from 'app/directives/angular2-google-chart.directive';
-import {PlayerToTeamCudComponent} from './player-to-team-cud/player-to-team-cud.component';
-import {PlayerToSportDetailsCudComponent} from '../profile/player-to-sport-details-cud/player-to-sport-details-cud.component';
 import {PlayerToTeamShowComponent} from './player-to-team-show/player-to-team-show.component';
 import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdGridListModule, MdIconModule,
     MdInputModule
 } from '@angular/material';
-import {SportModule} from "../sport/sport.module";
-import {ProfileModule} from "../profile/profile.module";
+import {SportModule} from '../sport/sport.module';
+import {ProfileModule} from '../profile/profile.module';
 
 @NgModule({
   imports: [
@@ -77,7 +74,6 @@ import {ProfileModule} from "../profile/profile.module";
       PlayerDetailIntroComponent,
       PlayerCommentsComponent,
       PlayerToTeamShowComponent,
-      PlayerToTeamCudComponent,
       PlayerDetailStatisticsComponent,
       PlayerDetailTeamSportsComponent,
       PlayerCommentFormComponent,
@@ -90,9 +86,9 @@ import {ProfileModule} from "../profile/profile.module";
       GoogleChart,
   ],
   providers: [
-      { provide: LOCALE_ID, useValue: "nl" },
+      { provide: LOCALE_ID, useValue: 'nl' },
   ],
-    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerToTeamShowComponent, PlayerToTeamCudComponent ]
+    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerToTeamShowComponent ]
 })
 export class PlayerModule {
 }

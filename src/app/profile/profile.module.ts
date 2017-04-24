@@ -26,6 +26,7 @@ import {TeamCudComponent} from './team-cud/team-cud.component';
 import {PlayerToSportDetailsModalComponent} from './player-to-sport-details-modal/player-to-sport-details-modal.component';
 import {PlayerToTeamSportDetails} from "../player-to-team-sport-details";
 import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/player-to-sport-details-cud.component";
+import {PlayerToTeamCudComponent} from "./player-to-team-cud/player-to-team-cud.component";
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/pl
     ],
     declarations: [
         PlayerCudComponent,
+        PlayerToTeamCudComponent,
         TeamCudComponent,
         PlayerToSportDetailsCudComponent,
         PlayerToSportDetailsModalComponent,
@@ -68,7 +70,7 @@ import {PlayerToSportDetailsCudComponent} from "./player-to-sport-details-cud/pl
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: [PlayerCudComponent, PlayerToSportDetailsCudComponent, TeamCudComponent]
+    exports: [PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, TeamCudComponent]
 })
 export class ProfileModule {
 }
