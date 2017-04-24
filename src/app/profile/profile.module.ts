@@ -72,7 +72,7 @@ import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: [PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, TeamCudComponent]
+    exports: [PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
 })
 export class ProfileModule {
 }

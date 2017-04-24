@@ -8,6 +8,8 @@
         </md-select>
     </md-card-header>
     <md-card-content>
+
+        <app-player-to-sport-details-common-cud *ngIf="sportSelected && !loadingSportsFlag && sports[sportSelected]" [(model)]="playerToTeamSport[sportSelected]" [sport]="sports[sportSelected]"></app-player-to-sport-details-common-cud>
         <div [ngSwitch]="sportSelected">
             <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
                                       [playersDetails]="[playerToTeamSport['Football']]">Loading football position...</player-football-position>
@@ -15,9 +17,5 @@
                                     [playersDetails]="[playerToTeamSport['Futsal']]">Loading futsal position...</player-futsal-position>
         </div>
 
-        <div *ngIf="sportSelected">
-            <p>Main Position: {{playerToTeamSport[sportSelected]?.mainPosition}}</p>
-            <p>Bio: {{playerToTeamSport[sportSelected]?.bio}}</p>
-        </div>
     </md-card-content>
 </md-card>
