@@ -2,8 +2,8 @@ import {NgModule, LOCALE_ID} from '@angular/core';
 import { CommonModule } from '@angular/common'
 import {ClarityModule} from 'clarity-angular';
 
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from 'angular2-google-maps/core';
 
@@ -11,7 +11,7 @@ import {InputTextModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
 
 
-import {GrowlModule} from "primeng/primeng";
+import {GrowlModule} from 'primeng/primeng';
 import {DataListModule} from 'primeng/primeng';
 
 import {CalendarModule} from 'primeng/primeng';
@@ -22,8 +22,7 @@ import {
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
 import {PlayerCudComponent} from '../player/player-cud/player-cud.component';
-import {TeamCudInsideFormComponent} from './team-cud-dialog/team-cud-inside-form/team-cud-inside-form.component';
-import {TeamCudDialogComponent} from './team-cud-dialog/team-cud.component';
+import {TeamCudComponent} from './team-cud/team-cud.component';
 
 
 @NgModule({
@@ -58,14 +57,12 @@ import {TeamCudDialogComponent} from './team-cud-dialog/team-cud.component';
     ],
     declarations: [
         PlayerCudComponent,
-        TeamCudDialogComponent,
-        TeamCudInsideFormComponent,
+        TeamCudComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    entryComponents: [TeamCudDialogComponent],
-    exports: [PlayerCudComponent, TeamCudDialogComponent]
+    exports: [PlayerCudComponent, TeamCudComponent]
 })
 export class ProfileModule {
 }

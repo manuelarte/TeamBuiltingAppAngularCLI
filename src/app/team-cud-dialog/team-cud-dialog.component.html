@@ -1,6 +1,6 @@
 <h3 md-dialog-title>Team details:</h3>
 <md-dialog-content>
-    <app-team-cud-inside-form class="compact" [model]="model" (form)="teamForm = $event"></app-team-cud-inside-form>
+    <app-team-cud class="compact" [model]="model" (form)="teamForm = $event"></app-team-cud>
 </md-dialog-content>
 <md-dialog-actions class="footer">
     <button md-raised-button color="warn" md-dialog-close (click)="closeDialog()">Cancel</button>

@@ -1,13 +1,13 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {TeamSportService} from '../../services/sports-service';
-import {TeamService} from '../../services/team.service';
-import {Team} from '../../team';
 import {MdDialogRef, MdSnackBar} from '@angular/material';
+import {TeamSportService} from '../services/sports-service';
+import {TeamService} from '../services/team.service';
+import {Team} from 'app/team';
 
 @Component({
     selector: 'app-team-cud-dialog',
-    templateUrl: 'team-cud.component.html',
-    styleUrls: [ 'team-cud.component.scss' ],
+    templateUrl: 'team-cud-dialog.component.html',
+    styleUrls: [ 'team-cud-dialog.component.scss' ],
     providers: [ TeamSportService, TeamService ]
 })
 export class TeamCudDialogComponent implements OnInit {

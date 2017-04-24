@@ -1,19 +1,19 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {GoogleMapGeocodingService} from '../../../services/google-map-geocoding.service';
-import {TeamSport} from '../../../team-sports';
-import {Team} from '../../../team';
-import {GoogleMapGeocodingResultGeometryLocation} from '../../../google-map-geocoding-result-geometry-location';
-import {DatesService} from '../../../services/dates-service';
-import {TeamSportService} from '../../../services/sports-service';
+import {GoogleMapGeocodingService} from '../../services/google-map-geocoding.service';
+import {DatesService} from 'app/services/dates-service';
+import {TeamSportService} from '../../services/sports-service';
+import {Team} from '../../team';
+import {TeamSport} from '../../team-sports';
+import {GoogleMapGeocodingResultGeometryLocation} from '../../google-map-geocoding-result-geometry-location';
 
 @Component({
-    selector: 'app-team-cud-inside-form',
-    templateUrl: 'team-cud-inside-form.component.html',
-    styleUrls: [ 'team-cud-inside-form.component.scss' ],
+    selector: 'app-team-cud',
+    templateUrl: 'team-cud.component.html',
+    styleUrls: [ 'team-cud.component.scss' ],
     providers: [ GoogleMapGeocodingService, DatesService, TeamSportService ]
 })
-export class TeamCudInsideFormComponent implements OnInit {
+export class TeamCudComponent implements OnInit {
 
     @Input() model: Team = new Team();
 

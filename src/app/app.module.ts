@@ -17,6 +17,7 @@ import {ErrorHandlingModule} from './error-handling/error-handling.module';
 import {MaterialModule} from '@angular/material';
 import { ProfileSidenavComponent } from './profile-sidenav/profile-sidenav.component';
 import { ToolbarMenuComponent } from './toolbar-menu/toolbar-menu.component';
+import {TeamCudDialogComponent} from './team-cud-dialog/team-cud-dialog.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -42,8 +43,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AppComponent,
         DonateComponent,
         ProfileSidenavComponent,
-        ToolbarMenuComponent
+        ToolbarMenuComponent,
+        TeamCudDialogComponent,
     ],
+    entryComponents: [TeamCudDialogComponent],
     providers: [
         {
             provide: AuthHttp,
