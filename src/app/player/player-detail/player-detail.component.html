@@ -11,7 +11,7 @@
 
         <div *ngIf="isEverythingLoaded()">
             <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
-            <md-grid-list cols="4" rowHeight="900px">
+            <md-grid-list cols="4" rowHeight="500px">
                 <md-grid-tile *ngFor="let playerToTeam of playerHistory" [colspan]="1" [rowspan]="1">
                     <app-player-to-team-card [playerToTeam]="playerToTeam" (entryDeleted)="removePlayerToTeamEntry($event)"></app-player-to-team-card>
                 </md-grid-tile>
@@ -22,7 +22,11 @@
 
 
         <div *ngIf="playerToTeamSportLoaded">
+            <md-grid-list cols="4" rowHeight="500px">
+                <md-grid-tile [colspan]="1" [rowspan]="1">
             <player-detail-team-sports [player]="player" [playerToTeamSport]="playerToTeamSport"></player-detail-team-sports>
+                </md-grid-tile>
+            </md-grid-list>
         </div>
 
         <div>

@@ -9,7 +9,7 @@
     </md-card-header>
     <md-card-content>
 
-        <app-player-to-sport-details-common-cud *ngIf="sportSelected && !loadingSportsFlag && sports[sportSelected]" [(model)]="playerToTeamSport[sportSelected]" [sport]="sports[sportSelected]" (form)="form"></app-player-to-sport-details-common-cud>
+        <app-player-to-sport-details-common-cud *ngIf="sportSelected && !loadingSportsFlag && sports[sportSelected]" [(model)]="playerToTeamSport[sportSelected]" [sport]="sports[sportSelected]" (form)="form = $event"></app-player-to-sport-details-common-cud>
         <div [ngSwitch]="sportSelected">
             <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
                                       [playersDetails]="[playerToTeamSport['Football']]">Loading football position...</player-football-position>
