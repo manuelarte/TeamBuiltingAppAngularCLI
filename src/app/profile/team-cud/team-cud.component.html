@@ -1,9 +1,9 @@
 <h3 md-dialog-title>Team details:</h3>
 <md-dialog-content>
-    <team-cud-inside-form class="compact" [model]="model" (form)="teamForm = $event"></team-cud-inside-form>
+    <app-team-cud-inside-form class="compact" [model]="model" (form)="teamForm = $event"></app-team-cud-inside-form>
 </md-dialog-content>
-<md-dialog-actions>
-    <button md-raised-button color="primary" md-dialog-close (click)="closeDialog()">Cancel</button>
-    <button [disabled]="teamForm == null || !teamForm.valid || flagSubmittingTeam" type="button" (click)="onSubmit()">Ok
+<md-dialog-actions class="footer">
+    <button md-raised-button color="warn" md-dialog-close (click)="closeDialog()">Cancel</button>
+    <button md-raised-button color="primary" [disabled]="teamForm == null || !teamForm.valid || flagSubmittingTeam" type="button" (click)="onSubmit()">Ok
     </button>
 </md-dialog-actions>

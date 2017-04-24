@@ -2,6 +2,16 @@
     pading: 10px;
 }
 
+.team-info img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    opacity: 0.6;
+}
+
 .emblemImage {
     max-height:400px;
     max-width: 400px;

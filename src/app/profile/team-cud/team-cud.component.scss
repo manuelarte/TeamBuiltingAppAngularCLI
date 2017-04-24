@@ -1,11 +1,3 @@
-.ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; /* green */
-}
-
-.ng-invalid:not(form)  {
-    border-left: 5px solid #a94442; /* red */
-}
-
 .success { background-color: #ccffcc; }
 .try { background-color: red; }
 
@@ -24,7 +16,5 @@
     height: 200px;
 }
 
-
-.clickable {
-    cursor: pointer;
+.footer {
 }

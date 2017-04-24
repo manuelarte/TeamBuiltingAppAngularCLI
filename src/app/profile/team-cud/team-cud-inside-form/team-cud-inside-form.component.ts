@@ -8,7 +8,7 @@ import {DatesService} from '../../../services/dates-service';
 import {TeamSportService} from '../../../services/sports-service';
 
 @Component({
-    selector: 'team-cud-inside-form',
+    selector: 'app-team-cud-inside-form',
     templateUrl: 'team-cud-inside-form.component.html',
     styleUrls: [ 'team-cud-inside-form.component.scss' ],
     providers: [ GoogleMapGeocodingService, DatesService, TeamSportService ]

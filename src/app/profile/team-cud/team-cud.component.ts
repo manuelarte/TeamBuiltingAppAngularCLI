@@ -2,7 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {TeamSportService} from '../../services/sports-service';
 import {TeamService} from '../../services/team.service';
 import {Team} from '../../team';
-import {MdDialogRef} from '@angular/material';
+import {MdDialogRef, MdSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-team-cud-dialog',
@@ -16,7 +16,7 @@ export class TeamCudComponent implements OnInit {
     flagSubmittingTeam = false;
     flagErrorSubmittingTeam = false;
 
-    constructor(private teamService: TeamService, public dialogRef: MdDialogRef<TeamCudComponent>) {
+    constructor(private teamService: TeamService, public dialogRef: MdDialogRef<TeamCudComponent>, public snackBar: MdSnackBar) {
     }
 
     ngOnInit(): void {
@@ -32,6 +32,7 @@ export class TeamCudComponent implements OnInit {
         }).catch(error => {
             this.flagSubmittingTeam = false;
             this.flagErrorSubmittingTeam = true;
+            this.showSnackBar('Team Could Not Be Saved: ' + error.toString());
             this.handleError(error);
         });
 
@@ -39,6 +40,10 @@ export class TeamCudComponent implements OnInit {
 
     closeDialog() {
         this.dialogRef.close();
+    }
+
+    showSnackBar(message: string): void {
+        this.snackBar.open(message, null, {duration: 1000});
     }
 
     private handleError(error: any): Promise<any> {

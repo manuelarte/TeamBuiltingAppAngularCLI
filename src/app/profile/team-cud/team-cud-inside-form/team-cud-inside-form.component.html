@@ -1,6 +1,7 @@
 <form *ngIf="!isBusy" [formGroup]="teamForm" (change)="emitForm()">
 
     <section class="team-info">
+        <img src="http://img.clipartall.com/sports-balls-clipart-borders-clipart-panda-free-clipart-images-sport-clipart-1300_769.jpg">
         <label>Team Info</label>
         <md-input-container class="example-full-width">
             <input mdInput type="text" placeholder="Team Name" formControlName="name" [(ngModel)]="model.name" required>
