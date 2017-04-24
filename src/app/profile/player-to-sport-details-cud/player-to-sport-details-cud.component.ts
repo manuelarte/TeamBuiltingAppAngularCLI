@@ -21,7 +21,7 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
     @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
     sportDetailsForm: FormGroup = new FormGroup({
-        sport: new FormControl({disabled: !this.editing}, Validators.required),
+        sport: new FormControl('', Validators.required),
         mainPosition: new FormControl({disabled: !this.editing || !this.model.sport}, Validators.required),
         otherPositions: new FormControl({disabled: !this.editing || !this.model.sport}, ),
         bio: new FormControl({disabled: !this.editing || !this.model.sport}, Validators.maxLength(500)),
@@ -33,7 +33,9 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.model.playerId = this.player.id;
+        if (this.player) {
+            this.model.playerId = this.player.id;
+        }
         this.teamSportService.getTeamSportsAvailable().then(sports => {
             this.isBusyLoadingSports = false;
             this.sports = sports;
