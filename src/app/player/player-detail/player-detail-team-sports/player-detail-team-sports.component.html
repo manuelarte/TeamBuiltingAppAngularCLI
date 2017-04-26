@@ -20,9 +20,9 @@
     </md-card-content>
     <md-card-footer *ngIf="sportSelected && userData && userCanEdit()">
         <button md-button *ngIf="editing == false" [disabled]="submittingFlag" (click)="editing = true"><md-icon>mode_edit</md-icon></button>
-        <button md-button *ngIf="editing == true" [disabled]="submittingFlag || !form || !form.valid" (click)="editEntry()">
+        <button md-button *ngIf="editing == true" [disabled]="submittingFlag || !form || !form.valid" (click)="editEntry(sportSelected)">
             <md-icon>save</md-icon>
         </button>
-        <button md-button [disabled]="submittingFlag" (click)="deleteEntry()"><md-icon>delete</md-icon></button>
+        <button md-button [disabled]="submittingFlag" (click)="deleteEntry(sportSelected)"><md-icon>delete</md-icon></button>
     </md-card-footer>
 </md-card>
