@@ -1,7 +1,7 @@
 
 $max_width: 80%;
 $max_height_img1: 300px;
-$max_height_player-profile: $max_height_img1 * 0.8;
+$max_height_player-profile: $max_height_img1 * 0.4;
 
 
 #container {
@@ -19,12 +19,33 @@ $max_height_player-profile: $max_height_img1 * 0.8;
 }
 
 .player_image {
-    width: 50%;
-    border-radius: 50%;
-    height: auto;
+    width: 20%;
     max-height: $max_height_player-profile;
+    height: auto;
     border-radius: 50%;
     position: absolute;
     bottom: 0%;
-    transform: translate(50%, 10%);
+    transform: translate(20%, -10%);
+}
+
+.text-box {
+    z-index: 100;
+    position: absolute;
+    height: 100%;
+    text-align: right;
+    width: 100%;
+    bottom: 0%;
+}
+.text-box:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+h3 {
+    display: inline-block;
+    font-size: 3vw; /*or whatever you want*/
+    min-font-size: 20px;
+    color: #FFF;
 }

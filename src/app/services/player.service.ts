@@ -9,7 +9,6 @@ import {PlayerToTeam} from "../player-to-team";
 import {PlayerToTeamSportDetails} from "../player-to-team-sport-details";
 import {environment} from "../../environments/environment";
 import {AuthHttp} from "angular2-jwt";
-import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class PlayerService {
