@@ -1,5 +1,5 @@
 export class Player {
-    id: string;
+    id: number;
     name: string;
     nickname: string;
     bornAddress: string;

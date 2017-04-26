@@ -1,18 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import {Auth} from '../services/auth-service';
 import {RouterUtilsService} from '../services/router-utils.service';
+import {UserDataService} from "../services/user-data.service";
+import {UserData} from "../user-data";
 
 @Component({
   selector: 'app-profile-sidenav',
   templateUrl: './profile-sidenav.component.html',
   styleUrls: ['./profile-sidenav.component.scss'],
-  providers: [Auth, RouterUtilsService]
+  providers: [Auth, UserDataService, RouterUtilsService]
 })
 export class ProfileSidenavComponent implements OnInit {
 
-  constructor(private auth: Auth, private routerUtilsService: RouterUtilsService) { }
+  userData: UserData;
+  userDataLoadingFlag = true;
+  userDataErrorFlag = false;
+
+  constructor(private auth: Auth, private userDataService: UserDataService, private routerUtilsService: RouterUtilsService) { }
 
   ngOnInit() {
+      if (this.auth.authenticated()) {
+          this.userDataService.getUserPlayerData().then(userData => {
+            this.userData = userData;
+            this.userDataLoadingFlag = false;
+          }).catch(error => {
+            this.userDataLoadingFlag = false;
+            this.userDataErrorFlag = true;
+          })
+      }
   }
 
   getUserProfile(): any {

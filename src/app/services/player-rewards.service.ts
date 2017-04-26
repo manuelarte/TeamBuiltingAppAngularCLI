@@ -17,7 +17,7 @@ export class PlayerRewardsService {
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
-  getPlayerRewards(playerId: string): Promise<PlayerReward[]> {
+  getPlayerRewards(playerId: number): Promise<PlayerReward[]> {
     return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertFromDatesAndToDatesForArray)
       .toPromise();
   }

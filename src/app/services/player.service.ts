@@ -24,7 +24,7 @@ export class PlayerService {
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
-  getPlayer(id: string): Promise<Player> {
+  getPlayer(id: number): Promise<Player> {
     return this.http.get(`${this.playerUrl}/${id}`).map(response => <Player> response.json())
       .toPromise();
   }
@@ -33,7 +33,7 @@ export class PlayerService {
       return this.authHttp.post(this.playerUrl, player).map(response => <Player> response.json()).toPromise();
   }
 
-  deletePlayer(playerId: string): Promise<any> {
+  deletePlayer(playerId: number): Promise<any> {
       return this.authHttp.delete(`${this.playerUrl}/${playerId}`).toPromise();
   }
 

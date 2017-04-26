@@ -1,6 +1,6 @@
 export class UserData {
   id: string;
   userId: string;
-  playerId: string;
+  playerId: number;
   adminOfTeams: string[];
 }

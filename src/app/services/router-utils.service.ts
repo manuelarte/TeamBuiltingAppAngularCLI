@@ -14,8 +14,12 @@ export class RouterUtilsService {
   }
 
   public gotoPlayerDetails(player: Player): Promise<boolean> {
-    const link = ['/player', player.id];
-    return this.router.navigate(link);
+    return this.gotoPlayerDetailsById(player.id);
+  }
+
+  public gotoPlayerDetailsById(playerId: number) {
+      const link = ['/player', playerId];
+      return this.router.navigate(link);
   }
 
   public gotoMyProfile(): Promise<boolean> {

@@ -64,8 +64,8 @@ export class PlayerDetailComponent implements OnInit {
       });
 
       this.playerService.getPlayerToTeamSportDetails(id).then(playerToTeamSportsDetails => {
-            this.playerToTeamSport = this.createDict(playerToTeamSportsDetails);
-            this.playerToTeamSportLoaded = true;
+          this.playerToTeamSport = this.createDict(playerToTeamSportsDetails);
+          this.playerToTeamSportLoaded = true;
       }).catch(error => {
             this.playerToTeamSportLoaded = true;
       });

@@ -1,6 +1,6 @@
 export class PlayerToTeamSportDetails {
   id: number;
-  playerId: string;
+  playerId: number;
   sport: string;
   bio: string;
   mainPosition: string;

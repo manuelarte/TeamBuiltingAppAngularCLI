@@ -15,8 +15,8 @@ describe('PlayerHistoryUtilsService', () => {
   }));
 
   it('return the map', inject([PlayerHistoryUtilsService], (service: PlayerHistoryUtilsService) => {
-    let playerToTeam1: PlayerToTeam = {id: "", playerId: "playerId", teamId: "team1", fromDate: new Date(), toDate: new Date()};
-    let playerToTeam2: PlayerToTeam = {id: "", playerId: "playerId", teamId: "team2", fromDate: new Date(), toDate: new Date()};
+    let playerToTeam1: PlayerToTeam = {id: "", playerId: 1, teamId: "team1", fromDate: new Date(), toDate: new Date()};
+    let playerToTeam2: PlayerToTeam = {id: "", playerId: 1, teamId: "team2", fromDate: new Date(), toDate: new Date()};
     let playerHistory: PlayerToTeam[] = [playerToTeam1, playerToTeam2];
     let playerHistoryPerTeam: {[teamId: string]: PlayerToTeam[]} = service.getPlayerHistoryPerTeam(playerHistory);
     expect(playerHistoryPerTeam["team1"].length).toBe(1);
@@ -24,8 +24,8 @@ describe('PlayerHistoryUtilsService', () => {
   }));
 
     it('return the map for more than time played in a team', inject([PlayerHistoryUtilsService], (service: PlayerHistoryUtilsService) => {
-        let playerToTeam1: PlayerToTeam = {id: "", playerId: "playerId", teamId: "team1", fromDate: new Date(), toDate: new Date()};
-        let playerToTeam2: PlayerToTeam = {id: "", playerId: "playerId", teamId: "team1", fromDate: new Date(), toDate: new Date()};
+        let playerToTeam1: PlayerToTeam = {id: "", playerId: 1, teamId: "team1", fromDate: new Date(), toDate: new Date()};
+        let playerToTeam2: PlayerToTeam = {id: "", playerId: 1, teamId: "team1", fromDate: new Date(), toDate: new Date()};
         let playerHistory: PlayerToTeam[] = [playerToTeam1, playerToTeam2];
         let playerHistoryPerTeam: {[teamId: string]: PlayerToTeam[]} = service.getPlayerHistoryPerTeam(playerHistory);
         expect(playerHistoryPerTeam["team1"].length).toBe(2);

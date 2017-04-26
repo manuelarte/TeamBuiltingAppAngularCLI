@@ -11,22 +11,27 @@
 
         <div *ngIf="isEverythingLoaded()">
             <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
-            <md-grid-list cols="4" rowHeight="500px">
+            <md-grid-list *ngIf="playerHistory && playerHistory.length > 0; else playerHistoryEmpty" cols="4" rowHeight="500px">
                 <md-grid-tile *ngFor="let playerToTeam of playerHistory" [colspan]="1" [rowspan]="1">
                     <app-player-to-team-card [playerToTeam]="playerToTeam" (entryDeleted)="removePlayerToTeamEntry($event)"></app-player-to-team-card>
                 </md-grid-tile>
             </md-grid-list>
-
+            <ng-template #playerHistoryEmpty>
+                This player did not add any history yet.
+            </ng-template>
 
         </div>
 
 
         <div *ngIf="playerToTeamSportLoaded">
-            <md-grid-list cols="4" rowHeight="500px">
+            <md-grid-list *ngIf="playerToTeamSport; else playerToSportDetailsEmpty" cols="4" rowHeight="500px">
                 <md-grid-tile [colspan]="1" [rowspan]="1">
             <player-detail-team-sports [player]="player" [playerToTeamSport]="playerToTeamSport"></player-detail-team-sports>
                 </md-grid-tile>
             </md-grid-list>
+            <ng-template #playerToSportDetailsEmpty>
+                This player did not add any sport details yet.
+            </ng-template>
         </div>
 
         <div>

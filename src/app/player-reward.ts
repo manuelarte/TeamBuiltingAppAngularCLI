@@ -3,7 +3,7 @@ export class PlayerReward implements Timeslice {
     id: string;
     userId: string;
     teamId: string;
-    playerId: string;
+    playerId: number;
     reward: string;
     comment: string;
     fromDate: Date;

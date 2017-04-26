@@ -1,6 +1,4 @@
 import {Component, OnInit, Input}      from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import { Location }               from '@angular/common';
 import {PlayerService} from "../../../services/player.service";
 import {TeamService} from "../../../services/team.service";
 import {Auth} from "../../../services/auth-service";

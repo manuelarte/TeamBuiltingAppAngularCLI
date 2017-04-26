@@ -18,7 +18,7 @@ export class PlayerCommentService {
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
-  getPlayerComments(playerId: string): Promise<PlayerComment[]> {
+  getPlayerComments(playerId: number): Promise<PlayerComment[]> {
     return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertWhenForArray)
       .toPromise();
   }
