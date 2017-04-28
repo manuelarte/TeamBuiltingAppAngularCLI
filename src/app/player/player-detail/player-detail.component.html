@@ -11,18 +11,18 @@
 
         <app-player-detail-intro *ngIf="playerHistoryLoaded && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
 
-        <div *ngIf="isEverythingLoaded()">
+        <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else playerHistoryEmpty">
             <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
             <div class="row">
-                <div *ngIf="playerHistory && playerHistory.length > 0; else playerHistoryEmpty" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div *ngFor="let playerToTeam of playerHistory" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <app-player-to-team-card [playerToTeam]="playerToTeam" (entryDeleted)="removePlayerToTeamEntry($event)"></app-player-to-team-card>
                 </div>
             </div>
-            <ng-template #playerHistoryEmpty>
-                This player did not add any history yet.
-            </ng-template>
 
         </div>
+        <ng-template #playerHistoryEmpty>
+            This player did not add any history yet.
+        </ng-template>
 
 
         <div *ngIf="playerToTeamSportLoaded">

@@ -38,7 +38,7 @@
 
     <!-- Page to add the dates-->
     <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
-        <div >
+        <div>
             Here you can add the dates from where you played in {{team?.name}}.
         </div>
         <app-player-to-team-cud [(model)]="model" [team]="team" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
