@@ -6,6 +6,7 @@ import {FormGroup} from "@angular/forms";
 import {PlayerService} from "../../services/player.service";
 import {Player} from "../../player";
 import {TeamService} from "../../services/team.service";
+import {MdDialogRef, MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-player-to-team-wizard',
@@ -30,7 +31,8 @@ export class PlayerToTeamWizardComponent implements OnInit {
   @Output() entrySaved: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private teamService: TeamService, private playerService: PlayerService, private cdRef: ChangeDetectorRef) { }
+  constructor(private teamService: TeamService, private playerService: PlayerService,
+              public dialogRef: MdDialogRef<PlayerToTeamWizardComponent>, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
       console.log("inputs:", this.player)

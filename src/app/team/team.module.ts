@@ -14,7 +14,6 @@ import {DataListModule} from 'primeng/primeng';
 
 import {CalendarModule} from 'primeng/primeng';
 import {MultiSelectModule} from 'primeng/primeng';
-import {TeamSearchComponent} from "./team-search/team-search.component";
 import {TeamDetailComponent} from "./team-detail/team-detail.component";
 import {PlayerModule} from "../player/player.module";
 import {TeamInGoogleMapsComponent} from "./team-in-google-maps/team-in-google-maps.component";
@@ -41,16 +40,11 @@ import {MdAutocompleteModule, MdInputModule, MdProgressSpinnerModule} from "@ang
         GrowlModule,
         InputTextModule,
         MultiSelectModule,
-        // Material Modules
-        MdInputModule,
-        MdAutocompleteModule,
-        MdProgressSpinnerModule,
         // App Modules
         PlayerModule,
         ErrorHandlingModule,
     ],
     declarations: [
-        TeamSearchComponent,
         TeamDetailComponent,
         TeamDetailSportIntroComponent,
         TeamInGoogleMapsComponent,
@@ -58,7 +52,7 @@ import {MdAutocompleteModule, MdInputModule, MdProgressSpinnerModule} from "@ang
     providers: [
         {provide: LOCALE_ID, useValue: "nl"},
     ],
-    exports: [TeamSearchComponent, TeamDetailComponent]
+    exports: [TeamDetailComponent]
 })
 export class TeamModule {
 }

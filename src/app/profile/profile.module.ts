@@ -17,6 +17,7 @@ import {DataListModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import {MultiSelectModule} from 'primeng/primeng';
 import {
+    MdAutocompleteModule,
     MdButtonModule, MdCheckboxModule, MdIconModule, MdInputModule, MdProgressSpinnerModule,
     MdSelectModule
 } from '@angular/material';
@@ -27,6 +28,8 @@ import {PlayerToSportDetailsModalComponent} from './player-to-sport-details-moda
 import {PlayerToSportDetailsCudComponent} from './player-to-sport-details-cud/player-to-sport-details-cud.component';
 import {PlayerToTeamCudComponent} from './player-to-team-cud/player-to-team-cud.component';
 import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-common-cud/player-to-sport-details-common-cud.component';
+import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-team-wizard.component";
+import {TeamSearchComponent} from "./team-search/team-search.component";
 
 
 @NgModule({
@@ -51,6 +54,7 @@ import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-
         InputTextModule,
         MultiSelectModule,
         // Material Modules,
+        MdAutocompleteModule,
         MdInputModule,
         MdSelectModule,
         MdCheckboxModule,
@@ -67,12 +71,14 @@ import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-
         PlayerToSportDetailsCudComponent,
         PlayerToSportDetailsCommonCudComponent,
         PlayerToSportDetailsModalComponent,
+        PlayerToTeamWizardComponent,
+        TeamSearchComponent,
     ],
-    entryComponents: [PlayerToSportDetailsModalComponent],
+    entryComponents: [PlayerToSportDetailsModalComponent, PlayerToTeamWizardComponent],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: [PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
+    exports: [TeamSearchComponent, PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
 })
 export class ProfileModule {
 }

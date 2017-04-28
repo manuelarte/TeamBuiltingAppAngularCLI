@@ -23,7 +23,7 @@
 
         <p>Or, if yoy don't find your football team, you can add it</p>
         <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">{{(!addTeam || addTeam == false) ? 'Add a new team': 'Close Add a new team'}}</button>
-        <app-team-cud-inside-form *ngIf="addTeam" [(model)]="teamModel" (form)="theTeamForm = $event"></app-team-cud-inside-form>
+        <app-team-cud *ngIf="addTeam" [(model)]="teamModel" (form)="theTeamForm = $event"></app-team-cud>
         <div *ngIf="submittingTeam">
             <span class="spinner spinner-inline"></span>
             <span>Submitting the team...</span>

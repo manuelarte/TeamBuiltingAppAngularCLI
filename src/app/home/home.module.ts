@@ -16,6 +16,7 @@ import {StepsModule} from 'primeng/primeng';
 import {MdButtonModule, MdCheckboxModule, MdInputModule} from "@angular/material";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ProfileModule} from "../profile/profile.module";
 
 
 @NgModule({
@@ -31,6 +32,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         RatingModule,
         TeamModule,
         PlayerModule,
+        ProfileModule,
+        // Material Modules
         MdButtonModule,
         MdCheckboxModule,
         MdInputModule,
