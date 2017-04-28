@@ -6,9 +6,9 @@
         <md-icon svgIcon="team"></md-icon>
         <span>Add a Team</span>
     </button>
-    <button md-menu-item disabled>
-        <md-icon>voicemail</md-icon>
-        <span>Check voicemail</span>
+    <button md-menu-item (click)="openPlayerHistoryDialog()">
+        <md-icon svgIcon="player-to-team"></md-icon>
+        <span>Add Team History</span>
     </button>
     <button md-menu-item (click)="openSportPositionDialog()">
         <md-icon svgIcon="sport-position"></md-icon>

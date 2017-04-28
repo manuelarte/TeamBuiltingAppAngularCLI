@@ -10,11 +10,11 @@
     <md-nav-list>
         <md-list-item>
             <md-icon md-list-icon>home</md-icon>
-            <h3 md-line (click)="routerUtilsService.gotoHome()">Home</h3>
+            <a md-line href="/home">Home</a>
         </md-list-item>
         <md-list-item>
             <md-icon md-list-icon>accessibility</md-icon>
-            <h3 md-line (click)="routerUtilsService.gotoPlayerDetailsById(userData.playerId)">My Profile</h3>
+            <a md-line [href]="'/player/' + getPlayerId()">My Profile</a>
         </md-list-item>
     </md-nav-list>
 

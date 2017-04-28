@@ -16,7 +16,7 @@ export class ProfileSidenavComponent implements OnInit {
   userDataLoadingFlag = true;
   userDataErrorFlag = false;
 
-  constructor(private auth: Auth, private userDataService: UserDataService, private routerUtilsService: RouterUtilsService) { }
+  constructor(private auth: Auth, private userDataService: UserDataService) { }
 
   ngOnInit() {
       if (this.auth.authenticated()) {
@@ -32,6 +32,10 @@ export class ProfileSidenavComponent implements OnInit {
 
   getUserProfile(): any {
     return this.auth.userProfile;
+  }
+
+  getPlayerId(): number {
+      return this.userData.playerId;
   }
 
 }

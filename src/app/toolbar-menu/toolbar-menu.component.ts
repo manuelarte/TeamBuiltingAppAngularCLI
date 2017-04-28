@@ -12,7 +12,8 @@ import {TeamCudDialogComponent} from '../team-cud-dialog/team-cud-dialog.compone
 export class ToolbarMenuComponent implements OnInit {
 
   constructor(public dialog: MdDialog, private mdIconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
-    this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/soccer-jersey.svg'));
+    this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-badge.svg'));
+    this.mdIconRegistry.addSvgIcon('player-to-team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
     this.mdIconRegistry.addSvgIcon('sport-position', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-field.svg'));
   }
 
@@ -23,6 +24,12 @@ export class ToolbarMenuComponent implements OnInit {
     const dialogRef = this.dialog.open(TeamCudDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
       });
+  }
+
+  openPlayerHistoryDialog() {
+    const dialogRef = this.dialog.open(PlayerToSportDetailsModalComponent);
+      dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   openSportPositionDialog() {
