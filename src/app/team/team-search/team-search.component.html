@@ -1,17 +1,24 @@
 <div id="search-component">
   <h4>Team Search</h4>
 
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+      <md-input-container>
+            <input mdInput type="text" #searchInput id="search_input" placeholder="Search for a Team..."
+                   [formControl]="myControl" [mdAutocomplete]="auto">
+      </md-input-container>
 
-<label for="search_input">
-    <input #searchInput id="search_input" type="text" placeholder="Search for a Team..." [disabled]="disabled" (keyup)="search(searchInput.value)"/>
-    <div *ngIf="searchInput.value && (teamsPage | async)?.content == null">
-        <span class="spinner spinner-sm">Loading...</span>
+      <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngIf="(teamsPage | async)?.content?.length == 0" disabled>Teams not found</md-option>
+            <md-option *ngFor="let team of (teamsPage | async)?.content" [value]="team.name"
+                       (click)="onTeamClicked(team)">
+              <img class="entry-img" [src]="team.emblemLink">{{ team.name }}
+            </md-option>
+      </md-autocomplete>
     </div>
-
-    <ul *ngIf = "searchInput.value.length > 0" class="list" [ngStyle]="{'clickable': true, 'cursor': 'pointer'}">
-       <li class="not-found" *ngIf="(teamsPage | async)?.content?.length == 0" disabled>Teams not found</li>
-       <li class="team-entry" *ngFor="let team of (teamsPage | async)?.content" (click)="searchInput.value = ''; onTeamClicked(team)">{{team.name}}</li>
-   </ul>
-</label>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <md-progress-spinner class="adjust" *ngIf="myControl.value && (teamsPage | async)?.content == null" mode="indeterminate"></md-progress-spinner>
+    </div>
+  </div>
 
 </div>
