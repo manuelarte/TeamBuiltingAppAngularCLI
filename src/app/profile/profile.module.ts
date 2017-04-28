@@ -19,7 +19,7 @@ import {MultiSelectModule} from 'primeng/primeng';
 import {
     MdAutocompleteModule,
     MdButtonModule, MdCheckboxModule, MdIconModule, MdInputModule, MdProgressSpinnerModule,
-    MdSelectModule
+    MdSelectModule, MdTabsModule
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
 import {PlayerCudComponent} from '../player/player-cud/player-cud.component';
@@ -61,6 +61,7 @@ import {TeamSearchComponent} from "./team-search/team-search.component";
         MdIconModule,
         MdProgressSpinnerModule,
         MdButtonModule,
+        MdTabsModule,
         // Other modules
         SportModule,
     ],

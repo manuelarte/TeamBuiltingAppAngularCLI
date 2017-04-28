@@ -1,3 +1,66 @@
+<h3 md-dialog-title>Add Player History:</h3>
+<md-dialog-content>
+    <md-tab-group>
+        <md-tab>
+            <ng-template md-tab-label>
+                <md-icon svgIcon="team"></md-icon> Select the Team
+            </ng-template>
+
+            <div class="row flex-items-xs-center">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <team-search (teamClicked)="setTeam($event)" [disabled]="addTeam == true"></team-search>
+                    <clr-icon *ngIf = "team != null" shape="remove" class="clickable is-danger" size="36" (click)="team = null"></clr-icon>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div *ngIf="team" class="team-container">
+                        <p>{{team?.name}}</p>
+                        <img [src]="team.emblemLink" class="team-emblem" alt="{{team.name}}">
+                    </div>
+                </div>
+            </div>
+
+            <p>Or, if yoy don't find your football team, you can add it</p>
+            <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">{{(!addTeam || addTeam == false) ? 'Add a new team': 'Close Add a new team'}}</button>
+            <app-team-cud *ngIf="addTeam" [(model)]="teamModel" (form)="theTeamForm = $event"></app-team-cud>
+            <div *ngIf="submittingTeam">
+                <span class="spinner spinner-inline"></span>
+                <span>Submitting the team...</span>
+            </div>
+            <div *ngIf="submittingTeam == false && teamSubmitErrorFlag" class="alert alert-danger">
+                <div class="alert-item">
+                    <span class="alert-text">The team could not be added, please try again.</span>
+                </div>
+            </div>
+
+        </md-tab>
+        <md-tab [disabled]="submittingTeam || ((!addTeam || addTeam == false) && !team) || (addTeam == true && (!theTeamForm || !theTeamForm.valid))">
+            <ng-template md-tab-label>
+                <md-icon svgIcon="shorts-with-number-12"></md-icon> Add Dates
+            </ng-template>
+
+            <div>
+                Here you can add the dates from where you played in {{team?.name}}.
+            </div>
+            <app-player-to-team-cud [(model)]="model" [team]="team" [editing]="true" (form)="setPlayerToTeamForm($event)"></app-player-to-team-cud>
+            <div class="spinner" *ngIf="submitting">
+                Submitting...
+            </div>
+            <div *ngIf="errorSubmittingFlag" class="alert alert-danger">
+                <div class="alert-item">
+                    <span class="alert-text">The entry could not be added, please try again.</span>
+                </div>
+            </div>
+
+        </md-tab>
+    </md-tab-group>
+</md-dialog-content>
+<md-dialog-actions class="footer">
+    <button md-button color="primary" [disabled]="submitting" (click)="previousStep()">Cancel</button>
+    <button md-button color="primary" [disabled]="submitting" (click)="previousStep()">Previous Step</button>
+    <button md-raised-button color="primary" [disabled]="false" (click)="nextStep()">Submit</button>
+</md-dialog-actions>
+
+<!--
 <clr-wizard #wizard [(clrWizardOpen)]="open" (clrWizardOnCancel)="closeWizard()">
     <div class="wizard-title">
         Form to add your player history
@@ -6,7 +69,7 @@
     <clr-wizard-step>Select the team</clr-wizard-step>
     <clr-wizard-step>Add the dates</clr-wizard-step>
 
-    <!-- Page to select or add a team -->
+    &lt;!&ndash; Page to select or add a team &ndash;&gt;
     <clr-wizard-page [clrWizardPageNextDisabled]="submittingTeam || ((!addTeam || addTeam == false) && !team) || (addTeam == true && (!theTeamForm || !theTeamForm.valid))" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = teamSelected(addTeam)>
         <div class="row flex-items-xs-center">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -36,7 +99,7 @@
 
     </clr-wizard-page>
 
-    <!-- Page to add the dates-->
+    &lt;!&ndash; Page to add the dates&ndash;&gt;
     <clr-wizard-page [clrWizardPageNextDisabled]="!isValidForm() || submitting" [clrWizardPagePreventDefault]="true" (clrWizardPageOnCommit) = submitEntry()>
         <div>
             Here you can add the dates from where you played in {{team?.name}}.
@@ -52,3 +115,4 @@
         </div>
     </clr-wizard-page>
 </clr-wizard>
+-->

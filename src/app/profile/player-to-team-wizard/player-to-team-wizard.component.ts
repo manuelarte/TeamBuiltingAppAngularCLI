@@ -7,18 +7,19 @@ import {PlayerService} from "../../services/player.service";
 import {Player} from "../../player";
 import {TeamService} from "../../services/team.service";
 import {MdDialogRef, MdSnackBar} from "@angular/material";
+import {UserDataService} from "../../services/user-data.service";
 
 @Component({
   selector: 'app-player-to-team-wizard',
   templateUrl: './player-to-team-wizard.component.html',
   styleUrls: ['./player-to-team-wizard.component.scss'],
-  providers: [TeamService, PlayerService]
+  providers: [TeamService, PlayerService, UserDataService]
 })
 export class PlayerToTeamWizardComponent implements OnInit {
   @ViewChild('wizard') wizard: Wizard;
 
-  @Input() player: Player;
   @Input() open = false;
+  player: Player;
   model: PlayerToTeam = new PlayerToTeam();
   team: Team;
   teamModel: Team = new Team();
@@ -31,12 +32,16 @@ export class PlayerToTeamWizardComponent implements OnInit {
   @Output() entrySaved: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private teamService: TeamService, private playerService: PlayerService,
+  constructor(private teamService: TeamService, private playerService: PlayerService, private userDataService: UserDataService,
               public dialogRef: MdDialogRef<PlayerToTeamWizardComponent>, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
-      console.log("inputs:", this.player)
-      this.model.playerId = this.player.id;
+      this.userDataService.getUserPlayerData().then(userData => {
+          this.playerService.getPlayer(userData.playerId).then(player => {
+              this.player = player;
+              this.model.playerId = this.player.id;
+          });
+      });
   }
 
   public setTeam(team: Team): void {

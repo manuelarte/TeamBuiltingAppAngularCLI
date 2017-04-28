@@ -11,7 +11,7 @@
       <md-autocomplete #auto="mdAutocomplete">
             <md-option *ngIf="(teamsPage | async)?.content?.length == 0" disabled>Teams not found</md-option>
             <md-option *ngFor="let team of (teamsPage | async)?.content" [value]="team.name"
-                       (click)="onTeamClicked(team)">
+                       (click)="searchInput.value = '';onTeamClicked(team)">
               <img class="entry-img" [src]="team.emblemLink">{{ team.name }}
             </md-option>
       </md-autocomplete>

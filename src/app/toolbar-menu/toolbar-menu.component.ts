@@ -12,10 +12,7 @@ import {PlayerToTeamWizardComponent} from "../profile/player-to-team-wizard/play
 })
 export class ToolbarMenuComponent implements OnInit {
 
-  constructor(public dialog: MdDialog, private mdIconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
-    this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-badge.svg'));
-    this.mdIconRegistry.addSvgIcon('player-to-team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
-    this.mdIconRegistry.addSvgIcon('sport-position', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-field.svg'));
+  constructor(public dialog: MdDialog) {
   }
 
   ngOnInit() {
