@@ -10,6 +10,10 @@ $max_height_player-profile: $max_height_img1 * 0.8;
     transform: translate(10%, 0%)
 }
 
+.player-detail-card {
+    padding: 10px;
+}
+
 .player-detail-intro-img {
     width: 100%;
     max-height: $max_height_img1;

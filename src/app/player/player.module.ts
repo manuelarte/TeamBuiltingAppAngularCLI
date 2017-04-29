@@ -39,6 +39,7 @@ import {
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
+import {PlayerCudCardComponent} from "./player-cud-card/player-cud-card.component";
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import {ProfileModule} from '../profile/profile.module';
       PlayerDetailComponent,
       PlayerDetailIntroComponent,
       PlayerCommentsComponent,
+      PlayerCudCardComponent,
       PlayerToTeamCardComponent,
       PlayerDetailStatisticsComponent,
       PlayerDetailTeamSportsComponent,
@@ -92,7 +94,7 @@ import {ProfileModule} from '../profile/profile.module';
   providers: [
       { provide: LOCALE_ID, useValue: 'nl' },
   ],
-    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerToTeamCardComponent ]
+    exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudCardComponent, PlayerToTeamCardComponent ]
 })
 export class PlayerModule {
 }

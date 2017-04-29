@@ -22,7 +22,7 @@ import {
     MdSelectModule, MdTabsModule
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
-import {PlayerCudComponent} from '../player/player-cud/player-cud.component';
+import {PlayerCudComponent} from './player-cud/player-cud.component';
 import {TeamCudComponent} from './team-cud/team-cud.component';
 import {PlayerToSportDetailsModalComponent} from './player-to-sport-details-modal/player-to-sport-details-modal.component';
 import {PlayerToSportDetailsCudComponent} from './player-to-sport-details-cud/player-to-sport-details-cud.component';

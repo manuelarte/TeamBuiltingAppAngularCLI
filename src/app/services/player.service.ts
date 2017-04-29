@@ -28,7 +28,7 @@ export class PlayerService {
       .toPromise();
   }
 
-  createNewPlayer(player: Player): Promise<Player> {
+  savePlayer(player: Player): Promise<Player> {
       return this.authHttp.post(this.playerUrl, player).map(response => <Player> response.json()).toPromise();
   }
 

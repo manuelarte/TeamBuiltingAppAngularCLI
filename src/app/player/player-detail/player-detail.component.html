@@ -9,10 +9,12 @@
             <img class="player_image" [src]="player.imageLink" alt="{{player.name}}"/>
         </div>
 
-        <app-player-detail-intro *ngIf="playerHistoryLoaded && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
+        <app-player-cud-card class="player-detail-card" [player]="player"></app-player-cud-card>
+
+        <app-player-detail-intro class="player-detail-card" *ngIf="playerHistoryLoaded && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
 
         <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else playerHistoryEmpty">
-            <player-detail-statistics [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
+            <player-detail-statistics class="player-detail-card" [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
             <div class="row">
                 <div *ngFor="let playerToTeam of playerHistory" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <app-player-to-team-card [playerToTeam]="playerToTeam" (entryDeleted)="removePlayerToTeamEntry($event)"></app-player-to-team-card>
@@ -28,7 +30,7 @@
         <div *ngIf="playerToTeamSportLoaded">
 
             <div *ngIf="playerToTeamSport; else playerToSportDetailsEmpty" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <player-detail-team-sports [player]="player" [playerToTeamSport]="playerToTeamSport"></player-detail-team-sports>
+                <player-detail-team-sports class="player-detail-card" [player]="player" [playerToTeamSport]="playerToTeamSport"></player-detail-team-sports>
             </div>
             <ng-template #playerToSportDetailsEmpty>
                 This player did not add any sport details yet.

@@ -1,26 +1,20 @@
 <div *ngIf="dataLoaded">
-
-    <div class="card statistics-card">
-        <div class="card-header">
-            Player Statistics
-        </div>
-        <div class="card-block">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" [class.active]="showTeamsPlayed" (click)="showTeamsPlayed = !showTeamsPlayed">Teams played</li>
-                <li class="list-group-item" [class.active]="showNumberTeamsPerSport" (click)="showNumberTeamsPerSport = !showNumberTeamsPerSport">Number of teams per sport</li>
-            </ul>
-            <div class="card-text">
-                <div class="content-container">
-                        <div class="content-area">
-                            <p-chart *ngIf="showTeamsPlayed" type="doughnut" [data]="dataTimeInTheTeams"
-                                     [options]="optionsTimeInTheTeams"></p-chart>
-                            <p-chart *ngIf="showNumberTeamsPerSport" type="pie" [data]="dataNumberOfTeamsPerSport"></p-chart>
-                        </div>
-                </div>
-
+    <md-card>
+        <md-card-header>
+            <div md-card-avatar [ngStyle]="{'background-image': 'url(' + player.imageLink + ')'}" class="example-header-image"></div>
+            <md-card-title>Player Statistics</md-card-title>
+            <md-select placeholder="Statistic" [(ngModel)]="selectedValue" name="food">
+                <md-option selected (click)="statisticSelected = 1">Teams played</md-option>
+                <md-option (click)="statisticSelected = 2">Number of teams per sport</md-option>
+            </md-select>
+        </md-card-header>
+        <md-card-content>
+            <hr class="line">
+            <div [ngSwitch]="statisticSelected">
+                <p-chart *ngSwitchDefault type="doughnut" [data]="dataTimeInTheTeams"
+                         [options]="optionsTimeInTheTeams"></p-chart>
+                <p-chart *ngSwitchCase="2" type="pie" [data]="dataNumberOfTeamsPerSport"></p-chart>
             </div>
-        </div>
-        <div class="card-footer">
-        </div>
-    </div>
+        </md-card-content>
+    </md-card>
 </div>
