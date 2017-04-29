@@ -8,29 +8,25 @@ import {Team} from "../../team";
 import {Season} from "../../services/season-utils.service";
 import {PlayerReward} from "../../player-reward";
 import {Auth} from "../../services/auth-service";
+import {MdDialogRef, MdSnackBar} from "@angular/material";
 
 @Component({
     selector: 'give-reward',
     templateUrl: 'give-reward.component.html',
     styleUrls: ['give-reward.component.scss'],
-    providers: [ PlayerRewardsService ]
+    providers: [ Auth, PlayerRewardsService ]
 })
 export class GiveRewardComponent implements OnInit  {
 
     @Input() player: Player;
     @Input() team: Team;
-    @Input() addRewardModalOpened: boolean = false;
     @Input() season: Season;
     model: PlayerReward = new PlayerReward();
 
-    msgs: Message[] = [];
-
     rewards: string[];
     errorLoadingRewards = false;
-    cannotLoadScreen: boolean = false;
-    submittingReward = false;
 
-    @Output() addRewardModalOpenedChange = new EventEmitter();
+    submittingReward = false;
 
     playerRewardForm = new FormGroup({
         comment: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(200)])),
@@ -39,7 +35,9 @@ export class GiveRewardComponent implements OnInit  {
 
     constructor(
         private auth: Auth,
-        private playerRewardService: PlayerRewardsService
+        private playerRewardService: PlayerRewardsService,
+        public dialogRef: MdDialogRef<GiveRewardComponent>,
+        public snackBar: MdSnackBar,
     ) {}
 
     ngOnInit(): void {
@@ -54,21 +52,16 @@ export class GiveRewardComponent implements OnInit  {
         this.submittingReward = true;
         this.playerRewardService.postNewPlayerReward(this.model).then(playerReward => {
             this.submittingReward = false;
-            this.showSuccessMessage();
+            this.snackBar.open('Reward given');
             this.closeModal();
         }).catch(error =>  {
             this.submittingReward = false;
-            console.log(error)
+            this.snackBar.open('Error Giving Reward: ' + error.toString());
         })
     }
 
     closeModal() {
-        this.addRewardModalOpened = false;
-        this.addRewardModalOpenedChange.emit(this.addRewardModalOpened);
-    }
-
-    showSuccessMessage() {
-        this.msgs.push({severity:'info', summary:'Player reward saved', detail:'Player Reward saved'});
+        this.dialogRef.close();
     }
 
     isAuthenticated(): boolean {

@@ -1,27 +1,33 @@
-<div class="card">
-    <div class="card-img">
-        <img [src]="getPicture(player)" class="player-in-team-card-img">
-    </div>
-    <div class="card-block">
-        <h4 class="card-title">{{player.name}}</h4>
-        <p>{{player.nickname}}</p>
-        <p></p>
-    </div>
-    <div class="card-footer">
-        <button (click)="routerUtilsService.gotoPlayerDetails(player)" class="btn btn-sm btn-link">
-            See main profile
+<md-card class="example-card">
+    <md-card-header>
+        <div md-card-avatar [ngStyle]="{'background-image': 'url(' + team.emblemLink + ')'}" class="example-header-image"></div>
+        <md-card-title>{{player.name}}</md-card-title>
+        <md-card-subtitle>{{player.nickname}}</md-card-subtitle>
+
+        <span class="example-fill-remaining-space"></span>
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>more_vert</md-icon>
         </button>
-        <div (click)="changeActionCardForPlayer()" class="dropdown down-left"
-             [class.open]="isActionCardForPlayerOpen()">
-            <button class="dropdown-toggle btn btn-sm btn-link">
-                Actions
-                <clr-icon shape="caret down"></clr-icon>
+        <md-menu #menu="mdMenu">
+            <button md-menu-item (click)="routerUtilsService.gotoPlayerDetails(player)">
+                <md-icon svgIcon="player-profile"></md-icon>
+                <span>See Profile</span>
             </button>
-            <div class="dropdown-menu">
-                <div (click)="openAddReward()" class="dropdown-item">Give a reward</div>
-            </div>
-            <give-reward [(addRewardModalOpened)]="addRewardModalOpened" [season]="season" [player]="player"
-                         [team]="team"></give-reward>
-        </div>
-    </div>
-</div>
+            <button md-menu-item (click)="openAddReward()">
+                <md-icon svgIcon="reward"></md-icon>
+                <span>Give Reward</span>
+            </button>
+        </md-menu>
+
+    </md-card-header>
+    <img md-card-image [src]="getPicture(player)" class="player-in-team-card-img">
+    <md-card-content>
+        <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+        </p>
+    </md-card-content>
+    <md-card-actions>
+    </md-card-actions>
+</md-card>

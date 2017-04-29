@@ -1,39 +1,39 @@
-<clr-modal [(clrModalOpen)]="addRewardModalOpened" [clrModalSize]="'lg'">
-    <h3 class="modal-title">Add reward to {{player?.name}}</h3>
-    <div class="modal-body">
-
-        <div *ngIf="!isAuthenticated()" class="alert alert-warning">
-            <div class="alert-item">
-                <span class="alert-text">You need to be logged in to give a reward</span>
-            </div>
+<h3 md-dialog-title>Add reward to {{player?.name}}</h3>
+<md-dialog-content>
+    <div *ngIf="!isAuthenticated()" class="alert alert-warning">
+        <div class="alert-item">
+            <span class="alert-text">You need to be logged in to give a reward</span>
         </div>
-
-
-        <form [formGroup]="playerRewardForm">
-            <section class="form-block">
-                <label>Reward for season {{season?.startDate.getFullYear()}}-{{season?.endDate.getFullYear()}}</label>
-                <div class="form-group">
-                    <label for="reward" [class.invalid]="playerRewardForm.get('reward').invalid && playerRewardForm.get('reward').dirty">Reward:</label>
-                    <div class="select">
-                        <select #reward id="reward" [(ngModel)]="model.reward" formControlName="reward" required>
-                            <option [selected]="true"
-                                    [disabled]="true">Select a reward...</option>
-                            <option *ngFor="let reward of rewards">{{reward}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="comment">Comment</label>
-                    <textarea id="comment" rows="5" [(ngModel)]="model.comment" formControlName="comment"></textarea>
-                </div>
-            </section>
-
-        </form>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="closeModal()">Cancel</button>
-        <button type="button" class="btn btn-primary" [disabled]="isNotAuthenticated() || playerRewardForm.invalid || submittingReward" (click)="onSubmit()">Ok</button>
-    </div>
-</clr-modal>
 
-<p-growl [value]="msgs" [life]="3000"></p-growl>
+    <label>Reward for season {{season?.startDate.getFullYear()}}-{{season?.endDate.getFullYear()}}</label>
+    <form [formGroup]="playerRewardForm">
+
+        <section>
+            <md-select placeholder="Reward" name="reward" [(ngModel)]="model.reward" formControlName="reward" required>
+                <md-option *ngFor="let reward of rewards">
+                    <md-icon svgIcon="reward"></md-icon>
+                    {{reward}}
+                </md-option>
+            </md-select>
+        </section>
+        <section>
+            <div>
+                <label for="comment">Comment</label>
+                <md-input-container>
+                    <textarea mdInput #comment id="comment" placeholder="Comment..." rows="5" maxlength="200" [(ngModel)]="model.comment"
+                              formControlName="comment"></textarea>
+                    <md-error>Comment not allowed</md-error>
+                    <md-hint>{{comment.value.length}} / 200</md-hint>
+                </md-input-container>
+            </div>
+        </section>
+
+    </form>
+</md-dialog-content>
+<md-dialog-actions class="footer">
+    <button md-button (click)="closeModal()">Cancel</button>
+    <button md-raised-button color="primary" [disabled]="isNotAuthenticated() || playerRewardForm.invalid || submittingReward" (click)="onSubmit()">
+        Ok
+    </button>
+</md-dialog-actions>

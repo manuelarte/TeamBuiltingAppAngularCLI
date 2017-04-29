@@ -34,8 +34,8 @@ import {PlayerDetailIntroComponent} from './player-detail-intro/player-detail-in
 import {GoogleChart} from 'app/directives/angular2-google-chart.directive';
 import {PlayerToTeamCardComponent} from './player-to-team-card/player-to-team-card.component';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdGridListModule, MdIconModule,
-    MdInputModule, MdOptionModule, MdProgressSpinnerModule, MdSelectModule, MdSnackBarModule
+    MdButtonModule, MdCardModule, MdCheckboxModule, MdDialogModule, MdGridListModule, MdIconModule,
+    MdInputModule, MdMenuModule, MdOptionModule, MdProgressSpinnerModule, MdSelectModule, MdSnackBarModule
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
@@ -69,7 +69,9 @@ import {PlayerCudCardComponent} from "./player-cud-card/player-cud-card.componen
     MdSnackBarModule,
     MdProgressSpinnerModule,
     MdSelectModule,
+    MdMenuModule,
     MdOptionModule,
+    MdDialogModule,
     // Other modules
     SportModule,
     ProfileModule,
@@ -94,6 +96,7 @@ import {PlayerCudCardComponent} from "./player-cud-card/player-cud-card.componen
   providers: [
       { provide: LOCALE_ID, useValue: 'nl' },
   ],
+    entryComponents: [GiveRewardComponent],
     exports: [PlayerSearchComponent, PlayerInTeamComponent, PlayerDetailComponent, PlayerCudCardComponent, PlayerToTeamCardComponent ]
 })
 export class PlayerModule {

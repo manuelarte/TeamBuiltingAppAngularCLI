@@ -1,10 +1,11 @@
 import {Input, Component, OnInit} from "@angular/core";
 
-import {Router} from "@angular/router";
 import {Season} from "../../services/season-utils.service";
 import {Player} from "../../player";
 import {Team} from "../../team";
 import {RouterUtilsService} from "../../services/router-utils.service";
+import {MdDialog, MdDialogConfig, MdDialogRef} from "@angular/material";
+import {GiveRewardComponent} from "../give-reward/give-reward.component";
 /**
  * Created by Manuel on 05/11/2016.
  */
@@ -20,29 +21,22 @@ export class PlayerInTeamComponent implements OnInit {
   @Input() player: Player = new Player();
   @Input() season: Season;
 
-  addRewardModalOpened: boolean = false;
-
-  private actionCardForPlayer: boolean = false;
-
   ngOnInit(): void {
   }
 
-  constructor(public routerUtilsService: RouterUtilsService) {}
+  constructor(public routerUtilsService: RouterUtilsService, public dialog: MdDialog) {}
 
   getPicture() {
     return this.player.imageLink;
   }
 
   openAddReward(): void {
-      this.addRewardModalOpened = true
-  }
-
-  changeActionCardForPlayer(): void {
-      this.actionCardForPlayer = !this.actionCardForPlayer;
-  }
-
-  isActionCardForPlayerOpen(): boolean {
-      return this.actionCardForPlayer == true;
+    const dialogRef = this.dialog.open(GiveRewardComponent);
+      dialogRef.afterClosed().subscribe(result => {
+    });
+    dialogRef.componentInstance.season = this.season;
+    dialogRef.componentInstance.player = this.player;
+    dialogRef.componentInstance.team = this.team;
   }
 
 }
