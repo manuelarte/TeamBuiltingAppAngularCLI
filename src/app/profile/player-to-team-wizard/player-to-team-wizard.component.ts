@@ -1,4 +1,4 @@
-import {Component, ViewChild, OnInit, Input, EventEmitter, Output, ChangeDetectorRef} from '@angular/core';
+import {Component, ViewChild, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {Wizard} from "clarity-angular";
 import {PlayerToTeam} from "../../player-to-team";
 import {Team} from "../../team";
@@ -16,9 +16,8 @@ import {UserDataService} from "../../services/user-data.service";
   providers: [TeamService, PlayerService, UserDataService]
 })
 export class PlayerToTeamWizardComponent implements OnInit {
-  @ViewChild('wizard') wizard: Wizard;
 
-  @Input() open = false;
+  theTeamForm: FormGroup;
   player: Player;
   model: PlayerToTeam = new PlayerToTeam();
   team: Team;
@@ -57,26 +56,6 @@ export class PlayerToTeamWizardComponent implements OnInit {
       this.playerToTeamForm = form;
   }
 
-  teamSelected(addTeam: boolean): void {
-      if (addTeam == null || (addTeam == false && this.team)) {
-          this.wizard.next();
-      } else {
-        this.submittingTeam = true;
-        this.teamService.postTeamObservable(this.teamModel).subscribe(data => {
-          this.submittingTeam = false;
-          this.teamSubmitErrorFlag = false
-          this.setTeam(data);
-          this.teamModel = new Team();
-          this.wizard.next();
-         }, error => {
-          this.submittingTeam = false;
-          this.team = null;
-          this.teamSubmitErrorFlag = true;
-         });
-      }
-
-  }
-
   submitEntry(): void {
       this.submitting = true;
       this.playerService.savePlayerToTeam(this.model).then(playerToTeam => {
@@ -84,19 +63,24 @@ export class PlayerToTeamWizardComponent implements OnInit {
           this.model = playerToTeam;
           this.entrySaved.emit(playerToTeam);
           this.team = null;
-          this.wizard.close();
-          this.open = false;
           this.errorSubmittingFlag = false;
+          this.showSnackBar('Entry Saved');
+          this.dialogRef.close();
       }).catch(error => {
           this.submitting = false;
           this.errorSubmittingFlag = true
+          this.showSnackBar('Error Saving Entry: ' + error.toString());
       })
   }
 
-  closeWizard(): void {
+  cancel(): void {
       this.team = null;
       this.onCancel.emit();
-      this.open = false;
+      this.dialogRef.close();
+  }
+
+  showSnackBar(message: string): void {
+    this.snackBar.open(message, null, {duration: 2000});
   }
 
 }

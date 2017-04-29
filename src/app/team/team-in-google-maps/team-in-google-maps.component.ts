@@ -4,7 +4,6 @@ import { GoogleMapGeocodingService } from '../../services/google-map-geocoding.s
 import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocoding-result-geometry-location";
 import {Player} from "../../player";
 import {Team} from "../../team";
-import {Router} from "@angular/router";
 import {RouterUtilsService} from "../../services/router-utils.service";
 
 @Component({
@@ -27,7 +26,7 @@ export class TeamInGoogleMapsComponent implements OnInit  {
 
     ngOnInit(): void {
         this.googleMapGeocodingService.getGeocoding(this.team.location).then(geocoding => this.center = geocoding.results[0].geometry.location);
-        for (let player of this.players) {
+        for (let player of this.players.filter(player => player.bornAddress)) {
             this.googleMapGeocodingService.getGeocoding(player.bornAddress).then(geocoding => this.markersInfoToDisplay.push(this.createMarker(player, geocoding.results[0].geometry.location)));
         }
     }

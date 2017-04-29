@@ -1,14 +1,14 @@
 <h3 md-dialog-title>Add Player History:</h3>
 <md-dialog-content>
-    <md-tab-group>
-        <md-tab>
+    <md-tab-group [selectedIndex]="selectedIndex">
+        <md-tab disabled>
             <ng-template md-tab-label>
                 <md-icon svgIcon="team"></md-icon> Select the Team
             </ng-template>
 
             <div class="row flex-items-xs-center">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <team-search (teamClicked)="setTeam($event)" [disabled]="addTeam == true"></team-search>
+                    <team-search (teamClicked)="setTeam($event)"></team-search>
                     <clr-icon *ngIf = "team != null" shape="remove" class="clickable is-danger" size="36" (click)="team = null"></clr-icon>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -19,21 +19,8 @@
                 </div>
             </div>
 
-            <p>Or, if yoy don't find your football team, you can add it</p>
-            <button type="submit" class="btn btn-link" (click)="addTeam = !addTeam">{{(!addTeam || addTeam == false) ? 'Add a new team': 'Close Add a new team'}}</button>
-            <app-team-cud *ngIf="addTeam" [(model)]="teamModel" (form)="theTeamForm = $event"></app-team-cud>
-            <div *ngIf="submittingTeam">
-                <span class="spinner spinner-inline"></span>
-                <span>Submitting the team...</span>
-            </div>
-            <div *ngIf="submittingTeam == false && teamSubmitErrorFlag" class="alert alert-danger">
-                <div class="alert-item">
-                    <span class="alert-text">The team could not be added, please try again.</span>
-                </div>
-            </div>
-
         </md-tab>
-        <md-tab [disabled]="submittingTeam || ((!addTeam || addTeam == false) && !team) || (addTeam == true && (!theTeamForm || !theTeamForm.valid))">
+        <md-tab>
             <ng-template md-tab-label>
                 <md-icon svgIcon="shorts-with-number-12"></md-icon> Add Dates
             </ng-template>
@@ -55,9 +42,8 @@
     </md-tab-group>
 </md-dialog-content>
 <md-dialog-actions class="footer">
-    <button md-button color="primary" [disabled]="submitting" (click)="previousStep()">Cancel</button>
-    <button md-button color="primary" [disabled]="submitting" (click)="previousStep()">Previous Step</button>
-    <button md-raised-button color="primary" [disabled]="false" (click)="nextStep()">Submit</button>
+    <button md-button color="primary" [disabled]="submitting" (click)="cancel()">Cancel</button>
+    <button md-raised-button color="primary" [disabled]="!isValidForm() || submitting" (click)="submitEntry()">Submit</button>
 </md-dialog-actions>
 
 <!--
