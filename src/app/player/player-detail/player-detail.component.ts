@@ -1,17 +1,17 @@
 import { Component, OnInit }      from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import { Location }               from '@angular/common';
-import {TeamService} from "../../services/team.service";
-import {PlayerService} from "../../services/player.service";
-import {Player} from "../../player";
-import {PlayerToTeam} from "../../player-to-team";
-import {PlayerToTeamSportDetails} from "../../player-to-team-sport-details";
-import {Team} from "../../team";
-import {PlayerHistoryUtilsService} from "../../services/player-history-utils.service";
+import {TeamService} from '../../services/team.service';
+import {PlayerService} from '../../services/player.service';
+import {Player} from '../../player';
+import {PlayerToTeam} from '../../player-to-team';
+import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
+import {Team} from '../../team';
+import {PlayerHistoryUtilsService} from '../../services/player-history-utils.service';
 
 
 @Component({
-  selector: 'player-detail',
+  selector: 'app-player-detail',
   templateUrl: 'player-detail.component.html',
   styleUrls: ['player-detail.component.scss'],
   providers: [PlayerService, TeamService, PlayerHistoryUtilsService]
