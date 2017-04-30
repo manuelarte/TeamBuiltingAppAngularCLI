@@ -1,7 +1,7 @@
 {
   "name": "teambuilting",
   "version": "0.8.0",
-  "description": "Angular-CLI starter for a Clarity project",
+  "description": "TeamBuilting Application",
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",

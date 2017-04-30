@@ -9,7 +9,7 @@ export const title = 'Team Builting App';
   selector: 'my-app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
-  providers: [Auth],
+  providers: [],
 })
 export class AppComponent implements OnInit {
 
