@@ -9,12 +9,13 @@ import {UserDataService} from '../../services/user-data.service';
 import {UserData} from '../../user-data';
 import {MdSnackBar} from '@angular/material';
 import {UserRightsService} from "../../services/user-rights.service";
+import {RouterUtilsService} from "../../services/router-utils.service";
 
 @Component({
   selector: 'app-player-to-team-card',
   templateUrl: './player-to-team-card.component.html',
   styleUrls: ['./player-to-team-card.component.scss'],
-  providers: [PlayerService, TeamService, UserDataService, Auth]
+  providers: [PlayerService, TeamService, UserDataService, RouterUtilsService]
 })
 export class PlayerToTeamCardComponent implements OnInit {
 
@@ -40,7 +41,7 @@ export class PlayerToTeamCardComponent implements OnInit {
   @Output() entryDeleted: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
 
   constructor(private playerService: PlayerService, private teamService: TeamService, private userDataService: UserDataService,
-              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService) { }
+              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService, public routerUtilsService: RouterUtilsService) { }
 
   ngOnInit() {
       if (this.playerToTeam.teamId) {
