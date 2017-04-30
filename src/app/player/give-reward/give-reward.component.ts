@@ -48,7 +48,7 @@ export class GiveRewardComponent implements OnInit  {
         iconRegistry.addSvgIconInNamespace('reward', 'best-goal', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-kicking-ball-upward.svg'));
         iconRegistry.addSvgIconInNamespace('reward', 'who-are-you', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
         iconRegistry.addSvgIconInNamespace('reward', 'best-coach', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-sketch-for-practice.svg'));
-        iconRegistry.addSvgIconInNamespace('reward', 'most-injury', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-inclined-to-front-flexed-on-knees.svg'));
+        iconRegistry.addSvgIconInNamespace('reward', 'most-injured', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-inclined-to-front-flexed-on-knees.svg'));
     }
 
     ngOnInit(): void {

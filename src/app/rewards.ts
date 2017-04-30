@@ -10,7 +10,7 @@ export class Rewards {
         BEST_GOAL: {name: "Best Goal", icon: "best-goal"},
         WHO_IS_HE: {name: "Who are you?", icon: "who-are-you"},
         BEST_COACH: {name: "Best Coach", icon: "best-coach"},
-        THE_INJURY: {name: "Always Injury!", icon: "most-injury"}
+        THE_INJURY: {name: "Always Injured!", icon: "most-injured"}
     };
 
 }

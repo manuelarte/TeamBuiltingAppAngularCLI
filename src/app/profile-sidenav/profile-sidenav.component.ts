@@ -8,7 +8,7 @@ import {UserData} from "../user-data";
   selector: 'app-profile-sidenav',
   templateUrl: './profile-sidenav.component.html',
   styleUrls: ['./profile-sidenav.component.scss'],
-  providers: [Auth, UserDataService, RouterUtilsService]
+  providers: [UserDataService, RouterUtilsService]
 })
 export class ProfileSidenavComponent implements OnInit {
 
