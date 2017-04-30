@@ -21,7 +21,9 @@ export class ToolbarMenuComponent implements OnInit {
   openTeamDialog() {
     const dialogRef = this.dialog.open(TeamCudDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
-          this.openPlayerHistoryDialog(result)
+          if (result) {
+            this.openPlayerHistoryDialog(result)
+          }
       });
   }
 
