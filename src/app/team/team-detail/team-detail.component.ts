@@ -63,6 +63,16 @@ export class TeamDetailComponent implements OnInit {
       });
   }
 
+  getPlayerIds(): number[] {
+      const playerIds: number[] = [];
+      this.playersToTeam.filter(playerToTeam => {
+          if (playerIds.indexOf(playerToTeam.playerId) < 0) {
+              playerIds.push(playerToTeam.playerId);
+          }
+      })
+      return playerIds;
+  }
+
   getFromYear(): number {
     return this.team.fromDate.getFullYear();
   }

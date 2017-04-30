@@ -26,9 +26,9 @@
             </div>
         </div>
 
-        <div *ngIf="players && team" class="team-in-google-maps">
+        <div *ngIf="players && getPlayerIds().length === players.length && team" class="team-in-google-maps">
             <h1 id="team-in-google-maps">Locations In the Map:</h1>
-            <team-in-google-maps *ngIf="players.length > 0" [players]="players" [team]="team">Loading map...</team-in-google-maps>
+            <team-in-google-maps [players]="players" [team]="team">Loading map...</team-in-google-maps>
         </div>
 
     </div>
