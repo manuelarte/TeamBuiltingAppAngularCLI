@@ -1,5 +1,4 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
-import {ClarityModule} from 'clarity-angular';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
@@ -13,7 +12,7 @@ import {PodiumComponent} from "../statistics/podium/podium.component";
 import {CommonModule} from "@angular/common";
 import {PlayerModule} from "../player/player.module";
 import {StepsModule} from 'primeng/primeng';
-import {MdButtonModule, MdCheckboxModule, MdInputModule} from "@angular/material";
+import {MdButtonModule, MdCardModule, MdCheckboxModule, MdInputModule} from "@angular/material";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProfileModule} from "../profile/profile.module";
@@ -26,7 +25,6 @@ import {ProfileModule} from "../profile/profile.module";
         ReactiveFormsModule,
         BrowserAnimationsModule,
         HttpModule,
-        ClarityModule,
         GalleriaModule,
         StepsModule,
         RatingModule,
@@ -34,6 +32,7 @@ import {ProfileModule} from "../profile/profile.module";
         PlayerModule,
         ProfileModule,
         // Material Modules
+        MdCardModule,
         MdButtonModule,
         MdCheckboxModule,
         MdInputModule,

@@ -9,7 +9,7 @@
             <div class="row flex-items-xs-center">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <team-search (teamClicked)="setTeam($event)"></team-search>
-                    <clr-icon *ngIf = "team != null" shape="remove" class="clickable is-danger" size="36" (click)="team = null"></clr-icon>
+                    <md-icon *ngIf = "team != null" class="clickable" (click)="team = null">highlight_off</md-icon>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div *ngIf="team" class="team-container">

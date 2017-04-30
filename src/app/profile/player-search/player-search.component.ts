@@ -1,11 +1,14 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 import {PlayerSearchService} from '../../services/player-search.service';
 import {Player} from '../../player';
 import {Page} from '../../page';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'player-search',
@@ -14,6 +17,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
   providers: [PlayerSearchService]
 })
 export class PlayerSearchComponent implements OnInit {
+    @Input() disabled = false;
+    myControl = new FormControl({value: '', disabled: this.disabled});
     playersPage: Observable<Page<Player>>;
     private searchTerms = new Subject<string>();
 
@@ -29,7 +34,7 @@ export class PlayerSearchComponent implements OnInit {
 
     ngOnInit(): void {
         const defaultPage: Page<Player> = new Page<Player>();
-        this.playersPage = this.searchTerms
+        this.playersPage = this.myControl.valueChanges
             .debounceTime(300)        // wait for 300ms pause in events
             .distinctUntilChanged()   // ignore if next search term is same as previous
             .switchMap(term => term   // switch to new observable each time

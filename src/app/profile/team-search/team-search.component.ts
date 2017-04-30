@@ -33,20 +33,9 @@ export class TeamSearchComponent implements OnInit {
 
   ngOnInit(): void {
     const defaultPage: Page<Team> = new Page<Team>();
-    this.teamsPage = this.searchTerms
-      .debounceTime(300)        // wait for 300ms pause in events
-      .distinctUntilChanged()   // ignore if next search term is same as previous
-      .switchMap(term => term   // switch to new observable each time
-        // return the http search observable
-        ? this.teamSearchService.search(term)
-        // or the observable of empty heroes if no search term
-        : Observable.of<Page<Team>>(defaultPage))
-      .catch(error => {
-        // TODO: real error handling
-        return Observable.of<Page<Team>>(defaultPage);
-      });
 
-      this.teamsPage = this.myControl.valueChanges
+
+    this.teamsPage = this.myControl.valueChanges
           .debounceTime(300)        // wait for 300ms pause in events
           .distinctUntilChanged()   // ignore if next search term is same as previous
           .switchMap(term => term   // switch to new observable each time
@@ -57,7 +46,7 @@ export class TeamSearchComponent implements OnInit {
           .catch(error => {
               // TODO: real error handling
               return Observable.of<Page<Team>>(defaultPage);
-          });
+    });
   }
 
   onTeamClicked(team: Team): void {

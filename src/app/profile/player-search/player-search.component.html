@@ -1,0 +1,26 @@
+<div id="search-component">
+    <h4>Player Search</h4>
+
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <md-input-container>
+                <input mdInput type="text" #searchInput id="search_input" placeholder="Search for a Player..."
+                       [formControl]="myControl" [mdAutocomplete]="auto">
+            </md-input-container>
+
+            <md-autocomplete #auto="mdAutocomplete">
+                <md-option *ngIf="(playersPage | async)?.content?.length == 0" disabled>Players not found</md-option>
+                <md-option *ngFor="let player of (playersPage | async)?.content" [value]="player.name"
+                           (click)="searchInput.value = '';onPlayerClicked(player)">
+                    <img class="entry-img" [src]="player.imageLink">{{ player.name }}
+                </md-option>
+            </md-autocomplete>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <md-progress-spinner class="adjust" *ngIf="myControl.value && (playersPage | async)?.content == null"
+                                 mode="indeterminate"></md-progress-spinner>
+        </div>
+    </div>
+
+</div>

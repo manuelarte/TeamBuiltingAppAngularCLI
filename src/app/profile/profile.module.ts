@@ -1,21 +1,11 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import { CommonModule } from '@angular/common'
-import {ClarityModule} from 'clarity-angular';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from 'angular2-google-maps/core';
 
-import {InputTextModule} from 'primeng/primeng';
-import {DropdownModule} from 'primeng/primeng';
-
-
-import {GrowlModule} from 'primeng/primeng';
-import {DataListModule} from 'primeng/primeng';
-
-import {CalendarModule} from 'primeng/primeng';
-import {MultiSelectModule} from 'primeng/primeng';
 import {
     MdAutocompleteModule,
     MdButtonModule, MdCheckboxModule, MdIconModule, MdInputModule, MdProgressSpinnerModule,
@@ -30,6 +20,7 @@ import {PlayerToTeamCudComponent} from './player-to-team-cud/player-to-team-cud.
 import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-common-cud/player-to-sport-details-common-cud.component';
 import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-team-wizard.component";
 import {TeamSearchComponent} from "./team-search/team-search.component";
+import {PlayerSearchComponent} from "./player-search/player-search.component";
 
 
 @NgModule({
@@ -41,7 +32,6 @@ import {TeamSearchComponent} from "./team-search/team-search.component";
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        ClarityModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
         }),
@@ -67,12 +57,13 @@ import {TeamSearchComponent} from "./team-search/team-search.component";
         PlayerToSportDetailsModalComponent,
         PlayerToTeamWizardComponent,
         TeamSearchComponent,
+        PlayerSearchComponent,
     ],
     entryComponents: [PlayerToSportDetailsModalComponent, PlayerToTeamWizardComponent],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: [TeamSearchComponent, PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
+    exports: [TeamSearchComponent, PlayerSearchComponent, PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
 })
 export class ProfileModule {
 }
