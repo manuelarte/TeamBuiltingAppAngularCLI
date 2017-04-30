@@ -9,6 +9,7 @@ import {Player} from '../player';
 import {AuthHttp} from 'angular2-jwt';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
+import {PlayerToTeam} from "../player-to-team";
 
 
 @Injectable()
@@ -33,10 +34,10 @@ export class TeamService {
         return this.authHttp.post(this.teamUrl, team).map(this.convertFromDateAndToDate);
   }
 
-  getPlayers(id: string, date: string = null): Promise<Player[]> {
+  getPlayers(id: string, date: string = null): Promise<PlayerToTeam[]> {
     const params: URLSearchParams = new URLSearchParams();
     params.set('date', date);
-    return this.http.get(`${this.playerToTeamsUrl}/teams/${id}`, {search: params}).map(response => <Player[]> response.json())
+    return this.http.get(`${this.playerToTeamsUrl}/teams/${id}`, {search: params}).map(response => <PlayerToTeam[]> response.json())
       .toPromise();
   }
 

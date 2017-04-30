@@ -51,7 +51,7 @@ export class PlayerCommentFormComponent implements OnInit {
   playerCommentSubmitting: boolean = false;
 
   playerCommentForm = new FormGroup({
-      comment: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(200)])),
+      comment: new FormControl({disabled: this.playerCommentSubmitting }, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(200)])),
       reason: new FormControl('', Validators.required)
   });
 

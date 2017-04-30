@@ -20,18 +20,16 @@
         <div class="team-players">
             <h1 id="players">The Players:</h1>
             <div *ngIf="players && team" class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let player of players">
-                    <player-in-team #playerInTeam [player]="player" [season]="season" [team]="team">Loading players...</player-in-team>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let playerToTeam of playersToTeam">
+                    <app-player-in-team #playerInTeam [playerToTeam]="playerToTeam" [season]="season">Loading players...</app-player-in-team>
                 </div>
             </div>
         </div>
 
-        <div class="team-in-google-maps">
+        <div *ngIf="players && team" class="team-in-google-maps">
             <h1 id="team-in-google-maps">Locations In the Map:</h1>
-            <team-in-google-maps *ngIf="players" [players]="players" [team]="team">Loading map...</team-in-google-maps>
+            <team-in-google-maps *ngIf="players.length > 0" [players]="players" [team]="team">Loading map...</team-in-google-maps>
         </div>
-
-        <button class="btn btn-info-outline" (click)="goBack()">Back</button>
 
     </div>
 <!--    <nav class="sidenav">

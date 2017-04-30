@@ -1,4 +1,4 @@
-<md-card class="example-card">
+<md-card *ngIf = "!isBusy()" class="example-card">
     <md-card-header>
         <div md-card-avatar [ngStyle]="{'background-image': 'url(' + team.emblemLink + ')'}" class="example-header-image"></div>
         <md-card-title>{{player.name}}</md-card-title>
@@ -23,9 +23,7 @@
     <img md-card-image [src]="getPicture(player)" class="player-in-team-card-img">
     <md-card-content>
         <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
+            {{player.name}} has been playing for {{team.name}} for {{timeInTeam()}}.
         </p>
     </md-card-content>
     <md-card-actions>

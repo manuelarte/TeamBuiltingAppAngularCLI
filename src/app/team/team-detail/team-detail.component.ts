@@ -6,26 +6,31 @@ import {SeasonUtilService, Season} from "../../services/season-utils.service";
 import {Player} from "../../player";
 import {Team} from "../../team";
 import {ExceptionMessageBackend} from "app/exception-message-backend";
+import {PlayerToTeam} from "../../player-to-team";
+import {PlayerService} from "../../services/player.service";
 
 
 @Component({
   selector: 'team-detail',
   templateUrl: 'team-detail.component.html',
   styleUrls: ['team-detail.component.scss'],
-  providers: [TeamService, SeasonUtilService]
+  providers: [TeamService, PlayerService, SeasonUtilService]
 })
 export class TeamDetailComponent implements OnInit {
   team: Team;
+  playersToTeam: PlayerToTeam[];
   players: Player[];
-    /**
-     * The period of time you want to see the team
-     */
-    date: Date;
-    private seasonStartsInMonth: number = 8; // September
-    season: Season;
+
+  /**
+   * The period of time you want to see the team
+  */
+  date: Date;
+  private seasonStartsInMonth: number = 8; // September
+  season: Season;
 
   constructor(
     private teamService: TeamService,
+    private playerService: PlayerService,
     private seasonUtilService: SeasonUtilService,
     private route: ActivatedRoute,
     private router: Router,
@@ -44,7 +49,15 @@ export class TeamDetailComponent implements OnInit {
                       this.forwardError(error.json())
               });
               this.teamService.getPlayers(id, date)
-                  .then(players => this.players = players).catch(this.handleError);
+                  .then(playersToTeam => {
+                      this.playersToTeam = playersToTeam;
+                      this.players = [];
+                      this.playersToTeam.forEach(playerToTeam => {
+                          this.playerService.getPlayer(playerToTeam.playerId).then(player => {
+                              this.players.push(player);
+                          });
+                      });
+                  }).catch(this.handleError);
           });
           this.season = this.seasonUtilService.getSeasonForDate(this.date, this.seasonStartsInMonth);
       });

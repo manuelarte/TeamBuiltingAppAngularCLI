@@ -4,7 +4,7 @@ import {PlayerComment} from "../../../../player-comment";
 import {User} from "../../../../user";
 
 @Component({
-  selector: 'show-player-comment',
+  selector: 'app-show-player-comment',
   templateUrl: 'show-player-comment.component.html',
   styleUrls: ['show-player-comment.component.scss'],
   providers: [ ],
@@ -33,7 +33,7 @@ import {User} from "../../../../user";
 export class ShowPlayerCommentComponent implements OnInit {
 
   @Input() playerComment: PlayerComment = new PlayerComment();
-  @Input() deleteable: boolean = false;
+  @Input() deleteable = false;
   @Input() user: User;
 
   @Output() onDeleted: EventEmitter<PlayerComment> = new EventEmitter<PlayerComment>();
