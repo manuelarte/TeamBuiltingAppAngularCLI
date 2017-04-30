@@ -40,6 +40,7 @@ import {
 import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
 import {PlayerCudCardComponent} from "./player-cud-card/player-cud-card.component";
+import {UserRightsService} from "../services/user-rights.service";
 
 @NgModule({
   imports: [
@@ -93,7 +94,7 @@ import {PlayerCudCardComponent} from "./player-cud-card/player-cud-card.componen
       ShowPlayerRewardComponent,
       GoogleChart,
   ],
-  providers: [
+  providers: [ UserRightsService,
       { provide: LOCALE_ID, useValue: 'nl' },
   ],
     entryComponents: [GiveRewardComponent],

@@ -5,6 +5,7 @@ import {UserData} from "../../user-data";
 import {UserDataService} from "app/services/user-data.service";
 import {PlayerService} from "../../services/player.service";
 import {MdSnackBar} from "@angular/material";
+import {UserRightsService} from "../../services/user-rights.service";
 
 @Component({
   selector: 'app-player-cud-card',
@@ -24,7 +25,7 @@ export class PlayerCudCardComponent implements OnInit {
   errorLoadingUserData = false;
 
   constructor(private auth: Auth, private userDataService: UserDataService, private playerService: PlayerService,
-              public snackBar: MdSnackBar) { }
+              public snackBar: MdSnackBar, private userRightsService: UserRightsService) { }
 
   ngOnInit() {
       if (this.auth.authenticated()) {
@@ -55,7 +56,7 @@ export class PlayerCudCardComponent implements OnInit {
   }
 
   userCanEdit(): boolean {
-    return this.auth.userProfile ? this.auth.userProfile.user_id === this.userData.userId : false;
+      return this.userRightsService.userCanEdit(this.userData, this.player.id);
   }
 
 }

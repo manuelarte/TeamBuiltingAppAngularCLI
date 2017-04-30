@@ -8,6 +8,7 @@ import {Auth} from '../../services/auth-service';
 import {UserDataService} from '../../services/user-data.service';
 import {UserData} from '../../user-data';
 import {MdSnackBar} from '@angular/material';
+import {UserRightsService} from "../../services/user-rights.service";
 
 @Component({
   selector: 'app-player-to-team-card',
@@ -39,7 +40,7 @@ export class PlayerToTeamCardComponent implements OnInit {
   @Output() entryDeleted: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
 
   constructor(private playerService: PlayerService, private teamService: TeamService, private userDataService: UserDataService,
-              private auth: Auth, public snackBar: MdSnackBar) { }
+              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService) { }
 
   ngOnInit() {
       if (this.playerToTeam.teamId) {
@@ -111,7 +112,7 @@ export class PlayerToTeamCardComponent implements OnInit {
   }
 
   userCanEdit(): boolean {
-      return this.auth.userProfile ? this.auth.userProfile.user_id === this.userData.userId : false;
+      return this.userRightsService.userCanEdit(this.userData, this.playerToTeam.playerId);
   }
 
   editEntry(): void {

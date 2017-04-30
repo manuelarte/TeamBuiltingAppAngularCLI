@@ -8,6 +8,7 @@ import {UserDataService} from '../../../services/user-data.service';
 import {UserData} from '../../../user-data';
 import {PlayerService} from "../../../services/player.service";
 import {MdSnackBar} from "@angular/material";
+import {UserRightsService} from "../../../services/user-rights.service";
 
 
 @Component({
@@ -38,7 +39,7 @@ export class PlayerDetailTeamSportsComponent implements OnInit {
   @Output() entryDeleted: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
   constructor(private teamSportService: TeamSportService, private playerService: PlayerService, private userDataService: UserDataService,
-              private auth: Auth, public snackBar: MdSnackBar) {}
+              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService) {}
 
   ngOnInit(): void {
       this.loadingSportsFlag = true;
@@ -67,7 +68,7 @@ export class PlayerDetailTeamSportsComponent implements OnInit {
   }
 
   userCanEdit(): boolean {
-    return this.auth.userProfile ? this.auth.userProfile.user_id === this.userData.userId : false;
+    return this.userRightsService.userCanEdit(this.userData, this.player.id);
   }
 
   editEntry(sportName: string): void {
