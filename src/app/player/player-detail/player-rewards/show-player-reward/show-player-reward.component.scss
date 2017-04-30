@@ -1,6 +1,35 @@
-.player_image {
+.user-image {
     width: 100%;
     height: auto;
-    max-height: 300px;
+    max-height: 100px;
     border-radius: 50%;
+}
+
+.example-header-image {
+    background-size: cover;
+}
+
+blockquote {
+    font-size:2em;
+    font-style:italic;
+    padding:1em;
+    margin:0.5em;
+    border-left:10px solid rgba(0,0,0,0.1);
+    transition:border-left 0.5s;
+    -webkit-transition:border-left 0.5s;
+    -moz-transition:border-left 0.5s;
+    -ms-transition:border-left 0.5s;
+    -o-transition:border-left 0.5s;
+}
+cite {
+    text-align:right;
+    display:block;
+    margin:0 2em;
+    font-size:1.5em;
+}
+cite:before {
+    content:"—";
+}
+blockquote:hover {
+    border-left:10px solid rgb(255,110,11);
 }

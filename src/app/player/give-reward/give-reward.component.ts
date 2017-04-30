@@ -8,7 +8,9 @@ import {Team} from "../../team";
 import {Season} from "../../services/season-utils.service";
 import {PlayerReward} from "../../player-reward";
 import {Auth} from "../../services/auth-service";
-import {MdDialogRef, MdSnackBar} from "@angular/material";
+import {MdDialogRef, MdIconRegistry, MdSnackBar} from "@angular/material";
+import {Reward, Rewards} from "../../rewards";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: 'give-reward',
@@ -23,7 +25,7 @@ export class GiveRewardComponent implements OnInit  {
     @Input() season: Season;
     model: PlayerReward = new PlayerReward();
 
-    rewards: string[];
+    rewards: {dbName: string, object: Reward}[] = [];
     errorLoadingRewards = false;
 
     submittingReward = false;
@@ -38,14 +40,27 @@ export class GiveRewardComponent implements OnInit  {
         private playerRewardService: PlayerRewardsService,
         public dialogRef: MdDialogRef<GiveRewardComponent>,
         public snackBar: MdSnackBar,
-    ) {}
+        private iconRegistry: MdIconRegistry, private sanitizer: DomSanitizer
+    ) {
+        iconRegistry.addSvgIconInNamespace('reward', 'best-player', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-with-the-ball-under-the-feet.svg'));
+        iconRegistry.addSvgIconInNamespace('reward', 'top-scorer', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-in-midair.svg'));
+        iconRegistry.addSvgIconInNamespace('reward', 'worst-one', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
+        iconRegistry.addSvgIconInNamespace('reward', 'best-goal', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-kicking-ball-upward.svg'));
+        iconRegistry.addSvgIconInNamespace('reward', 'who-are-you', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
+        iconRegistry.addSvgIconInNamespace('reward', 'best-coach', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-sketch-for-practice.svg'));
+        iconRegistry.addSvgIconInNamespace('reward', 'most-injury', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-inclined-to-front-flexed-on-knees.svg'));
+    }
 
     ngOnInit(): void {
         this.model.teamId = this.team.id;
         this.model.playerId = this.player.id;
         this.model.fromDate = this.season.startDate;
         this.model.toDate = this.season.endDate;
-        this.playerRewardService.getRewards().then(rewards => this.rewards = rewards).catch(error => this.errorLoadingRewards = true)
+        this.playerRewardService.getRewards().then(rewards =>
+            rewards.forEach(reward => this.rewards.push(
+                {dbName: reward, object: Rewards.rewards[reward]}
+                ))
+        ).catch(error => this.errorLoadingRewards = true)
     }
 
     onSubmit() {

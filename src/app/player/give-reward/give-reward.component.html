@@ -10,10 +10,10 @@
     <form [formGroup]="playerRewardForm">
 
         <section>
-            <md-select placeholder="Reward" name="reward" [(ngModel)]="model.reward" formControlName="reward" required>
-                <md-option *ngFor="let reward of rewards">
-                    <md-icon svgIcon="reward"></md-icon>
-                    {{reward}}
+            <md-select #reward placeholder="Reward" name="reward" [(ngModel)]="model.reward" formControlName="reward" required>
+                <md-option *ngFor="let reward of rewards" [value]="reward.dbName">
+                    <md-icon [svgIcon]="'reward:' + reward.object.icon"></md-icon>
+                    {{reward.object.name}}
                 </md-option>
             </md-select>
         </section>

@@ -1,21 +1,19 @@
-<div class="card clickable">
-    <div class="card-header">
-        Reward received in {{team.name}} {{getSeason(playerReward.fromDate)}}
-    </div>
-    <div class="card-block">
-        <div class="card-media-block">
-            <img [src]="user.picture" class="card-media-image">
-            <div class="card-media-description">
-                        <span class="card-media-title">
-                            Reward received from {{user.nickname}}
-                        </span>
-                <span class="card-media-text">
-                            {{playerReward.reward}}
-                        </span>
+<md-card>
+    <md-card-header>
+        <div md-card-avatar [ngStyle]="{'background-image': 'url(' + team.emblemLink + ')'}" class="example-header-image"></div>
+        <md-card-title>Reward received in {{team.name}} {{getSeason(playerReward.fromDate)}}</md-card-title>
+    </md-card-header>
+    <md-card-content>
+        <hr class="line">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <img [src]="user.picture" class="user-image">
+            </div>
+            <div>
+                <span>{{playerReward.reward}}</span>
+                <cite>{{user.given_name}} {{user.family_name}}</cite>
+                <blockquote>{{playerReward.comment}}</blockquote>
             </div>
         </div>
-        <div class="card-text">
-            {{playerReward.comment}}
-        </div>
-    </div>
-</div>
+    </md-card-content>
+</md-card>

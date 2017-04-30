@@ -19,6 +19,7 @@ import { ProfileSidenavComponent } from './profile-sidenav/profile-sidenav.compo
 import { ToolbarMenuComponent } from './toolbar-menu/toolbar-menu.component';
 import {TeamCudDialogComponent} from './team-cud-dialog/team-cud-dialog.component';
 import { SettingsComponent } from './settings/settings.component';
+import {Auth} from "./services/auth-service";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -50,6 +51,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     entryComponents: [TeamCudDialogComponent],
     providers: [
+        Auth,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,
