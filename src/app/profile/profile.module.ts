@@ -45,15 +45,8 @@ import {TeamSearchComponent} from "./team-search/team-search.component";
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
         }),
-        MdButtonModule,
-        // PrimeNG modules
-        CalendarModule,
-        DataListModule,
-        DropdownModule,
-        GrowlModule,
-        InputTextModule,
-        MultiSelectModule,
         // Material Modules,
+        MdButtonModule,
         MdAutocompleteModule,
         MdInputModule,
         MdSelectModule,

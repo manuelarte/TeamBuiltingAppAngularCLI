@@ -53,13 +53,6 @@ import {UserRightsService} from "../services/user-rights.service";
     HttpModule,
     ClarityModule,
     AgmCoreModule,
-    // PrimeNG modules
-    CalendarModule,
-    DataListModule,
-    DropdownModule,
-    GrowlModule,
-    InputTextModule,
-    MultiSelectModule,
     // Material Modules
     MdCardModule,
     MdButtonModule,

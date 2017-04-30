@@ -32,13 +32,6 @@ import {ErrorHandlingModule} from "../error-handling/error-handling.module";
         HttpModule,
         ClarityModule,
         AgmCoreModule,
-        // PrimeNG modules
-        CalendarModule,
-        DataListModule,
-        DropdownModule,
-        GrowlModule,
-        InputTextModule,
-        MultiSelectModule,
         // App Modules
         PlayerModule,
         ErrorHandlingModule,
