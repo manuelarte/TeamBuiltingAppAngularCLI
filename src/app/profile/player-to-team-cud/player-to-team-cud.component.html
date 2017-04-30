@@ -14,6 +14,6 @@
         <md-error *ngIf="!toDateIsAfterFromDate()">To Date is before From Date</md-error>
     </md-input-container>
 
-    <md-checkbox [disabled]="!isEditing()" [checked]="isStillActive()" (change)="changeStillActive()">Still Playing</md-checkbox>
+    <md-checkbox *ngIf="isEditing() || (!isEditing() && !model.toDate)" [disabled]="!isEditing()" [checked]="isStillActive()" (change)="changeStillActive()">Still Playing</md-checkbox>
 </form>
 
