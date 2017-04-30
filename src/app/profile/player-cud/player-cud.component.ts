@@ -1,10 +1,10 @@
 /**
- * Created by Manuel on 22/11/2016.
- */
+    * @author Manuel
+    * @since 22/11/2016
+    */
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {GoogleMapGeocodingService} from "../../services/google-map-geocoding.service";
 import {Player} from "../../player";
-import {GoogleMapGeocodingResultGeometryLocation} from "../../google-map-geocoding-result-geometry-location";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({

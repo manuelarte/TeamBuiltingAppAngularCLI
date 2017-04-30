@@ -1,5 +1,5 @@
 import { Component, OnInit }      from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import { Location }               from '@angular/common';
 import {TeamService} from "../../services/team.service";
 import {PlayerService} from "../../services/player.service";
@@ -47,7 +47,7 @@ export class PlayerDetailComponent implements OnInit {
             this.playerLoaded = true;
         }).catch(error => {
             this.playerLoaded = true;
-            this.handleError;
+            this.handleError(error);
       });
 
       this.playerService.getPlayerHistory(id).then(playerHistory => {

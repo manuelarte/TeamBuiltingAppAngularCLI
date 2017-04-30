@@ -37,12 +37,12 @@ export class PlayerPositionIconComponent implements OnInit {
     }
 
     getLeft(): string {
-        let axialCoordinates: AxialCoordinates = this.adjustPositionToHorizontalField(this.teamSportPosition)
+        let axialCoordinates: AxialCoordinates = this.adjustPositionToHorizontalField(this.teamSportPosition);
         return axialCoordinates.x*100 + '%';
     }
 
     getTop(): string {
-        let axialCoordinates: AxialCoordinates = this.adjustPositionToHorizontalField(this.teamSportPosition)
+        let axialCoordinates: AxialCoordinates = this.adjustPositionToHorizontalField(this.teamSportPosition);
         return axialCoordinates.y*100 + '%';
     }
 

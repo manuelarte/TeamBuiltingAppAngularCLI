@@ -21,7 +21,6 @@ import {TeamDetailSportIntroComponent} from "./team-detail/team-detail-sport-int
 import {TeamRoutingModule} from "./team-routing.module";
 import {CommonModule} from "@angular/common";
 import {ErrorHandlingModule} from "../error-handling/error-handling.module";
-import {MdAutocompleteModule, MdInputModule, MdProgressSpinnerModule} from "@angular/material";
 
 
 @NgModule({

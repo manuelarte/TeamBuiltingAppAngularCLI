@@ -159,15 +159,13 @@ h2 {
     right: 0;
     visibility: hidden;
     width: 160px;
-    transform: translateZ(0);
-    transform: translateX(0px);
+    transform: translateX(0px) translateZ(0);
     transition: transform 0.35s ease;
 }
 .card__social--active {
     visibility: visible;
     /*z-index: 3;*/
-    transform: translateZ(0);
-    transform: translateX(-48px);
+    transform: translateX(-48px) translateZ(0);
     transition: transform 0.35s ease;
 }
 

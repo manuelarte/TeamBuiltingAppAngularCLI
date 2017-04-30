@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TeamSport, TeamSportPosition} from '../../team-sports';
+import {TeamSport} from '../../team-sports';
 import {TeamSportService} from '../../services/sports-service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {Player} from '../../player';
 

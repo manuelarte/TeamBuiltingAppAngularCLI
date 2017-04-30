@@ -1,7 +1,6 @@
 import { Injectable }      from '@angular/core';
 import {tokenNotExpired, AuthHttp} from 'angular2-jwt';
 import {myConfig} from "./auth.config";
-import {URLSearchParams} from "@angular/http";
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -23,7 +22,7 @@ export class Auth {
     //Store profile object in auth class
     userProfile: any;
 
-    constructor(private authHttp: AuthHttp) {
+    constructor() {
 
         // Set userProfile attribute of already saved profile
         this.userProfile = JSON.parse(localStorage.getItem('profile'));

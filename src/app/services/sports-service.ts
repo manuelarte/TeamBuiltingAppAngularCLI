@@ -3,8 +3,9 @@ import {Http} from "@angular/http";
 import {TeamSport, TeamSportPosition} from "../team-sports";
 import {environment} from "../../environments/environment";
 /**
- * Created by Manuel on 20/11/2016.
- */
+    * @author Manuel
+    * @since 20/11/2016
+    */
 @Injectable()
 export class TeamSportService {
 

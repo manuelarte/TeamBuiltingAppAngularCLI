@@ -25,7 +25,7 @@ export class PlayerDetailIntroComponent implements OnInit {
   getTimelineData() {
     let rows = [];
     rows.push(['Team Name', 'From Date', 'To Date']);
-	this.playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => rows.push([this.teamsByTeamId[entry.teamId].name, entry.fromDate, entry.toDate ? entry.toDate : new Date() ]))
+	this.playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => rows.push([this.teamsByTeamId[entry.teamId].name, entry.fromDate, entry.toDate ? entry.toDate : new Date() ]));
 	return rows;
   }
 

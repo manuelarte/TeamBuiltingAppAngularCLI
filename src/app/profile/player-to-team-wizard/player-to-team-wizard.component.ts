@@ -1,5 +1,4 @@
-import {Component, ViewChild, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import {Wizard} from "clarity-angular";
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {PlayerToTeam} from "../../player-to-team";
 import {Team} from "../../team";
 import {FormGroup} from "@angular/forms";
@@ -68,7 +67,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
           this.dialogRef.close();
       }).catch(error => {
           this.submitting = false;
-          this.errorSubmittingFlag = true
+          this.errorSubmittingFlag = true;
           this.showSnackBar('Error Saving Entry: ' + error.toString());
       })
   }

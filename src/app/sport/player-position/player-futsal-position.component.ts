@@ -1,6 +1,7 @@
 /**
- * Created by Manuel on 20/11/2016.
- */
+    * @author Manuel
+    * @since 20/11/2016
+    */
 import {Component, OnInit, Input} from "@angular/core";
 import {Player} from "../../player";
 import {PlayerToTeamSportDetails} from "../../player-to-team-sport-details";

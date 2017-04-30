@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 /**
- * Created by manuel.doncel.martos on 14-3-2017.
- */
+    * @author manuel.doncel.martos
+    * @since 14-3-2017
+    */
 @Injectable()
 export class DatesService {
 

@@ -14,7 +14,7 @@ export class ShowPlayerRewardComponent implements OnInit {
 
   @Input() playerReward: PlayerReward;
   @Input() team: Team;
-  @Input() user: any
+  @Input() user: any;
 
   private seasonStartsInMonth: number = 8; // September
 

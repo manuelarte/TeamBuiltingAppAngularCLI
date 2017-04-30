@@ -96,7 +96,7 @@ export class PlayerToTeamCardComponent implements OnInit {
       if (this.team) {
           switch (this.team.sport) {
               case 'Football': {
-                  pictureUrl = '../../images/sports/football.jpg'
+                  pictureUrl = '../../images/sports/football.jpg';
                   break;
               }
               case 'Futsal': {

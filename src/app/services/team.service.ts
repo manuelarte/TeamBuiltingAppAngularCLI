@@ -18,7 +18,7 @@ export class TeamService {
   private backendTeamsUrl = `${environment.backendTeamsUrl}`;
   private backendPlayersUrl = `${environment.backendPlayersUrl}`;
   private teamUrl = this.backendTeamsUrl + '/';
-  private playerToTeamsUrl: string = this.backendPlayersUrl + '/playersToTeams'
+  private playerToTeamsUrl: string = this.backendPlayersUrl + '/playersToTeams';
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 

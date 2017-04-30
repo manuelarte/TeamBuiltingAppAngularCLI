@@ -4,7 +4,7 @@ import {TeamService} from "../../../services/team.service";
 import {Auth} from "../../../services/auth-service";
 import {UserDataService} from "../../../services/user-data.service";
 import {PlayerRewardsService} from "../../../services/player-rewards.service";
-import {SeasonUtilService, Season} from "../../../services/season-utils.service";
+import {SeasonUtilService} from "../../../services/season-utils.service";
 import {PlayerReward} from "../../../player-reward";
 import {Player} from "../../../player";
 import {UserData} from "../../../user-data";

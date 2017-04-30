@@ -4,15 +4,16 @@ import {Season} from "../../services/season-utils.service";
 import {Player} from "../../player";
 import {Team} from "../../team";
 import {RouterUtilsService} from "../../services/router-utils.service";
-import {MdDialog, MdDialogConfig, MdDialogRef} from "@angular/material";
+import {MdDialog} from "@angular/material";
 import {GiveRewardComponent} from "../give-reward/give-reward.component";
 import {TeamService} from "app/services/team.service";
 import {PlayerService} from "app/services/player.service";
 import {PlayerToTeam} from "../../player-to-team";
 import {DatesService} from "../../services/dates-service";
 /**
- * Created by Manuel on 05/11/2016.
- */
+    * @author Manuel
+    * @since 05/11/2016
+    */
 @Component({
   selector: 'app-player-in-team',
   templateUrl: 'player-in-team.component.html',

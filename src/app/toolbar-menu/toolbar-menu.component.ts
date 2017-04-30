@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MdDialog, MdIconRegistry} from '@angular/material';
+import {MdDialog} from '@angular/material';
 import {PlayerToSportDetailsModalComponent} from '../profile/player-to-sport-details-modal/player-to-sport-details-modal.component';
 import {TeamCudDialogComponent} from '../team-cud-dialog/team-cud-dialog.component';
 import {PlayerToTeamWizardComponent} from "../profile/player-to-team-wizard/player-to-team-wizard.component";
