@@ -28,7 +28,7 @@ export class TeamCudDialogComponent implements OnInit {
             this.model = team;
             this.teamUpdated.emit(this.model);
             this.flagSubmittingTeam = false;
-            this.closeDialog();
+            this.closeDialog(this.model);
         }).catch(error => {
             this.flagSubmittingTeam = false;
             this.flagErrorSubmittingTeam = true;
@@ -38,8 +38,8 @@ export class TeamCudDialogComponent implements OnInit {
 
     }
 
-    closeDialog() {
-        this.dialogRef.close();
+    closeDialog(team?: Team) {
+        this.dialogRef.close(team);
     }
 
     showSnackBar(message: string): void {

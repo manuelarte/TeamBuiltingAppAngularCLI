@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import {PlayerToTeam} from "../../player-to-team";
 import {Team} from "../../team";
 import {FormGroup} from "@angular/forms";
@@ -16,13 +16,10 @@ import {UserDataService} from "../../services/user-data.service";
 })
 export class PlayerToTeamWizardComponent implements OnInit {
 
-  theTeamForm: FormGroup;
   player: Player;
   model: PlayerToTeam = new PlayerToTeam();
-  team: Team;
-  teamModel: Team = new Team();
-  submittingTeam = false;
-  teamSubmitErrorFlag = false;
+  @Input() team: Team;
+  selectedIndex: number = 0;
 
   private playerToTeamForm: FormGroup;
   submitting = false;
@@ -30,7 +27,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   @Output() entrySaved: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private teamService: TeamService, private playerService: PlayerService, private userDataService: UserDataService,
+  constructor(private playerService: PlayerService, private userDataService: UserDataService,
               public dialogRef: MdDialogRef<PlayerToTeamWizardComponent>, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
@@ -40,6 +37,10 @@ export class PlayerToTeamWizardComponent implements OnInit {
               this.model.playerId = this.player.id;
           });
       });
+      if (this.team) {
+          this.model.teamId = this.team.id;
+          this.selectedIndex = 1;
+      }
   }
 
   public setTeam(team: Team): void {
