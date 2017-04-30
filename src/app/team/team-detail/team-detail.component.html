@@ -9,7 +9,7 @@
             <h1 id="players">The Players:</h1>
             <div *ngIf="players && team" class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let playerToTeam of playersToTeam">
-                    <app-player-in-team #playerInTeam [playerToTeam]="playerToTeam" [season]="season">Loading players...</app-player-in-team>
+                    <app-player-in-team #playerInTeam [playerToTeam]="playerToTeam" [season]="season" class="team-player-card">Loading players...</app-player-in-team>
                 </div>
             </div>
         </div>
