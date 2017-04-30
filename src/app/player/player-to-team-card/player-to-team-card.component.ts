@@ -10,12 +10,13 @@ import {UserData} from '../../user-data';
 import {MdSnackBar} from '@angular/material';
 import {UserRightsService} from "../../services/user-rights.service";
 import {RouterUtilsService} from "../../services/router-utils.service";
+import {UtilsService} from "../../services/utils.service";
 
 @Component({
   selector: 'app-player-to-team-card',
   templateUrl: './player-to-team-card.component.html',
   styleUrls: ['./player-to-team-card.component.scss'],
-  providers: [PlayerService, TeamService, UserDataService, RouterUtilsService]
+  providers: [PlayerService, TeamService, UserDataService, RouterUtilsService, UtilsService]
 })
 export class PlayerToTeamCardComponent implements OnInit {
 
@@ -41,7 +42,8 @@ export class PlayerToTeamCardComponent implements OnInit {
   @Output() entryDeleted: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
 
   constructor(private playerService: PlayerService, private teamService: TeamService, private userDataService: UserDataService,
-              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService, public routerUtilsService: RouterUtilsService) { }
+              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService, public routerUtilsService: RouterUtilsService,
+  private utilsService: UtilsService) { }
 
   ngOnInit() {
       if (this.playerToTeam.teamId) {
@@ -91,27 +93,6 @@ export class PlayerToTeamCardComponent implements OnInit {
     this.editingChange.emit(this.editingValue);
   }
 
-  getPictureBasedOnSport(): string {
-      let pictureUrl = '../../images/sports/football.jpg';
-      if (this.team) {
-          switch (this.team.sport) {
-              case 'Football': {
-                  pictureUrl = '../../images/sports/football.jpg';
-                  break;
-              }
-              case 'Futsal': {
-                  // statements;
-                  break;
-              }
-              default: {
-                  // statements;
-                  break;
-              }
-          }
-      }
-      return pictureUrl;
-  }
-
   userCanEdit(): boolean {
       return this.userRightsService.userCanEdit(this.userData, this.playerToTeam.playerId);
   }
@@ -148,6 +129,13 @@ export class PlayerToTeamCardComponent implements OnInit {
           this.errorSubmittingFlag = true;
           this.showSnackBar('Error Deleting the Entry');
       });
+  }
+
+  getPictureBasedOnSport(): string {
+      if (this.team) {
+        return this.utilsService.getPictureBasedOnSport(this.team.sport);
+      }
+      return '';
   }
 
 }
