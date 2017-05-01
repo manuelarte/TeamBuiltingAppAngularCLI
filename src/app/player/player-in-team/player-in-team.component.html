@@ -1,4 +1,4 @@
-<md-card *ngIf = "!isBusy()" class="example-card">
+<md-card *ngIf = "!isBusy(); else loadingPlayer" class="example-card">
     <md-card-header>
         <div md-card-avatar [ngStyle]="{'background-image': 'url(' + team.emblemLink + ')'}" class="example-header-image"></div>
         <md-card-title>{{player.name}}</md-card-title>
@@ -29,3 +29,6 @@
     <md-card-actions>
     </md-card-actions>
 </md-card>
+<ng-template #loadingPlayer>
+    <md-progress-spinner mode="indeterminate">Loading Player...</md-progress-spinner>
+</ng-template>
