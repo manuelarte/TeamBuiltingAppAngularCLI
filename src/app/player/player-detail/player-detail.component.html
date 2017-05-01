@@ -1,4 +1,4 @@
-<div *ngIf="player" class="content-container">
+<div *ngIf="player; else loadingPlayer" class="content-container">
     <div class="content-area">
 
         <div id="container">
@@ -49,3 +49,6 @@
 
     </div>
 </div>
+<ng-template #loadingPlayer>
+    <md-progress-spinner mode="indeterminate">Loading player info...</md-progress-spinner>
+</ng-template>
