@@ -1,4 +1,4 @@
-<div *ngIf="team && date" class="content-container">
+<div *ngIf="!teamLoadingFlag && !errorTeamLoadingFlag; else loadingTeam" class="content-container">
     <div class="content-area">
 
         <team-detail-sport-intro [team]="team"></team-detail-sport-intro>
@@ -36,3 +36,6 @@
         </section>
     </nav>-->
 </div>
+<ng-template #loadingTeam>
+    <md-progress-spinner mode="indeterminate">Loading team</md-progress-spinner>
+</ng-template>

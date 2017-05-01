@@ -1,23 +1,25 @@
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import { Location }               from '@angular/common';
-import {TeamService} from "../../services/team.service";
-import {SeasonUtilService, Season} from "../../services/season-utils.service";
-import {Player} from "../../player";
-import {Team} from "../../team";
-import {ExceptionMessageBackend} from "app/exception-message-backend";
-import {PlayerToTeam} from "../../player-to-team";
-import {PlayerService} from "../../services/player.service";
+import { Location } from '@angular/common';
+import {TeamService} from '../../services/team.service';
+import {SeasonUtilService, Season} from '../../services/season-utils.service';
+import {Player} from '../../player';
+import {Team} from '../../team';
+import {ExceptionMessageBackend} from 'app/exception-message-backend';
+import {PlayerToTeam} from '../../player-to-team';
+import {PlayerService} from '../../services/player.service';
 
 
 @Component({
-  selector: 'team-detail',
+  selector: 'app-team-detail',
   templateUrl: 'team-detail.component.html',
   styleUrls: ['team-detail.component.scss'],
   providers: [TeamService, PlayerService, SeasonUtilService]
 })
 export class TeamDetailComponent implements OnInit {
   team: Team;
+  teamLoadingFlag = false;
+  errorTeamLoadingFlag = false;
   playersToTeam: PlayerToTeam[];
   players: Player[];
 
@@ -25,7 +27,7 @@ export class TeamDetailComponent implements OnInit {
    * The period of time you want to see the team
   */
   date: Date;
-  private seasonStartsInMonth: number = 8; // September
+  private seasonStartsInMonth = 8; // September
   season: Season;
 
   constructor(
@@ -39,14 +41,21 @@ export class TeamDetailComponent implements OnInit {
 
   ngOnInit(): void {
       this.route.queryParams.forEach((params: Params) => {
-          let date: string = params['date'];
+          const date: string = params['date'];
           this.date = date ? new Date(date) : new Date();
           this.route.params.forEach((params: Params) => {
-              let id = params['id'];
+              const id = params['id'];
+
+              this.teamLoadingFlag = true;
               this.teamService.getTeam(id)
-                  .then(team => this.team = team).catch(error => {
-                      this.handleError(error);
-                      this.forwardError(error.json())
+                  .then(team => {
+                    this.team = team;
+                    this.teamLoadingFlag = false;
+                  }).catch(error => {
+                    this.teamLoadingFlag = false;
+                    this.errorTeamLoadingFlag = true;
+                    this.handleError(error);
+                    this.forwardError(error.json());
               });
               this.teamService.getPlayers(id, date)
                   .then(playersToTeam => {
@@ -69,7 +78,7 @@ export class TeamDetailComponent implements OnInit {
           if (playerIds.indexOf(playerToTeam.playerId) < 0) {
               playerIds.push(playerToTeam.playerId);
           }
-      })
+      });
       return playerIds;
   }
 
@@ -86,12 +95,12 @@ export class TeamDetailComponent implements OnInit {
   }
 
   getSeasons(): string[] {
-      let endDate: Date = this.team.toDate ? this.team.toDate : new Date();
-      let endYear: number = endDate.getMonth() < this.seasonStartsInMonth ? endDate.getFullYear() : endDate.getFullYear() + 1;
-      let years: number[] = this.seasonUtilService.getYearsBetweenTwoYears(this.team.fromDate.getFullYear(), endYear);
-      let toReturn: string[] = [];
+      const endDate: Date = this.team.toDate ? this.team.toDate : new Date();
+      const endYear: number = endDate.getMonth() < this.seasonStartsInMonth ? endDate.getFullYear() : endDate.getFullYear() + 1;
+      const years: number[] = this.seasonUtilService.getYearsBetweenTwoYears(this.team.fromDate.getFullYear(), endYear);
+      const toReturn: string[] = [];
       years.forEach(year => {
-          toReturn.push(year - 1 + "-" + year)
+          toReturn.push(year - 1 + '-'  + year);
       });
       return toReturn;
   }
@@ -107,7 +116,7 @@ export class TeamDetailComponent implements OnInit {
 
   private forwardError(error: ExceptionMessageBackend) {
       if (error.errorCode) {
-          let link = ['/error', error.errorCode];
+          const link = ['/error', error.errorCode];
           this.router.navigate(link);
       }
   }
