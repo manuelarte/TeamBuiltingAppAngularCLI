@@ -78,7 +78,7 @@ export class TeamCudComponent implements OnInit {
     }
 
     public getToDate(): string {
-        if (this.model && this.model.toDate) {
+        if (this.model && this.model.toDate && !this.stillActive) {
             return this.datesService.dateToString(this.model.toDate);
         }
         return '';
