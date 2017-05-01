@@ -11,13 +11,16 @@ import {Auth} from "../services/auth-service";
   styleUrls: ['rate-and-comments.component.scss'],
 })
 export class RateAndCommentsComponent {
+
+  submitted = false;
+
   userProfile: any;
 
-  usefulMark: number = 3;
-  likeMark: number = 3;
+  usefulMark = 3;
+  likeMark = 3;
 
-  name: string = "";
-  email: string = "";
+  name = '';
+  email = '';
   comment: string;
 
 
@@ -36,5 +39,7 @@ export class RateAndCommentsComponent {
   getEmail(): string {
       return this.userProfile ? this.userProfile.email : '';
   }
+
+  onSubmit(): void {};
 
 }

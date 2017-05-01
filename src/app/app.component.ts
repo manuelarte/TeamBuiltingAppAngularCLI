@@ -21,8 +21,10 @@ export class AppComponent implements OnInit {
       this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-badge.svg'));
       this.mdIconRegistry.addSvgIcon('player-to-team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
       this.mdIconRegistry.addSvgIcon('sport-position', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-field.svg'));
-      this.mdIconRegistry.addSvgIcon('player-profile', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-with-the-ball-under-the-feet.svg'));
-      this.mdIconRegistry.addSvgIcon('shorts-with-number-12', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-shorts-with-number-12.svg'));
+      this.mdIconRegistry.addSvgIcon('player-profile',
+        sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-with-the-ball-under-the-feet.svg'));
+      this.mdIconRegistry.addSvgIcon('shorts-with-number-12',
+        sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-shorts-with-number-12.svg'));
       this.mdIconRegistry.addSvgIcon('reward', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-medal.svg'));
   }
 

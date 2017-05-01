@@ -15,11 +15,11 @@
       <router-outlet (activate)="sidenav.opened = false"></router-outlet>
     </div>
 
-    <div *ngIf="!auth.authenticated()">
+    <div *ngIf="!isAuthenticated()">
         Please login to continue.
-        <button md-raised-button color="primary" (click)="auth.login()">Login</button>
+        <button md-raised-button color="primary" (click)="login()">Login</button>
     </div>
-    <button md-raised-button color="accent" [disabled]="!auth.authenticated()" (click)="auth.logout()">Logout</button>
+    <button md-raised-button color="accent" [disabled]="!isAuthenticated()" (click)="logout()">Logout</button>
 
     <md-toolbar #footer class="footer" color="primary">
         <span><donate></donate></span>

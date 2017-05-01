@@ -21,7 +21,7 @@ export class PlayerFutsalPositionComponent implements OnInit {
     @Input() playersDetails: PlayerToTeamSportDetails[];
 
     private futsalPositionMap: {[position: string]: TeamSportPosition} = {};
-    private positionsMapLoaded: boolean = false;
+    positionsMapLoaded = false;
 
     constructor(private teamSportService: TeamSportService) {}
 

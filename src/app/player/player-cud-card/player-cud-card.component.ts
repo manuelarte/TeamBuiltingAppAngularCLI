@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Player} from "../../player";
-import {Auth} from "../../services/auth-service";
-import {UserData} from "../../user-data";
-import {UserDataService} from "app/services/user-data.service";
-import {PlayerService} from "../../services/player.service";
-import {MdSnackBar} from "@angular/material";
-import {UserRightsService} from "../../services/user-rights.service";
+import {Player} from '../../player';
+import {Auth} from '../../services/auth-service';
+import {UserData} from '../../user-data';
+import {UserDataService} from '../../services/user-data.service';
+import {PlayerService} from '../../services/player.service';
+import {MdSnackBar} from '@angular/material';
+import {UserRightsService} from '../../services/user-rights.service';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-player-cud-card',
@@ -16,6 +17,7 @@ import {UserRightsService} from "../../services/user-rights.service";
 export class PlayerCudCardComponent implements OnInit {
 
   @Input() player: Player;
+  playerForm: FormGroup;
   editing = false;
   submittingFlag = false;
   errorSubmittingFlag = false;
@@ -51,7 +53,7 @@ export class PlayerCudCardComponent implements OnInit {
           this.submittingFlag = false;
           this.errorSubmittingFlag = true;
           this.snackBar.open('Error Editing Entry:' + error.toString());
-      })
+      });
 
   }
 

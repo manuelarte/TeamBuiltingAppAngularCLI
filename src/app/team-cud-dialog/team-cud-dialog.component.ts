@@ -3,6 +3,7 @@ import {MdDialogRef, MdSnackBar} from '@angular/material';
 import {TeamSportService} from '../services/sports-service';
 import {TeamService} from '../services/team.service';
 import {Team} from 'app/team';
+import {FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-team-cud-dialog',
@@ -13,6 +14,7 @@ import {Team} from 'app/team';
 export class TeamCudDialogComponent implements OnInit {
     @Input() model: Team = new Team();
     @Output() teamUpdated: EventEmitter<Team> = new EventEmitter();
+    teamForm: FormGroup;
     flagSubmittingTeam = false;
     flagErrorSubmittingTeam = false;
 

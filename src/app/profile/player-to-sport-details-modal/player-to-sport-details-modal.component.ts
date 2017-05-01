@@ -4,6 +4,7 @@ import {PlayerService} from '../../services/player.service';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {UserDataService} from '../../services/user-data.service';
 import {MdDialogRef, MdSnackBar} from '@angular/material';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-player-to-sport-details-modal',
@@ -15,6 +16,7 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
 
   player: Player;
   model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
+  form: FormGroup;
   submitting = false;
   @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 

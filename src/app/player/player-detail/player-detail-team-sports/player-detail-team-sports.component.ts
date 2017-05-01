@@ -6,9 +6,9 @@ import {Player} from '../../../player';
 import {Auth} from '../../../services/auth-service';
 import {UserDataService} from '../../../services/user-data.service';
 import {UserData} from '../../../user-data';
-import {PlayerService} from "../../../services/player.service";
-import {MdSnackBar} from "@angular/material";
-import {UserRightsService} from "../../../services/user-rights.service";
+import {PlayerService} from '../../../services/player.service';
+import {MdSnackBar} from '@angular/material';
+import {UserRightsService} from '../../../services/user-rights.service';
 
 
 @Component({
@@ -25,6 +25,10 @@ export class PlayerDetailTeamSportsComponent implements OnInit {
   */
   @Input() player: Player = new Player();
   sports: {[sportName: string]: TeamSport} = {};
+  /**
+  * The sport selected in the select box
+  */
+  sportSelected: string;
   loadingSportsFlag = true;
 
   editing = false;
