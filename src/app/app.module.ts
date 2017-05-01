@@ -19,7 +19,6 @@ import { ToolbarMenuComponent } from './toolbar-menu/toolbar-menu.component';
 import {TeamCudDialogComponent} from './team-cud-dialog/team-cud-dialog.component';
 import { SettingsComponent } from './settings/settings.component';
 import {Auth} from './services/auth-service';
-import {ClarityModule} from 'clarity-angular';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -32,7 +31,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AppRoutingModule,
         BrowserModule,
         HttpModule,
-        ClarityModule,
         MaterialModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
