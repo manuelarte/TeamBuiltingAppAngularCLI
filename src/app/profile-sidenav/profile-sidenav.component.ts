@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Auth} from '../services/auth-service';
 import {RouterUtilsService} from '../services/router-utils.service';
 import {UserDataService} from '../services/user-data.service';
 import {UserData} from '../user-data';
+import {LoginService} from '../services/login.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-profile-sidenav',
@@ -10,13 +12,20 @@ import {UserData} from '../user-data';
   styleUrls: ['./profile-sidenav.component.scss'],
   providers: [UserDataService, RouterUtilsService]
 })
-export class ProfileSidenavComponent implements OnInit {
+export class ProfileSidenavComponent implements OnInit, OnDestroy {
 
   userData: UserData;
   userDataLoadingFlag = true;
   userDataErrorFlag = false;
+  subscription: Subscription;
+  logged = false;
 
-  constructor(public auth: Auth, private userDataService: UserDataService) { }
+  constructor(public auth: Auth, private loginService: LoginService,
+              private userDataService: UserDataService) {
+      this.subscription = loginService.loginEvent$.subscribe( response => {
+          this.logged = true;
+      });
+  }
 
   ngOnInit() {
       if (this.auth.authenticated()) {
@@ -36,6 +45,11 @@ export class ProfileSidenavComponent implements OnInit {
 
   getPlayerId(): number {
       return this.userData.playerId;
+  }
+
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.subscription.unsubscribe();
   }
 
 }

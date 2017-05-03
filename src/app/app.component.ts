@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Auth} from './services/auth-service';
-import {MdIconRegistry} from "@angular/material";
-import {DomSanitizer} from "@angular/platform-browser";
+import {MdIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
+import {LoginService} from './services/login.service';
 
 export const title = 'Team Builting App';
 
@@ -9,7 +10,7 @@ export const title = 'Team Builting App';
   selector: 'my-app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
-  providers: [],
+  providers: [LoginService],
 })
 export class AppComponent implements OnInit {
 
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
 
   languagesAvailable: string[] = [];
 
-  constructor(private auth: Auth, private mdIconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
+  constructor(private auth: Auth, private loginService: LoginService,
+              private mdIconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
       this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-badge.svg'));
       this.mdIconRegistry.addSvgIcon('player-to-team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
       this.mdIconRegistry.addSvgIcon('sport-position', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-field.svg'));
@@ -37,6 +39,7 @@ export class AppComponent implements OnInit {
 
   login(): void {
       this.auth.login();
+      this.loginService.loginEvent();
   }
 
   logout(): void {

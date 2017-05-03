@@ -30,4 +30,6 @@
 </div>
 <ng-template #notAuthenticated>
     You are not authenticated!
+    <div *ngIf="!logged">Not Logged</div>
+    <div *ngIf="logged">Logged</div>
 </ng-template>
