@@ -1,6 +1,6 @@
 {
   "name": "teambuilting",
-  "version": "0.8.0",
+  "version": "0.1.0",
   "description": "TeamBuilting Application",
   "angular-cli": {},
   "scripts": {
@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.0",
     "@angular/animations": "^4.0.2",
     "@angular/common": "^4.0.2",
     "@angular/compiler": "^4.0.2",
@@ -23,7 +24,6 @@
     "@angular/platform-browser-dynamic": "^4.0.2",
     "@angular/router": "^4.0.2",
     "@webcomponents/custom-elements": "1.0.0-alpha.3",
-    "angular2-google-maps": "^0.16.0",
     "angular2-jwt": "^0.1.28",
     "auth0-lock": "^10.13.0",
     "chart.js": "^2.4.0",
