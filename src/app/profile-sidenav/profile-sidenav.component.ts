@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
   selector: 'app-profile-sidenav',
   templateUrl: './profile-sidenav.component.html',
   styleUrls: ['./profile-sidenav.component.scss'],
-  providers: [UserDataService, RouterUtilsService]
+  providers: [UserDataService, RouterUtilsService, LoginService]
 })
 export class ProfileSidenavComponent implements OnInit, OnDestroy {
 
