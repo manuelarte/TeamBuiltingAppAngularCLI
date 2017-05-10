@@ -53,4 +53,8 @@ export class ProfileSidenavComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  isAuthenticated(): boolean {
+      return this.auth.authenticated();
+  }
+
 }

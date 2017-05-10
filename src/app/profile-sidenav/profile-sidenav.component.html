@@ -1,35 +1,46 @@
-<div *ngIf="auth && auth.authenticated() && !userDataLoadingFlag && userData; else notAuthenticated">
-    <div #profileHeader id="profileHeader">
-        <img class="profile-background" src="./images/sidenav-background.png" alt="..."/>
-        <img class="user-image" [src]="getUserProfile().picture" alt="{{getUserProfile().name}}">
+<div *ngIf="isAuthenticated(); else notAuthenticated">
+
+    <div *ngIf="!userDataLoadingFlag && userData; else userDataNotLoaded">
+        <div #profileHeader id="profileHeader">
+            <img class="profile-background" src="./images/sidenav-background.png" alt="..."/>
+            <img class="user-image" [src]="getUserProfile().picture" alt="{{getUserProfile().name}}">
+        </div>
+        <p>
+            {{getUserProfile().given_name}} {{getUserProfile().family_name}}
+        </p>
+
+        <md-nav-list>
+            <md-list-item>
+                <md-icon md-list-icon>home</md-icon>
+                <a md-line href="/home">Home</a>
+            </md-list-item>
+            <md-list-item>
+                <md-icon md-list-icon>accessibility</md-icon>
+                <a md-line [href]="'/player/' + getPlayerId()">My Profile</a>
+            </md-list-item>
+        </md-nav-list>
+
+        <hr class="line">
+
+        <md-nav-list>
+            <md-list-item>
+                <md-icon md-list-icon>settings</md-icon>
+                <a md-line href="/home">Settings</a>
+            </md-list-item>
+        </md-nav-list>
     </div>
-    <p>
-        {{getUserProfile().given_name}} {{getUserProfile().family_name}}
-    </p>
-
-    <md-nav-list>
-        <md-list-item>
-            <md-icon md-list-icon>home</md-icon>
-            <a md-line href="/home">Home</a>
-        </md-list-item>
-        <md-list-item>
-            <md-icon md-list-icon>accessibility</md-icon>
-            <a md-line [href]="'/player/' + getPlayerId()">My Profile</a>
-        </md-list-item>
-    </md-nav-list>
-
-    <hr class="line">
-
-    <md-nav-list>
-        <md-list-item>
-            <md-icon md-list-icon>settings</md-icon>
-            <a md-line href="/home">Settings</a>
-        </md-list-item>
-    </md-nav-list>
 
 </div>
 <ng-template #notAuthenticated>
+    <md-progress-spinner *ngIf="isBusyLoadingSports" mode="indeterminate">
+    </md-progress-spinner>
     You are not authenticated!
-    <div *ngIf="!logged">Not Logged</div>
-    <div *ngIf="logged">Logged</div>
+</ng-template>
+
+<ng-template #userDataNotLoaded>
+    <md-progress-spinner *ngIf="userDataLoadingFlag" mode="indeterminate">
+    </md-progress-spinner>
+    <div *ngIf="!userDataLoadingFlag">
+        Error loading User Data...
+    </div>
 </ng-template>
