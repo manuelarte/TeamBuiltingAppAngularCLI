@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, OnChanges, SimpleChanges} from '@angular/core';
 import {Auth} from '../services/auth-service';
 import {RouterUtilsService} from '../services/router-utils.service';
 import {UserDataService} from '../services/user-data.service';
@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
   selector: 'app-profile-sidenav',
   templateUrl: './profile-sidenav.component.html',
   styleUrls: ['./profile-sidenav.component.scss'],
-  providers: [UserDataService, RouterUtilsService, LoginService]
+  providers: [UserDataService, RouterUtilsService]
 })
 export class ProfileSidenavComponent implements OnInit, OnDestroy {
 
@@ -20,21 +20,22 @@ export class ProfileSidenavComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   logged = false;
 
-  constructor(public auth: Auth, private loginService: LoginService,
+  constructor(private auth: Auth, private loginService: LoginService,
               private userDataService: UserDataService) {
       this.subscription = loginService.loginEvent$.subscribe( response => {
-          this.logged = true;
+          this.logged = this.auth.authenticated();
+          this.ngOnInit();
       });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
       if (this.auth.authenticated()) {
           this.userDataService.getUserPlayerData().then(userData => {
-            this.userData = userData;
-            this.userDataLoadingFlag = false;
+              this.userData = userData;
+              this.userDataLoadingFlag = false;
           }).catch(error => {
-            this.userDataLoadingFlag = false;
-            this.userDataErrorFlag = true;
+              this.userDataLoadingFlag = false;
+              this.userDataErrorFlag = true;
           });
       }
   }

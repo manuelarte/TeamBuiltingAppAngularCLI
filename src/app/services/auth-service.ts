@@ -1,6 +1,7 @@
-import { Injectable }      from '@angular/core';
-import {tokenNotExpired, AuthHttp} from 'angular2-jwt';
-import {myConfig} from "./auth.config";
+import { Injectable } from '@angular/core';
+import {tokenNotExpired} from 'angular2-jwt';
+import {myConfig} from './auth.config';
+import {LoginService} from './login.service';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -8,7 +9,7 @@ declare var Auth0Lock: any;
 @Injectable()
 export class Auth {
 
-    usersUrl: string = "https://manuelarte.eu.auth0.com/api/v2/users";
+    usersUrl = 'https://manuelarte.eu.auth0.com/api/v2/users';
 
     // Configure Auth0
     lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {
@@ -19,16 +20,16 @@ export class Auth {
         }
     });
 
-    //Store profile object in auth class
+    // Store profile object in auth class
     userProfile: any;
 
-    constructor() {
+    constructor(private loginService: LoginService) {
 
         // Set userProfile attribute of already saved profile
         this.userProfile = JSON.parse(localStorage.getItem('profile'));
 
         // Add callback for the Lock `authenticated` event
-        this.lock.on("authenticated", (authResult) => {
+        this.lock.on('authenticated', (authResult) => {
             localStorage.setItem('id_token', authResult.idToken);
 
             // Fetch profile information
@@ -40,6 +41,7 @@ export class Auth {
                 }
 
                 localStorage.setItem('profile', JSON.stringify(profile));
+                loginService.loginEvent();
                 this.userProfile = profile;
             });
         });
