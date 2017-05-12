@@ -1,6 +1,5 @@
-import { Component, OnInit }      from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import { Location }               from '@angular/common';
 import {TeamService} from '../../services/team.service';
 import {PlayerService} from '../../services/player.service';
 import {Player} from '../../player';
@@ -8,15 +7,17 @@ import {PlayerToTeam} from '../../player-to-team';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {Team} from '../../team';
 import {PlayerHistoryUtilsService} from '../../services/player-history-utils.service';
+import {PlayerHistoryService} from '../../services/player-history.service';
+import {Subscription} from 'rxjs/Subscription';
 
 
 @Component({
   selector: 'app-player-detail',
   templateUrl: 'player-detail.component.html',
   styleUrls: ['player-detail.component.scss'],
-  providers: [PlayerService, TeamService, PlayerHistoryUtilsService]
+  providers: [PlayerService, TeamService, PlayerHistoryService, PlayerHistoryUtilsService]
 })
-export class PlayerDetailComponent implements OnInit {
+export class PlayerDetailComponent implements OnInit, OnDestroy {
   player: Player;
   playerLoaded = false;
 
@@ -30,12 +31,23 @@ export class PlayerDetailComponent implements OnInit {
   teams: Team[] = [];
   teamsLoaded = false;
 
+  playerToTeamAddedSubscription: Subscription;
+  playerToTeamDeletedSubscription: Subscription;
+
   constructor(
     private playerService: PlayerService,
     private teamService: TeamService,
+    private playerHistoryService: PlayerHistoryService,
     private playerHistoryUtilsService: PlayerHistoryUtilsService,
     private route: ActivatedRoute,
-  ) {}
+  ) {
+    this.playerToTeamAddedSubscription = playerHistoryService.playerToTeamAddedEvent$.subscribe( response => {
+      // update player history
+    });
+    this.playerToTeamDeletedSubscription = playerHistoryService.playerToTeamDeletedEvent$.subscribe( response => {
+      // update player history
+    });
+  }
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -113,6 +125,12 @@ export class PlayerDetailComponent implements OnInit {
   removePlayerToTeamEntry(playerToTeam: PlayerToTeam): void {
       const index: number = this.playerHistory.indexOf(playerToTeam, 0);
       this.playerHistory.splice(index, 1);
+  }
+
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.playerToTeamAddedSubscription.unsubscribe();
+    this.playerToTeamDeletedSubscription.unsubscribe();
   }
 
 }
