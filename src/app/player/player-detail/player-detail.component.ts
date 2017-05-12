@@ -18,29 +18,28 @@ import {PlayerHistoryUtilsService} from '../../services/player-history-utils.ser
 })
 export class PlayerDetailComponent implements OnInit {
   player: Player;
-  playerLoaded: boolean = false;
+  playerLoaded = false;
 
   playerHistory: PlayerToTeam[];
-  playerHistoryLoaded: boolean = false;
+  playerHistoryLoaded = false;
 
   playerToTeamSport: {[sport: string]: PlayerToTeamSportDetails};
-  playerToTeamSportLoaded: boolean = false;
+  playerToTeamSportLoaded = false;
   sportSelected: string;
 
   teams: Team[] = [];
-  teamsLoaded: boolean = false;
+  teamsLoaded = false;
 
   constructor(
     private playerService: PlayerService,
     private teamService: TeamService,
     private playerHistoryUtilsService: PlayerHistoryUtilsService,
     private route: ActivatedRoute,
-    private location: Location
   ) {}
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
-      let id = params['id'];
+      const id = params['id'];
 
       this.playerService.getPlayer(id).then(player => {
             this.player = player;
@@ -56,9 +55,9 @@ export class PlayerDetailComponent implements OnInit {
             playerHistory.forEach(entry => {
                 this.teamService.getTeam(entry.teamId).then(team => {
                     this.teams.push(team);
-                    this.teamsLoaded = this.teams.length == playerHistory.length;
-                })
-            })
+                    this.teamsLoaded = this.teams.length === playerHistory.length;
+                });
+            });
       }).catch(error => {
             this.playerHistoryLoaded = true;
       });
@@ -74,12 +73,13 @@ export class PlayerDetailComponent implements OnInit {
 
   }
 
-  public areTeamsLoaded(): boolean {
+  areTeamsLoaded(): boolean {
       if (this.playerHistory) {
-        let teamIdAndPlayerHistory: {[teamId: string]: PlayerToTeam[]} = this.playerHistoryUtilsService.getPlayerHistoryPerTeam(this.playerHistory);
-        return this.teams.length == Object.keys(teamIdAndPlayerHistory).length;
+        const teamIdAndPlayerHistory: {[teamId: string]: PlayerToTeam[]} =
+            this.playerHistoryUtilsService.getPlayerHistoryPerTeam(this.playerHistory);
+        return this.teams.length === Object.keys(teamIdAndPlayerHistory).length;
       } else {
-          return true
+          return true;
       }
   }
 
@@ -103,10 +103,6 @@ export class PlayerDetailComponent implements OnInit {
           map[obj.id] = obj;
           return map;
       }, {});
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
   private handleError(error: any): Promise<any> {
