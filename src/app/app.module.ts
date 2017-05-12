@@ -20,6 +20,7 @@ import {TeamCudDialogComponent} from './team-cud-dialog/team-cud-dialog.componen
 import { SettingsComponent } from './settings/settings.component';
 import {Auth} from './services/auth-service';
 import {LoginService} from './services/login.service';
+import {PlayerHistoryService} from "./services/player-history.service";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -52,6 +53,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     providers: [
         Auth,
         LoginService,
+        PlayerHistoryService,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,

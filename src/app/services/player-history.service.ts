@@ -17,6 +17,8 @@ export class PlayerHistoryService {
 
   // Service message commands
   playerToTeamAddedEvent(playerToTeam: PlayerToTeam) {
+    playerToTeam.fromDate = new Date(playerToTeam.fromDate);
+    playerToTeam.toDate = new Date(playerToTeam.toDate);
     this.playerToTeamAddedEventSource.next(playerToTeam);
   }
 
