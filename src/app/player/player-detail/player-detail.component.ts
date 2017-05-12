@@ -22,7 +22,8 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
   playerLoaded = false;
 
   playerHistory: PlayerToTeam[];
-  playerHistoryLoaded = false;
+  loadingPlayerHistoryFlag = false;
+  playerHistoryErrorFlag = false;
 
   playerToTeamSport: {[sport: string]: PlayerToTeamSportDetails};
   playerToTeamSportLoaded = false;
@@ -62,14 +63,16 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
             this.handleError(error);
       });
 
+      this.loadingPlayerHistoryFlag = true;
       this.playerService.getPlayerHistory(id).then(playerHistory => {
             this.playerHistory = playerHistory;
-            this.playerHistoryLoaded = true;
+          this.loadingPlayerHistoryFlag = false;
             playerHistory.forEach(entry => {
                 this.loadTeamIfNeeded(entry.teamId);
             });
       }).catch(error => {
-            this.playerHistoryLoaded = true;
+            this.loadingPlayerHistoryFlag = false;
+            this.playerHistoryErrorFlag = true;
       });
 
       this.playerService.getPlayerToTeamSportDetails(id).then(playerToTeamSportsDetails => {
@@ -101,7 +104,8 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
   }
 
   isEverythingLoaded(): boolean {
-      return this.playerLoaded && this.playerHistoryLoaded && this.playerToTeamSportLoaded && this.areTeamsLoaded();
+      return this.playerLoaded && (this.loadingPlayerHistoryFlag === false && this.playerHistoryErrorFlag === false && this.playerHistory)
+          && this.playerToTeamSportLoaded && this.areTeamsLoaded();
   }
 
   private createDict(playerToTeamSportsDetails: PlayerToTeamSportDetails[]): {[sport: string]: PlayerToTeamSportDetails} {

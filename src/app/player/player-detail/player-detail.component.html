@@ -11,7 +11,7 @@
 
         <app-player-cud-card class="player-detail-card" [player]="player"></app-player-cud-card>
 
-        <app-player-detail-intro class="player-detail-card" *ngIf="playerHistoryLoaded && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
+        <app-player-detail-intro class="player-detail-card" *ngIf="!loadingPlayerHistoryFlag && playerHistory && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
 
         <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else playerHistoryEmpty">
             <player-detail-statistics class="player-detail-card" [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
