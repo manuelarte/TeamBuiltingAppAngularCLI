@@ -42,10 +42,10 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
   ) {
     this.playerToTeamAddedSubscription = playerHistoryService.playerToTeamAddedEvent$.subscribe( response => {
-      // update player history
+      this.playerHistory.push(response);
     });
     this.playerToTeamDeletedSubscription = playerHistoryService.playerToTeamDeletedEvent$.subscribe( response => {
-      // update player history
+      this.removePlayerToTeamEntry(response);
     });
   }
 

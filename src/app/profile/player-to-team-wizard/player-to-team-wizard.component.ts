@@ -1,12 +1,13 @@
 import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
-import {PlayerToTeam} from "../../player-to-team";
-import {Team} from "../../team";
-import {FormGroup} from "@angular/forms";
-import {PlayerService} from "../../services/player.service";
-import {Player} from "../../player";
-import {TeamService} from "../../services/team.service";
-import {MdDialogRef, MdSnackBar} from "@angular/material";
-import {UserDataService} from "../../services/user-data.service";
+import {PlayerToTeam} from '../../player-to-team';
+import {Team} from '../../team';
+import {FormGroup} from '@angular/forms';
+import {PlayerService} from '../../services/player.service';
+import {Player} from '../../player';
+import {TeamService} from '../../services/team.service';
+import {MdDialogRef, MdSnackBar} from '@angular/material';
+import {UserDataService} from '../../services/user-data.service';
+import {PlayerHistoryService} from '../../services/player-history.service';
 
 @Component({
   selector: 'app-player-to-team-wizard',
@@ -19,7 +20,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   player: Player;
   model: PlayerToTeam = new PlayerToTeam();
   @Input() team: Team;
-  selectedIndex: number = 0;
+  selectedIndex = 0;
 
   private playerToTeamForm: FormGroup;
   submitting = false;
@@ -28,6 +29,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private playerService: PlayerService, private userDataService: UserDataService,
+              private playerHistoryService: PlayerHistoryService,
               public dialogRef: MdDialogRef<PlayerToTeamWizardComponent>, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
@@ -59,6 +61,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
   submitEntry(): void {
       this.submitting = true;
       this.playerService.savePlayerToTeam(this.model).then(playerToTeam => {
+          this.playerHistoryService.playerToTeamAddedEvent(playerToTeam);
           this.submitting = false;
           this.model = playerToTeam;
           this.entrySaved.emit(playerToTeam);
@@ -70,7 +73,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
           this.submitting = false;
           this.errorSubmittingFlag = true;
           this.showSnackBar('Error Saving Entry: ' + error.toString());
-      })
+      });
   }
 
   cancel(): void {
