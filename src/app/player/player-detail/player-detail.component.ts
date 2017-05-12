@@ -15,7 +15,7 @@ import {Subscription} from 'rxjs/Subscription';
   selector: 'app-player-detail',
   templateUrl: 'player-detail.component.html',
   styleUrls: ['player-detail.component.scss'],
-  providers: [PlayerService, TeamService, PlayerHistoryService, PlayerHistoryUtilsService]
+  providers: [PlayerService, TeamService, PlayerHistoryUtilsService]
 })
 export class PlayerDetailComponent implements OnInit, OnDestroy {
   player: Player;
@@ -43,6 +43,7 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
   ) {
     this.playerToTeamAddedSubscription = playerHistoryService.playerToTeamAddedEvent$.subscribe( response => {
       this.playerHistory.push(response);
+      this.loadTeamIfNeeded(response.teamId);
     });
     this.playerToTeamDeletedSubscription = playerHistoryService.playerToTeamDeletedEvent$.subscribe( response => {
       this.removePlayerToTeamEntry(response);
@@ -65,10 +66,7 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
             this.playerHistory = playerHistory;
             this.playerHistoryLoaded = true;
             playerHistory.forEach(entry => {
-                this.teamService.getTeam(entry.teamId).then(team => {
-                    this.teams.push(team);
-                    this.teamsLoaded = this.teams.length === playerHistory.length;
-                });
+                this.loadTeamIfNeeded(entry.teamId);
             });
       }).catch(error => {
             this.playerHistoryLoaded = true;
@@ -85,11 +83,18 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
 
   }
 
+  loadTeamIfNeeded(teamId: string): void {
+    this.teamService.getTeam(teamId).then(team => {
+      this.teams.push(team);
+      this.teamsLoaded = this.areTeamsLoaded();
+    });
+  }
+
   areTeamsLoaded(): boolean {
       if (this.playerHistory) {
         const teamIdAndPlayerHistory: {[teamId: string]: PlayerToTeam[]} =
             this.playerHistoryUtilsService.getPlayerHistoryPerTeam(this.playerHistory);
-        return this.teams.length === Object.keys(teamIdAndPlayerHistory).length;
+        return Object.keys(this.indexTeams()).length === Object.keys(teamIdAndPlayerHistory).length;
       } else {
           return true;
       }
