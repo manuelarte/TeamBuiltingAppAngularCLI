@@ -9,13 +9,14 @@ import {UserData} from '../../../user-data';
 import {PlayerService} from '../../../services/player.service';
 import {MdSnackBar} from '@angular/material';
 import {UserRightsService} from '../../../services/user-rights.service';
+import {PlayerToTeamSportService} from '../../../services/player-to-team-sport.service';
 
 
 @Component({
-  selector: 'player-detail-team-sports',
+  selector: 'app-player-detail-team-sports',
   templateUrl: 'player-detail-team-sports.component.html',
   styleUrls: ['player-detail-team-sports.component.scss'],
-  providers: [TeamSportService, PlayerService, UserDataService, Auth]
+  providers: [TeamSportService, PlayerService, UserDataService]
 })
 export class PlayerDetailTeamSportsComponent implements OnInit {
   @Input() playerToTeamSport: {[sport: string]: PlayerToTeamSportDetails};
@@ -43,6 +44,7 @@ export class PlayerDetailTeamSportsComponent implements OnInit {
   @Output() entryDeleted: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
   constructor(private teamSportService: TeamSportService, private playerService: PlayerService, private userDataService: UserDataService,
+              private playerToTeamSportService: PlayerToTeamSportService,
               private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService) {}
 
   ngOnInit(): void {
@@ -100,14 +102,15 @@ export class PlayerDetailTeamSportsComponent implements OnInit {
     const entry: PlayerToTeamSportDetails = this.playerToTeamSport[sportName];
     this.submittingFlag = true;
     this.playerService.deletePlayerToTeamSportDetails(entry).then(response => {
-            this.submittingFlag = false;
-            this.errorSubmittingFlag = false;
-            this.entryDeleted.emit(entry);
-            this.showSnackBar('Entry deleted');
+        this.playerToTeamSportService.playerToTeamSportDeletedEvent(entry);
+        this.submittingFlag = false;
+        this.errorSubmittingFlag = false;
+        this.entryDeleted.emit(entry);
+        this.showSnackBar('Entry deleted');
     }).catch(error => {
-            this.submittingFlag = false;
-            this.errorSubmittingFlag = true;
-            this.showSnackBar('Error Deleting the Entry');
+        this.submittingFlag = false;
+        this.errorSubmittingFlag = true;
+        this.showSnackBar('Error Deleting the Entry');
     });
   }
 

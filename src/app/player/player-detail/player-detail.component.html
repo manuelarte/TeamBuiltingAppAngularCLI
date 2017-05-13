@@ -30,7 +30,7 @@
         <div *ngIf="playerToTeamSportLoaded">
 
             <div *ngIf="playerToTeamSport; else playerToSportDetailsEmpty" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <player-detail-team-sports class="player-detail-card" [player]="player" [playerToTeamSport]="playerToTeamSport"></player-detail-team-sports>
+                <app-player-detail-team-sports class="player-detail-card" [player]="player" [playerToTeamSport]="playerToTeamSport"></app-player-detail-team-sports>
             </div>
             <ng-template #playerToSportDetailsEmpty>
                 This player did not add any sport details yet.

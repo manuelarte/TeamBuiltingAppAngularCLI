@@ -5,6 +5,7 @@ import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {UserDataService} from '../../services/user-data.service';
 import {MdDialogRef, MdSnackBar} from '@angular/material';
 import {FormGroup} from '@angular/forms';
+import {PlayerToTeamSportService} from '../../services/player-to-team-sport.service';
 
 @Component({
   selector: 'app-player-to-sport-details-modal',
@@ -21,6 +22,7 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
   @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
   constructor(private userDataService: UserDataService, private playerService: PlayerService,
+              private playerToTeamSportService: PlayerToTeamSportService,
               public dialogRef: MdDialogRef<PlayerToSportDetailsModalComponent>, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
   onSubmit(): void {
       this.submitting = true;
       this.playerService.savePlayerToTeamSportDetails(this.model).then(saved => {
+          this.playerToTeamSportService.playerToTeamSportAddedEvent(saved);
           this.submitting = false;
           this.entrySaved.emit(saved);
           this.showSnackBar('Entry Saved');

@@ -21,6 +21,7 @@ import { SettingsComponent } from './settings/settings.component';
 import {Auth} from './services/auth-service';
 import {LoginService} from './services/login.service';
 import {PlayerHistoryService} from "./services/player-history.service";
+import {PlayerToTeamSportService} from "./services/player-to-team-sport.service";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -54,6 +55,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         Auth,
         LoginService,
         PlayerHistoryService,
+        PlayerToTeamSportService,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,
