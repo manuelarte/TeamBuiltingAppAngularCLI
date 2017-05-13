@@ -4,12 +4,13 @@ import {TeamSportService} from '../../services/sports-service';
 import {FormGroup} from '@angular/forms';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {Player} from '../../player';
+import {PlayerService} from "../../services/player.service";
 
 @Component({
   selector: 'app-player-to-sport-details-cud',
   templateUrl: './player-to-sport-details-cud.component.html',
   styleUrls: ['./player-to-sport-details-cud.component.scss'],
-  providers: [TeamSportService]
+  providers: [PlayerService, TeamSportService]
 })
 export class PlayerToSportDetailsCudComponent implements OnInit {
 
@@ -20,11 +21,15 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
     isBusyLoadingSports = true;
     @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
 
+    playerToTeamSportDetails: PlayerToTeamSportDetails[];
+    loadingPlayerToTeamSportDetails = false;
+    loadingPlayerToTeamSportDetailsError = false;
+
     sportDetailsForm: FormGroup;
     @Output() form: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
 
-    constructor(private teamSportService: TeamSportService) {
+    constructor(private playerService: PlayerService, private teamSportService: TeamSportService) {
     }
 
     ngOnInit() {
@@ -34,8 +39,22 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
         this.teamSportService.getTeamSportsAvailable().then(sports => {
             this.isBusyLoadingSports = false;
             this.sports = sports;
+            if (this.player) {
+              this.loadPlayerToTeamSportDetails(this.player.id);
+            }
         }).catch(error => {
             this.isBusyLoadingSports = false;
+        });
+    }
+
+    private loadPlayerToTeamSportDetails(playerId: number): void {
+        this.loadingPlayerToTeamSportDetails = true;
+        this.playerService.getPlayerToTeamSportDetails(playerId).then(playerToTeamSportDetails => {
+            this.playerToTeamSportDetails = playerToTeamSportDetails;
+            this.loadingPlayerToTeamSportDetails = false;
+        }).catch(error => {
+            this.loadingPlayerToTeamSportDetails = false;
+            this.loadingPlayerToTeamSportDetailsError = true;
         });
     }
 
@@ -59,6 +78,13 @@ export class PlayerToSportDetailsCudComponent implements OnInit {
     emitForm(form: FormGroup): void {
         this.sportDetailsForm = form;
         this.form.emit(this.sportDetailsForm);
+    }
+
+    isSportRegistered(sportName: string): boolean {
+      if (this.playerToTeamSportDetails) {
+          return this.playerToTeamSportDetails.filter(playerToTeamSport => playerToTeamSport.sport === sportName).length > 0;
+      }
+      return false;
     }
 
 }

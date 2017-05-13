@@ -36,7 +36,7 @@ export class PlayerService {
       return this.authHttp.delete(`${this.playerUrl}/${playerId}`).toPromise();
   }
 
-  getPlayerToTeamSportDetails(playerId: string): Promise<PlayerToTeamSportDetails[]> {
+  getPlayerToTeamSportDetails(playerId: number): Promise<PlayerToTeamSportDetails[]> {
     return this.http.get(`${this.sportsUrl}/players?playerId=${playerId}`).map(response => <PlayerToTeamSportDetails[]> response.json())
       .toPromise();
   }

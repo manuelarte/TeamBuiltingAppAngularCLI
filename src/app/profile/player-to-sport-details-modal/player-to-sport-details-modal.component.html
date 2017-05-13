@@ -1,8 +1,13 @@
 <h3 md-dialog-title>Player to Team Sport Details:</h3>
-<md-dialog-content>
-    <app-player-to-sport-details-cud *ngIf="player" [editing]="true" [(model)]="model" [player]="player" (form)="form = $event"></app-player-to-sport-details-cud>
+<md-dialog-content *ngIf="!isBusy(); else loading">
+  <app-player-to-sport-details-cud *ngIf="player" [editing]="true" [(model)]="model" [player]="player" (form)="form = $event"></app-player-to-sport-details-cud>
 </md-dialog-content>
 <md-dialog-actions class="footer">
-        <button md-button color="primary" [disabled]="submitting" (click)="closeDialog()">Cancel</button>
-        <button md-raised-button color="primary" [disabled]="submitting || !form || !form.valid" (click)="onSubmit()">Submit</button>
+  <button md-button color="primary" [disabled]="submitting" (click)="closeDialog()">Cancel</button>
+  <button md-raised-button color="primary" [disabled]="submitting || !form || !form.valid" (click)="onSubmit()">Submit</button>
 </md-dialog-actions>
+
+<ng-template #loading>
+    <md-progress-spinner mode="indeterminate">
+    </md-progress-spinner>
+</ng-template>

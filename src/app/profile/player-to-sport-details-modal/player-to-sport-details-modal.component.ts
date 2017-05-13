@@ -15,8 +15,12 @@ import {PlayerToTeamSportService} from '../../services/player-to-team-sport.serv
 })
 export class PlayerToSportDetailsModalComponent implements OnInit {
 
-  player: Player;
   model: PlayerToTeamSportDetails = new PlayerToTeamSportDetails();
+
+  player: Player;
+  loadingPlayer = false;
+  loadingPlayerError = false;
+
   form: FormGroup;
   submitting = false;
   @Output() entrySaved: EventEmitter<PlayerToTeamSportDetails> = new EventEmitter<PlayerToTeamSportDetails>();
@@ -27,11 +31,20 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
 
   ngOnInit() {
     this.userDataService.getUserPlayerData().then(userData => {
-          this.playerService.getPlayer(userData.playerId).then(player => {
-              this.player = player;
-              this.model.playerId = this.player.id;
-          });
+        this.loadPlayer(userData.playerId);
     });
+  }
+
+  private loadPlayer(playerId: number) {
+      this.loadingPlayer = true;
+      this.playerService.getPlayer(playerId).then(player => {
+          this.player = player;
+          this.model.playerId = this.player.id;
+          this.loadingPlayer = false;
+      }).catch(error => {
+          this.loadingPlayerError = true;
+          this.loadingPlayer = false;
+      });
   }
 
   onSubmit(): void {
@@ -56,4 +69,7 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
     this.snackBar.open(message, null, {duration: 2000});
   }
 
+  isBusy(): boolean {
+      return this.loadingPlayer;
+  }
 }
