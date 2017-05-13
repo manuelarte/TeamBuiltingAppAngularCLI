@@ -1,28 +1,6 @@
-<div [ngClass]="getJsPlayerClass()" (click)="changeIsActive()"
-     [ngStyle]="{ 'display': 'block', 'opacity': 1, 'left': getLeft(), 'top': getTop() }">
-
-    <div class="player__placeholder"></div>
-    <div class="player__card" [ngStyle]="getPlayerCardStyle()">
-        <h3>{{player.nickname}}</h3>
-        <ul class="player__card__list">
-            <li><span>DOB</span><br>36 yr</li>
-            <li><span>Height</span><br>1.84m</li>
-            <li><span>Origin</span><br>Peru</li>
-        </ul>
-        <ul class="player__card__list player__card__list--last">
-            <li>
-                <span>Games:</span>16
-            </li>
-            <li>
-                <span>Goals:</span>1
-            </li>
-        </ul>
-    </div>
-    <div class="player__label"
-         [ngStyle]="{'display': isActive ? 'none' : 'block', 'transform': 'translateX(0px) translateY(0px)', 'opacity': isActive ? 0 : 1}">
+<div class="player_icon"  [ngStyle]="{'left': getLeft(), 'top': getTop()}">
+    <img [src]="player.imageLink" class="player_img">
+    <div class="hero-text">
         <span>{{player.nickname}}</span>
-    </div>
-    <div class="player__img" [ngStyle]="getPlayerImgStyle()">
-        <img [src]="player.imageLink">
     </div>
 </div>
