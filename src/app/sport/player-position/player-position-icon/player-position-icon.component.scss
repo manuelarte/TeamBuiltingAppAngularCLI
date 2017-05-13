@@ -24,8 +24,13 @@ $player_width: 5%;
     filter: blur(2px);
 }
 
+.player_icon:hover .hero-text {
+    display: block;
+}
+
 /* Place text in the middle of the image */
 .hero-text {
+    display: none;
     width: 140%;
     text-align: center;
     position: absolute;
