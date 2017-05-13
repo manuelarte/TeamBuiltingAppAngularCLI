@@ -7,7 +7,12 @@
         <i (click)="sidenav.toggle()" class="material-icons app-toolbar-menu clickable">menu</i>
         <span>TeamBuilting App</span>
         <span class="example-fill-remaining-space"></span>
-        <app-toolbar-menu></app-toolbar-menu>
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>more_vert</md-icon>
+        </button>
+        <md-menu #menu="mdMenu">
+            <app-toolbar-menu></app-toolbar-menu>
+        </md-menu>
     </md-toolbar>
 
 
@@ -28,19 +33,7 @@
     </md-toolbar>
 
     <md-menu #actionButtonMenu="mdMenu">
-        <button md-menu-item>
-            <md-icon>dialpad</md-icon>
-            <span>Redial</span>
-        </button>
-        <button md-menu-item disabled>
-            <md-icon>voicemail</md-icon>
-            <span>Check voicemail</span>
-        </button>
-        <button md-menu-item>
-            <md-icon>notifications_off</md-icon>
-            <span>Disable alerts</span>
-        </button>
+        <app-toolbar-menu></app-toolbar-menu>
     </md-menu>
-
 
 </md-sidenav-container>
