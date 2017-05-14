@@ -13,7 +13,7 @@
                 <md-icon svgIcon="player-profile"></md-icon>
                 <span>See Profile</span>
             </button>
-            <button md-menu-item (click)="openAddReward()">
+            <button md-menu-item (click)="openAddReward()" [disabled]="!canUserGiveReward()">
                 <md-icon svgIcon="reward"></md-icon>
                 <span>Give Reward</span>
             </button>
@@ -23,7 +23,7 @@
     <img md-card-image [src]="getPicture(player)" class="player-in-team-card-img">
     <md-card-content>
         <p>
-            {{player.name}} has been playing for {{team.name}} for {{timeInTeam()}}.
+            {{player.name}} has been playing for <span><b>{{team.name}}</b></span> for {{timeInTeam()}}.
         </p>
     </md-card-content>
     <md-card-actions>
