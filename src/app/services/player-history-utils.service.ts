@@ -21,7 +21,7 @@ export class PlayerHistoryUtilsService {
       if (!a || !b) {
           throw new Error('Input cannot be null');
       }
-      return a.fromDate.getTime() - b.fromDate.getTime();
+      return new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime();
   }
 
 }

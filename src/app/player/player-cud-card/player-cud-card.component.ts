@@ -49,6 +49,7 @@ export class PlayerCudCardComponent implements OnInit {
           this.player = player;
           this.submittingFlag = false;
           this.snackBar.open('Entry Edited');
+          this.editing = false;
       }).catch(error => {
           this.submittingFlag = false;
           this.errorSubmittingFlag = true;
