@@ -21,7 +21,7 @@
     <section>
         <md-input-container class="example-full-width">
             <textarea #bio mdInput placeholder="Bio" rows="5" [(ngModel)]="model.bio" formControlName="bio" id="bio"
-                      name="bio"></textarea>
+                      name="bio" [readOnly]="!editing"></textarea>
             <md-error>Description of the position not valid.</md-error>
         </md-input-container>
     </section>
