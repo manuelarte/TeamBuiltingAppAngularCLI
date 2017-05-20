@@ -7,12 +7,14 @@
         <i (click)="sidenav.toggle()" class="material-icons app-toolbar-menu clickable">menu</i>
         <span>TeamBuilting App</span>
         <span class="example-fill-remaining-space"></span>
+        <!--
         <button md-icon-button [mdMenuTriggerFor]="menu">
             <md-icon>more_vert</md-icon>
         </button>
         <md-menu #menu="mdMenu">
             <app-toolbar-menu></app-toolbar-menu>
         </md-menu>
+        -->
     </md-toolbar>
 
 
@@ -29,7 +31,6 @@
     <md-toolbar #footer class="footer" color="primary">
         <span><donate></donate></span>
         <span class="btn-space"></span>
-        <button md-fab color="warn" class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>menu</md-icon></button>
     </md-toolbar>
 
     <md-menu #actionButtonMenu="mdMenu">
@@ -37,3 +38,5 @@
     </md-menu>
 
 </md-sidenav-container>
+
+<button md-fab class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>add</md-icon></button>
