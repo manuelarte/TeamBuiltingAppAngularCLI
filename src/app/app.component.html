@@ -39,4 +39,4 @@
 
 </md-sidenav-container>
 
-<button md-fab class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>add</md-icon></button>
+<button *ngIf="!sidenav.opened" md-fab class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>add</md-icon></button>

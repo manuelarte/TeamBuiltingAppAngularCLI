@@ -19,7 +19,8 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class PlayerDetailComponent implements OnInit, OnDestroy {
   player: Player;
-  playerLoaded = false;
+  loadingPlayerFlag = false;
+  errorLoadingPlayer = false;
 
   playerHistory: PlayerToTeam[];
   loadingPlayerHistoryFlag = false;
@@ -55,12 +56,14 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
     this.route.params.forEach((params: Params) => {
       const id = params['id'];
 
+      this.loadingPlayerFlag = true;
       this.playerService.getPlayer(id).then(player => {
-            this.player = player;
-            this.playerLoaded = true;
+          this.player = player;
+          this.loadingPlayerFlag = false;
         }).catch(error => {
-            this.playerLoaded = true;
-            this.handleError(error);
+          this.loadingPlayerFlag = false;
+          this.errorLoadingPlayer = true;
+          this.handleError(error);
       });
 
       this.loadingPlayerHistoryFlag = true;
@@ -104,7 +107,8 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
   }
 
   isEverythingLoaded(): boolean {
-      return this.playerLoaded && (this.loadingPlayerHistoryFlag === false && this.playerHistoryErrorFlag === false && this.playerHistory)
+      return (this.loadingPlayerFlag === false && this.errorLoadingPlayer === false && this.player)
+          && (this.loadingPlayerHistoryFlag === false && this.playerHistoryErrorFlag === false && this.playerHistory)
           && this.playerToTeamSportLoaded && this.areTeamsLoaded();
   }
 
