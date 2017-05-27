@@ -1,14 +1,14 @@
-import {Component, OnInit, Input}      from '@angular/core';
-import {PlayerService} from "../../../services/player.service";
-import {TeamService} from "../../../services/team.service";
-import {PlayerCommentService} from "../../../services/player-comment.service";
-import {Auth} from "../../../services/auth-service";
-import {UserDataService} from "../../../services/user-data.service";
-import {PlayerComment} from "../../../player-comment";
-import {Player} from "../../../player";
-import {UserData} from "../../../user-data";
-import {UserService} from "../../../services/user.service";
-import {User} from "../../../user";
+import {Component, OnInit, Input} from '@angular/core';
+import {PlayerService} from '../../../services/player.service';
+import {TeamService} from '../../../services/team.service';
+import {PlayerCommentService} from '../../../services/player-comment.service';
+import {Auth} from '../../../services/auth-service';
+import {UserDataService} from '../../../services/user-data.service';
+import {PlayerComment} from '../../../player-comment';
+import {Player} from '../../../player';
+import {UserData} from '../../../user-data';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../user';
 
 
 @Component({
@@ -23,13 +23,14 @@ export class PlayerCommentsComponent implements OnInit {
   commentReasons: string[];
 
   private userAndComment: {[userId: string]: {user: any, playerComment: PlayerComment}} = {};
-  commentsLoaded: boolean = false;
+  loadingCommentsFlag = false;
+  errorLoadingComments = false;
 
   userData: UserData;
-  userDataLoaded: boolean = false;
+  userDataLoaded = false;
 
   playerComment: PlayerComment = new PlayerComment();
-  deleting: boolean = false;
+  deleting = false;
 
   constructor(
     private auth: Auth,
@@ -39,18 +40,21 @@ export class PlayerCommentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.playerCommentService.getCommentReasons().then(commentReasons => this.commentReasons = commentReasons).catch(error => console.log(error));
+    this.playerCommentService.getCommentReasons().then(commentReasons => this.commentReasons = commentReasons)
+        .catch(error => console.log(error));
 
+    this.loadingCommentsFlag = true;
     this.playerCommentService.getPlayerComments(this.player.id).then(comments => {
         comments.forEach(comment => {
             this.userService.getUser(comment.userId).then(user => {
                 this.userAndComment[comment.userId] = {user: user, playerComment: comment};
-                this.commentsLoaded = Object.keys(this.userAndComment).length === comments.length;
-            })
+                this.loadingCommentsFlag = Object.keys(this.userAndComment).length !== comments.length;
+            });
         });
-        this.commentsLoaded = Object.keys(this.userAndComment).length === comments.length;
+        this.loadingCommentsFlag = Object.keys(this.userAndComment).length !== comments.length;
     }).catch(error => {
-        this.commentsLoaded = true;
+        this.loadingCommentsFlag = false;
+        this.errorLoadingComments = true;
     });
 
     if (this.auth.authenticated()) {
@@ -59,17 +63,17 @@ export class PlayerCommentsComponent implements OnInit {
             this.userDataLoaded = true;
         }).catch(error => {
             this.userDataLoaded = true;
-        })
+        });
     }
   }
 
   isEverythingLoaded(): boolean {
-      return this.commentsLoaded;
+      return !this.loadingCommentsFlag;
   }
 
   canUserWriteAComment(): boolean {
 
-      let noPreviousComment: boolean = !this.userAndComment[this.auth.userProfile.user_id];
+      const noPreviousComment: boolean = !this.userAndComment[this.auth.userProfile.user_id];
       return this.auth.authenticated() && !this.sameUser() && noPreviousComment;
   }
 
@@ -93,20 +97,20 @@ export class PlayerCommentsComponent implements OnInit {
       this.deleting = true;
       this.playerCommentService.deletePlayerComment(playerComment.id).then(res => {
           this.userAndComment[this.userData.userId] = null; // this works because I only allow one player comment per user
-          this.deleting = false
+          this.deleting = false;
       }).catch(error => {
-          console.log("deleting comment error", error);
-          this.deleting = false
-      })
+          console.log('deleting comment error', error);
+          this.deleting = false;
+      });
   }
 
   getComments(): PlayerComment[] {
-      let values: {user: any, playerComment: PlayerComment}[] = this.values(this.userAndComment);
+      const values: {user: any, playerComment: PlayerComment}[] = this.values(this.userAndComment);
       return values.filter(entry => entry != null).map(entry => entry.playerComment);
   }
 
   private values<Y>(data: {[key: string]: Y}): Y[] {
-      return Object.keys(data).map(key=>data[key])
+      return Object.keys(data).map(key => data[key]);
   }
 
   private handleError(error: any): Promise<any> {

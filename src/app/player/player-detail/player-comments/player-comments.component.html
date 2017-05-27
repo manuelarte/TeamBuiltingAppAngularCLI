@@ -1,5 +1,5 @@
 <div>
-    <div *ngIf="commentsLoaded">
+    <div *ngIf="isEverythingLoaded() && !errorLoadingComments; else loading">
 
         <div *ngIf="getComments().length === 0">
             <div class="alert alert-info">
@@ -30,12 +30,17 @@
         </div>
 
     </div>
-    <div *ngIf="!commentsLoaded">
-        <div class="alert alert-info">
-            <div class="alert-item">
-                <span class="alert-text">The comments could not be loaded.</span>
+    <ng-template>
+        <md-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate">
+        </md-progress-spinner>
+        <div *ngIf="errorLoadingComments">
+            <div class="alert alert-info">
+                <div class="alert-item">
+                    <span class="alert-text">The comments could not be loaded.</span>
+                </div>
             </div>
         </div>
-    </div>
+    </ng-template>
+
 
 </div>
