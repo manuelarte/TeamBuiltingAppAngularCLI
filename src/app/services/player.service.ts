@@ -1,14 +1,14 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
-import {Player} from "../player";
-import {PlayerToTeam} from "../player-to-team";
-import {PlayerToTeamSportDetails} from "../player-to-team-sport-details";
-import {environment} from "../../environments/environment";
-import {AuthHttp} from "angular2-jwt";
+import {Player} from '../player';
+import {PlayerToTeam} from '../player-to-team';
+import {PlayerToTeamSportDetails} from '../player-to-team-sport-details';
+import {environment} from '../../environments/environment';
+import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class PlayerService {
@@ -42,7 +42,8 @@ export class PlayerService {
   }
 
   getPlayerToTeamSportDetailsFor(playerId: string, sport: string): Promise<PlayerToTeamSportDetails> {
-      return this.http.get(`${this.sportsUrl}/players/${sport}?playerId=${playerId}`).map(response => <PlayerToTeamSportDetails> response.json())
+      return this.http.get(`${this.sportsUrl}/players/${sport}?playerId=${playerId}`)
+          .map(response => <PlayerToTeamSportDetails> response.json())
           .toPromise();
   }
 
@@ -71,7 +72,7 @@ export class PlayerService {
 
 
   private convertFromDatesAndToDatesForArray(res: Response) {
-    let data = res.json() || [];
+    const data = res.json() || [];
     data.forEach(d => {
         d.fromDate = new Date(d.fromDate);
         if (d.toDate) {
@@ -82,7 +83,7 @@ export class PlayerService {
   }
 
   private convertFromDateAndToDate(value: any) {
-    let data = value.json() || {};
+    const data = value.json() || {};
     data.fromDate = new Date(data.fromDate);
     if (data.toDate) {
         data.toDate = new Date(data.toDate);

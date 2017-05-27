@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {Http, HttpModule, RequestOptions} from '@angular/http';
-import {AgmCoreModule} from 'angular2-google-maps/core';
+import {AgmCoreModule} from '@agm/core';
 
 import {DonateComponent} from './donate/donate.component';
 import {ProfileModule} from './profile/profile.module';
@@ -20,8 +20,9 @@ import {TeamCudDialogComponent} from './team-cud-dialog/team-cud-dialog.componen
 import { SettingsComponent } from './settings/settings.component';
 import {Auth} from './services/auth-service';
 import {LoginService} from './services/login.service';
-import {PlayerHistoryService} from "./services/player-history.service";
-import {PlayerToTeamSportService} from "./services/player-to-team-sport.service";
+import {PlayerHistoryService} from './services/player-history.service';
+import {PlayerToTeamSportService} from './services/player-to-team-sport.service';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -32,6 +33,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 @NgModule({
     imports: [
         AppRoutingModule,
+        FlexLayoutModule,
         BrowserModule,
         HttpModule,
         MaterialModule,

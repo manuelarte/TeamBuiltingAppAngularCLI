@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {GoogleMapGeocodingService} from '../../services/google-map-geocoding.service';
-import {DatesService} from 'app/services/dates-service';
+import {DatesService} from '../../services/dates-service';
 import {TeamSportService} from '../../services/sports-service';
 import {Team} from '../../team';
 import {TeamSport} from '../../team-sports';

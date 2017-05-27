@@ -3,7 +3,7 @@ import {NgModule, LOCALE_ID} from '@angular/core';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
-import {AgmCoreModule} from 'angular2-google-maps/core';
+import {AgmCoreModule} from '@agm/core';
 
 import {ChartModule} from 'primeng/primeng';
 import {ChartsModule} from 'ng2-charts';
@@ -20,7 +20,6 @@ import {ShowPlayerRewardComponent} from './player-detail/player-rewards/show-pla
 import {CommonModule} from '@angular/common';
 import {PlayerRoutingModule} from './player-routing.module';
 import {PlayerDetailIntroComponent} from './player-detail-intro/player-detail-intro.component';
-import {GoogleChart} from 'app/directives/angular2-google-chart.directive';
 import {PlayerToTeamCardComponent} from './player-to-team-card/player-to-team-card.component';
 import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdDialogModule, MdGridListModule, MdIconModule,
@@ -30,10 +29,13 @@ import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
 import {PlayerCudCardComponent} from './player-cud-card/player-cud-card.component';
 import {UserRightsService} from '../services/user-rights.service';
+import {GoogleChart} from '../directives/angular2-google-chart.directive';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     PlayerRoutingModule,
+    FlexLayoutModule,
     CommonModule,
     ChartModule,
     ChartsModule,

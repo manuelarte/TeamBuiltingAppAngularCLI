@@ -1,10 +1,10 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
-import {AgmCoreModule} from 'angular2-google-maps/core';
+import {AgmCoreModule} from '@agm/core';
 
 import {
     MdAutocompleteModule,
@@ -18,16 +18,14 @@ import {PlayerToSportDetailsModalComponent} from './player-to-sport-details-moda
 import {PlayerToSportDetailsCudComponent} from './player-to-sport-details-cud/player-to-sport-details-cud.component';
 import {PlayerToTeamCudComponent} from './player-to-team-cud/player-to-team-cud.component';
 import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-common-cud/player-to-sport-details-common-cud.component';
-import {PlayerToTeamWizardComponent} from "./player-to-team-wizard/player-to-team-wizard.component";
-import {TeamSearchComponent} from "./team-search/team-search.component";
-import {PlayerSearchComponent} from "./player-search/player-search.component";
+import {PlayerToTeamWizardComponent} from './player-to-team-wizard/player-to-team-wizard.component';
+import {TeamSearchComponent} from './team-search/team-search.component';
+import {PlayerSearchComponent} from './player-search/player-search.component';
 
 
 @NgModule({
     imports: [
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
-        }),
+        AgmCoreModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -60,7 +58,8 @@ import {PlayerSearchComponent} from "./player-search/player-search.component";
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: [TeamSearchComponent, PlayerSearchComponent, PlayerCudComponent, PlayerToTeamCudComponent, PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
+    exports: [TeamSearchComponent, PlayerSearchComponent, PlayerCudComponent, PlayerToTeamCudComponent,
+        PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
 })
 export class ProfileModule {
 }

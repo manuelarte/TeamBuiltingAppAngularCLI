@@ -4,6 +4,7 @@
         <md-card-subtitle>{{team.name}}</md-card-subtitle>
     </md-card-header>
     <img md-card-image *ngIf="!loadingTeamFlag" class="playerToTeam-background" [src]="getPictureBasedOnSport()">
+
     <img *ngIf="!loadingTeamFlag" class="playerToTeam-team-img clickable" (click)="routerUtilsService.gotoTeamDetails(team)" [src]="team.emblemLink">
     <img *ngIf="!loadingPlayerFlag" class="playerToTeam-player-img" [src]="player.imageLink">
     <md-card-content>

@@ -5,9 +5,9 @@ import {TeamService} from '../../services/team.service';
 import {SeasonUtilService, Season} from '../../services/season-utils.service';
 import {Player} from '../../player';
 import {Team} from '../../team';
-import {ExceptionMessageBackend} from 'app/exception-message-backend';
 import {PlayerToTeam} from '../../player-to-team';
 import {PlayerService} from '../../services/player.service';
+import {ExceptionMessageBackend} from '../../exception-message-backend';
 
 
 @Component({

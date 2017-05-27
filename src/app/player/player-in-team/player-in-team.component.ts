@@ -6,13 +6,13 @@ import {Team} from '../../team';
 import {RouterUtilsService} from '../../services/router-utils.service';
 import {MdDialog} from '@angular/material';
 import {GiveRewardComponent} from '../give-reward/give-reward.component';
-import {TeamService} from 'app/services/team.service';
-import {PlayerService} from 'app/services/player.service';
+import {TeamService} from '../../services/team.service';
+import {PlayerService} from '../../services/player.service';
 import {PlayerToTeam} from '../../player-to-team';
 import {DatesService} from '../../services/dates-service';
-import {UserRightsService} from "../../services/user-rights.service";
-import {UserDataService} from "../../services/user-data.service";
-import {UserData} from "../../user-data";
+import {UserRightsService} from '../../services/user-rights.service';
+import {UserDataService} from '../../services/user-data.service';
+import {UserData} from '../../user-data';
 /**
     * @author Manuel
     * @since 05/11/2016

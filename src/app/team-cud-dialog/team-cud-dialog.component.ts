@@ -2,8 +2,8 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {MdDialogRef, MdSnackBar} from '@angular/material';
 import {TeamSportService} from '../services/sports-service';
 import {TeamService} from '../services/team.service';
-import {Team} from 'app/team';
 import {FormGroup} from '@angular/forms';
+import {Team} from '../team';
 
 @Component({
     selector: 'app-team-cud-dialog',
