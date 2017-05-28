@@ -1,46 +1,45 @@
-<div>
-    <div *ngIf="isEverythingLoaded() && !errorLoadingComments; else loading">
-
-        <div *ngIf="getComments().length === 0">
-            <div class="alert alert-info">
-                <div class="alert-item">
-                    <span class="alert-text">This player does not have any comment yet!</span>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="userData && canUserWriteAComment()">
-            <player-comment-form [player]="player" [commentReasons]="commentReasons" (onSaved)="onSaved($event)"></player-comment-form>
-        </div>
-
-        <div *ngIf="!(auth.authenticated() && auth.userProfile)">
-            <div class="alert alert-info">
-                <div class="alert-item">
-                    <span class="alert-text">You should be authenticated if you want to write a comment.</span>
-                </div>
-            </div>
-        </div>
-
-
-        <div *ngIf="!deleting && getComments().length > 0" class="row">
-            <div *ngFor="let playerComment of getComments()" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flex-items-xs-center">
-                <app-show-player-comment [playerComment]="playerComment" [user]="getUserForUserId(playerComment.userId)"
-                                     [deleteable]="sameUserWhoWroteTheComment(getUserForUserId(playerComment.userId))" (onDeleted)="onDeleted($event)"></app-show-player-comment>
-            </div>
-        </div>
-
+<section class="header-banner">
+    <div class="stripe-grid blue">
+        <div class="stripe first"></div>
+        <div class="stripe second"></div>
+        <div class="stripe third"></div>
     </div>
-    <ng-template>
-        <md-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate">
-        </md-progress-spinner>
-        <div *ngIf="errorLoadingComments">
-            <div class="alert alert-info">
-                <div class="alert-item">
-                    <span class="alert-text">The comments could not be loaded.</span>
-                </div>
+    <div class="content-wrap row cf">
+        <section class="content">
+            <h1 class="hero-title"><span>Comments</span></h1>
+        </section>
+    </div>
+</section>
+<section *ngIf="isEverythingLoaded() && !errorLoadingComments; else loading" class="main-content row">
+
+    <div *ngIf="getComments().length === 0">
+        <p-messages [value]="[{severity:'info', summary:'', detail:'This player does not have any comment yet!'}]" [closable]="false"></p-messages>
+    </div>
+
+    <div *ngIf="userData && canUserWriteAComment()">
+        <player-comment-form [player]="player" [commentReasons]="commentReasons" (onSaved)="onSaved($event)"></player-comment-form>
+    </div>
+
+    <div *ngIf="!(auth.authenticated() && auth.userProfile)">
+        <p-messages [value]="[{severity:'info', summary:'Authentication Required', detail:'You should be authenticated if you want to write a comment.'}]" [closable]="false"></p-messages>
+    </div>
+
+    <div *ngIf="!deleting && getComments().length > 0" class="row">
+        <div *ngFor="let playerComment of getComments()" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flex-items-xs-center">
+            <app-show-player-comment [playerComment]="playerComment" [user]="getUserForUserId(playerComment.userId)"
+                                     [deleteable]="sameUserWhoWroteTheComment(getUserForUserId(playerComment.userId))" (onDeleted)="onDeleted($event)"></app-show-player-comment>
+        </div>
+    </div>
+
+</section>
+<ng-template>
+    <md-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate">
+    </md-progress-spinner>
+    <div *ngIf="errorLoadingComments">
+        <div class="alert alert-info">
+            <div class="alert-item">
+                <span class="alert-text">The comments could not be loaded.</span>
             </div>
         </div>
-    </ng-template>
-
-
-</div>
+    </div>
+</ng-template>

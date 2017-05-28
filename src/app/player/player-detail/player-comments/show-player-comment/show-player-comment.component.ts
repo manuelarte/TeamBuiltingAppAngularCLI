@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {animate, state, style, transition, trigger } from '@angular/animations'
-import {PlayerComment} from "../../../../player-comment";
-import {User} from "../../../../user";
+import {animate, state, style, transition, trigger } from '@angular/animations';
+import {PlayerComment} from '../../../../player-comment';
+import {User} from '../../../../user';
 
 @Component({
   selector: 'app-show-player-comment',
@@ -14,16 +14,16 @@ import {User} from "../../../../user";
               '-ms-transform': 'translate3D(0px, 0px, 0px)',
               '-webkit-transform': 'translate3D(0px, 0px, 0px)',
               '-moz-transform': 'translate3D(0px, 0px, 0px)',
-              '-o-transform':'translate3D(0px, 0px, 0px)',
-              transform:'translate3D(0px, 0px, 0px)',
+              '-o-transform': 'translate3D(0px, 0px, 0px)',
+              transform: 'translate3D(0px, 0px, 0px)',
               opacity: 1})),
           transition('void => *', [
               style({opacity: 0,
                   '-ms-transform': 'translate3D(0px, 150px, 0px)',
                   '-webkit-transform': 'translate3D(0px, 150px, 0px)',
                   '-moz-transform': 'translate3D(0px, 150px, 0px)',
-                  '-o-transform':'translate3D(0px, 150px, 0px)',
-                  transform:'translate3D(0px, 150px, 0px)',
+                  '-o-transform': 'translate3D(0px, 150px, 0px)',
+                  transform: 'translate3D(0px, 150px, 0px)',
               }),
               animate('0.3s 0.25s ease-out')
           ])
@@ -45,7 +45,7 @@ export class ShowPlayerCommentComponent implements OnInit {
   }
 
   getUsername(): string {
-      return this.user.given_name + " " + this.user.family_name;
+      return this.user.given_name + ' ' + this.user.family_name;
   }
 
   deleteComment(): void {

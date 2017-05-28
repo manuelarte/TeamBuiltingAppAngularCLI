@@ -1,17 +1,17 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
-import {PlayerComment} from "../player-comment";
-import {environment} from "../../environments/environment";
-import {AuthHttp} from "angular2-jwt";
+import {PlayerComment} from '../player-comment';
+import {environment} from '../../environments/environment';
+import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class PlayerCommentService {
 
-  private backendUrl: string = `${environment.backendExperienceUrl}`;
+  private backendUrl = `${environment.backendExperienceUrl}`;
   private commentsPrefix = '/comments';
   private playersUrl = this.backendUrl + this.commentsPrefix + '/players';
   private reasonsUrl = this.backendUrl + this.commentsPrefix + '/reasons';
@@ -37,7 +37,7 @@ export class PlayerCommentService {
 
 
   private convertWhenForArray(res: Response) {
-    let data = res.json() || [];
+    const data = res.json() || [];
     data.forEach(d => {
         d.when = new Date(d.when);
     });
@@ -45,7 +45,7 @@ export class PlayerCommentService {
   }
 
   private convertWhen(value: any) {
-    let data = value.json() || {};
+    const data = value.json() || {};
     data.when = new Date(data.when);
     return data;
   }

@@ -39,7 +39,6 @@
         </div>
 
         <div>
-            <h1 id="comments" #comments>Comments</h1>
             <player-comments [player]="player"></player-comments>
         </div>
 
@@ -52,9 +51,5 @@
 </div>
 <ng-template #loadingPlayerTemplate>
     <md-progress-spinner *ngIf="loadingPlayerFlag" mode="indeterminate">Loading player info...</md-progress-spinner>
-    <div *ngIf="errorLoadingPlayer" class="alert alert-danger">
-        <div class="alert-item">
-            <span class="alert-text">The player profile could not be loaded</span>
-        </div>
-    </div>
+    <p-messages *ngIf="errorLoadingPlayer" [value]="[{severity:'warning', summary:'The player profile could not be loaded', detail:''}]" [closable]="false"></p-messages>
 </ng-template>

@@ -1,6 +1,166 @@
-.player_image {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    border-radius: 50%;
+$color__blue_regular: #00c5d7;
+$color__blue_light: #1ADFF1;
+$color__blue_dark: #009dab;
+$color__gray_light: #eeeeee;
+$color__gray_regular: #f6f9fc;
+
+.row{
+    position: relative;
+    max-width: 1024px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+//clearfixes
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+//Main styling for strip elements + hero
+.header-banner{
+    position: relative;
+    padding-top: 0px;
+
+    //Stripe grid
+    .stripe-grid{
+        position: absolute;
+        top: 0px;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        transform: skewY(-11deg);
+
+        //used to hide jagged effect at the bottom of the container
+        &:after{
+            position: absolute;
+            width: 100%;
+            height:1px;
+            background-color: #fff;
+            bottom: -1px;
+            content: '';
+            left: 0%;
+        }
+
+        //each singular stripe (sizing / position)
+        .stripe{
+            position: absolute;
+            height: 22%;
+            width: 100%;
+
+            &.zero{
+                top: -50%;
+                height: 50%;
+            }
+            &.first{
+                width: 75%;
+                left: 0%;
+            }
+            &.second{
+                right: 0%;
+                width: 25%;
+                top: 25%;
+            }
+            &.third{
+                bottom: 0%;
+                width: 50%;
+                right: 0px;
+            }
+            &.fourth{
+                bottom: 0%;
+                width: 50%;
+                left: 0%;
+            }
+        }
+        //blue grid
+        &.blue{
+            background: $color__blue_regular;
+
+            .zero{
+                background-color: $color__blue_regular;
+            }
+            .first{
+                background-color: $color__blue_regular;
+                background: linear-gradient(90deg, $color__blue_light, $color__blue_regular);
+            }
+            .second{
+                background-color: $color__blue_regular;
+                background: linear-gradient(90deg, $color__blue_regular, lighten($color__blue_light, 20%));
+            }
+            .third{
+                background-color: $color__blue_regular;
+                background: linear-gradient(90deg, $color__blue_regular,  $color__blue_dark);
+            }
+            .fourth{
+                background-color: $color__gray_light;
+                background: linear-gradient(90deg, $color__gray_light, $color__gray_regular);
+            }
+
+        }
+
+    }
+
+    //content + image
+    .content-wrap{
+        position: relative;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        .content{
+            float: left;
+            width: 65%;
+
+            .hero-title{
+                font-size: 2.8rem;
+                margin-bottom: 1.9rem;
+                color: #fff;
+            }
+            .hero-subtitle{
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+                color: #eee;
+            }
+        }
+        .image{
+            float: left;
+            width: 35%;
+            padding: 0px 10px;
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+    }
+
+}
+//Misc content styles
+.main-content{
+    padding-bottom: 60px;
+
+    h2{
+        margin-bottom: 30px;
+    }
+}
+
+//Additional adjustements for smaller screens
+@media screen and (max-width: 768px){
+    .header-banner{
+        .content-wrap{
+            .image{
+                display: none;
+                border: solid 1px red;
+            }
+            .content{
+                width: 100%;
+            }
+        }
+
+    }
 }
