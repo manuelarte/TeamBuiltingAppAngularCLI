@@ -14,8 +14,8 @@
         <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else playerHistoryEmpty">
             <app-player-detail-intro class="player-detail-card" *ngIf="!loadingPlayerHistoryFlag && playerHistory && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
             <player-detail-statistics class="player-detail-card" [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
-            <div>
-                <div *ngFor="let playerToTeam of playerHistory">
+            <div class="ui-g">
+                <div *ngFor="let playerToTeam of playerHistory" class="ui-g-12 ui-md-6 ui-lg-4">
                     <app-player-to-team-card [playerToTeam]="playerToTeam" (entryDeleted)="removePlayerToTeamEntry($event)"></app-player-to-team-card>
                 </div>
             </div>
@@ -28,8 +28,8 @@
 
         <div *ngIf="playerToTeamSportLoaded">
 
-            <div fxLayout="row">
-                <div *ngIf="playerToTeamSport && sportsRegistered().length > 0; else playerToSportDetailsEmpty" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="ui-g">
+                <div *ngIf="playerToTeamSport && sportsRegistered().length > 0; else playerToSportDetailsEmpty" class="ui-g-12 ui-md-6 ui-lg-6">
                     <app-player-detail-team-sports class="player-detail-card" [player]="player" [playerToTeamSport]="playerToTeamSport"></app-player-detail-team-sports>
                 </div>
             </div>
