@@ -7,7 +7,8 @@
     </div>
 
     <label>Reward for season {{season?.startDate.getFullYear()}}-{{season?.endDate.getFullYear()}}</label>
-    <form [formGroup]="playerRewardForm">
+
+    <form *ngIf="!submittingReward; else submitting" [formGroup]="playerRewardForm">
 
         <section>
             <md-select #reward placeholder="Reward" name="reward" [(ngModel)]="model.reward" formControlName="reward" required>
@@ -30,6 +31,11 @@
         </section>
 
     </form>
+    <ng-template>
+        Submitting...
+        <md-progress-spinner mode="indeterminate">
+        </md-progress-spinner>
+    </ng-template>
 </md-dialog-content>
 <md-dialog-actions class="footer">
     <button md-button (click)="closeModal()">Cancel</button>
