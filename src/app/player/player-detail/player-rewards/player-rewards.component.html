@@ -9,8 +9,8 @@
     </div>
 
 
-    <div *ngIf="getRewards().length > 0" class="row">
-        <div *ngFor="let playerReward of getRewards()" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div *ngIf="getRewards().length > 0" class="ui-g">
+        <div *ngFor="let playerReward of getRewards()" class="ui-g-12 ui-md-6 ui-lg-6">
             <show-player-reward [playerReward]="playerReward" [team]="getTeam(playerReward.teamId)"
                                 [user]="getUserForUserId(playerReward.userId)"></show-player-reward>
         </div>
