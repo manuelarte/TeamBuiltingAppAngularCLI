@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Auth} from './services/auth-service';
 import {MdIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {LoginService} from './services/login.service';
 
 export const title = 'Team Builting App';
 
@@ -27,6 +26,9 @@ export class AppComponent implements OnInit {
       this.mdIconRegistry.addSvgIcon('shorts-with-number-12',
         sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-shorts-with-number-12.svg'));
       this.mdIconRegistry.addSvgIcon('reward', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-medal.svg'));
+      this.mdIconRegistry.addSvgIcon('futsal_pitch', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/futsal/futsal_pitch.svg'));
+      this.mdIconRegistry.addSvgIcon('football_field',
+          sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-field-top-view.svg'));
   }
 
   ngOnInit(): void {

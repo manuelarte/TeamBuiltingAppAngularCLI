@@ -9,7 +9,9 @@
 
         <md-select placeholder="Sport" [(ngModel)]="model.sport" formControlName="sport" required>
             <md-option value="" [disabled]="true">Select a sport...</md-option>
-            <md-option *ngFor="let sport of sports" [value]="sport.name">{{sport.name}}</md-option>
+            <md-option *ngFor="let sport of sports" [value]="sport.name">
+                <md-icon [svgIcon]="getIconForSport(sport.name)"></md-icon>
+                {{sport.name}}</md-option>
         </md-select>
 
         <md-input-container class="example-full-width">

@@ -22,6 +22,7 @@ export class TeamCudComponent implements OnInit {
     stillActive = true;
     location: GoogleMapGeocodingResultGeometryLocation;
     private validLocation = false;
+    private sportToIcon: Map<string, string> = this.teamSportService.sportToIcon;
 
     teamForm = new FormGroup({
         name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(200)])),
@@ -86,6 +87,10 @@ export class TeamCudComponent implements OnInit {
 
     emitForm(): void {
         this.form.emit(this.teamForm);
+    }
+
+    getIconForSport(sportName: string) {
+      return this.sportToIcon.get(sportName);
     }
 
 }
