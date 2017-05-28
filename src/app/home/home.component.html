@@ -6,27 +6,28 @@
 </div>
 
 <div>
-    <div fxLayout="row">
-        <div>
-            <md-card class="example-card">
-                <md-card-header>
-                    <md-card-title>Search Team</md-card-title>
-                </md-card-header>
-                <md-card-content>
-                    <team-search (teamClicked)="routerUtils.gotoTeamDetails($event)">Loading the search team component...</team-search>
-                </md-card-content>
-            </md-card>
-        </div>
-        <div>
-            <md-card class="example-card">
-                <md-card-header>
-                    <md-card-title>Search Player</md-card-title>
-                </md-card-header>
-                <md-card-content>
-                    <player-search (playerClicked)="routerUtils.gotoPlayerDetails($event)">Loading the search player component...</player-search>
-                </md-card-content>
-            </md-card>
-        </div>
+    <div>
+        <md-card class="example-card">
+            <md-card-header>
+                <md-card-title>Search Team</md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <team-search (teamClicked)="routerUtils.gotoTeamDetails($event)">Loading the search team component...
+                </team-search>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div>
+        <md-card class="example-card">
+            <md-card-header>
+                <md-card-title>Search Player</md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <player-search (playerClicked)="routerUtils.gotoPlayerDetails($event)">Loading the search player
+                    component...
+                </player-search>
+            </md-card-content>
+        </md-card>
     </div>
 </div>
 <!--<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">

@@ -5,7 +5,7 @@ import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from '@agm/core';
 
-import {ChartModule} from 'primeng/primeng';
+import {ChartModule, MessagesModule} from 'primeng/primeng';
 import {ChartsModule} from 'ng2-charts';
 import {PlayerDetailComponent} from './player-detail/player-detail.component';
 import {PlayerInTeamComponent} from './player-in-team/player-in-team.component';
@@ -39,6 +39,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     CommonModule,
     ChartModule,
     ChartsModule,
+    MessagesModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

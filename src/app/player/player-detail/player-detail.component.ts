@@ -123,6 +123,10 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
       return toReturn;
   }
 
+  sportsRegistered(): string[] {
+      return Object.keys(this.playerToTeamSport);
+  }
+
   indexTeams(): {[id: string]: Team} {
       return this.teams.reduce(function(map, obj) {
           map[obj.id] = obj;

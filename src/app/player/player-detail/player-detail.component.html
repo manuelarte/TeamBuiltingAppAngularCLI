@@ -11,9 +11,8 @@
 
         <app-player-cud-card class="player-detail-card" [player]="player"></app-player-cud-card>
 
-        <app-player-detail-intro class="player-detail-card" *ngIf="!loadingPlayerHistoryFlag && playerHistory && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
-
         <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else playerHistoryEmpty">
+            <app-player-detail-intro class="player-detail-card" *ngIf="!loadingPlayerHistoryFlag && playerHistory && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
             <player-detail-statistics class="player-detail-card" [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
             <div>
                 <div *ngFor="let playerToTeam of playerHistory">
@@ -23,19 +22,19 @@
 
         </div>
         <ng-template #playerHistoryEmpty>
-            This player did not add any history yet.
+            <p-messages [value]="[{severity:'info', summary:'No History', detail:'This player did not add any history yet.'}]" [closable]="false"></p-messages>
         </ng-template>
 
 
         <div *ngIf="playerToTeamSportLoaded">
 
             <div fxLayout="row">
-                <div *ngIf="playerToTeamSport; else playerToSportDetailsEmpty" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div *ngIf="playerToTeamSport && sportsRegistered().length > 0; else playerToSportDetailsEmpty" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <app-player-detail-team-sports class="player-detail-card" [player]="player" [playerToTeamSport]="playerToTeamSport"></app-player-detail-team-sports>
                 </div>
             </div>
             <ng-template #playerToSportDetailsEmpty>
-                This player did not add any sport details yet.
+                <p-messages [value]="[{severity:'info', summary:'No Sports Added', detail:'This player did not add any sport details yet.'}]" [closable]="false"></p-messages>
             </ng-template>
         </div>
 
