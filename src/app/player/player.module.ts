@@ -30,12 +30,11 @@ import {ProfileModule} from '../profile/profile.module';
 import {PlayerCudCardComponent} from './player-cud-card/player-cud-card.component';
 import {UserRightsService} from '../services/user-rights.service';
 import {GoogleChart} from '../directives/angular2-google-chart.directive';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { Parallax } from 'ng2-parallax/commonjs';
 
 @NgModule({
   imports: [
     PlayerRoutingModule,
-    FlexLayoutModule,
     CommonModule,
     ChartModule,
     ChartsModule,
@@ -76,6 +75,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
       ShowPlayerCommentComponent,
       ShowPlayerRewardComponent,
       GoogleChart,
+      Parallax,
   ],
   providers: [ UserRightsService,
       { provide: LOCALE_ID, useValue: 'nl' },
