@@ -1,19 +1,19 @@
-import {Component, OnInit, Input}      from '@angular/core';
-import {PlayerService} from "../../../services/player.service";
-import {TeamService} from "../../../services/team.service";
-import {Auth} from "../../../services/auth-service";
-import {UserDataService} from "../../../services/user-data.service";
-import {PlayerRewardsService} from "../../../services/player-rewards.service";
-import {SeasonUtilService} from "../../../services/season-utils.service";
-import {PlayerReward} from "../../../player-reward";
-import {Player} from "../../../player";
-import {UserData} from "../../../user-data";
-import {Team} from "../../../team";
-import {UserService} from "../../../services/user.service";
+import {Component, OnInit, Input} from '@angular/core';
+import {PlayerService} from '../../../services/player.service';
+import {TeamService} from '../../../services/team.service';
+import {Auth} from '../../../services/auth-service';
+import {UserDataService} from '../../../services/user-data.service';
+import {PlayerRewardsService} from '../../../services/player-rewards.service';
+import {SeasonUtilService} from '../../../services/season-utils.service';
+import {PlayerReward} from '../../../player-reward';
+import {Player} from '../../../player';
+import {UserData} from '../../../user-data';
+import {Team} from '../../../team';
+import {UserService} from '../../../services/user.service';
 
 
 @Component({
-  selector: 'player-rewards',
+  selector: 'app-player-rewards',
   templateUrl: 'player-rewards.component.html',
   styleUrls: ['player-rewards.component.scss'],
   providers: [PlayerService, TeamService, PlayerRewardsService, UserService, UserDataService, SeasonUtilService ]
@@ -22,12 +22,14 @@ export class PlayerRewardsComponent implements OnInit {
 
   @Input() player: Player;
 
-  private userAndReward: {[userId: string]: {user: any, playerRewards: PlayerReward[]}} = {};
-  rewardsLoaded: boolean = false;
+  private userAndReward: Map<string, {user: any, playerRewards: PlayerReward[]}> =
+      new Map<string, {user: any, playerRewards: PlayerReward[]}>();
+  loadingRewardsFlag = false;
+  errorLoadingRewards = false;
   private teams: {[teamId: string]: Team} = {};
 
   userData: UserData;
-  userDataLoaded: boolean = false;
+  userDataLoaded = false;
 
   constructor(
     private auth: Auth,
@@ -38,20 +40,24 @@ export class PlayerRewardsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadingRewardsFlag = true;
+    this.errorLoadingRewards = false;
     this.playerRewardsService.getPlayerRewards(this.player.id).then(playerRewards => {
         playerRewards.forEach(playerReward => {
             this.userService.getUser(playerReward.userId).then(user => {
                 this.teamService.getTeam(playerReward.teamId).then(team => {
-                    this.userAndReward[playerReward.userId] = {user: user, playerRewards: this.addAndRetrievePlayerRewardForUser(playerReward)};
+                    this.userAndReward.set(playerReward.userId,
+                        {user: user, playerRewards: this.addAndRetrievePlayerRewardForUser(playerReward)});
                     if (!this.teams[playerReward.teamId]) {
                         this.teams[playerReward.teamId] = team;
                     }
-                })
-            })
+                });
+            });
         });
-        this.rewardsLoaded = true;
+        this.loadingRewardsFlag = false;
     }).catch(error => {
-        this.rewardsLoaded = true;
+        this.loadingRewardsFlag = false;
+        this.errorLoadingRewards = true;
     });
 
     if (this.auth.authenticated()) {
@@ -60,22 +66,24 @@ export class PlayerRewardsComponent implements OnInit {
             this.userDataLoaded = true;
         }).catch(error => {
             this.userDataLoaded = true;
-        })
+            this.errorLoadingRewards = true;
+        });
     }
   }
 
   private addAndRetrievePlayerRewardForUser(playerReward: PlayerReward): PlayerReward[] {
-    let toReturn: PlayerReward[] = this.userAndReward[playerReward.userId]? this.userAndReward[playerReward.userId].playerRewards : [];
+    const toReturn: PlayerReward[] = this.userAndReward.has(playerReward.userId) ?
+        this.userAndReward.get(playerReward.userId).playerRewards : [];
     toReturn.push(playerReward);
     return toReturn;
   }
 
   isEverythingLoaded(): boolean {
-      return this.rewardsLoaded;
+      return !this.loadingRewardsFlag;
   }
 
   getUserForUserId(userId: string): any {
-      return this.userAndReward[userId].user;
+      return this.userAndReward.get(userId).user;
   }
 
   getTeam(teamId: string) {
@@ -87,7 +95,7 @@ export class PlayerRewardsComponent implements OnInit {
   }
 
   getRewards(): PlayerReward[] {
-      let values: {user: any, playerRewards: PlayerReward}[] = this.values(this.userAndReward);
+      const values: {user: any, playerRewards: PlayerReward}[] = this.values(this.userAndReward);
       return [].concat.apply([], values.filter(entry => entry != null).map(entry => entry.playerRewards));
   }
 
@@ -97,7 +105,7 @@ export class PlayerRewardsComponent implements OnInit {
   }
 
   private values<Y>(data: {[key: string]: any}): any {
-    return Object.keys(data).map(key=>data[key])
+    return Object.keys(data).map(key => data[key]);
   }
 
 }
