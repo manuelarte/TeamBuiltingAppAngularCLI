@@ -11,20 +11,26 @@ export class Auth {
 
     usersUrl = 'https://manuelarte.eu.auth0.com/api/v2/users';
 
-    // Configure Auth0
-    lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {
+    options: any = {
+        allowedConnections: ['google-oauth2', 'facebook'],
+        // socialButtonStyle: 'small',
+        theme: {
+            primaryColor: '#31324F'
+        },
         auth: {
             params: {
                 scope: 'openid user_id email given_name family_name nickname picture roles user_metadata read:users'
             },
         }
-    });
+    };
+
+    // Configure Auth0
+    lock = new Auth0Lock(myConfig.clientID, myConfig.domain, this.options);
 
     // Store profile object in auth class
     userProfile: any;
 
     constructor(private loginService: LoginService) {
-
         // Set userProfile attribute of already saved profile
         this.userProfile = JSON.parse(localStorage.getItem('profile'));
 
