@@ -10,7 +10,7 @@
         </section>
     </div>
 </section>
-<section *ngIf="isEverythingLoaded() && !errorLoadingComments; else loading" class="main-content row">
+<section *ngIf="isEverythingLoaded() && !errorLoadingComments; else commentsNotLoaded" class="main-content row">
 
     <div *ngIf="getComments().length === 0">
         <p-messages [value]="[{severity:'info', summary:'', detail:'This player does not have any comment yet!'}]" [closable]="false"></p-messages>
@@ -32,14 +32,8 @@
     </div>
 
 </section>
-<ng-template>
+<ng-template #commentsNotLoaded>
     <md-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate">
     </md-progress-spinner>
-    <div *ngIf="errorLoadingComments">
-        <div class="alert alert-info">
-            <div class="alert-item">
-                <span class="alert-text">The comments could not be loaded.</span>
-            </div>
-        </div>
-    </div>
+    <p-messages *ngIf="errorLoadingComments" [value]="[{severity:'warn', summary:'The comments could not be loaded.', detail:''}]" [closable]="false"></p-messages>
 </ng-template>

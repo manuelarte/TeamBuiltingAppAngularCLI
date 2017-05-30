@@ -1,13 +1,8 @@
-<div *ngIf="rewardsLoaded">
+<div *ngIf="isEverythingLoaded() && !errorLoadingRewards; else rewardsNotLoaded">
 
     <div *ngIf="getRewards().length === 0">
-        <div class="alert alert-info">
-            <div class="alert-item">
-                <span class="alert-text">This player does not have any reward yet!</span>
-            </div>
-        </div>
+        <p-messages [value]="[{severity:'info', summary:'This player does not have any reward yet!', detail:''}]" [closable]="false"></p-messages>
     </div>
-
 
     <div *ngIf="getRewards().length > 0" class="ui-g">
         <div *ngFor="let playerReward of getRewards()" class="ui-g-12 ui-md-6 ui-lg-6">
@@ -18,10 +13,7 @@
 
 </div>
 
-<div *ngIf="!rewardsLoaded">
-    <div class="alert alert-info">
-        <div class="alert-item">
-            <span class="alert-text">The player rewards cannot be loaded.</span>
-        </div>
-    </div>
-</div>
+<ng-template #rewardsNotLoaded>
+    <md-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate"></md-progress-spinner>
+    <p-messages *ngIf="errorLoadingRewards" [value]="[{severity:'warn', summary:'Rewards Not Loaded', detail:'The player rewards could not be loaded.'}]" [closable]="false"></p-messages>
+</ng-template>
