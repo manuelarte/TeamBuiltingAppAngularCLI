@@ -1,7 +1,8 @@
 
 $max_width: 80%;
-$max_height_img1: 300px;
-$max_height_player-profile: $max_height_img1 * 0.8;
+$max_height_img1: 200px;
+$max_height_player-profile: 1.2 * $max_height_img1;
+$padding_bottom_container: 1.1 * ($max_height_player-profile - $max_height_img1);
 
 .content-area {
     width: $max_width;
@@ -25,7 +26,7 @@ $max_height_player-profile: $max_height_img1 * 0.8;
     border-radius: 50%;
     position: absolute;
     bottom: 0%;
-    transform: translate(20%, -10%);
+    transform: translate(0%, 0%);
 }
 
 .text-box {
