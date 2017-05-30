@@ -32,7 +32,6 @@ $padding_bottom_container: 1.1 * ($max_height_player-profile - $max_height_img1)
 .text-box {
     z-index: 100;
     position: absolute;
-    height: 100%;
     text-align: right;
     width: 100%;
     bottom: 0%;
@@ -40,7 +39,6 @@ $padding_bottom_container: 1.1 * ($max_height_player-profile - $max_height_img1)
 .text-box:before {
     content: '';
     display: inline-block;
-    height: 100%;
     vertical-align: middle;
 }
 
