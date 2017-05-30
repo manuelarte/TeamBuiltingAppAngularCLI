@@ -3,15 +3,12 @@ $max_width: 80%;
 $max_height_img1: 300px;
 $max_height_player-profile: $max_height_img1 * 0.8;
 
-
-#container {
+.content-area {
     width: $max_width;
-    position:relative;
-    transform: translate(10%, 0%)
 }
 
-.player-detail-card {
-    padding: 10px;
+#container {
+    position:relative;
 }
 
 .player-detail-intro-img {
