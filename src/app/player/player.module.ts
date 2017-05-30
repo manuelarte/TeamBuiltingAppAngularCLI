@@ -30,7 +30,6 @@ import {ProfileModule} from '../profile/profile.module';
 import {PlayerCudCardComponent} from './player-cud-card/player-cud-card.component';
 import {UserRightsService} from '../services/user-rights.service';
 import {GoogleChart} from '../directives/angular2-google-chart.directive';
-import { Parallax } from 'ng2-parallax/commonjs';
 
 @NgModule({
   imports: [
@@ -75,7 +74,6 @@ import { Parallax } from 'ng2-parallax/commonjs';
       ShowPlayerCommentComponent,
       ShowPlayerRewardComponent,
       GoogleChart,
-      Parallax,
   ],
   providers: [ UserRightsService,
       { provide: LOCALE_ID, useValue: 'nl' },
