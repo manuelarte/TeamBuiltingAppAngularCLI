@@ -11,7 +11,7 @@
 
         <app-player-cud-card class="player-detail-card" [player]="player"></app-player-cud-card>
 
-        <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else playerHistoryEmpty">
+        <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else loadingplayerHistory">
             <app-player-detail-intro class="player-detail-card" *ngIf="!loadingPlayerHistoryFlag && playerHistory && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
             <player-detail-statistics class="player-detail-card" [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
             <div class="ui-g">
@@ -21,8 +21,10 @@
             </div>
 
         </div>
-        <ng-template #playerHistoryEmpty>
-            <p-messages [value]="[{severity:'info', summary:'No History', detail:'This player did not add any history yet.'}]" [closable]="false"></p-messages>
+        <ng-template #loadingplayerHistory>
+            <md-progress-spinner *ngIf="loadingPlayerHistoryFlag" mode="indeterminate">
+            </md-progress-spinner>
+            <p-messages *ngIf="playerHistoryErrorFlag" [value]="[{severity:'info', summary:'No History', detail:'This player did not add any history yet.'}]" [closable]="false"></p-messages>
         </ng-template>
 
 
