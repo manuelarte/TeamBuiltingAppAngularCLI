@@ -15,7 +15,7 @@
             <app-player-detail-intro class="player-detail-card" *ngIf="!loadingPlayerHistoryFlag && playerHistory && areTeamsLoaded()" [playerHistory]="playerHistory" [teamsByTeamId]="indexTeams()"></app-player-detail-intro>
             <player-detail-statistics class="player-detail-card" [teams]="teams" [player]="player" [playerHistory]="playerHistory" [playerToTeamSport]="playerToTeamSport"></player-detail-statistics>
             <div class="ui-g">
-                <div *ngFor="let playerToTeam of playerHistory" class="ui-g-12 ui-md-6 ui-lg-4">
+                <div *ngFor="let playerToTeam of playerHistory" class="ui-g-12 ui-md-4 ui-lg-3">
                     <app-player-to-team-card [playerToTeam]="playerToTeam" (entryDeleted)="removePlayerToTeamEntry($event)"></app-player-to-team-card>
                 </div>
             </div>

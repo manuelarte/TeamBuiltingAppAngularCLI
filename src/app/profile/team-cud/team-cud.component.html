@@ -21,21 +21,31 @@
     </section>
 
     <section>
-        <label>Team Dates</label>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-3">
+                <label>Team Dates</label>
+            </div>
 
-        <md-input-container>
-            <input #fromDate mdInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
-                   formControlName="fromDate" required>
-            <md-error *ngIf="teamForm.get('fromDate').invalid">Not valid</md-error>
-        </md-input-container>
+            <div class="ui-g-12 ui-md-3 ui-lg-3">
+            <md-input-container>
+                <input #fromDate mdInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
+                       formControlName="fromDate" required>
+                <md-error *ngIf="teamForm.get('fromDate').invalid">Not valid</md-error>
+            </md-input-container>
+            </div>
 
-        <md-input-container>
-            <input #toDate mdInput placeholder="To date" id="toDate" type="date" formControlName="toDate" [(ngModel)]="model.toDate" [value]="getToDate()"
-                   [required]="!stillActive" [readOnly]="stillActive">
-            <md-error *ngIf="teamForm.get('toDate').invalid">Not valid</md-error>
-        </md-input-container>
+            <div class="ui-g-12 ui-md-3 ui-lg-3">
+            <md-input-container>
+                <input #toDate mdInput placeholder="To date" id="toDate" type="date" formControlName="toDate" [(ngModel)]="model.toDate" [value]="getToDate()"
+                       [required]="!stillActive" [readOnly]="stillActive">
+                <md-error *ngIf="teamForm.get('toDate').invalid">Not valid</md-error>
+            </md-input-container>
+            </div>
 
-        <md-checkbox class="example-margin" [(ngModel)]="stillActive" [ngModelOptions]="{standalone: true}">Still Active</md-checkbox>
+            <div class="ui-g-12 ui-md-3 ui-lg-3">
+                <md-checkbox class="example-margin" [(ngModel)]="stillActive" [ngModelOptions]="{standalone: true}">Still Active</md-checkbox>
+            </div>
+        </div>
     </section>
 
     <md-input-container>
