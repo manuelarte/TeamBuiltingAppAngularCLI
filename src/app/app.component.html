@@ -39,4 +39,6 @@
 
 </md-sidenav-container>
 
-<button *ngIf="!sidenav.opened" md-fab class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>add</md-icon></button>
+<ng-container *ngIf="isAuthenticated()">
+    <button *ngIf="!sidenav.opened" md-fab class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>add</md-icon></button>
+</ng-container>

@@ -17,6 +17,7 @@ import {MdButtonModule, MdCardModule, MdCheckboxModule, MdInputModule} from '@an
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProfileModule} from '../profile/profile.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {HomeIntroComponent} from './home-intro/home-intro.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ],
     declarations: [
         HomeComponent,
+        HomeIntroComponent,
         StatisticsComponent,
         RateAndCommentsComponent,
         PodiumComponent
