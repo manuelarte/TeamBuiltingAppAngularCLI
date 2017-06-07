@@ -1,11 +1,8 @@
 <div *ngIf="!loadingPlayerFlag && player != null; else loadingPlayerTemplate" class="content-container">
     <div class="content-area">
 
-        <div id="container">
-            <div class="text-box">
-                <h3>{{player.name}} Homepage</h3>
-            </div>
-            <img src="../images/home/image5.jpg" class="player-detail-intro-img" />
+        <div id="container" parallax [ngStyle]="{'background-image': 'url(../images/home/image5.jpg)'}">
+            <h2>{{player.name}} Homepage</h2>
             <img class="player_image" [src]="player.imageLink" alt="{{player.name}}"/>
         </div>
 
@@ -24,7 +21,7 @@
         <ng-template #loadingplayerHistory>
             <md-progress-spinner *ngIf="loadingPlayerHistoryFlag" mode="indeterminate">
             </md-progress-spinner>
-            <p-messages *ngIf="playerHistoryErrorFlag" [value]="[{severity:'info', summary:'No History', detail:'This player did not add any history yet.'}]" [closable]="false"></p-messages>
+            <p-messages *ngIf="playerHistoryErrorFlag" [value]="[{severity:'info', summary:'Error Loading Player History', detail:'Player History could not be loaded.'}]" [closable]="false"></p-messages>
         </ng-template>
 
 

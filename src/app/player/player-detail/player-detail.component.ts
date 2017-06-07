@@ -15,7 +15,7 @@ import {Subscription} from 'rxjs/Subscription';
   selector: 'app-player-detail',
   templateUrl: 'player-detail.component.html',
   styleUrls: ['player-detail.component.scss'],
-  providers: [PlayerService, TeamService, PlayerHistoryUtilsService]
+  providers: [PlayerService, TeamService, PlayerHistoryUtilsService],
 })
 export class PlayerDetailComponent implements OnInit, OnDestroy {
   player: Player;
