@@ -1,7 +1,7 @@
 <div *ngIf="!loadingPlayerFlag && player != null; else loadingPlayerTemplate" class="content-container">
     <div class="content-area">
 
-        <div id="container" parallax [ngStyle]="{'background-image': 'url(../images/home/image5.jpg)'}">
+        <div id="container" [ngStyle]="{'background-image': 'url(../images/home/image5.jpg)'}">
             <h2>{{player.name}} Homepage</h2>
             <img class="player_image" [src]="player.imageLink" alt="{{player.name}}"/>
         </div>
