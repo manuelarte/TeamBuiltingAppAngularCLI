@@ -28,8 +28,6 @@ import {HomeIntroComponent} from './home-intro/home-intro.component';
         ReactiveFormsModule,
         BrowserAnimationsModule,
         HttpModule,
-        GalleriaModule,
-        StepsModule,
         RatingModule,
         TeamModule,
         PlayerModule,
