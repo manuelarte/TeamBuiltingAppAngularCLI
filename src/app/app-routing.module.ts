@@ -17,6 +17,11 @@ const routes: Routes = [
         path: 'player',
         loadChildren: 'app/player/player.module#PlayerModule'
     },
+    {
+        // Point the loadChildren to your team module
+        path: 'match',
+        loadChildren: 'app/match/match.module#MatchModule'
+    },
     { path: 'statistics', component: StatisticsComponent },
     {
         // Point the loadChildren to your team module

@@ -1,0 +1,15 @@
+<md-checkbox class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</md-checkbox>
+<div *ngIf="teamRegistered">
+    <team-search (teamClicked)="setTeamInfoFromTeam($event)"></team-search>
+
+    <div *ngIf="registeredTeamSelected; else registeredTeamNotSelected">
+        <img class="team_emblem" [src]="registeredTeamSelected.emblemLink" alt=""/>
+        <h2>{{registeredTeamSelected.name}}</h2>
+    </div>
+    <ng-template #registeredTeamNotSelected>
+        Team Not Selected
+    </ng-template>
+</div>
+<div *ngIf="!teamRegistered">
+    Team Not Registered
+</div>

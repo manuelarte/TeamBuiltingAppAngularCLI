@@ -1,0 +1,28 @@
+<p>
+  match-add works!
+</p>
+
+<md-slider
+    class="example-margin"
+    [disabled]="disabled"
+    [max]="max"
+    [min]="min"
+    [step]="step"
+    [value]="value">
+</md-slider>
+
+<md-input-container>
+    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+</md-input-container>
+<md-datepicker #picker></md-datepicker>
+
+<div #teams class="ui-g">
+    <div class="ui-g-6 ui-md-6 ui-lg-12">
+        <h1>Home Team</h1>
+        <app-match-team-info-cud></app-match-team-info-cud>
+    </div>
+    <div class="ui-g-6 ui-md-6 ui-lg-12">
+        <h1>Away Team</h1>
+    </div>
+</div>

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import {TeamSearchService} from '../../services/team-search.service';
 import {Team} from '../../team';
 import {Page} from '../../page';
-import {FormControl} from "@angular/forms";
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'team-search',
