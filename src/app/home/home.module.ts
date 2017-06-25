@@ -3,7 +3,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {HomeComponent} from './home.component';
-import {GalleriaModule} from 'primeng/primeng';
 import {TeamModule} from '../team/team.module';
 import {RatingModule} from 'primeng/components/rating/rating';
 import {StatisticsComponent} from '../statistics/statistics.component';
@@ -11,7 +10,6 @@ import {RateAndCommentsComponent} from '../rate-and-comments/rate-and-comments.c
 import {PodiumComponent} from '../statistics/podium/podium.component';
 import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
-import {StepsModule} from 'primeng/primeng';
 import {MdButtonModule, MdCardModule, MdCheckboxModule, MdInputModule} from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,11 +20,11 @@ import {HomeIntroComponent} from './home-intro/home-intro.component';
 
 @NgModule({
     imports: [
+        BrowserAnimationsModule,
         FlexLayoutModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule,
         HttpModule,
         RatingModule,
         TeamModule,
