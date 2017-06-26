@@ -57,7 +57,7 @@ export class TeamDetailComponent implements OnInit {
                     this.handleError(error);
                     this.forwardError(error.json());
               });
-              this.teamService.getPlayers(id, date)
+              this.teamService.getPlayers(id, this.date)
                   .then(playersToTeam => {
                       this.playersToTeam = playersToTeam;
                       this.players = [];

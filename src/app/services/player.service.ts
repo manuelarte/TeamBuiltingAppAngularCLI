@@ -70,7 +70,6 @@ export class PlayerService {
       return this.authHttp.delete(`${this.playerToTeamUrl}/${playerToTeam.id}`).toPromise();
   }
 
-
   private convertFromDatesAndToDatesForArray(res: Response) {
     const data = res.json() || [];
     data.forEach(d => {
@@ -90,7 +89,5 @@ export class PlayerService {
     }
     return data;
   }
-
-
 
 }

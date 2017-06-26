@@ -4,7 +4,7 @@ export interface PlayerInfo {
 
 export class RegisteredPlayerInfo implements PlayerInfo {
     id: string;
-    playerId: string;
+    playerId: number;
 }
 
 export class UnRegisteredPlayerInfo implements PlayerInfo {

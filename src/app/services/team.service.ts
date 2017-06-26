@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 import { Injectable } from '@angular/core';
 import {Http, URLSearchParams} from '@angular/http';
 
@@ -5,11 +7,10 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 import {Team} from '../team';
-import {Player} from '../player';
 import {AuthHttp} from 'angular2-jwt';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {PlayerToTeam} from "../player-to-team";
+import {PlayerToTeam} from '../player-to-team';
 
 
 @Injectable()
@@ -34,9 +35,12 @@ export class TeamService {
         return this.authHttp.post(this.teamUrl, team).map(this.convertFromDateAndToDate);
   }
 
-  getPlayers(id: string, date: string = null): Promise<PlayerToTeam[]> {
+  getPlayers(id: string, date: Date = null): Promise<PlayerToTeam[]> {
     const params: URLSearchParams = new URLSearchParams();
-    params.set('date', date);
+    if (date) {
+        const myMoment: moment.Moment = moment(date);
+        params.set('date', myMoment.format('YYYY-MM-DD'));
+    }
     return this.http.get(`${this.playerToTeamsUrl}/teams/${id}`, {search: params}).map(response => <PlayerToTeam[]> response.json())
       .toPromise();
   }

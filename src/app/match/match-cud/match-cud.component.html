@@ -1,14 +1,10 @@
-<p>
-  match-add works!
-</p>
-
 <md-slider
     class="example-margin"
-    [disabled]="disabled"
+    [disabled]="true"
     [max]="max"
     [min]="min"
     [step]="step"
-    [value]="value">
+    [value]="sliderValue">
 </md-slider>
 
 <md-input-container>
@@ -18,11 +14,28 @@
 <md-datepicker #picker></md-datepicker>
 
 <div #teams class="ui-g">
-    <div class="ui-g-6 ui-md-6 ui-lg-12">
+    <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
         <h1>Home Team</h1>
-        <app-match-team-info-cud></app-match-team-info-cud>
+        <app-match-team-info-cud (teamSelected)="homeTeamSelected($event)" (teamRemoved)="homeTeamRemoved()"></app-match-team-info-cud>
     </div>
-    <div class="ui-g-6 ui-md-6 ui-lg-12">
+    <div class="ui-g-12 ui-md-3 ui-lg-3">
+    </div>
+    <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
         <h1>Away Team</h1>
+        <app-match-team-info-cud (teamSelected)="awayTeamSelected($event)" (teamRemoved)="awayTeamRemoved()"></app-match-team-info-cud>
+    </div>
+</div>
+
+<div #playersSelected class="ui-g">
+    <div *ngIf="homeTeamInfo" class="player-info ui-g-12 ui-md-4 ui-lg-4">
+        <h1>Home Players</h1>
+        <app-match-players-info [teamInfo]="homeTeamInfo"></app-match-players-info>
+    </div>
+    <div class="ui-g-12 ui-md-3 ui-lg-3">
+    </div>
+
+    <div *ngIf="awayTeamInfo" class="player-info ui-g-12 ui-md-4 ui-lg-4">
+        <h1>Away Players</h1>
+
     </div>
 </div>

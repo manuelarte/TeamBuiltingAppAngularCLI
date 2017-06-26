@@ -7,7 +7,7 @@ import {RatingModule} from 'primeng/components/rating/rating';
 import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdInputModule, MdNativeDateModule,
+    MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
     MdSliderModule
 } from '@angular/material';
 
@@ -16,6 +16,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatchCudComponent} from './match-cud/match-cud.component';
 import {MatchRoutingModule} from './match-routing.module';
 import {MatchTeamInfoCudComponent} from "./match-team-info-cud/match-team-info-cud.component";
+import {MatchPlayersInfoComponent} from "./match-players-info/match-players-info.component";
+import {MatchPlayerInfoCudComponent} from "./match-player-info-cud/match-player-info-cud.component";
 
 
 @NgModule({
@@ -36,12 +38,15 @@ import {MatchTeamInfoCudComponent} from "./match-team-info-cud/match-team-info-c
         MdCheckboxModule,
         MdDatepickerModule,
         MdNativeDateModule,
+        MdIconModule,
         MdInputModule,
         MdSliderModule,
     ],
     declarations: [
         MatchCudComponent,
         MatchTeamInfoCudComponent,
+        MatchPlayersInfoComponent,
+        MatchPlayerInfoCudComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},

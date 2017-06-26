@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import {TeamInfo} from '../match/teamInfo';
+import {PlayerInfo} from '../match/playerInfo';
 
 @Injectable()
 export class UtilsService {
@@ -26,5 +28,14 @@ export class UtilsService {
     }
     return pictureUrl;
   }
+
+  isRegisteredTeam(teamInfo: TeamInfo): boolean {
+    return 'teamId' in teamInfo;
+  }
+
+  isRegisteredPlayer(playerInfo: PlayerInfo): boolean {
+        return 'playerId' in playerInfo;
+  }
+
 
 }
