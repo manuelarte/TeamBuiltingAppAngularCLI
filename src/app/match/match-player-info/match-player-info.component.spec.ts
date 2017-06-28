@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchTeamInfoCudComponent } from './match-team-info-cud.component';
+import { MatchPlayerInfoComponent } from './match-player-info.component';
 
-describe('MatchTeamInfoCudComponent', () => {
-  let component: MatchTeamInfoCudComponent;
-  let fixture: ComponentFixture<MatchTeamInfoCudComponent>;
+describe('MatchPlayerInfoComponent', () => {
+  let component: MatchPlayerInfoComponent;
+  let fixture: ComponentFixture<MatchPlayerInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatchTeamInfoCudComponent ]
+      declarations: [ MatchPlayerInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatchTeamInfoCudComponent);
+    fixture = TestBed.createComponent(MatchPlayerInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

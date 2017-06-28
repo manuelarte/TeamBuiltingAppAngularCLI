@@ -12,28 +12,31 @@ declare var googleChartsPackagesToLoad: any;
 })
 
 export class GoogleChart implements OnInit {
-    public _element:any;
-    @Input('chartType') public chartType:string;
+
+    public _element: any;
+    @Input('chartType') public chartType: string;
     @Input('chartOptions') public chartOptions: Object;
     @Input('chartData') public chartData: Object;
+
     constructor(public element: ElementRef) {
         this._element = this.element.nativeElement;
     }
     ngOnInit() {
-        if(!googleLoaded) {
+        if (!googleLoaded) {
             googleLoaded = true;
-            google.charts.load('current', {'packages':['corechart', 'gauge']});
+            google.charts.load('current', {'packages': ['corechart', 'gauge']});
         }
-        setTimeout(() =>this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element),1000);
+        setTimeout(() => this.drawGraph(this.chartOptions, this.chartType, this.chartData, this._element), 1000);
     }
-    drawGraph (chartOptions,chartType,chartData,ele) {
+
+    drawGraph (chartOptions, chartType, chartData, ele) {
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
-            var wrapper;
+            let wrapper;
             wrapper = new google.visualization.ChartWrapper({
                 chartType: chartType,
-                dataTable:chartData ,
-                options:chartOptions || {}
+                dataTable: chartData ,
+                options: chartOptions || {}
             });
             wrapper.draw(ele);
 

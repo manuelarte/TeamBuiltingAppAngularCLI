@@ -1,3 +1,25 @@
-<p>
-  match-player-info-cud works!
-</p>
+<ng-container *ngIf="isBusy">
+    <md-progress-spinner mode="indeterminate">
+    </md-progress-spinner>
+</ng-container>
+
+<md-card *ngIf="!player; else playerAdded">
+    <md-card-header>
+        <md-checkbox class="example-margin" [(ngModel)]="playerRegistered">Player Already Registered</md-checkbox>
+    </md-card-header>
+    <md-card-content>
+        <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+        </p>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button><md-icon>save</md-icon></button>
+        <button md-button><md-icon>delete</md-icon></button>
+    </md-card-actions>
+</md-card>
+
+<ng-template #playerAdded>
+<app-match-player-info *ngIf="player" [player]="player"></app-match-player-info>
+</ng-template>

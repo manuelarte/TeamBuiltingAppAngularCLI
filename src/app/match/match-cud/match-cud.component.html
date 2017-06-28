@@ -27,15 +27,15 @@
 </div>
 
 <div #playersSelected class="ui-g">
-    <div *ngIf="homeTeamInfo" class="player-info ui-g-12 ui-md-4 ui-lg-4">
+    <div *ngIf="homeTeamInfo" class="home player-info ui-g-12 ui-md-4 ui-lg-4">
         <h1>Home Players</h1>
         <app-match-players-info [teamInfo]="homeTeamInfo"></app-match-players-info>
     </div>
     <div class="ui-g-12 ui-md-3 ui-lg-3">
     </div>
 
-    <div *ngIf="awayTeamInfo" class="player-info ui-g-12 ui-md-4 ui-lg-4">
+    <div *ngIf="awayTeamInfo" class="away player-info ui-g-12 ui-md-4 ui-lg-4">
         <h1>Away Players</h1>
-
+        <app-match-players-info [teamInfo]="awayTeamInfo"></app-match-players-info>
     </div>
 </div>
