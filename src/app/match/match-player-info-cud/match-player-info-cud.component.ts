@@ -9,18 +9,25 @@ import {PlayerSearchService} from "../../services/player-search.service";
   selector: 'app-match-player-info-cud',
   templateUrl: './match-player-info-cud.component.html',
   styleUrls: ['./match-player-info-cud.component.scss'],
-  providers: [PlayerSearchService, UtilsService]
+  providers: [UtilsService]
 })
 export class MatchPlayerInfoCudComponent implements OnInit {
 
     playerRegistered = true;
+    playerInfo: PlayerInfo;
 
     @Output() newPlayerInfo: EventEmitter<PlayerInfo> = new EventEmitter<PlayerInfo>();
 
-    constructor(private playerSearchService: PlayerSearchService, private utils: UtilsService) { }
+    constructor(private utils: UtilsService) { }
 
     ngOnInit() {
 
+    }
+
+    createPlayerInfoFrom(player: Player): PlayerInfo {
+        const registeredPlayerInfo = new RegisteredPlayerInfo();
+        registeredPlayerInfo.playerId = player.id;
+        return registeredPlayerInfo;
     }
 
 }

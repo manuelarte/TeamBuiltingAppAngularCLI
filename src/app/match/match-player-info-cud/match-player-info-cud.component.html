@@ -4,11 +4,15 @@
         <md-checkbox class="example-margin" [(ngModel)]="playerRegistered">Player Already Registered</md-checkbox>
     </md-card-header>
     <md-card-content>
-        <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-        </p>
+
+        <ng-container *ngIf="playerRegistered">
+            <player-search (playerClicked)="createPlayerInfoFrom($event)"></player-search>
+        </ng-container>
+
+        <ng-container *ngIf="!playerRegistered">
+            Player Not Registered Form
+        </ng-container>
+
     </md-card-content>
     <md-card-actions>
         <button md-button><md-icon>save</md-icon></button>
