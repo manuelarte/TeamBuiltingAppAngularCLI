@@ -1,10 +1,6 @@
-<ng-container *ngIf="isBusy">
-    <md-progress-spinner mode="indeterminate">
-    </md-progress-spinner>
-</ng-container>
-
-<md-card *ngIf="!player; else playerAdded">
+<md-card>
     <md-card-header>
+        <h3>Add a new player in the game</h3><br/><hr>
         <md-checkbox class="example-margin" [(ngModel)]="playerRegistered">Player Already Registered</md-checkbox>
     </md-card-header>
     <md-card-content>
@@ -16,10 +12,5 @@
     </md-card-content>
     <md-card-actions>
         <button md-button><md-icon>save</md-icon></button>
-        <button md-button><md-icon>delete</md-icon></button>
     </md-card-actions>
 </md-card>
-
-<ng-template #playerAdded>
-<app-match-player-info *ngIf="player" [player]="player"></app-match-player-info>
-</ng-template>

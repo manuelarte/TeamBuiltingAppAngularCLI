@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RegisteredTeamInfo, TeamInfo} from '../teamInfo';
 import {UtilsService} from '../../services/utils.service';
 import {TeamService} from '../../services/team.service';
-import {PlayerInfo, RegisteredPlayerInfo} from '../playerInfo';
+import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
 import {PlayerToTeam} from '../../player-to-team';
 
 @Component({

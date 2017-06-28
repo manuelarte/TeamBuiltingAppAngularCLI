@@ -1,0 +1,14 @@
+.player-card {
+    &:hover,
+    &:focus {
+        transform: scale3d(1.006, 1.006, 1);
+
+        &::after {
+            opacity: 1;
+        }
+    }
+}
+
+.player-card-avatar {
+    background-size: cover;
+}

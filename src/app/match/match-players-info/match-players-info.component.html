@@ -1,10 +1,8 @@
-<button md-button><md-icon>add</md-icon></button>
-
 <ng-container *ngIf="!isBusy; else isBusyTemplate">
     <div *ngIf="registeredTeamInfo">
         <div class="ui-g">
             <div class="ui-g-12 ui-md-3 ui-lg-4" *ngFor="let playerInfo of playersInfo">
-                <app-match-player-info-cud [playerInfo]="playerInfo">Loading players...</app-match-player-info-cud>
+                <app-match-player-info [playerInfo]="playerInfo">Loading players...</app-match-player-info>
             </div>
         </div>
     </div>
@@ -14,4 +12,6 @@
     <md-progress-spinner mode="indeterminate">
     </md-progress-spinner>
 </ng-template>
+
+<app-match-player-info-cud (newPlayerInfo)="addPlayerInfo($event)"></app-match-player-info-cud>
 
