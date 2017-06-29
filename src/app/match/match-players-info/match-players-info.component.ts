@@ -42,6 +42,10 @@ export class MatchPlayersInfoComponent implements OnInit {
     }
   }
 
+  addPlayerInfo(playerInfo: PlayerInfo): void {
+      this.playersInfo.push(playerInfo);
+  }
+
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {
       const playerInfo: RegisteredPlayerInfo = new RegisteredPlayerInfo();
       playerInfo.playerId = playerToTeam.playerId;

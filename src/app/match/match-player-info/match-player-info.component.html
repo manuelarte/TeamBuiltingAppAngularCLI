@@ -2,12 +2,11 @@
     <md-progress-spinner mode="indeterminate">
     </md-progress-spinner>
 </ng-container>
-
 <md-card *ngIf="player" class="player-card">
     <md-card-header>
         <div md-card-avatar [ngStyle]="{'background-image': 'url(' + player.imageLink + ')'}" class="player-card-avatar"></div>
         <md-card-title>{{player.name}}</md-card-title>
-        <md-card-subtitle>{{player.nickname}}</md-card-subtitle>
+        <md-card-subtitle>{{player?.nickname}}</md-card-subtitle>
     </md-card-header>
     <md-card-actions>
         <button md-button><md-icon>delete</md-icon></button>

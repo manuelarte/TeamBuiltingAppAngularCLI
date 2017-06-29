@@ -1,20 +1,24 @@
 <md-card>
     <md-card-header>
-        <h3>Add a new player in the game</h3><br/><hr>
-        <md-checkbox class="example-margin" [(ngModel)]="playerRegistered">Player Already Registered</md-checkbox>
+        <h3>Add a new player in the game</h3>
     </md-card-header>
     <md-card-content>
-
+        <md-checkbox class="example-margin" [(ngModel)]="playerRegistered">Player Already Registered</md-checkbox>
         <ng-container *ngIf="playerRegistered">
-            <player-search (playerClicked)="createPlayerInfoFrom($event)"></player-search>
+            <player-search (playerClicked)="playerInfo = createPlayerInfoFrom($event)"></player-search>
         </ng-container>
 
         <ng-container *ngIf="!playerRegistered">
-            Player Not Registered Form
+            <form [formGroup]="unregisteredPlayerInfoForm">
+                <md-input-container>
+                    <input mdInput type="text" placeholder="Player Name" formControlName="name" [(ngModel)]="name" required>
+                    <md-error>Name is required.</md-error>
+                </md-input-container>
+            </form>
         </ng-container>
 
     </md-card-content>
     <md-card-actions>
-        <button md-button><md-icon>save</md-icon></button>
+        <button md-button [disabled]="!isValid()" (click)="addPlayerInfoToMatch()"><md-icon>save</md-icon></button>
     </md-card-actions>
 </md-card>

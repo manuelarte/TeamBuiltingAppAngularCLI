@@ -12,7 +12,7 @@ import {Player} from "../player";
 @Injectable()
 export class PlayerSearchService {
 
-    private backendUrl: string = `${environment.backendPlayersUrl}`;
+    private backendUrl = `${environment.backendPlayersUrl}`;
 
     constructor(private http: Http) {
     }
@@ -25,7 +25,7 @@ export class PlayerSearchService {
 
 
     private convertFromDatesAndToDatesForArray(res: Response) {
-        let data = res.json() || {};
+        const data = res.json() || {};
         data.content.forEach(d => {
             d.fromDate = new Date(d.fromDate);
             if (d.toDate) {

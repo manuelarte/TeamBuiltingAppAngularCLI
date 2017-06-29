@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PlayerInfo, RegisteredPlayerInfo} from '../playerInfo';
+import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
 import {Player} from '../../player';
 import {PlayerService} from '../../services/player.service';
 import {UtilsService} from '../../services/utils.service';
 import {PlayerSearchService} from "../../services/player-search.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-match-player-info-cud',
@@ -18,7 +19,14 @@ export class MatchPlayerInfoCudComponent implements OnInit {
 
     @Output() newPlayerInfo: EventEmitter<PlayerInfo> = new EventEmitter<PlayerInfo>();
 
-    constructor(private utils: UtilsService) { }
+    unregisteredPlayerInfoForm = new FormGroup({
+        name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        // imageLink: new FormControl('', [ Validators.required, Validators.minLength(6)]),
+    });
+
+    name: string;
+
+    constructor() { }
 
     ngOnInit() {
         // TODO do not forget to filter the players that are already in the game
@@ -28,6 +36,39 @@ export class MatchPlayerInfoCudComponent implements OnInit {
         const registeredPlayerInfo = new RegisteredPlayerInfo();
         registeredPlayerInfo.playerId = player.id;
         return registeredPlayerInfo;
+    }
+
+    createPlayerInfoFromForm(): PlayerInfo {
+        const unRegisteredPlayerInfo = new UnRegisteredPlayerInfo();
+        unRegisteredPlayerInfo.name = this.name;
+        return unRegisteredPlayerInfo;
+    }
+
+    isValid(): boolean {
+        return this.playerRegistered ? this.isValidRegisteredPlayerInfo() : this.isValidUnRegisteredPlayerInfo();
+    }
+
+    private isValidRegisteredPlayerInfo(): boolean {
+        return this.playerInfo != null;
+    }
+
+    private isValidUnRegisteredPlayerInfo(): boolean {
+        return this.unregisteredPlayerInfoForm.valid;
+    }
+
+    addPlayerInfoToMatch(): void {
+        if (this.playerRegistered) {
+            this.newPlayerInfo.emit(this.playerInfo);
+        } else {
+            this.newPlayerInfo.emit(this.createPlayerInfoFromForm());
+        }
+        this.clear();
+    }
+
+    clear() {
+        this.playerInfo = null;
+        this.playerRegistered = true;
+        this.name = null;
     }
 
 }

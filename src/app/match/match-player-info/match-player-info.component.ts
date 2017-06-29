@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Player} from '../../player';
 import {PlayerService} from '../../services/player.service';
 import {UtilsService} from '../../services/utils.service';
-import {PlayerInfo, RegisteredPlayerInfo} from '../playerInfo';
+import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
 
 @Component({
   selector: 'app-match-player-info',
@@ -37,6 +37,10 @@ export class MatchPlayerInfoComponent implements OnInit {
                 this.isBusy = false;
                 this.errorOccurred = true;
             });
+        } else {
+            const unregisteredPlayerInfo: UnRegisteredPlayerInfo = <UnRegisteredPlayerInfo> this.playerInfo;
+            this.player = new Player();
+            this.player.name = unregisteredPlayerInfo.name;
         }
     }
 
