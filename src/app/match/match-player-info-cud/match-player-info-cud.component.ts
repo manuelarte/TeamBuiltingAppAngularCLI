@@ -16,6 +16,7 @@ export class MatchPlayerInfoCudComponent implements OnInit {
 
     playerRegistered = true;
     playerInfo: PlayerInfo;
+    player: Player;
 
     @Output() newPlayerInfo: EventEmitter<PlayerInfo> = new EventEmitter<PlayerInfo>();
 
@@ -33,6 +34,7 @@ export class MatchPlayerInfoCudComponent implements OnInit {
     }
 
     createPlayerInfoFrom(player: Player): PlayerInfo {
+        this.player = player;
         const registeredPlayerInfo = new RegisteredPlayerInfo();
         registeredPlayerInfo.playerId = player.id;
         return registeredPlayerInfo;
@@ -48,14 +50,6 @@ export class MatchPlayerInfoCudComponent implements OnInit {
         return this.playerRegistered ? this.isValidRegisteredPlayerInfo() : this.isValidUnRegisteredPlayerInfo();
     }
 
-    private isValidRegisteredPlayerInfo(): boolean {
-        return this.playerInfo != null;
-    }
-
-    private isValidUnRegisteredPlayerInfo(): boolean {
-        return this.unregisteredPlayerInfoForm.valid;
-    }
-
     addPlayerInfoToMatch(): void {
         if (this.playerRegistered) {
             this.newPlayerInfo.emit(this.playerInfo);
@@ -65,10 +59,19 @@ export class MatchPlayerInfoCudComponent implements OnInit {
         this.clear();
     }
 
-    clear() {
+    private clear() {
         this.playerInfo = null;
+        this.player = null;
         this.playerRegistered = true;
         this.name = null;
+    }
+
+    private isValidRegisteredPlayerInfo(): boolean {
+        return this.playerInfo != null;
+    }
+
+    private isValidUnRegisteredPlayerInfo(): boolean {
+        return this.unregisteredPlayerInfoForm.valid;
     }
 
 }

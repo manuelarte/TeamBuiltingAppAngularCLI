@@ -5,7 +5,17 @@
     <md-card-content>
         <md-checkbox class="example-margin" [(ngModel)]="playerRegistered">Player Already Registered</md-checkbox>
         <ng-container *ngIf="playerRegistered">
-            <player-search (playerClicked)="playerInfo = createPlayerInfoFrom($event)"></player-search>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <player-search (playerClicked)="playerInfo = createPlayerInfoFrom($event)"></player-search>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6">
+                    <div *ngIf="player">
+                        {{player.name}}<br/>
+                        <img [src]="player.imageLink" class="player_img">
+                    </div>
+                </div>
+            </div>
         </ng-container>
 
         <ng-container *ngIf="!playerRegistered">

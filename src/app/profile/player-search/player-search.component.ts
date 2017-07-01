@@ -20,7 +20,7 @@ export class PlayerSearchComponent implements OnInit {
     @Input() disabled = false;
     myControl = new FormControl({value: '', disabled: this.disabled});
     playersPage: Observable<Page<Player>>;
-    private searchTerms = new Subject<string>();
+    private searchTerms: Subject<string> = new Subject<string>();
 
     @Output() playerClicked: EventEmitter<Player> = new EventEmitter<Player>();
 
