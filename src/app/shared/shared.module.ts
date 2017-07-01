@@ -11,6 +11,7 @@ import {
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {GoogleChartDirective} from './directives/angular2-google-chart.directive';
+import {Ng2GoogleChartsModule} from 'ng2-google-charts';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import {GoogleChartDirective} from './directives/angular2-google-chart.directive
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
+        Ng2GoogleChartsModule,
         // Material Modules
         MdButtonModule,
         MdCardModule,
@@ -36,7 +38,7 @@ import {GoogleChartDirective} from './directives/angular2-google-chart.directive
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: [GoogleChartDirective]
+    exports: [GoogleChartDirective, Ng2GoogleChartsModule]
 })
 export class SharedModule {
 }
