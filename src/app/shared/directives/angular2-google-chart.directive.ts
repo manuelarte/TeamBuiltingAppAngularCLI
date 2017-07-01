@@ -3,7 +3,7 @@ declare var google: any;
 declare var googleLoaded: any;
 declare var googleChartsPackagesToLoad: any;
 @Directive({
-    selector: '[GoogleChart]',
+    selector: '[appGoogleChart]',
     // properties: [
     //     'chartType',
     //     'chartOptions',
@@ -11,7 +11,7 @@ declare var googleChartsPackagesToLoad: any;
     //   ]
 })
 
-export class GoogleChart implements OnInit {
+export class GoogleChartDirective implements OnInit {
 
     public _element: any;
     @Input('chartType') public chartType: string;

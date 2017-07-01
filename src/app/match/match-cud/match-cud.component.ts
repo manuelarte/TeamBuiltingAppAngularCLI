@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TeamInfo} from '../teamInfo';
-import {PlayerInfo} from "../playerInfo";
+import {PlayerInfo} from '../playerInfo';
 
 @Component({
   selector: 'app-match-cud',

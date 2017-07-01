@@ -23,6 +23,7 @@ import {LoginService} from './services/login.service';
 import {PlayerHistoryService} from './services/player-history.service';
 import {PlayerToTeamSportService} from './services/player-to-team-sport.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {SharedModule} from './shared/shared.module';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -42,6 +43,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         }),
         HomeModule,
         ProfileModule,
+        SharedModule,
         ErrorHandlingModule,
     ],
     declarations: [

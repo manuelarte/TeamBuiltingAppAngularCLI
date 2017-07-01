@@ -29,7 +29,7 @@ import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
 import {PlayerCudCardComponent} from './player-cud-card/player-cud-card.component';
 import {UserRightsService} from '../services/user-rights.service';
-import {GoogleChart} from '../directives/angular2-google-chart.directive';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -56,6 +56,7 @@ import {GoogleChart} from '../directives/angular2-google-chart.directive';
     MdOptionModule,
     MdDialogModule,
     // Other modules
+    SharedModule,
     SportModule,
     ProfileModule,
   ],
@@ -73,7 +74,6 @@ import {GoogleChart} from '../directives/angular2-google-chart.directive';
       GiveRewardComponent,
       ShowPlayerCommentComponent,
       ShowPlayerRewardComponent,
-      GoogleChart,
   ],
   providers: [ UserRightsService,
       { provide: LOCALE_ID, useValue: 'nl' },

@@ -7,11 +7,13 @@
     [value]="sliderValue">
 </md-slider>
 
-<md-input-container>
-    <input mdInput [mdDatepicker]="picker" [ngModel]="matchDate" placeholder="Choose a date">
-    <button mdSuffix [mdDatepickerToggle]="picker"></button>
-</md-input-container>
-<md-datepicker #picker></md-datepicker>
+<div #date>
+    <md-input-container>
+        <input mdInput [mdDatepicker]="picker" [ngModel]="matchDate" placeholder="Choose a date">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+</div>
 
 <div #teams class="ui-g">
     <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
@@ -36,4 +38,13 @@
         <h1>Away Players</h1>
         <app-match-players-info [teamInfo]="awayTeamInfo" (playersSelected)="awayPlayersAdded($event)"></app-match-players-info>
     </div>
+</div>
+
+<div #matchParts>
+
+</div>
+
+<div #match>
+    <h1>Match Timeline</h1>
+    <app-match-timeline></app-match-timeline>
 </div>

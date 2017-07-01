@@ -20,6 +20,8 @@ import {MatchTeamInfoCudComponent} from './match-team-info-cud/match-team-info-c
 import {MatchPlayersInfoComponent} from './match-players-info/match-players-info.component';
 import {MatchPlayerInfoComponent} from './match-player-info/match-player-info.component';
 import {MatchPlayerInfoCudComponent} from './match-player-info-cud/match-player-info-cud.component';
+import {MatchTimelineComponent} from './match-timeline/match-timeline.component';
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import {MatchPlayerInfoCudComponent} from './match-player-info-cud/match-player-
         TeamModule,
         PlayerModule,
         ProfileModule,
+        SharedModule,
         // Material Modules
         MdButtonModule,
         MdCardModule,
@@ -51,6 +54,7 @@ import {MatchPlayerInfoCudComponent} from './match-player-info-cud/match-player-
         MatchPlayersInfoComponent,
         MatchPlayerInfoComponent,
         MatchPlayerInfoCudComponent,
+        MatchTimelineComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},

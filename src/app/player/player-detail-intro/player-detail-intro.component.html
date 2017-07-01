@@ -1,7 +1,7 @@
 <h1 id="invtro" #intro>Timeline</h1>
 
 <div *ngIf="playerHistory.length > 0">
-    <div id="timeline" [chartData]="getTimelineData()" chartType="Timeline" [chartOptions]="pie_ChartOptions" GoogleChart></div>
+    <div id="timeline" [chartData]="getTimelineData()" chartType="Timeline" [chartOptions]="pie_ChartOptions" appGoogleChart></div>
 </div>
 <div *ngIf="playerHistory.length == 0">
     <div class="alert alert-info">
