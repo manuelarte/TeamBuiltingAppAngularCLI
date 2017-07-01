@@ -1,4 +1,6 @@
 <p>
   match-timeline works!
 </p>
-<div id="timeline" [chartData]="getTimelineData()" chartType="Timeline" [chartOptions]="pie_ChartOptions" appGoogleChart></div>
+<google-chart [data]="getTimelineData()"></google-chart>
+
+<button md-button (click)="addRow()">Click</button>

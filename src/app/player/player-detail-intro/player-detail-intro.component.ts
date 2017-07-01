@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {PlayerHistoryUtilsService} from "../../services/player-history-utils.service";
-import {PlayerToTeam} from "../../player-to-team";
-import {Team} from "../../team";
+import {PlayerHistoryUtilsService} from '../../services/player-history-utils.service';
+import {PlayerToTeam} from '../../player-to-team';
+import {Team} from '../../team';
 
 @Component({
   selector: 'app-player-detail-intro',
@@ -20,17 +20,22 @@ export class PlayerDetailIntroComponent implements OnInit {
   constructor(private playerHistoryUtilsService: PlayerHistoryUtilsService) { }
 
   ngOnInit() {
+    this.playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate);
   }
 
   getTimelineData() {
-    let rows = [];
-    rows.push(['Team Name', 'From Date', 'To Date']);
-	this.playerHistory.sort(this.playerHistoryUtilsService.sortByFromDate).forEach(entry => rows.push([this.teamsByTeamId[entry.teamId].name, entry.fromDate, entry.toDate ? entry.toDate : new Date() ]));
-	return rows;
-  }
-
-  public pie_ChartOptions = {
-        height: 300
+    const chartType = 'Timeline';
+    const chartOptions: Object = {height: 300};
+    const dataTable: Object[] = [];
+    dataTable.push(['Team Name', 'From Date', 'To Date']);
+    this.playerHistory
+          .forEach(entry => dataTable.push([this.teamsByTeamId[entry.teamId].name,
+              entry.fromDate, entry.toDate ? entry.toDate : new Date() ]));
+    return {
+        chartType: chartType,
+        dataTable: dataTable,
+        options: chartOptions
     };
+  }
 
 }
