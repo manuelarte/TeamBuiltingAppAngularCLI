@@ -13,6 +13,8 @@ export class MatchCudComponent implements OnInit {
   private teamSelectedSliderValue = 100 * 0.2 / 2; // add teams 20%
   private playersSelectedSliderValue = 100 * 0.2 / 2; // add players 20%
 
+  matchDate: Date;
+
   homeTeamInfo: TeamInfo;
   awayTeamInfo: TeamInfo;
 
@@ -46,11 +48,16 @@ export class MatchCudComponent implements OnInit {
 
   homePlayersAdded(homePlayers: PlayerInfo[]): void {
     this.homePlayers = homePlayers;
-    this.sliderValue += this.playersSelectedSliderValue;
+    if (!this.homePlayers || this.homePlayers.length === 0) {
+        this.sliderValue += this.playersSelectedSliderValue;
+    }
   }
 
   awayPlayersAdded(awayPlayers: PlayerInfo[]): void {
     this.awayPlayers = awayPlayers;
+      if (!this.awayPlayers || this.awayPlayers.length === 0) {
+          this.sliderValue += this.playersSelectedSliderValue;
+      }
     this.sliderValue += this.playersSelectedSliderValue;
   }
 

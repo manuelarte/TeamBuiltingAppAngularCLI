@@ -55,6 +55,6 @@ export class PlayerSearchComponent implements OnInit {
     }
 
     isDisabled(player: Player): boolean {
-      return this.playersFilter(player);
+      return !this.playersFilter(player);
     }
 }

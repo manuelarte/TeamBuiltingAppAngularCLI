@@ -7,7 +7,7 @@
         <ng-container *ngIf="playerRegistered">
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-6 ui-lg-6">
-                    <player-search (playerClicked)="playerInfo = createPlayerInfoFrom($event)"></player-search>
+                    <player-search [playersFilter]="playersFilter" (playerClicked)="playerInfo = createPlayerInfoFrom($event)"></player-search>
                 </div>
                 <div class="ui-g-12 ui-md-6 ui-lg-6">
                     <div *ngIf="player">

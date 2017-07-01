@@ -4,6 +4,7 @@ import {UtilsService} from '../../services/utils.service';
 import {TeamService} from '../../services/team.service';
 import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
 import {PlayerToTeam} from '../../player-to-team';
+import {Player} from "../../player";
 
 @Component({
   selector: 'app-match-players-info',
@@ -48,6 +49,12 @@ export class MatchPlayersInfoComponent implements OnInit {
   addPlayerInfo(playerInfo: PlayerInfo): void {
       this.playersInfo.push(playerInfo);
       this.playersSelected.emit(this.playersInfo);
+  }
+
+  getPlayersFilter(): (player: Player) => boolean {
+      const notAllowedIds: number[] = this.playersInfo ? this.playersInfo.filter(this.utils.isRegisteredPlayer)
+          .map(playerInfo => (<RegisteredPlayerInfo> playerInfo).playerId) : [];
+      return (player) => notAllowedIds.indexOf(player.id) < 0 ;
   }
 
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {

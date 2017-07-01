@@ -8,7 +8,7 @@
 </md-slider>
 
 <md-input-container>
-    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+    <input mdInput [mdDatepicker]="picker" [ngModel]="matchDate" placeholder="Choose a date">
     <button mdSuffix [mdDatepickerToggle]="picker"></button>
 </md-input-container>
 <md-datepicker #picker></md-datepicker>

@@ -13,5 +13,5 @@
     </md-progress-spinner>
 </ng-template>
 
-<app-match-player-info-cud (newPlayerInfo)="addPlayerInfo($event)"></app-match-player-info-cud>
+<app-match-player-info-cud [playersFilter]="getPlayersFilter()" (newPlayerInfo)="addPlayerInfo($event)"></app-match-player-info-cud>
 

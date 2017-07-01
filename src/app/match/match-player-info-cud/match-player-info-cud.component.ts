@@ -27,6 +27,8 @@ export class MatchPlayerInfoCudComponent implements OnInit {
 
     name: string;
 
+    @Input() playersFilter: (player: Player) => boolean = player => true;
+
     constructor() { }
 
     ngOnInit() {
