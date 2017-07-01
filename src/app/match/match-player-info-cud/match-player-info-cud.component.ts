@@ -59,7 +59,7 @@ export class MatchPlayerInfoCudComponent implements OnInit {
         this.clear();
     }
 
-    private clear() {
+    clear() {
         this.playerInfo = null;
         this.player = null;
         this.playerRegistered = true;

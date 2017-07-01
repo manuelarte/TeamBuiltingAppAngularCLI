@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TeamInfo} from '../teamInfo';
+import {PlayerInfo} from "../playerInfo";
 
 @Component({
   selector: 'app-match-cud',
@@ -9,10 +10,14 @@ import {TeamInfo} from '../teamInfo';
 export class MatchCudComponent implements OnInit {
 
   sliderValue = 0;
-  private teamSelectedSliderValue = 100 * 0.2 / 2;
+  private teamSelectedSliderValue = 100 * 0.2 / 2; // add teams 20%
+  private playersSelectedSliderValue = 100 * 0.2 / 2; // add players 20%
 
   homeTeamInfo: TeamInfo;
   awayTeamInfo: TeamInfo;
+
+  homePlayers: PlayerInfo[];
+  awayPlayers: PlayerInfo[];
 
   constructor() { }
 
@@ -37,6 +42,16 @@ export class MatchCudComponent implements OnInit {
   awayTeamRemoved() {
     this.awayTeamInfo = null;
     this.sliderValue -= this.teamSelectedSliderValue;
+  }
+
+  homePlayersAdded(homePlayers: PlayerInfo[]): void {
+    this.homePlayers = homePlayers;
+    this.sliderValue += this.playersSelectedSliderValue;
+  }
+
+  awayPlayersAdded(awayPlayers: PlayerInfo[]): void {
+    this.awayPlayers = awayPlayers;
+    this.sliderValue += this.playersSelectedSliderValue;
   }
 
 }

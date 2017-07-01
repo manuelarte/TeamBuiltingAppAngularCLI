@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RegisteredTeamInfo, TeamInfo} from '../teamInfo';
 import {UtilsService} from '../../services/utils.service';
 import {TeamService} from '../../services/team.service';
@@ -21,6 +21,8 @@ export class MatchPlayersInfoComponent implements OnInit {
   isBusy = false;
   errorOccurred = false;
 
+  @Output() playersSelected: EventEmitter<PlayerInfo[]> = new EventEmitter<PlayerInfo[]>();
+
   constructor(private teamService: TeamService, private utils: UtilsService) { }
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class MatchPlayersInfoComponent implements OnInit {
           this.playersInfo = playersToTeam.map(this.convertToPlayerInfo);
           this.isBusy = false;
           this.errorOccurred = false;
+          this.playersSelected.emit(this.playersInfo);
         }).catch(error => {
           this.isBusy = false;
           this.errorOccurred = true;
@@ -44,6 +47,7 @@ export class MatchPlayersInfoComponent implements OnInit {
 
   addPlayerInfo(playerInfo: PlayerInfo): void {
       this.playersInfo.push(playerInfo);
+      this.playersSelected.emit(this.playersInfo);
   }
 
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {

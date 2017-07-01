@@ -11,7 +11,7 @@
                 </div>
                 <div class="ui-g-12 ui-md-6 ui-lg-6">
                     <div *ngIf="player">
-                        {{player.name}}<br/>
+                        {{player.name}}<button md-button (click)="clear()"><md-icon>remove</md-icon></button><br/>
                         <img [src]="player.imageLink" class="player_img">
                     </div>
                 </div>
@@ -29,6 +29,6 @@
 
     </md-card-content>
     <md-card-actions>
-        <button md-button [disabled]="!isValid()" (click)="addPlayerInfoToMatch()"><md-icon>save</md-icon></button>
+        <button md-button [disabled]="!isValid()" (click)="addPlayerInfoToMatch()"><md-icon>add</md-icon></button>
     </md-card-actions>
 </md-card>
