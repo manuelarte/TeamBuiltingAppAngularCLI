@@ -11,7 +11,7 @@
             <md-autocomplete #auto="mdAutocomplete">
                 <md-option *ngIf="(playersPage | async)?.content?.length == 0" disabled>Players not found</md-option>
                 <md-option *ngFor="let player of (playersPage | async)?.content" [value]="player.name"
-                           (click)="searchInput.value = '';onPlayerClicked(player)">
+                           (click)="searchInput.value = '';onPlayerClicked(player)" [disabled]="isDisabled(player)">
                     <img class="entry-img" [src]="player.imageLink">{{ player.name }}
                 </md-option>
             </md-autocomplete>

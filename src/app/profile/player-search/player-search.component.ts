@@ -24,6 +24,8 @@ export class PlayerSearchComponent implements OnInit {
 
     @Output() playerClicked: EventEmitter<Player> = new EventEmitter<Player>();
 
+    @Input() playersFilter: (player: Player) => boolean = player => true;
+
     constructor(private playerSearchService: PlayerSearchService) {
     }
 
@@ -50,5 +52,9 @@ export class PlayerSearchComponent implements OnInit {
 
     onPlayerClicked(player: Player): void {
         this.playerClicked.emit(player);
+    }
+
+    isDisabled(player: Player): boolean {
+      return this.playersFilter(player);
     }
 }
