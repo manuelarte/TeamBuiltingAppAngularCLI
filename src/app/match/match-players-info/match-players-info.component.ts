@@ -51,6 +51,10 @@ export class MatchPlayersInfoComponent implements OnInit {
       this.playersSelected.emit(this.playersInfo);
   }
 
+  removePlayerFromMatch(playerInfo: PlayerInfo) {
+      this.playersInfo = this.playersInfo.filter(pI => pI !== playerInfo);
+  }
+
   getPlayersFilter(): (player: Player) => boolean {
       const notAllowedIds: number[] = this.playersInfo ? this.playersInfo.filter(this.utils.isRegisteredPlayer)
           .map(playerInfo => (<RegisteredPlayerInfo> playerInfo).playerId) : [];

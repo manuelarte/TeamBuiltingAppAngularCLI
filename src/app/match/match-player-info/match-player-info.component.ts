@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Player} from '../../player';
 import {PlayerService} from '../../services/player.service';
 import {UtilsService} from '../../services/utils.service';
@@ -19,6 +19,8 @@ export class MatchPlayerInfoComponent implements OnInit {
 
     isBusy = false;
     errorOccurred = false;
+
+    @Output() playerRemoved: EventEmitter<PlayerInfo> = new EventEmitter<PlayerInfo>();
 
     constructor(private playerService: PlayerService, private utils: UtilsService) { }
 
@@ -42,6 +44,11 @@ export class MatchPlayerInfoComponent implements OnInit {
             this.player = new Player();
             this.player.name = unregisteredPlayerInfo.name;
         }
+    }
+
+    removePlayerFromMatch(): void {
+        console.log("Removing player", this.playerInfo);
+        this.playerRemoved.emit(this.playerInfo);
     }
 
 }
