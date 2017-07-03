@@ -8,7 +8,8 @@ import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
 import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
-    MdProgressSpinnerModule,
+    MdOptionModule,
+    MdProgressSpinnerModule, MdSelectModule,
     MdSliderModule
 } from '@angular/material';
 
@@ -21,8 +22,10 @@ import {MatchPlayersInfoComponent} from './match-players-info/match-players-info
 import {MatchPlayerInfoComponent} from './match-player-info/match-player-info.component';
 import {MatchPlayerInfoCudComponent} from './match-player-info-cud/match-player-info-cud.component';
 import {MatchTimelineComponent} from './match-timeline/match-timeline.component';
-import {SharedModule} from "../shared/shared.module";
-
+import {SharedModule} from '../shared/shared.module';
+import {MatchTimelineEventsComponent} from './match-timeline-events/match-timeline-events.component';
+import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
+import {MyWidgetRegistry} from '../shared/my-widget-registry';
 
 @NgModule({
     imports: [
@@ -37,6 +40,7 @@ import {SharedModule} from "../shared/shared.module";
         PlayerModule,
         ProfileModule,
         SharedModule,
+        SchemaFormModule,
         // Material Modules
         MdButtonModule,
         MdCardModule,
@@ -45,6 +49,8 @@ import {SharedModule} from "../shared/shared.module";
         MdNativeDateModule,
         MdIconModule,
         MdInputModule,
+        MdOptionModule,
+        MdSelectModule,
         MdSliderModule,
         MdProgressSpinnerModule
     ],
@@ -55,9 +61,11 @@ import {SharedModule} from "../shared/shared.module";
         MatchPlayerInfoComponent,
         MatchPlayerInfoCudComponent,
         MatchTimelineComponent,
+        MatchTimelineEventsComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
+        {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],
     exports: []
 })

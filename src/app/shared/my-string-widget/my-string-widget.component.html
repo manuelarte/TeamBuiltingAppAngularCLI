@@ -1,0 +1,19 @@
+{{schema.description}}:
+
+<ng-container *ngIf="!schema.enum">
+    <md-input-container>
+        <input mdInput [name]="name" [formControl]="control" [placeholder]="schema.title"
+               [readonly]="schema.readOnly?true:null"
+               [disabled]="schema.readOnly?true:null">
+    </md-input-container>
+</ng-container>
+
+<ng-container *ngIf="schema.enum">
+{{print(schema)}}
+    <md-select [placeholder]="schema.title" [formControl]="control" name="name">
+        <md-option *ngFor="let value of schema.enum" [value]="value">
+            {{value}}
+        </md-option>
+    </md-select>
+
+</ng-container>

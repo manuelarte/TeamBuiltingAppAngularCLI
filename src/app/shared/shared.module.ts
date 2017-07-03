@@ -5,13 +5,14 @@ import {HttpModule} from '@angular/http';
 import {CommonModule} from '@angular/common';
 import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
-    MdProgressSpinnerModule,
+    MdProgressSpinnerModule, MdSelectModule,
     MdSliderModule
 } from '@angular/material';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {GoogleChartDirective} from './directives/angular2-google-chart.directive';
 import {Ng2GoogleChartsModule} from 'ng2-google-charts';
+import {MyStringWidgetComponent} from "./my-string-widget/my-string-widget.component";
 
 @NgModule({
     imports: [
@@ -30,15 +31,19 @@ import {Ng2GoogleChartsModule} from 'ng2-google-charts';
         MdIconModule,
         MdInputModule,
         MdSliderModule,
-        MdProgressSpinnerModule
+        MdSelectModule,
+        MdProgressSpinnerModule,
     ],
     declarations: [
         GoogleChartDirective,
+        // Widgets
+        MyStringWidgetComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    exports: [GoogleChartDirective, Ng2GoogleChartsModule]
+    entryComponents: [MyStringWidgetComponent],
+    exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent]
 })
 export class SharedModule {
 }

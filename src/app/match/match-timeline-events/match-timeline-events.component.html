@@ -1,0 +1,13 @@
+<p>
+  match-timeline-events works!
+</p>
+
+<sf-form [schema]="mySchema" [model]="myEvent"></sf-form>
+
+<form>
+    <md-select placeholder="Add Match Event" [(ngModel)]="selectedValue" name="event">
+        <md-option *ngFor="let eventType of eventsType" [value]="eventType">
+            {{eventType}}
+        </md-option>
+    </md-select>
+</form>
