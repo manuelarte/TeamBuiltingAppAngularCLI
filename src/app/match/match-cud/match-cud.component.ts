@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TeamInfo} from '../teamInfo';
 import {PlayerInfo} from '../playerInfo';
+import {Match} from "../match";
+import {TeamInMatch} from "../team-in-match";
 
 @Component({
   selector: 'app-match-cud',
@@ -21,29 +23,40 @@ export class MatchCudComponent implements OnInit {
   homePlayers: PlayerInfo[];
   awayPlayers: PlayerInfo[];
 
+  @Input() match: Match;
+
   constructor() { }
 
   ngOnInit() {
+      if (!this.match) {
+          this.match = new Match();
+          this.match.homeTeam = new TeamInMatch();
+          this.match.awayTeam = new TeamInMatch();
+      }
   }
 
   homeTeamSelected(teamInfo: TeamInfo) {
     this.homeTeamInfo = teamInfo;
     this.sliderValue += this.teamSelectedSliderValue;
+    this.match.homeTeam.teamInfo = this.homeTeamInfo;
   }
 
   homeTeamRemoved() {
     this.homeTeamInfo = null;
     this.sliderValue -= this.teamSelectedSliderValue;
+    this.match.homeTeam.teamInfo = null;
   }
 
   awayTeamSelected(teamInfo: TeamInfo) {
     this.awayTeamInfo = teamInfo;
     this.sliderValue += this.teamSelectedSliderValue;
+    this.match.awayTeam.teamInfo = this.awayTeamInfo;
   }
 
   awayTeamRemoved() {
     this.awayTeamInfo = null;
     this.sliderValue -= this.teamSelectedSliderValue;
+    this.match.awayTeam.teamInfo = null;
   }
 
   homePlayersAdded(homePlayers: PlayerInfo[]): void {
@@ -51,6 +64,7 @@ export class MatchCudComponent implements OnInit {
     if (!this.homePlayers || this.homePlayers.length === 0) {
         this.sliderValue += this.playersSelectedSliderValue;
     }
+    this.match.homeTeam.selectedPlayers = this.homePlayers;
   }
 
   awayPlayersAdded(awayPlayers: PlayerInfo[]): void {
@@ -59,6 +73,15 @@ export class MatchCudComponent implements OnInit {
           this.sliderValue += this.playersSelectedSliderValue;
       }
     this.sliderValue += this.playersSelectedSliderValue;
+    this.match.awayTeam.selectedPlayers = this.awayPlayers;
   }
+
+    printMatch() {
+      console.log(this.match);
+    }
+
+    shallShowEvent() {
+      return this.match != null  && this.match.homeTeam != null && this.match.awayTeam != null;
+    }
 
 }

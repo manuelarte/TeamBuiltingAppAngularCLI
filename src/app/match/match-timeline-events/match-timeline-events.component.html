@@ -1,13 +1,14 @@
 <p>
   match-timeline-events works!
 </p>
+<ng-container *ngIf="eventsSchemasLoading == false && eventsSchemasErrorLoading == false && eventSchemas">
+    <form>
+        <md-select placeholder="Add Match Event" [(ngModel)]="selectedMatchEvent" name="event">
+            <md-option *ngFor="let eventType of getKeys(eventSchemas)" [value]="eventType">
+                {{eventType}}
+            </md-option>
+        </md-select>
+    </form>
 
-<sf-form [schema]="mySchema" [model]="myEvent"></sf-form>
-
-<form>
-    <md-select placeholder="Add Match Event" [(ngModel)]="selectedValue" name="event">
-        <md-option *ngFor="let eventType of eventsType" [value]="eventType">
-            {{eventType}}
-        </md-option>
-    </md-select>
-</form>
+    <sf-form *ngIf="selectedMatchEvent" [schema]="getValue(selectedMatchEvent)" [model]="myEvent"></sf-form>
+</ng-container>

@@ -1,80 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatchEvent} from '../match-events';
+import {Match} from '../match';
+import {MatchService} from '../../services/match.service';
 
 @Component({
   selector: 'app-match-timeline-events',
   templateUrl: './match-timeline-events.component.html',
-  styleUrls: ['./match-timeline-events.component.scss']
+  styleUrls: ['./match-timeline-events.component.scss'],
+  providers: [MatchService]
 })
 export class MatchTimelineEventsComponent implements OnInit {
 
-  eventsType: string[] = ['goal', 'substitution', 'injury'];
-  eventType: string;
+  @Input() match: Match;
+
+  eventsSchemasLoading = false;
+  eventsSchemasErrorLoading = false;
+  eventSchemas: {[eventType: string]: {}} = {};
+
+  selectedMatchEvent: string;
 
   myEvent: MatchEvent;
 
-   /* mySchema = {
-        properties: {
-            email: {
-                type: 'string',
-                description: 'email',
-                format: 'email'
-            },
-            password: {
-                type: 'string',
-                description: 'Password'
-            },
-            rememberMe: {
-                type: 'boolean',
-                default: false,
-                description: 'Remember me'
-            }
-        },
-        required: ['email', 'password', 'rememberMe']
-    };*/
-
-   mySchema = {
-       type: 'object',
-       id: 'urn:jsonschema:org:manuel:teambuilting:matches:model:parts:events:GoalEvent',
-       properties: {
-           teamThatScored: {
-               type: 'string',
-               description: 'Team that scored',
-               enum: ['homeTeamInfoId', 'awayTeamInfoId'],
-               buttons: [{
-                   id: 'reset',
-                   label: 'Reset'
-               }]
-           },
-           description: {
-               type: 'string',
-               description: 'Description of the goal',
-               maxLength: 20,
-           },
-           when: {
-               type: 'integer',
-               description: 'When?',
-               format: 'utc-millisec'
-           },
-           who: {
-               description: 'Who Scored?',
-               type: 'string'
-           }
-       },
-       buttons: [{
-           id: 'alert', // the id of the action callback
-           label: 'Alert !' // the text inside the button
-       }]
-   };
-
-    myActions = {
-        'alert': (property) => {alert(JSON.stringify(property.value)); },
-        'reset': (property) => {property.reset(); }
-    };
-
-  constructor() { }
+  constructor(private matchService: MatchService) { }
 
   ngOnInit() {
+      this.eventsSchemasLoading = true;
+      this.matchService.getMatchEvents().then(matchEventsSchemas => {
+          this.eventsSchemasLoading = false;
+          this.eventSchemas = matchEventsSchemas;
+      }).catch(error => {
+          console.log('error', error);
+          this.eventsSchemasLoading = false;
+          this.eventsSchemasErrorLoading = true;
+      });
+  }
+
+  getKeys(): string[] {
+    return Object.keys(this.eventSchemas);
+  }
+
+  getValue(key: string): {} {
+    return this.eventSchemas[key];
   }
 
 };

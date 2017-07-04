@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MatchEvent} from "../match-events";
+import {MatchEvent} from '../match-events';
 
 @Component({
   selector: 'app-match-timeline',

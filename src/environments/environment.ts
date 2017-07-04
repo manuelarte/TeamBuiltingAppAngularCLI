@@ -16,5 +16,6 @@ export const environment = {
   backendStatisticsUrl: `http://localhost:8081/statistics`, // dev
   backendExperienceUrl: `http://localhost:8082/experience`, // dev
   backendUsersUrl: `http://localhost:8095`,
+  backendMatchesUrl: `http://localhost:8097`,
 
 };
