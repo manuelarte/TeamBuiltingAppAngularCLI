@@ -10,5 +10,7 @@
         </md-select>
     </form>
 
-    <sf-form *ngIf="selectedMatchEvent" [schema]="getValue(selectedMatchEvent)" [model]="myEvent"></sf-form>
+    <sf-form *ngIf="selectedMatchEvent" [schema]="getValue(selectedMatchEvent)" (onChange)="myEvent=$event.value"></sf-form>
+    MyEvent: {{myEvent | json}}<br/>
+    <button color="primary" md-raised-button (click)="addMockEvent()">Add Event</button>
 </ng-container>

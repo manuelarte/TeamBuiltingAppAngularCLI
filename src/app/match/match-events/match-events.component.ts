@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatchEvent} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
@@ -21,6 +21,8 @@ export class MatchEventsComponent implements OnInit {
 
   myEvent: MatchEvent;
 
+  @Output() eventAdded: EventEmitter<MatchEvent> = new EventEmitter<MatchEvent>();
+
   constructor(private matchService: MatchService) { }
 
   ngOnInit() {
@@ -41,6 +43,11 @@ export class MatchEventsComponent implements OnInit {
 
   getValue(key: string): {} {
     return this.eventSchemas[key];
+  }
+
+  addMockEvent(): void {
+      let a: MatchEvent = {"goal": {when: new Date(), teamThatScored: '', description: '', who: "" }};
+      this.eventAdded.emit(a);
   }
 
 };

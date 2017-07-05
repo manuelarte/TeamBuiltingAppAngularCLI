@@ -1,8 +1,10 @@
 export interface MatchEvent {
-    id: string;
-    when: Date;
+    [key: string]: any | {
+        when: Date;
+    }
 }
 
+/*
 export class GoalMatchEvent implements MatchEvent {
     id: string;
     when: Date;
@@ -18,3 +20,4 @@ export class SubstitutionMatchEvent implements MatchEvent {
     out: string;
     description: string;
 }
+*/

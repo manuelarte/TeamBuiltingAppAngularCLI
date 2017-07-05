@@ -24,6 +24,7 @@ import {PlayerHistoryService} from './services/player-history.service';
 import {PlayerToTeamSportService} from './services/player-to-team-sport.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {TeambuiltingSharedModule} from './shared/shared.module';
+import { UUID } from 'angular2-uuid';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -56,6 +57,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     entryComponents: [TeamCudDialogComponent],
     providers: [
+        UUID,
         Auth,
         LoginService,
         PlayerHistoryService,

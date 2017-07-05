@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, IterableDiffers, OnChanges, OnInit} from '@angular/core';
 import {MatchEvent} from '../match-events';
 import {Match} from '../match';
 import moment = require('moment');
@@ -58,21 +58,27 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
 
   @Input() events: MatchEvent[] = [];
 
-  constructor() { }
+  constructor(private _iterableDiffers: IterableDiffers) { }
 
   ngOnInit() {
-    this.setTimelineData();
+      this.setTimelineData(false);
+      console.log(this.dataForTimeline);
   }
 
-  ngOnChanges() {
+  ngOnChanges(...args: any[]) {
+      console.log("event added?", args)
+      this.setTimelineData(true);
   }
 
-  getMatchPartsRows(): Object[] {
-      let toReturn: Object[][] = [];
-      toReturn.push([{type: 'string', id: 'Match Part'},  {type: 'string', id: 'Event'}, { type: 'date', id: 'Start Time' }, { type: 'date', id: 'End Time' }])
+  private getHeader(): [Object, Object, Object, Object] {
+    return [{type: 'string', id: 'Match Part'},  {type: 'string', id: 'Event'}, { type: 'date', id: 'Start Time' }, { type: 'date', id: 'End Time' }]
+  }
+
+  private getMatchPartsRows(): [string, string, Date, Date][] {
+      let toReturn: [string, string, Date, Date][] = [];
       if (this.match && this.match.matchParts) {
         this.match.matchParts.forEach((matchPart, i) => {
-            const row: Object[] = ['Match',  i+1 + ' Part',
+            const row: [string, string, Date, Date] = ['Match',  i+1 + ' Part',
                 new Date(0, 0, 0, matchPart.startingTime.getHours(), matchPart.startingTime.getMinutes(), 0),
                 new Date(0, 0, 0, matchPart.endingTime.getHours(), matchPart.endingTime.getMinutes(), 0)];
             toReturn.push(row)
@@ -81,12 +87,31 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
       return toReturn;
   }
 
-  private setTimelineData() {
-      if (!this.dataForTimeline) {
+  private getEvents(): [string, string, Date, Date][] {
+    let toReturn: [string, string, Date, Date][] = [];
+    if (this.match && this.match.matchParts) {
+      this.match.matchParts[0].events.forEach(matchEvent => {
+                const row: [string, string, Date, Date] = ['Match Events', 'No Idea how to get the goal name',
+                    new Date(0, 0, 0, matchEvent.when.getHours(), matchEvent.startingTime.getMinutes(), 0),
+                    new Date(0, 0, 0, matchEvent.when.getHours(), matchEvent.startingTime.getMinutes(), 30)];
+                toReturn.push(row)
+            })
+      }
+    return toReturn;
+  }
+
+  private setTimelineData(update: boolean): void {
+      console.log('set timeline data with update ', update)
+      if (!this.dataForTimeline || update) {
+        const rows: Object[][] = [];
+        rows.push(this.getHeader());
+        this.getMatchPartsRows().forEach(matchPartRow => rows.push(matchPartRow));
+        this.getEvents().forEach(matchEventRow => rows.push(matchEventRow));
+        console.log('timeline rows', rows)
         this.dataForTimeline = {
             chartType: 'Timeline',
             dataTable:
-                this.getMatchPartsRows(),
+                rows,
             options: {},
         };
       }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {TeamInfo} from '../match/teamInfo';
 import {PlayerInfo} from '../match/playerInfo';
+import {UUID} from 'angular2-uuid';
 
 @Injectable()
 export class UtilsService {
@@ -42,11 +43,7 @@ export class UtilsService {
    * @returns {string}
    */
   guidGenerator(): string {
-    const S4 = () => {
-        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    };
-    return (S4()+S4()+'-'+S4()+'-'+S4()+'-'+S4()+'-'+S4()+S4()+S4());
-}
-
+    return UUID.UUID();
+  }
 
 }

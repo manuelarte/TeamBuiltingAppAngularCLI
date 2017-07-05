@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RegisteredTeamInfo, TeamInfo} from '../teamInfo';
 import {UtilsService} from '../../services/utils.service';
 import {TeamService} from '../../services/team.service';
-import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
+import {PlayerInfo, RegisteredPlayerInfo} from '../playerInfo';
 import {PlayerToTeam} from '../../player-to-team';
 import {Player} from "../../player";
 
@@ -63,6 +63,7 @@ export class MatchPlayersInfoComponent implements OnInit {
 
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {
       const playerInfo: RegisteredPlayerInfo = new RegisteredPlayerInfo();
+      // playerInfo.id = this.utils.guidGenerator() // this call breaks everything... do not know why
       playerInfo.playerId = playerToTeam.playerId;
       return playerInfo;
   }

@@ -4,6 +4,7 @@ import {PlayerInfo} from '../playerInfo';
 import {Match} from "../match";
 import {TeamInMatch} from "../team-in-match";
 import {MatchPart} from '../match-part';
+import {MatchEvent} from '../match-events';
 
 @Component({
   selector: 'app-match-cud',
@@ -109,6 +110,10 @@ export class MatchCudComponent implements OnInit {
   shallShowEvent() {
     return this.match != null  && this.match.homeTeam != null &&
         this.match.awayTeam != null && this.match.matchParts != null;
+  }
+
+  eventAdded(matchEvent: MatchEvent): void {
+      this.match.matchParts[0].events.push(matchEvent);
   }
 
 }
