@@ -2,12 +2,13 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TeamSearchComponent} from '../../profile/team-search/team-search.component';
 import {RegisteredTeamInfo, TeamInfo} from '../teamInfo';
 import {Team} from '../../team';
+import {UtilsService} from '../../services/utils.service';
 
 @Component({
   selector: 'app-match-team-info-cud',
   templateUrl: './match-team-info-cud.component.html',
   styleUrls: ['./match-team-info-cud.component.scss'],
-  providers: [TeamSearchComponent]
+  providers: [TeamSearchComponent, UtilsService]
 })
 export class MatchTeamInfoCudComponent implements OnInit {
 
@@ -17,20 +18,20 @@ export class MatchTeamInfoCudComponent implements OnInit {
   */
   teamRegistered = true;
 
-
   team: Team;
   teamInfo: TeamInfo;
 
   @Output() teamSelected: EventEmitter<TeamInfo> = new EventEmitter<TeamInfo>();
   @Output() teamRemoved: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private utilsService: UtilsService) { }
 
   ngOnInit() {
   }
 
   setTeamInfoFromTeam(team: Team): void {
     const registeredTeamInfo: RegisteredTeamInfo = new RegisteredTeamInfo();
+    registeredTeamInfo.id = this.utilsService.guidGenerator();
     registeredTeamInfo.teamId = team.id;
 
     this.teamInfo = registeredTeamInfo;

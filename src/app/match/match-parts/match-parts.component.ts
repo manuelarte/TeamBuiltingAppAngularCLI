@@ -23,7 +23,7 @@ export class MatchPartsComponent implements OnInit {
   ngOnInit() {
       this.createDefaultData();
       this.model = new MatchPart();
-      this.model.startingTime = new Date(moment().subtract(4, 'hours').toDate());
+      this.model.startingTime = new Date(moment().subtract(4, 'hours').set({minute:0,second:0,millisecond:0}).toDate());
       this.model.endingTime = new Date(moment(this.model.startingTime).add(45, 'minutes').toDate());
 
       this.matchPartForm = new FormGroup({
@@ -35,7 +35,7 @@ export class MatchPartsComponent implements OnInit {
 
   private createDefaultData(): void {
       const firstHalf: MatchPart = new MatchPart();
-      firstHalf.startingTime = new Date(moment().subtract(4, 'hours').toDate());
+      firstHalf.startingTime = new Date(moment().subtract(4, 'hours').set({minute:0,second:0,millisecond:0}).toDate());
       firstHalf.endingTime = new Date(moment(firstHalf.startingTime).add(45, 'minutes').toDate());
 
       const secondHalf: MatchPart = new MatchPart();

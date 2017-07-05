@@ -1,13 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {MatchEvent} from '../match-events';
 import {Match} from '../match';
+import moment = require('moment');
 
 @Component({
   selector: 'app-match-timeline',
   templateUrl: './match-timeline.component.html',
   styleUrls: ['./match-timeline.component.scss']
 })
-export class MatchTimelineComponent implements OnInit {
+export class MatchTimelineComponent implements OnInit, OnChanges {
 
   @Input() match: Match = new Match();
 
@@ -53,16 +54,43 @@ export class MatchTimelineComponent implements OnInit {
         },
     };
 
+  private dataForTimeline;
+
   @Input() events: MatchEvent[] = [];
 
   constructor() { }
 
   ngOnInit() {
-      console.log('match:', this.match)
+    this.setTimelineData();
   }
 
-  getTimelineData() {
-    return this.pieChartData;
+  ngOnChanges() {
+  }
+
+  getMatchPartsRows(): Object[] {
+      let toReturn: Object[][] = [];
+      toReturn.push([{type: 'string', id: 'Match Part'},  {type: 'string', id: 'Event'}, { type: 'date', id: 'Start Time' }, { type: 'date', id: 'End Time' }])
+      if (this.match && this.match.matchParts) {
+        this.match.matchParts.forEach((matchPart, i) => {
+            const row: Object[] = ['Match',  i+1 + ' Part',
+                new Date(0, 0, 0, matchPart.startingTime.getHours(), matchPart.startingTime.getMinutes(), 0),
+                new Date(0, 0, 0, matchPart.endingTime.getHours(), matchPart.endingTime.getMinutes(), 0)];
+            toReturn.push(row)
+        })
+      }
+      return toReturn;
+  }
+
+  private setTimelineData() {
+      if (!this.dataForTimeline) {
+        this.dataForTimeline = {
+            chartType: 'Timeline',
+            dataTable:
+                this.getMatchPartsRows(),
+            options: {},
+        };
+      }
+      return this.dataForTimeline;
   }
 
   addRow(): void {
@@ -70,6 +98,10 @@ export class MatchTimelineComponent implements OnInit {
       this.pieChartData = this.pieChartData2;
       // this.rows.push(row);
       // console.log(this.rows);
+  }
+
+  isReady(): boolean {
+    return this.dataForTimeline != null;
   }
 
 }

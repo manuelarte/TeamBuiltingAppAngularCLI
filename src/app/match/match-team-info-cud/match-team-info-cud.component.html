@@ -14,5 +14,6 @@
 <div *ngIf="team; else teamNotSelected">
     <img class="team_emblem" [src]="team.emblemLink" alt=""/>
     <h2>{{team.name}}</h2>
+    <h4>{{teamInfo.id}}</h4>
     <button md-button (click)="removeTeam()"><md-icon aria-hidden="true">backspace</md-icon></button>
 </div>
