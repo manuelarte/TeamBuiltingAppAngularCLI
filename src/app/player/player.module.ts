@@ -29,7 +29,7 @@ import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
 import {PlayerCudCardComponent} from './player-cud-card/player-cud-card.component';
 import {UserRightsService} from '../services/user-rights.service';
-import {SharedModule} from '../shared/shared.module';
+import {TeambuiltingSharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -56,7 +56,7 @@ import {SharedModule} from '../shared/shared.module';
     MdOptionModule,
     MdDialogModule,
     // Other modules
-    SharedModule,
+    TeambuiltingSharedModule,
     SportModule,
     ProfileModule,
   ],

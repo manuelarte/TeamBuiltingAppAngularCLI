@@ -3,6 +3,7 @@ import {TeamInfo} from '../teamInfo';
 import {PlayerInfo} from '../playerInfo';
 import {Match} from "../match";
 import {TeamInMatch} from "../team-in-match";
+import {MatchPart} from '../match-part';
 
 @Component({
   selector: 'app-match-cud',
@@ -15,73 +16,98 @@ export class MatchCudComponent implements OnInit {
   private teamSelectedSliderValue = 100 * 0.2 / 2; // add teams 20%
   private playersSelectedSliderValue = 100 * 0.2 / 2; // add players 20%
 
-  matchDate: Date;
+  /**
+   * Date year-month-day of the game, the time will be set in the match parts
+  */
+  matchDate: Date = new Date();
 
-  homeTeamInfo: TeamInfo;
-  awayTeamInfo: TeamInfo;
-
-  homePlayers: PlayerInfo[];
-  awayPlayers: PlayerInfo[];
-
-  @Input() match: Match;
+  @Input() match: Match = new Match();
 
   constructor() { }
 
   ngOnInit() {
-      if (!this.match) {
-          this.match = new Match();
+      if (!this.match.homeTeam && !this.match.awayTeam) {
           this.match.homeTeam = new TeamInMatch();
           this.match.awayTeam = new TeamInMatch();
       }
   }
 
+  getMatch(): Match {
+    return this.match;
+  }
+
+  isHomeTeamSelected(): boolean {
+    return this.match != null && this.match.homeTeam != null && this.match.homeTeam.teamInfo != null;
+  }
+
+  getHomeTeam(): TeamInfo {
+    return this.match.homeTeam.teamInfo;
+  }
+
+  areHomePlayersSelected(): boolean {
+    return this.match != null && this.match.homeTeam != null && this.match.homeTeam.selectedPlayers != null;
+  }
+
+  getHomePlayers(): PlayerInfo[] {
+    return this.match.homeTeam.selectedPlayers;
+  }
+
+  isAwayTeamSelected(): boolean {
+    return this.match != null && this.match.awayTeam != null && this.match.awayTeam.teamInfo != null;
+  }
+
+  getAwayTeam(): TeamInfo {
+    return this.match.awayTeam.teamInfo;
+  }
+
+  areAwayPlayersSelected(): boolean {
+    return this.match != null && this.match.awayTeam != null && this.match.awayTeam.selectedPlayers != null;
+  }
+
+  getAwayPlayers(): PlayerInfo[] {
+    return this.match.awayTeam.selectedPlayers;
+  }
+
   homeTeamSelected(teamInfo: TeamInfo) {
-    this.homeTeamInfo = teamInfo;
     this.sliderValue += this.teamSelectedSliderValue;
-    this.match.homeTeam.teamInfo = this.homeTeamInfo;
+    this.match.homeTeam.teamInfo = teamInfo;
   }
 
   homeTeamRemoved() {
-    this.homeTeamInfo = null;
+    this.match.homeTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
-    this.match.homeTeam.teamInfo = null;
   }
 
   awayTeamSelected(teamInfo: TeamInfo) {
-    this.awayTeamInfo = teamInfo;
     this.sliderValue += this.teamSelectedSliderValue;
-    this.match.awayTeam.teamInfo = this.awayTeamInfo;
+    this.match.awayTeam.teamInfo = teamInfo;
   }
 
   awayTeamRemoved() {
-    this.awayTeamInfo = null;
+    this.match.awayTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
-    this.match.awayTeam.teamInfo = null;
   }
 
   homePlayersAdded(homePlayers: PlayerInfo[]): void {
-    this.homePlayers = homePlayers;
-    if (!this.homePlayers || this.homePlayers.length === 0) {
-        this.sliderValue += this.playersSelectedSliderValue;
+    if (!this.match.homeTeam.selectedPlayers || this.match.homeTeam.selectedPlayers.length === 0) {
+      this.sliderValue += this.playersSelectedSliderValue;
     }
-    this.match.homeTeam.selectedPlayers = this.homePlayers;
+    this.match.homeTeam.selectedPlayers = homePlayers;
   }
 
   awayPlayersAdded(awayPlayers: PlayerInfo[]): void {
-    this.awayPlayers = awayPlayers;
-      if (!this.awayPlayers || this.awayPlayers.length === 0) {
-          this.sliderValue += this.playersSelectedSliderValue;
-      }
-    this.sliderValue += this.playersSelectedSliderValue;
-    this.match.awayTeam.selectedPlayers = this.awayPlayers;
+    if (!this.match.awayTeam.selectedPlayers || this.match.awayTeam.selectedPlayers.length === 0) {
+      this.sliderValue += this.playersSelectedSliderValue;
+    }
+    this.match.awayTeam.selectedPlayers = awayPlayers;
   }
 
-    printMatch() {
-      console.log(this.match);
-    }
+  matchPartsUpdated(matchParts: MatchPart[]): void {
+      this.match.matchParts = matchParts;
+  }
 
-    shallShowEvent() {
-      return this.match != null  && this.match.homeTeam != null && this.match.awayTeam != null;
-    }
+  shallShowEvent() {
+    return this.match != null  && this.match.homeTeam != null && this.match.awayTeam != null;
+  }
 
 }

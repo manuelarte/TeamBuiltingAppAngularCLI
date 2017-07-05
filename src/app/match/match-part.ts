@@ -1,7 +1,7 @@
 import {MatchEvent} from './match-events';
 export class MatchPart {
     startingTime: Date;
-    duration: number;
+    endingTime: Date;
     events: MatchEvent[];
 
 }

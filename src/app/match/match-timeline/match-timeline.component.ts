@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatchEvent} from '../match-events';
+import {Match} from '../match';
 
 @Component({
   selector: 'app-match-timeline',
@@ -7,6 +8,8 @@ import {MatchEvent} from '../match-events';
   styleUrls: ['./match-timeline.component.scss']
 })
 export class MatchTimelineComponent implements OnInit {
+
+  @Input() match: Match = new Match();
 
   private pieChartData =  {
         chartType: 'Timeline',
@@ -55,6 +58,7 @@ export class MatchTimelineComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+      console.log('match:', this.match)
   }
 
   getTimelineData() {

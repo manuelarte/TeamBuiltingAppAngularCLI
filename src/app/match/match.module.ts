@@ -22,10 +22,12 @@ import {MatchPlayersInfoComponent} from './match-players-info/match-players-info
 import {MatchPlayerInfoComponent} from './match-player-info/match-player-info.component';
 import {MatchPlayerInfoCudComponent} from './match-player-info-cud/match-player-info-cud.component';
 import {MatchTimelineComponent} from './match-timeline/match-timeline.component';
-import {SharedModule} from '../shared/shared.module';
+import {TeambuiltingSharedModule} from '../shared/shared.module';
 import {MatchTimelineEventsComponent} from './match-timeline-events/match-timeline-events.component';
 import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
+import {MatchPartsComponent} from './match-parts/match-parts.component';
+import {CalendarModule, SharedModule} from 'primeng/primeng';
 
 @NgModule({
     imports: [
@@ -39,8 +41,11 @@ import {MyWidgetRegistry} from '../shared/my-widget-registry';
         TeamModule,
         PlayerModule,
         ProfileModule,
-        SharedModule,
+        TeambuiltingSharedModule,
         SchemaFormModule,
+        // PrimeNg
+        CalendarModule,
+        SharedModule,
         // Material Modules
         MdButtonModule,
         MdCardModule,
@@ -62,6 +67,7 @@ import {MyWidgetRegistry} from '../shared/my-widget-registry';
         MatchPlayerInfoCudComponent,
         MatchTimelineComponent,
         MatchTimelineEventsComponent,
+        MatchPartsComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},

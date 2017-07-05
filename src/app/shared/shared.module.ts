@@ -45,5 +45,5 @@ import {MyStringWidgetComponent} from "./my-string-widget/my-string-widget.compo
     entryComponents: [MyStringWidgetComponent],
     exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent]
 })
-export class SharedModule {
+export class TeambuiltingSharedModule {
 }

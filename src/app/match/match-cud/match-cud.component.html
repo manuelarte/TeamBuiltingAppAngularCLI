@@ -29,23 +29,23 @@
 </div>
 
 <div #playersSelected class="ui-g">
-    <div *ngIf="homeTeamInfo" class="home player-info ui-g-12 ui-md-6 ui-lg-6">
+    <div *ngIf="isHomeTeamSelected()" class="home player-info ui-g-12 ui-md-6 ui-lg-6">
         <h1>Home Players</h1>
-        <app-match-players-info [teamInfo]="homeTeamInfo" (playersSelected)="homePlayersAdded($event)"></app-match-players-info>
+        <app-match-players-info [teamInfo]="getHomeTeam()" (playersSelected)="homePlayersAdded($event)"></app-match-players-info>
     </div>
 
-    <div *ngIf="awayTeamInfo" class="away player-info ui-g-12 ui-md-6 ui-lg-6">
+    <div *ngIf="isAwayTeamSelected()" class="away player-info ui-g-12 ui-md-6 ui-lg-6">
         <h1>Away Players</h1>
-        <app-match-players-info [teamInfo]="awayTeamInfo" (playersSelected)="awayPlayersAdded($event)"></app-match-players-info>
+        <app-match-players-info [teamInfo]="getAwayTeam()" (playersSelected)="awayPlayersAdded($event)"></app-match-players-info>
     </div>
 </div>
 
 <div #matchParts>
-
+    <app-match-parts (matchPartsUpdated)="matchPartsUpdated($event)"></app-match-parts>
 </div>
 
 <div #match>
     <h1>Match Timeline</h1>
     <app-match-timeline-events *ngIf="shallShowEvent()" [match]="match"></app-match-timeline-events>
-    <app-match-timeline></app-match-timeline>
+    <app-match-timeline [match]="getMatch()"></app-match-timeline>
 </div>

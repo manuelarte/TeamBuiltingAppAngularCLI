@@ -1,0 +1,15 @@
+<p>
+  Add Match Part
+</p>
+<form *ngIf="model" [formGroup]="matchPartForm">
+
+    <p-calendar formControlName="startingTime" [(ngModel)]="model.startingTime" [timeOnly]="true" hourFormat="12" [showIcon]="true">
+        <p-footer>Starting Time</p-footer>
+    </p-calendar>
+    <p-calendar formControlName="endingTime" [(ngModel)]="model.endingTime" [timeOnly]="true" hourFormat="12" [showIcon]="true">
+        <p-footer>Ending Time</p-footer>
+    </p-calendar>
+
+</form>
+
+<!-- Table to represent the match parts and being able to edit and remove -->
