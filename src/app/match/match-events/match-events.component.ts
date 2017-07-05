@@ -4,12 +4,12 @@ import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
 
 @Component({
-  selector: 'app-match-timeline-events',
-  templateUrl: './match-timeline-events.component.html',
-  styleUrls: ['./match-timeline-events.component.scss'],
+  selector: 'app-match-events',
+  templateUrl: './match-events.component.html',
+  styleUrls: ['./match-events.component.scss'],
   providers: [MatchService]
 })
-export class MatchTimelineEventsComponent implements OnInit {
+export class MatchEventsComponent implements OnInit {
 
   @Input() match: Match;
 

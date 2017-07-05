@@ -23,7 +23,7 @@ import {MatchPlayerInfoComponent} from './match-player-info/match-player-info.co
 import {MatchPlayerInfoCudComponent} from './match-player-info-cud/match-player-info-cud.component';
 import {MatchTimelineComponent} from './match-timeline/match-timeline.component';
 import {TeambuiltingSharedModule} from '../shared/shared.module';
-import {MatchTimelineEventsComponent} from './match-timeline-events/match-timeline-events.component';
+import {MatchEventsComponent} from './match-events/match-events.component';
 import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {MatchPartsComponent} from './match-parts/match-parts.component';
@@ -61,12 +61,12 @@ import {CalendarModule, SharedModule} from 'primeng/primeng';
     ],
     declarations: [
         MatchCudComponent,
+        MatchEventsComponent,
         MatchTeamInfoCudComponent,
         MatchPlayersInfoComponent,
         MatchPlayerInfoComponent,
         MatchPlayerInfoCudComponent,
         MatchTimelineComponent,
-        MatchTimelineEventsComponent,
         MatchPartsComponent,
     ],
     providers: [
