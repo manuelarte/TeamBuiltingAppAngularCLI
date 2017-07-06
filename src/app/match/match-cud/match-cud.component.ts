@@ -5,6 +5,7 @@ import {Match} from "../match";
 import {TeamInMatch} from "../team-in-match";
 import {MatchPart} from '../match-part';
 import {MatchEvent} from '../match-events';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-match-cud',
@@ -23,6 +24,7 @@ export class MatchCudComponent implements OnInit {
   matchDate: Date = new Date();
 
   @Input() match: Match = new Match();
+  $eventToDisplay: Observable<any>;
 
   constructor() { }
 
@@ -30,6 +32,7 @@ export class MatchCudComponent implements OnInit {
       if (!this.match.homeTeam && !this.match.awayTeam) {
           this.match.homeTeam = new TeamInMatch();
           this.match.awayTeam = new TeamInMatch();
+          this.match.events = [];
       }
   }
 
@@ -113,7 +116,8 @@ export class MatchCudComponent implements OnInit {
   }
 
   eventAdded(matchEvent: MatchEvent): void {
-      this.match.matchParts[0].events.push(matchEvent);
+      this.match.events.push(matchEvent);
+      this.$eventToDisplay = new Observable(observer => observer.next());
   }
 
 }

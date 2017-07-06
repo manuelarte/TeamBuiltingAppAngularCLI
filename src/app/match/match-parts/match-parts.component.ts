@@ -37,17 +37,14 @@ export class MatchPartsComponent implements OnInit {
       const firstHalf: MatchPart = new MatchPart();
       firstHalf.startingTime = new Date(moment().subtract(4, 'hours').set({minute:0,second:0,millisecond:0}).toDate());
       firstHalf.endingTime = new Date(moment(firstHalf.startingTime).add(45, 'minutes').toDate());
-      firstHalf.events = [];
 
       const secondHalf: MatchPart = new MatchPart();
       secondHalf.startingTime = new Date(moment(firstHalf.endingTime).add(15, 'minutes').toDate());
       secondHalf.endingTime = new Date(moment(secondHalf.startingTime).add(45, 'minutes').toDate());
-      secondHalf.events = [];
 
       this.matchParts.push(firstHalf, secondHalf);
 
       this.matchPartsUpdated.emit(this.matchParts);
-      console.log('Emitting match parts:', this.matchParts)
   }
 
 }

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatchEvent} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
+import moment = require('moment');
 
 @Component({
   selector: 'app-match-events',
@@ -46,7 +47,7 @@ export class MatchEventsComponent implements OnInit {
   }
 
   addMockEvent(): void {
-      let a: MatchEvent = {"goal": {when: new Date(), teamThatScored: '', description: '', who: "" }};
+      let a: MatchEvent = {"goal": {when: moment(this.match.matchParts[0].startingTime).add(10, 'minutes').toDate(), teamThatScored: '', description: '', who: "" }};
       this.eventAdded.emit(a);
   }
 

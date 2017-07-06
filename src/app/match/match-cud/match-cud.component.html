@@ -47,5 +47,5 @@
 <div #match>
     <h1>Match Timeline</h1>
     <app-match-events *ngIf="shallShowEvent()" [match]="getMatch()" (eventAdded)="eventAdded($event)"></app-match-events>
-    <app-match-timeline *ngIf="shallShowEvent()" [match]="getMatch()"></app-match-timeline>
+    <app-match-timeline *ngIf="shallShowEvent()" [$eventToDisplay]="$eventToDisplay" [match]="getMatch()"></app-match-timeline>
 </div>

@@ -1,5 +1,6 @@
 import {TeamInMatch} from './team-in-match';
 import {MatchPart} from './match-part';
+import {MatchEvent} from './match-events';
 
 export class Match {
     id: string;
@@ -7,5 +8,5 @@ export class Match {
     awayTeam: TeamInMatch;
     location: string;
     matchParts: MatchPart[];
-
+    events: MatchEvent[];
 }

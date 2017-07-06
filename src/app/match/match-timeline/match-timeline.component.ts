@@ -2,6 +2,7 @@ import {Component, Input, IterableDiffers, OnChanges, OnInit} from '@angular/cor
 import {MatchEvent} from '../match-events';
 import {Match} from '../match';
 import moment = require('moment');
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-match-timeline',
@@ -11,6 +12,7 @@ import moment = require('moment');
 export class MatchTimelineComponent implements OnInit, OnChanges {
 
   @Input() match: Match = new Match();
+  @Input() $eventToDisplay: Observable<any>;
 
   private pieChartData =  {
         chartType: 'Timeline',
@@ -58,15 +60,18 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
 
   @Input() events: MatchEvent[] = [];
 
-  constructor(private _iterableDiffers: IterableDiffers) { }
+  constructor() { }
 
   ngOnInit() {
       this.setTimelineData(false);
       console.log(this.dataForTimeline);
+      if (this.$eventToDisplay) {
+        this.$eventToDisplay.subscribe(() => this.ngOnChanges())
+      }
   }
 
   ngOnChanges(...args: any[]) {
-      console.log("event added?", args)
+      console.log("event added?", this.match)
       this.setTimelineData(true);
   }
 
@@ -89,33 +94,32 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
 
   private getEvents(): [string, string, Date, Date][] {
     let toReturn: [string, string, Date, Date][] = [];
-    if (this.match && this.match.matchParts) {
-      this.match.matchParts[0].events.forEach(matchEvent => {
-                const row: [string, string, Date, Date] = ['Match Events', 'No Idea how to get the goal name',
-                    new Date(0, 0, 0, matchEvent.when.getHours(), matchEvent.startingTime.getMinutes(), 0),
-                    new Date(0, 0, 0, matchEvent.when.getHours(), matchEvent.startingTime.getMinutes(), 30)];
-                toReturn.push(row)
-            })
-      }
+    if (this.match && this.match.events) {
+      this.match.events.forEach(matchEvent => {
+          const eventType: string = Object.getOwnPropertyNames(matchEvent)[0];
+          const row: [string, string, Date, Date] = ['Match Events', eventType,
+              new Date(0, 0, 0, matchEvent[eventType].when.getHours(), matchEvent[eventType].when.getMinutes(), 0),
+              new Date(0, 0, 0, matchEvent[eventType].when.getHours(), matchEvent[eventType].when.getMinutes(), 30)];
+          toReturn.push(row)
+      })
+    }
     return toReturn;
   }
 
   private setTimelineData(update: boolean): void {
-      console.log('set timeline data with update ', update)
-      if (!this.dataForTimeline || update) {
+    if (!this.dataForTimeline || update) {
         const rows: Object[][] = [];
         rows.push(this.getHeader());
         this.getMatchPartsRows().forEach(matchPartRow => rows.push(matchPartRow));
         this.getEvents().forEach(matchEventRow => rows.push(matchEventRow));
-        console.log('timeline rows', rows)
         this.dataForTimeline = {
             chartType: 'Timeline',
             dataTable:
                 rows,
             options: {},
         };
-      }
-      return this.dataForTimeline;
+    }
+    return this.dataForTimeline;
   }
 
   addRow(): void {
