@@ -1,0 +1,35 @@
+// MENUS
+[md-menu-item] {
+  height: $table-row-height !important;
+  font-size: 14px !important;
+  padding: 0 $table-padding !important;
+}
+
+.main-user-controls {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    position:relative;
+    display: inline-block;
+    color: $white-87-opacity;
+
+    span {
+      color: $white-87-opacity;
+    }
+
+    .notification-counter {
+      @include border-radius(2px);
+      font-size: 10px;
+      padding: 1px;
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+
+      &.alert {
+        background: mat-color($mat-error, 500);
+      }
+    }
+  }
+}

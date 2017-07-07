@@ -1,0 +1,53 @@
+// MIXINS
+// Gradient
+@mixin linear-gradient-top($default,$color1,$stop1,$color2,$stop2) {
+  background-color: $default;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop($stop1, $color1), color-stop($stop2 $color2));
+  background-image: -webkit-linear-gradient(top, $color1 $stop1, $color2 $stop2);
+  background-image: -moz-linear-gradient(top, $color1 $stop1, $color2 $stop2);
+  background-image: -ms-linear-gradient(top, $color1 $stop1, $color2 $stop2);
+  background-image: -o-linear-gradient(top, $color1 $stop1, $color2 $stop2);
+  background-image: linear-gradient(top, $color1 $stop1, $color2 $stop2);
+}
+@mixin linear-gradient-left($default,$color1,$stop1,$color2,$stop2) {
+  background-color: $default;
+  background-image: -webkit-gradient(linear, left top, left top, color-stop($stop1, $color1), color-stop($stop2 $color2));
+  background-image: -webkit-linear-gradient(to left, $color1 $stop1, $color2 $stop2);
+  background-image: -moz-linear-gradient(to left, $color1 $stop1, $color2 $stop2);
+  background-image: -ms-linear-gradient(to left, $color1 $stop1, $color2 $stop2);
+  background-image: -o-linear-gradient(to left, $color1 $stop1, $color2 $stop2);
+  background-image: linear-gradient(to left, $color1 $stop1, $color2 $stop2);
+}
+@mixin gradient($default: $bg-gradient-primary, $start: $bg-gradient-accent, $stop: $bg-gradient-primary) {
+  @include linear-gradient-left($default,$start,0%,$stop,100%);
+}
+
+// Border Radius
+@mixin border-radius ($radius: 3px) {
+  border-radius			    : $radius;
+  -moz-border-radius		: $radius;
+  -webkit-border-radius	: $radius;
+}
+
+// Box shadows - levels refer to Material spec with shadow depth level (tad customized)
+@mixin box_shadow ($level: 1) {
+  @if $level == 1 {
+    box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.05);
+  } @else if $level == 2 {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+  } @else if $level == 3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  } @else if $level == 4 {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  } @else if $level == 5 {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+}
+
+// Material Design Iconic Font
+// Check icon overview @ https://zavoloklom.github.io/material-design-iconic-font/cheatsheet.html
+@mixin mdi-font ($fontName) {
+  @extend .#{$zmdi-icon-prefix};
+  @extend .#{$zmdi-icon-prefix}-#{$fontName};
+}
+

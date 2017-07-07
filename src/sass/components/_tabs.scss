@@ -1,0 +1,31 @@
+// TABS
+.mat-tab-group {
+  @include box_shadow(2);
+  margin-bottom: $main-padding;
+
+  .mat-tab-header {
+    background: white;
+  }
+
+  .mat-tab-body-wrapper {
+    padding: $main-padding;
+    background: white;
+  }
+
+  .mat-card-actions {
+    margin-bottom: 0;
+  }
+}
+
+.mat-ink-bar {
+  background-color: mat-color($accent, 500);
+}
+
+.mat-tab-label {
+  &:hover {
+    background-color: rgba(mat-color($accent, 500), 0.1);
+  }
+  &:focus {
+    background-color: rgba(mat-color($accent, 500), 0.1);
+  }
+}

@@ -1,0 +1,132 @@
+// CARDS
+// DEFAULT
+md-card.mat-card {
+  padding: $main-padding;
+  margin-bottom: $main-padding;
+  overflow: auto;
+
+  .mat-card-title {
+    .has-actions {
+      float:right;
+    }
+  }
+  .mat-card-actions {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .mat-raised-button {
+      margin: 0 2px;
+
+      &:last-child {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// A CLEAN CARD WITHOUG BOX-SHADOW THAT TOGGLES BASED ON THE SLIDETOGGLE STATUS
+md-card.checktoggle-box {
+  box-shadow: none !important;
+  border: solid 1px mat-color($mat-grey, 200);
+
+  .mat-card-title {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+  .mat-card-content {
+    padding-top: $main-padding;
+  }
+}
+
+// TOGGLE-BOX CARD
+md-card.toggle-box {
+  padding: 0;
+
+  .mat-card-title {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+
+  .toggle-box-header-container {
+    background: mat-color($mat-grey, 50);
+    border-bottom: solid 1px mat-color($mat-grey, 300);
+
+    > div {
+      padding: $table-padding;
+    }
+
+    .toggle-box-status-icon {
+      display: none;
+      font-size: 18px;
+      padding-right: 0;
+
+      &.enabled {
+        @include mdi-font ('circle-o');
+        color: rgba(0,0,0,0.6);
+
+        &.mandatory {
+          @include mdi-font ('dot-circle-alt');
+        }
+
+        &.success {
+          @include mdi-font ('check-circle');
+          color: mat-color($mat-success, 500);
+        }
+
+        &.warning {
+          @include mdi-font ('alert-circle');
+          color: mat-color($mat-warn, 500);
+        }
+
+        &.error {
+          @include mdi-font ('alert-circle');
+          color: mat-color($mat-error, 500);
+        }
+      }
+    }
+
+    .toggle-box-toggle-icon {
+      padding-top: 6px;
+      padding-bottom: 0;
+
+      @include mdi-font ('chevron-right');
+      color: rgba(0,0,0,0.6);
+      font-size: 28px;
+
+      &.open {
+        @include mdi-font ('chevron-down');
+        color: rgba(0,0,0,0.6);
+        font-size: 28px;
+      }
+    }
+  }
+  .mat-card-content {
+    position: relative;
+    padding: $main-padding !important;
+
+    .mat-card-toolbar {
+      margin: 0 -$main-padding;
+      margin-bottom: $main-padding/2;
+      padding: 2px 2px 0 0;
+    }
+  }
+
+  .mat-card-actions {
+    padding: $main-padding !important;
+  }
+}
+
+// Subtle shadow if nested in card (nesting is not prefered in general):
+md-card inni-toggle-box:not([class*="mat-elevation-z"]) {
+  > .toggle-box {
+    @include box_shadow(1);
+    border: solid 1px mat-color($mat-grey, 300);
+  }
+}

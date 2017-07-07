@@ -1,0 +1,211 @@
+// FORMS
+
+// Regular forms within a card / tab.
+.default-form {
+  margin-bottom: 16px;
+}
+
+// TODO: Have to remove the hint block (legacy)
+// Formly fields hint fix
+md-hint,div {
+  &.warn {
+    color: mat-color($mat-error, 500);
+  }
+}
+
+// Make inputs always 100% width. Size them using FlexBox.
+.mat-input-container,
+md2-datepicker,
+.mat-select {
+  width: 100%;
+}
+
+// Alignment fixes
+.mat-input-container {
+
+  .mat-input-wrapper {
+    padding-bottom: 0;
+  }
+
+  .mat-input-element {
+    height: 20px;
+  }
+}
+
+// Fix alignment Select box
+.mat-select {
+
+  .mat-select-trigger {
+    margin-top: 6px;
+
+    .mat-floating-placeholder {
+      margin-top: 16px;
+    }
+  }
+}
+
+
+// Remove Flexbox within the select element, conflicts with parent flexbox width sizing
+.mat-select-trigger {
+  display: block;
+  position: relative;
+
+  .mat-select-value {
+    top: 4px;
+  }
+
+  .mat-select-placeholder{
+    position: absolute;
+    bottom: 24%;
+  }
+  .mat-select-arrow {
+    position:absolute;
+    right: 0;
+    bottom: 40%;
+  }
+}
+
+inni-ml-field-checkbox {
+  display: flex;
+  height:100%;
+  align-items: center;
+}
+
+.radio-group { display: block; }
+.radio-group-column { flex-direction: row; }
+.radio-button { margin: 5px }
+
+.mat-select-disabled.read-only .mat-select-value,
+.mat-input-element.read-only,
+.mat-checkbox-disabled.read-only .mat-checkbox-label,
+.mat-radio-group.read-only .mat-radio-disabled .mat-radio-label-content,
+.inni-date-picker.md2-datepicker-disabled .md2-datepicker-value { color: rgba(0, 0, 0, 0.87); }
+
+md2-datepicker {
+  .md2-datepicker-trigger {
+    padding: 0 0 0 26px;
+  }
+
+  .md2-datepicker-button {
+    top:0;
+    left: -3px;
+    padding:0;
+    width: 24px;
+  }
+
+  .md2-floating-placeholder {
+    top: -15px;
+    left:0 !important;
+    z-index: 1;
+  }
+  .md2-datepicker-value {
+    font-size: $base-font-size;
+  }
+
+  .md2-datepicker-input {
+    line-height: 20px;
+  }
+}
+
+
+// TODO: Refactor
+// Filters in table headers
+table {
+
+  // Inputs
+  .mat-input-container {
+    padding-bottom: 0;
+
+    .mat-input-wrapper {
+      margin: 0 !important;
+      padding-bottom: 0;
+    }
+
+    .mat-input-underline {
+      display: none;
+    }
+
+    .mat-input-element {
+      @include border-radius();
+      height: $btn-height;
+      padding: 0 $main-padding/2;
+      font-size: $base-font-size;
+      border: solid 1px mat-color($mat-grey, 400);
+      //margin-left: -$main-padding/2;
+      background: white;
+      box-sizing: border-box;
+      width: 100%;
+
+      &.error {
+        border-color: mat-color($mat-error, 500);
+      }
+    }
+
+    textarea.mat-input-element {
+      padding-top: 5px;
+    }
+
+    .mat-input-placeholder-wrapper {
+      display:none;
+    }
+  }
+
+
+  //Selects
+  // TODO: There's no way to control the width to 100%, which would be prefered in the TH's and TD's, where the cell defines the width.
+  // TODO: It's a known issue, i.e.: https://github.com/angular/material2/issues/3090
+  // TODO: Wait for new updates to decide how to solve this issue.
+  .mat-select {
+    margin: 0;
+
+    .mat-select-trigger {
+      @include border-radius();
+      height: $btn-height;
+      font-size: $base-font-size;
+      border: solid 1px #bbb;
+      background: white;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .mat-select-value-text {
+      padding: 0 $main-padding/2;
+    }
+    .mat-select-underline {
+      display: none;
+    }
+
+    .mat-select-arrow {
+      margin: 0 $main-padding/2;
+    }
+  }
+
+  .md2-datepicker-trigger {
+    @include border-radius();
+    height: $btn-height;
+    border: solid 1px #bbb;
+    background: white;
+    box-sizing: border-box;
+  }
+
+  .md2-datepicker-input {
+    border-bottom: 0;
+    position: relative;
+  }
+
+  .md2-datepicker-value {
+    top: -2px;
+    font-weight: bold;
+  }
+
+  .md2-datepicker-button {
+    left: 1px;
+  }
+  .md2-datepicker-arrow {
+    right: 3px;
+    top: 11px;
+  }
+  .md2-datepicker-clear {
+    right: 2px;
+    top: 3px;
+  }
+}

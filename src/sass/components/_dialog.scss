@@ -1,0 +1,16 @@
+.mat-dialog-container {
+  .mat-dialog-title {
+    margin-bottom: $main-padding;
+  }
+
+  .mat-dialog-content {
+    margin-bottom: $main-padding;
+  }
+
+  .mat-dialog-actions:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: block;
+    text-align: right;
+  }
+}

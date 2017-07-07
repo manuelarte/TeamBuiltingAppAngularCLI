@@ -1,0 +1,22 @@
+@import '~@angular/material/core/theming/all-theme';
+@import './inni-app-palette';
+
+@include md-core();
+
+
+
+$primary: md-palette($inni-blue);
+$accent: md-palette($inni-cyan);
+
+$theme: md-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+.inni-essent-theme {
+	$essent-primary: md-palette($essent-red);
+	$essent-accent: md-palette($essent-blue);
+
+	$essent-theme: md-light-theme($essent-primary, $essent-accent);
+
+	@include angular-material-theme($essent-theme);
+}

@@ -1,0 +1,17 @@
+// GLOBAL SETTINGS
+// Fonts
+$base-font-size:        13px; // Main font size
+// Gutters
+$main-padding:          16px;
+// Header
+$hdr-toolbar-height:    45px;
+$logo-cnt-height:       $hdr-toolbar-height*2+1px; // The 1 px is for the seperator
+// Buttons
+$btn-height:            28px;
+// Nav
+$sidenav-item-height:   40px;
+// Tables
+$table-padding:         $main-padding - 4px;
+$table-row-height:      36px;
+// Inputs
+$checkbox-size:         16px;

@@ -1,0 +1,14 @@
+// SEARCH
+// Sidebar
+.sidebar-search-container {
+  input {
+    width: 100%;
+    line-height: 45px;
+    background: mat-color($mat-grey, 100);
+    padding: 0 8px 0 16px;
+    border: none;
+    border-top: solid 1px mat-color($mat-grey, 300);
+    border-bottom: solid 1px mat-color($mat-grey, 300);
+    font-size: $base-font-size;
+  }
+}

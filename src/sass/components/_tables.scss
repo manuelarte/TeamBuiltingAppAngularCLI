@@ -1,0 +1,354 @@
+// TABLES
+// Global
+table {
+  border-collapse: collapse;
+}
+
+// Table directive: button- & toolbar
+.table-action-toolbar {
+  height: $table-row-height;
+
+  // Left panel with icon buttons that interact with multiselect of rows
+  .multi-row-actions {
+    height: 100%;
+    vertical-align: middle;
+    padding: 0 ($table-padding - $table-padding/2);
+    margin-left: calc(-#{$table-padding} - 2px);
+  }
+  // Right panel with main action buttons
+  .main-table-actions {
+    height: 100%;
+    vertical-align: middle;
+    text-align: right;
+
+    .mat-raised-button {
+      margin: 0 2px;
+
+      &:last-child {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// Todo section below (a tag) added by Youri Hermans, Needs to be checked / refactored by Arno
+a {
+  text-decoration: underline;
+  &:hover {
+    text-decoration-color: #2a8cff;
+  }
+}
+
+// Base Header/Footer row properties
+.base-hdr-row-props {
+  background: $table-bg-header;
+  border-top: solid 1px $table-brd-header;
+  border-bottom: solid 1px $table-brd-header;
+}
+// Base table cells properties
+.base-cell-props {
+  height: $table-row-height;
+  padding: 0 $table-padding;
+  vertical-align: middle;
+}
+
+// TODO: Goede oplossing vinden voor sticky tabel (neg margin, zodat dit tegen de card staat,
+// raakt nu ook andere tabels. (zoals nested tables in toggle-table.
+.mat-card-content {
+  > inni-data-table {
+    > form > table.auto-generated {
+      margin-left: -$main-padding;
+      width: calc(100% + #{$main-padding*2});
+
+    }
+  }
+}
+
+// For @extend: Base table header properties
+.base-table-header {
+  > thead {
+    > tr {
+      @extend .base-hdr-row-props;
+
+      > th {
+        &.sortAsc:after {content: "\02193"}
+        &.sortDesc:after {content: "\02191"}
+        font-size: 12px !important;
+
+        @extend .base-cell-props;
+        text-align: left;
+
+        &[ng-reflect-inni-data-grid-sort] {
+          cursor: pointer;
+          &.sort-disabled {
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}
+
+// For @extend: Base table body properties
+.base-table-body {
+  > tbody {
+    > tr {
+      border-bottom: solid 1px $table-brd-td;
+
+      &:last-child {
+        border-bottom:none;
+      }
+
+      > td {
+        @extend .base-cell-props;
+        text-align: left;
+      }
+    }
+  }
+}
+
+// For @extend: Base table footer properties
+.base-table-footer {
+  > tfoot {
+    > tr {
+      @extend .base-hdr-row-props;
+
+      > td {
+        @extend .base-cell-props;
+      }
+    }
+  }
+}
+
+// Default table
+.default-data-table {
+  width: 100%;
+
+  @extend .base-table-header;
+  @extend .base-table-body;
+  @extend .base-table-footer;
+
+  &.auto-generated {
+    > tbody {
+      border-bottom: solid 1px $table-brd-td;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      > tr {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &.has-checkbox {
+    > thead > tr > th:first-child,
+    > tbody > tr > td:first-child {
+      width: 1px;
+      text-align: center;
+
+      .mat-checkbox-inner-container {
+        margin: 0 !important;
+        height: $checkbox-size;
+        width: $checkbox-size;
+      }
+    }
+  }
+  &.has-actions {
+    > tbody > tr > td:last-child {
+      padding-right: $table-padding/2;
+      text-align: right;
+      width: 1px;
+    }
+  }
+  &.has-clickable-row {
+    > tbody {
+      > tr {
+        &:hover {
+          background: $table-row-hover;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  td.related-entity {
+    padding: 0 !important;
+  }
+}
+
+// Toggleable table
+.toggle-data-table {
+  width: 100%;
+
+  @extend .base-table-header;
+  @extend .base-table-body;
+  @extend .base-table-footer;
+
+  > thead > tr > th:first-child,
+  > tbody > tr > td:first-child {
+    width: 1px;
+  }
+
+  > tbody {
+    border-bottom: solid 1px $table-brd-td;
+
+    > tr > td:first-child {
+      width: 1px;
+    }
+    .master-row {
+      background: rgba(mat-color($primary), 0.6);
+      color: $white-87-opacity;
+    }
+    .detail-row > td {
+      background: rgba(mat-color($primary), 0.5);
+      padding: $table-padding;
+
+      & table {
+        background: $table-bg;
+        @include box_shadow(2);
+      }
+
+      .mat-spinner {
+        height: 40px;
+        width: 100%;
+
+        path {
+          stroke: $white-87-opacity;
+        }
+      }
+    }
+  }
+
+  &.has-clickable-row {
+    > tbody {
+      > tr:not(.master-row):not(.detail-row) {
+        &:hover {
+          background: $table-row-hover;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  &.has-actions {
+    > tbody {
+      > tr:first-child > td:last-child{
+        padding-right: $table-padding/2;
+        text-align: right;
+        width: 1px;
+      }
+    }
+  }
+}
+
+// TO DISPLAY A LIST WITH TOGGLE OPTIONS
+.table-as-toggle-list {
+  @extend .base-table-header;
+  @extend .base-table-body;
+  @extend .base-table-footer;
+
+  > thead {
+    > tr {
+      background: none;
+      border-top: none;
+      border-bottom: solid 1px mat-color($mat-grey, 200);
+    }
+  }
+  > tbody {
+    > tr {
+      > td {
+        border-bottom: solid 1px mat-color($mat-grey, 200);
+      }
+    }
+    &:last-child {
+      tr > td {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// TODO: Refactoren
+inni-table-detail-view {
+  display: block;
+  position: relative;
+  min-height: 50px;
+
+  .mat-card { margin-bottom: $table-padding; }
+
+  inni-data-table {
+    display:block;
+    margin-bottom: $table-padding;
+
+    &:last-child {
+
+    }
+  }
+
+  .table-cell {
+    padding: 0px !important;
+
+    > inni-data-detail-table-wrapper {
+      > inni-data-table {
+        margin: 0px !important;
+      }
+    }
+  }
+
+  .mat-spinner {
+    $spinner-height: 40px;
+    height: $spinner-height;
+    position: absolute;
+    left: 49%;
+    top: 0;
+
+    path {
+      stroke: white;
+    }
+  }
+}
+
+.table-label {
+  background: rgba(#BBBBBB, 0.25);
+  font-weight: bold;
+  width: 1px; // Minimize width, scale by content
+  max-width: 50%;
+}
+
+.layout-group-div {
+  .extra-fields-container {
+    background: rgba(mat-color($primary), 0.2);
+    margin: -$table-padding;
+    margin-bottom: $table-padding;
+
+    > .extra-fields-block {
+      margin: $table-padding;
+      margin-left: 0;
+
+      &:first-child {
+        margin-left: $table-padding;
+      }
+      > table {
+        background: rgba($table-bg, 0.9) !important;
+      }
+    }
+  }
+}
+
+// md2-datepicker in table header
+th md2-datepicker {
+  min-width: 100px;
+}
+
+th .md2-datepicker-input {
+  min-width: 100px;
+}
+
+table.clean {
+  &.labeled {
+    > tbody > tr > td:first-child {
+      font-weight: bold;
+    }
+  }
+}

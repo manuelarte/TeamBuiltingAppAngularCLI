@@ -1,0 +1,57 @@
+// LISTS
+
+// List with: toggle / label / input[optional] / Hint[optional]
+.toggle-config-list {
+  display: table;
+  border-collapse: collapse;
+
+  .config-list-group {
+    display: table-row-group;
+
+    // Define seperator + padding for group, all but first-child element
+    &:not(:first-child) {
+      > div {
+        &:first-child > div {
+          padding-top: $table-row-height;
+        }
+      }
+    }
+    .config-item {
+      display: table-row;
+
+      &.unchecked {
+        opacity: 0.6;
+      }
+      > div {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 0 $main-padding/2;
+        height: $table-row-height;
+
+        &:first-of-type {
+          padding-left: 0;
+        }
+      }
+
+      .config-item-label {
+        font-weight: 500;
+
+        &.with-children.active {
+          font-weight: 700;
+        }
+      }
+
+      &.child { }
+    }
+  }
+
+  input[md-input] {
+    min-width: 5vw;
+  }
+
+  .mat-input-wrapper,
+  md-slide-toggle {
+    margin: 0 !important;
+
+  }
+}
