@@ -47,8 +47,11 @@ export class MatchEventsComponent implements OnInit {
   }
 
   addMockEvent(): void {
-      let a: MatchEvent = {"goal": {when: moment(this.match.matchParts[0].startingTime).add(10, 'minutes').toDate(), teamThatScored: '', description: '', who: "" }};
-      this.eventAdded.emit(a);
+      // let event: MatchEvent = {"goal": {when: moment(this.match.matchParts[0].startingTime).add(10, 'minutes').toDate(), teamThatScored: '', description: '', who: "" }};
+      let event: MatchEvent = {[this.selectedMatchEvent]: this.myEvent};
+      event[this.selectedMatchEvent].when = new Date(event[this.selectedMatchEvent].when);
+      console.log('this is what I would send:', event)
+      this.eventAdded.emit(event);
   }
 
 };
