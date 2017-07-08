@@ -16,7 +16,7 @@ export class MatchEventsComponent implements OnInit {
 
   eventsSchemasLoading = false;
   eventsSchemasErrorLoading = false;
-  eventSchemas: {[eventType: string]: {}} = {};
+  eventSchemas: {[eventType: string]: any} = {};
 
   selectedMatchEvent: string;
 
@@ -31,6 +31,10 @@ export class MatchEventsComponent implements OnInit {
       this.matchService.getMatchEvents().then(matchEventsSchemas => {
           this.eventsSchemasLoading = false;
           this.eventSchemas = matchEventsSchemas;
+
+          const eventTypes: string[] = Object.keys(this.eventSchemas);
+          eventTypes.forEach(eventType => this.eventSchemas[eventType].properties.when.widget = 'when')
+
       }).catch(error => {
           console.log('error', error);
           this.eventsSchemasLoading = false;

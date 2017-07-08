@@ -13,6 +13,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {GoogleChartDirective} from './directives/angular2-google-chart.directive';
 import {Ng2GoogleChartsModule} from 'ng2-google-charts';
 import {MyStringWidgetComponent} from "./my-string-widget/my-string-widget.component";
+import {MyTimeInMatchWidgetComponent} from './my-time-in-match-widget/my-time-in-match-widget.component';
 
 @NgModule({
     imports: [
@@ -38,12 +39,13 @@ import {MyStringWidgetComponent} from "./my-string-widget/my-string-widget.compo
         GoogleChartDirective,
         // Widgets
         MyStringWidgetComponent,
+        MyTimeInMatchWidgetComponent
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    entryComponents: [MyStringWidgetComponent],
-    exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent]
+    entryComponents: [MyStringWidgetComponent, MyTimeInMatchWidgetComponent],
+    exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent, MyTimeInMatchWidgetComponent]
 })
 export class TeambuiltingSharedModule {
 }

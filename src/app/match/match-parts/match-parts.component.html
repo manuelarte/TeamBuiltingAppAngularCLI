@@ -18,11 +18,13 @@
             <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
                 {{matchPart[col.field]|date:'hh:mma'}}
             </ng-template>
+
             <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="editor">
                 <p-calendar required="true" [(ngModel)]="matchPart.startingTime" [timeOnly]="true" hourFormat="12" [showIcon]="true"
                             [minDate]="getMinDateForStartingDate(ri)" (onClose)="updateMatchParts()" appendTo="body">
                 </p-calendar>
             </ng-template>
+
         </p-column>
         <p-column field="endingTime" header="Ending Time" [editable]="true">
             <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">

@@ -2,8 +2,7 @@
 <ng-container *ngIf="!schema.enum">
     <md-input-container>
         <input mdInput [name]="name" [formControl]="control" [placeholder]="schema.title"
-               [readonly]="schema.readOnly?true:null"
-               [disabled]="schema.readOnly?true:null">
+               [readonly]="schema.readOnly?true:null">
     </md-input-container>
 </ng-container>
 
