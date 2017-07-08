@@ -1,20 +1,23 @@
 import * as moment from 'moment';
 
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchPart} from '../match-part';
+import {unitOfTime} from 'moment';
+import {Match} from '../match';
 
 @Component({
   selector: 'app-match-parts',
   templateUrl: './match-parts.component.html',
   styleUrls: ['./match-parts.component.scss']
 })
-export class MatchPartsComponent implements OnInit {
-
-  public model: MatchPart;
-  public matchPartForm: FormGroup; // our model driven form
+export class MatchPartsComponent implements OnInit, OnChanges {
 
   public matchParts: MatchPart[] = [];
+
+  defaultRestTime: number = 15;
+  defautlPartDuration = 45;
+  defaultNumberOfParts = 2;
 
   @Output() matchPartsUpdated: EventEmitter<MatchPart[]> = new EventEmitter<MatchPart[]>();
 
@@ -22,29 +25,86 @@ export class MatchPartsComponent implements OnInit {
 
   ngOnInit() {
       this.createDefaultData();
-      this.model = new MatchPart();
-      this.model.startingTime = new Date(moment().subtract(4, 'hours').set({minute:0,second:0,millisecond:0}).toDate());
-      this.model.endingTime = new Date(moment(this.model.startingTime).add(45, 'minutes').toDate());
+  }
 
-      this.matchPartForm = new FormGroup({
-          startingTime: new FormControl('', [<any>Validators.required]),
-          endingTime: new FormControl('', [<any>Validators.required])
-      });
-
+  ngOnChanges() {
+    this.matchPartsUpdated.emit(this.matchParts);
   }
 
   private createDefaultData(): void {
+
       const firstHalf: MatchPart = new MatchPart();
       firstHalf.startingTime = new Date(moment().subtract(4, 'hours').set({minute:0,second:0,millisecond:0}).toDate());
       firstHalf.endingTime = new Date(moment(firstHalf.startingTime).add(45, 'minutes').toDate());
+      this.matchParts.push(firstHalf);
 
-      const secondHalf: MatchPart = new MatchPart();
-      secondHalf.startingTime = new Date(moment(firstHalf.endingTime).add(15, 'minutes').toDate());
-      secondHalf.endingTime = new Date(moment(secondHalf.startingTime).add(45, 'minutes').toDate());
-
-      this.matchParts.push(firstHalf, secondHalf);
+      for (let i = 1; i < this.defaultNumberOfParts; i++) {
+        const matchPart: MatchPart = this.createNextMatchPartByPreviousOne(this.matchParts[i-1])
+        this.matchParts.push(matchPart);
+      }
 
       this.matchPartsUpdated.emit(this.matchParts);
+  }
+
+  private createNextMatchPartByPreviousOne(previousMatchPart: MatchPart): MatchPart {
+      const matchPart: MatchPart = new MatchPart();
+      matchPart.startingTime = new Date(moment(previousMatchPart.endingTime).add(this.defaultRestTime, 'minutes').toDate());
+      matchPart.endingTime = new Date(moment(matchPart.startingTime).add(this.defautlPartDuration, 'minutes').toDate());
+      return matchPart;
+  }
+
+  getDuration(matchPart: MatchPart, unit: unitOfTime.All): number {
+      return moment(matchPart.endingTime).subtract(matchPart.endingTime).get(unit);
+  }
+
+  getAndsortMatchParts(): MatchPart[] {
+    this.matchParts = this.matchParts.sort((d1, d2) => new Date(d1.startingTime).getTime() - new Date(d2.startingTime).getTime());
+    return this.matchParts;
+  }
+
+  getMinDateForStartingDate(ri: number): Date {
+    if (ri != 0) {
+      return new Date(this.matchParts[ri-1].endingTime);
+    }
+    return null;
+  }
+
+  getMinDateForEndingDate(ri: number): Date {
+    if (this.matchParts[ri]) {
+      return new Date(this.matchParts[ri].startingTime);
+    }
+  }
+
+  updateMatchParts(): void {
+      console.log('updating!')
+      this.matchPartsUpdated.emit(this.matchParts);
+  }
+
+  show() {
+      console.log(this.matchParts);
+  }
+
+  addMatchPart(): void {
+    const matchPart: MatchPart = this.createNextMatchPartByPreviousOne(this.matchParts[this.matchParts.length - 1]);
+    this.matchParts.push(matchPart);
+    this.matchParts = this.returnCopyOfMatchParts();
+
+    this.matchPartsUpdated.emit(this.matchParts);
+  }
+
+  deleteMatchPartInIndex(ri: number): void {
+    if (ri !== 0) {
+      this.matchParts.splice(ri, 1);
+      this.matchParts = this.returnCopyOfMatchParts();
+      this.matchPartsUpdated.emit(this.matchParts);
+    }
+  }
+
+  private returnCopyOfMatchParts(): MatchPart[] {
+    const temp: MatchPart[] = [];
+    this.matchParts.forEach(part => temp.push(part));
+
+    return temp;
   }
 
 }

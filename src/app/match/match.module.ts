@@ -10,7 +10,7 @@ import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
     MdOptionModule,
     MdProgressSpinnerModule, MdSelectModule,
-    MdSliderModule
+    MdSliderModule, MdTooltipModule
 } from '@angular/material';
 
 import {ProfileModule} from '../profile/profile.module';
@@ -27,7 +27,7 @@ import {MatchEventsComponent} from './match-events/match-events.component';
 import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {MatchPartsComponent} from './match-parts/match-parts.component';
-import {CalendarModule, SharedModule} from 'primeng/primeng';
+import {CalendarModule, DataTableModule, SharedModule} from 'primeng/primeng';
 
 @NgModule({
     imports: [
@@ -37,7 +37,6 @@ import {CalendarModule, SharedModule} from 'primeng/primeng';
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        RatingModule,
         TeamModule,
         PlayerModule,
         ProfileModule,
@@ -45,6 +44,8 @@ import {CalendarModule, SharedModule} from 'primeng/primeng';
         SchemaFormModule,
         // PrimeNg
         CalendarModule,
+        DataTableModule,
+        RatingModule,
         SharedModule,
         // Material Modules
         MdButtonModule,
@@ -57,6 +58,7 @@ import {CalendarModule, SharedModule} from 'primeng/primeng';
         MdOptionModule,
         MdSelectModule,
         MdSliderModule,
+        MdTooltipModule,
         MdProgressSpinnerModule
     ],
     declarations: [

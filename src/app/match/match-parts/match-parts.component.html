@@ -1,15 +1,51 @@
-<p>
-  Add Match Part
-</p>
-<form *ngIf="model" [formGroup]="matchPartForm">
-
-    <p-calendar formControlName="startingTime" [(ngModel)]="model.startingTime" [timeOnly]="true" hourFormat="12" [showIcon]="true">
-        <p-footer>Starting Time</p-footer>
-    </p-calendar>
-    <p-calendar formControlName="endingTime" [(ngModel)]="model.endingTime" [timeOnly]="true" hourFormat="12" [showIcon]="true">
-        <p-footer>Ending Time</p-footer>
-    </p-calendar>
-
-</form>
+<h1>Match Parts</h1>
 
 <!-- Table to represent the match parts and being able to edit and remove -->
+<ng-container *ngIf="matchParts">
+    <p-dataTable [value]="getAndsortMatchParts()" [editable]="true" [responsive]="true" immutable="false" (onEditComplete)="updateMatchParts()" (onEdit)="updateMatchParts()">
+        <p-footer>Match Parts. Click on the rows to edit them.
+            <button md-icon-button (click)="addMatchPart()"
+                    mdTooltip="Click to add a new part" mdTooltipPosition="above"><md-icon>add</md-icon></button>
+        </p-footer>
+
+        <p-column header="Part">
+            <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
+                {{ri+1}} Part
+            </ng-template>
+        </p-column>
+
+        <p-column field="startingTime" header="Starting Time" [editable]="true">
+            <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
+                {{matchPart[col.field]|date:'hh:mma'}}
+            </ng-template>
+            <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="editor">
+                <p-calendar required="true" [(ngModel)]="matchPart.startingTime" [timeOnly]="true" hourFormat="12" [showIcon]="true"
+                            [minDate]="getMinDateForStartingDate(ri)" (onClose)="updateMatchParts()" appendTo="body">
+                </p-calendar>
+            </ng-template>
+        </p-column>
+        <p-column field="endingTime" header="Ending Time" [editable]="true">
+            <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
+                {{matchPart[col.field]|date:'hh:mma'}}
+            </ng-template>
+            <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="editor">
+                <p-calendar required="true" [(ngModel)]="matchPart.endingTime" [timeOnly]="true" hourFormat="12" [showIcon]="true"
+                            [minDate]="getMinDateForEndingDate(ri)" (onChange)="updateMatchParts()" appendTo="body">
+                </p-calendar>
+            </ng-template>
+        </p-column>
+        <p-column field="duration" header="Duration">
+            <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
+                {{ getDuration(matchPart, 'minutes')}} minutes
+            </ng-template>
+        </p-column>
+        <p-column header="Actions">
+            <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
+                <button md-icon-button *ngIf="ri !== 0" (click)="deleteMatchPartInIndex(ri)" mdTooltip="Click to add a new part" mdTooltipPosition="above"><md-icon>delete</md-icon></button>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+    {{matchParts[0]?.startingTime|date:'hh:mma'}}
+    {{matchParts[1]?.startingTime|date:'hh:mma'}}
+    <button md-button (click)="show()">Show</button>
+</ng-container>

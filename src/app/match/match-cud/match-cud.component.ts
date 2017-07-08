@@ -108,6 +108,7 @@ export class MatchCudComponent implements OnInit {
 
   matchPartsUpdated(matchParts: MatchPart[]): void {
       this.match.matchParts = matchParts;
+      this.updateTimeline();
   }
 
   shallShowEvent() {
@@ -117,7 +118,11 @@ export class MatchCudComponent implements OnInit {
 
   eventAdded(matchEvent: MatchEvent): void {
       this.match.events.push(matchEvent);
-      this.$eventToDisplay = new Observable(observer => observer.next());
+      this.updateTimeline();
+  }
+
+  private updateTimeline(): void {
+    this.$eventToDisplay = new Observable(observer => observer.next());
   }
 
 }
