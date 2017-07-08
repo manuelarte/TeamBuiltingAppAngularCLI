@@ -11,6 +11,6 @@
     </form>
 
     <sf-form *ngIf="selectedMatchEvent" [schema]="getValue(selectedMatchEvent)" (onChange)="myEvent=$event.value"></sf-form>
-    MyEvent: {{selectedMatchEvent}}:{{myEvent | json}}<br/>
+    MyEvent: {{'{'}} {{selectedMatchEvent}}:{{myEvent | json}} {{'}'}}<br/>
     <button color="primary" md-raised-button (click)="addMockEvent()">Add Event</button>
 </ng-container>

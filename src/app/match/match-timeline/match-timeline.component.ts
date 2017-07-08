@@ -71,8 +71,7 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(...args: any[]) {
-      console.log("event added?", this.match)
-      this.setTimelineData(true);
+    this.setTimelineData(true);
   }
 
   private getHeader(): [Object, Object, Object, Object] {
@@ -120,13 +119,6 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
         };
     }
     return this.dataForTimeline;
-  }
-
-  addRow(): void {
-      // this.pieChartData.dataTable.push(row);
-      this.pieChartData = this.pieChartData2;
-      // this.rows.push(row);
-      // console.log(this.rows);
   }
 
   isReady(): boolean {

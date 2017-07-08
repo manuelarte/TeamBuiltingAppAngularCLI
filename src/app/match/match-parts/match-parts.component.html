@@ -2,7 +2,7 @@
 
 <!-- Table to represent the match parts and being able to edit and remove -->
 <ng-container *ngIf="matchParts">
-    <p-dataTable [value]="matchParts" [editable]="true" [responsive]="true" immutable="false" (onEditComplete)="updateMatchParts()" (onEdit)="updateMatchParts()">
+    <p-dataTable [value]="matchParts" [editable]="true" [responsive]="true" immutable="false">
         <p-footer>Match Parts. Click on the rows to edit them.
             <button md-icon-button (click)="addMatchPart()"
                     mdTooltip="Click to add a new part" mdTooltipPosition="above"><md-icon>add</md-icon></button>
