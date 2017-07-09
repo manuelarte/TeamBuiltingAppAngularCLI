@@ -5,6 +5,7 @@ import {TeamService} from '../../services/team.service';
 import {PlayerInfo, RegisteredPlayerInfo} from '../playerInfo';
 import {PlayerToTeam} from '../../player-to-team';
 import {Player} from "../../player";
+import {UUID} from 'angular2-uuid';
 
 @Component({
   selector: 'app-match-players-info',
@@ -63,7 +64,7 @@ export class MatchPlayersInfoComponent implements OnInit {
 
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {
       const playerInfo: RegisteredPlayerInfo = new RegisteredPlayerInfo();
-      // playerInfo.id = this.utils.guidGenerator() // this call breaks everything... do not know why
+      playerInfo.id = UUID.UUID(); // this call breaks everything... do not know why
       playerInfo.playerId = playerToTeam.playerId;
       return playerInfo;
   }

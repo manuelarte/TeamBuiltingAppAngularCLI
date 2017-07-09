@@ -12,8 +12,4 @@ export class MyTimeInMatchWidgetComponent implements OnInit {
   ngOnInit() {
   }
 
-  print(a: any) {
-      console.log(a);
-  }
-
 }

@@ -4,12 +4,14 @@ import {FormControl} from '@angular/forms';
 import {Match} from '../../match/match';
 import {UtilsService} from '../../services/utils.service';
 import {PlayerService} from '../../services/player.service';
+import {TeamService} from '../../services/team.service';
+import {RegisteredTeamInfo, UnRegisteredTeamInfo} from '../../match/teamInfo';
 
 @Component({
   selector: 'app-my-player-in-match-widget',
   templateUrl: './my-player-in-match-widget.component.html',
   styleUrls: ['./my-player-in-match-widget.component.scss'],
-  providers: [PlayerService, UtilsService]
+  providers: [PlayerService, TeamService, UtilsService]
 })
 export class MyPlayerInMatchWidgetComponent implements OnInit {
 
@@ -20,14 +22,32 @@ export class MyPlayerInMatchWidgetComponent implements OnInit {
   isBusy = false;
   isErrorLoading = false;
 
-  constructor(private playerService: PlayerService, private utilsService: UtilsService) { }
+  constructor(private playerService: PlayerService, private teamService: TeamService, private utilsService: UtilsService) { }
 
   ngOnInit() {
       if (this.playersAreSelected()) {
+
           const homePlayersSelected: PlayerInfo[] = this.schema.widget.match.homeTeam.selectedPlayers?this.schema.widget.match.homeTeam.selectedPlayers:[];
+          if (this.utilsService.isRegisteredTeam(this.schema.widget.match.homeTeam.teamInfo)) {
+            const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> this.schema.widget.match.homeTeam.teamInfo;
+            this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {
+              homePlayersSelected.forEach(homePlayer => this.convertPlayerInfoToRepresentation(team.emblemLink, homePlayer));
+            });
+          } else {
+            const unRegisteredTeamInfo: UnRegisteredTeamInfo = <UnRegisteredTeamInfo> this.schema.widget.match.homeTeam.teamInfo;
+            homePlayersSelected.forEach(homePlayer => this.convertPlayerInfoToRepresentation('', homePlayer));
+          }
+
           const awayPlayersSelected: PlayerInfo[] = this.schema.widget.match.awayTeam.selectedPlayers?this.schema.widget.match.awayTeam.selectedPlayers:[];
-          homePlayersSelected.forEach(homePlayer => this.convertPlayerInfoToRepresentation('http://www.devo58.nl/wordpress/wp-content/themes/devo-activello/images/devo58-logo@2x.png', homePlayer));
-          awayPlayersSelected.forEach(awayPlayer => this.convertPlayerInfoToRepresentation('http://doestkeepersclass.nl/wp-content/uploads/2016/03/logo_wv-hedw.png', awayPlayer));
+          if (this.utilsService.isRegisteredTeam(this.schema.widget.match.awayTeam.teamInfo)) {
+              const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> this.schema.widget.match.awayTeam.teamInfo;
+              this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {
+                  awayPlayersSelected.forEach(awayPlayer => this.convertPlayerInfoToRepresentation(team.emblemLink, awayPlayer));
+              });
+          } else {
+              const unRegisteredTeamInfo: UnRegisteredTeamInfo = <UnRegisteredTeamInfo> this.schema.widget.match.awayTeam.teamInfo;
+              awayPlayersSelected.forEach(awayPlayer => this.convertPlayerInfoToRepresentation('', awayPlayer));
+          }
       }
   }
 
