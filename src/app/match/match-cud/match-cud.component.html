@@ -21,6 +21,15 @@
         <app-match-team-info-cud (teamSelected)="homeTeamSelected($event)" (teamRemoved)="homeTeamRemoved()"></app-match-team-info-cud>
     </div>
     <div class="ui-g-12 ui-md-3 ui-lg-3">
+        <md-input-container>
+            <input mdInput type="number" placeholder="Goals of Home Team" required>
+            <md-error>The home team goals has to be filled.</md-error>
+        </md-input-container>
+        <br/>vs:<br/>
+        <md-input-container>
+            <input mdInput type="number" placeholder="Goals of Away Team" required>
+            <md-error>The away team goals has to be filled.</md-error>
+        </md-input-container>
     </div>
     <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
         <h1>Away Team</h1>

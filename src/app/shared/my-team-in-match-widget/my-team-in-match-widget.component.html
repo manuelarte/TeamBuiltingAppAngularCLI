@@ -1,8 +1,10 @@
-{{schema.description?schema.description:'Team'}}:
-<md-select [placeholder]="schema.title" [formControl]="control" name="name">
-    <md-option value="Select a Team" disabled>Select a Team</md-option>
-    <md-option *ngFor="let teamRepresentation of teamsRepresentation" [value]="teamRepresentation.id">
-        <img class="entry-img" [src]="teamRepresentation.teamEmblem">
-        {{ teamRepresentation.name }}
-    </md-option>
-</md-select>
+<ng-container *ngIf="teamsRepresentation.length === 2">
+    {{schema.description?schema.description:'Team'}}:
+    <md-select [placeholder]="schema.title" [formControl]="control" name="name">
+        <md-option value="Select a Team" disabled>Select a Team</md-option>
+        <md-option *ngFor="let teamRepresentation of teamsRepresentation" [value]="teamRepresentation.id">
+            <img class="entry-img" [src]="teamRepresentation.teamEmblem">
+            {{ teamRepresentation.name }}
+        </md-option>
+    </md-select>
+</ng-container>
