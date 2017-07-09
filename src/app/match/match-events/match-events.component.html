@@ -1,6 +1,17 @@
 <p>
   match-timeline-events works!
 </p>
+
+<md-input-container>
+    <input mdInput type="number" placeholder="Goals of Home Team" required>
+    <md-error>The home team goals has to be filled.</md-error>
+</md-input-container>
+vs:
+<md-input-container>
+    <input mdInput type="number" placeholder="Goals of Away Team" required>
+    <md-error>The away team goals has to be filled.</md-error>
+</md-input-container>
+
 <ng-container *ngIf="eventsSchemasLoading == false && eventsSchemasErrorLoading == false && eventSchemas">
     <form>
         <md-select placeholder="Add Match Event" [(ngModel)]="selectedMatchEvent" name="event">
@@ -14,3 +25,5 @@
     MyEvent: {{'{'}} {{selectedMatchEvent}}:{{myEvent | json}} {{'}'}}<br/>
     <button color="primary" md-raised-button (click)="addMockEvent()">Add Event</button>
 </ng-container>
+
+goal Schema Event: {{eventSchemas.goal | json}}

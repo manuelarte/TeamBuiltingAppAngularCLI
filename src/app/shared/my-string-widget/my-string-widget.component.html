@@ -1,8 +1,8 @@
 {{schema.description}}:
 <ng-container *ngIf="!schema.enum">
     <md-input-container>
-        <input mdInput [name]="name" [formControl]="control" [placeholder]="schema.title"
-               [readonly]="schema.readOnly?true:null">
+        <input [attr.id]="id" [attr.name]="name" mdInput [formControl]="control" [placeholder]="schema.title"
+               [readonly]="schema.readOnly?true:null" [value]="value">
     </md-input-container>
 </ng-container>
 

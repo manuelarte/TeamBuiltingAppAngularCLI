@@ -112,8 +112,8 @@ export class MatchCudComponent implements OnInit {
   }
 
   shallShowEvent() {
-    return this.match != null  && this.match.homeTeam != null &&
-        this.match.awayTeam != null && this.match.matchParts != null;
+    return this.match != null  && this.match.homeTeam != null && this.match.homeTeam.teamInfo != null &&
+        this.match.awayTeam != null && this.match.awayTeam.teamInfo != null && this.match.matchParts != null;
   }
 
   eventAdded(matchEvent: MatchEvent): void {

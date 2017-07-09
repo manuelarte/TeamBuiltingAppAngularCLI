@@ -33,7 +33,31 @@ export class MatchEventsComponent implements OnInit {
           this.eventSchemas = matchEventsSchemas;
 
           const eventTypes: string[] = Object.keys(this.eventSchemas);
-          eventTypes.forEach(eventType => this.eventSchemas[eventType].properties.when.widget = 'when')
+          eventTypes.forEach(eventType => {
+              this.eventSchemas[eventType].properties.when.widget = {
+                  id:'when',
+                  match: this.match
+              };
+
+              const propertiesOfEvent: string[] = Object.keys(this.eventSchemas[eventType].properties);
+              propertiesOfEvent.forEach(property => {
+                  if (property === 'who') {
+                    this.eventSchemas[eventType].properties[property].widget = {
+                      id:'player',
+                      match: this.match
+                    }
+                  }
+
+                  if (property === 'teamThatScored') {
+                      this.eventSchemas[eventType].properties[property].widget = {
+                          id:'team',
+                          match: this.match
+                      }
+                  }
+              });
+
+
+          })
 
       }).catch(error => {
           console.log('error', error);
