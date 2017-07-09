@@ -15,46 +15,62 @@
     <md-datepicker #picker></md-datepicker>
 </div>
 
-<div #teams class="ui-g">
-    <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
-        <h1>Home Team</h1>
-        <app-match-team-info-cud (teamSelected)="homeTeamSelected($event)" (teamRemoved)="homeTeamRemoved()"></app-match-team-info-cud>
-    </div>
-    <div class="ui-g-12 ui-md-3 ui-lg-3">
-        <md-input-container>
-            <input mdInput type="number" placeholder="Goals of Home Team" required>
-            <md-error>The home team goals has to be filled.</md-error>
-        </md-input-container>
-        vs:
-        <md-input-container>
-            <input mdInput type="number" placeholder="Goals of Away Team" required>
-            <md-error>The away team goals has to be filled.</md-error>
-        </md-input-container>
-    </div>
-    <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
-        <h1>Away Team</h1>
-        <app-match-team-info-cud (teamSelected)="awayTeamSelected($event)" (teamRemoved)="awayTeamRemoved()"></app-match-team-info-cud>
-    </div>
-</div>
-
-<div #playersSelected class="ui-g">
-    <div *ngIf="isHomeTeamSelected()" class="home player-info ui-g-12 ui-md-6 ui-lg-6">
-        <h1>Home Players</h1>
-        <app-match-players-info [teamInfo]="getHomeTeam()" (playersSelected)="homePlayersAdded($event)"></app-match-players-info>
-    </div>
-
-    <div *ngIf="isAwayTeamSelected()" class="away player-info ui-g-12 ui-md-6 ui-lg-6">
-        <h1>Away Players</h1>
-        <app-match-players-info [teamInfo]="getAwayTeam()" (playersSelected)="awayPlayersAdded($event)"></app-match-players-info>
-    </div>
-</div>
-
 <div #matchParts>
     <app-match-parts (matchPartsUpdated)="matchPartsUpdated($event)"></app-match-parts>
 </div>
 
-<div #match>
-    <h1>Match Timeline</h1>
-    <app-match-events *ngIf="shallShowEvent()" [match]="getMatch()" (eventAdded)="eventAdded($event)"></app-match-events>
-    <app-match-timeline *ngIf="shallShowEvent()" [$eventToDisplay]="$eventToDisplay" [match]="getMatch()"></app-match-timeline>
-</div>
+<md-tab-group>
+    <md-tab label="Teams of the Game">
+
+        <div #teams class="ui-g">
+            <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
+                <h1>Home Team</h1>
+                <app-match-team-info-cud (teamSelected)="homeTeamSelected($event)" (teamRemoved)="homeTeamRemoved()"></app-match-team-info-cud>
+            </div>
+            <div class="ui-g-12 ui-md-3 ui-lg-3">
+                <md-input-container>
+                    <input mdInput type="number" placeholder="Goals of Home Team" required class="score">
+                    <md-error>The home team goals has to be filled.</md-error>
+                </md-input-container>
+                vs:
+                <md-input-container>
+                    <input mdInput type="number" placeholder="Goals of Away Team" required class="score">
+                    <md-error>The away team goals has to be filled.</md-error>
+                </md-input-container>
+            </div>
+            <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
+                <h1>Away Team</h1>
+                <app-match-team-info-cud (teamSelected)="awayTeamSelected($event)" (teamRemoved)="awayTeamRemoved()"></app-match-team-info-cud>
+            </div>
+        </div>
+    </md-tab>
+
+    <md-tab label="Players of the Match">
+        <div #playersSelected class="ui-g">
+            <div *ngIf="isHomeTeamSelected()" class="home player-info ui-g-12 ui-md-6 ui-lg-6">
+                <h1>Home Players</h1>
+                <app-match-players-info [teamInfo]="getHomeTeam()" (playersSelected)="homePlayersAdded($event)"></app-match-players-info>
+            </div>
+
+            <div *ngIf="isAwayTeamSelected()" class="away player-info ui-g-12 ui-md-6 ui-lg-6">
+                <h1>Away Players</h1>
+                <app-match-players-info [teamInfo]="getAwayTeam()" (playersSelected)="awayPlayersAdded($event)"></app-match-players-info>
+            </div>
+        </div>
+    </md-tab>
+
+    <md-tab label="Events">
+        <div #match>
+            <h1>Match Events</h1>
+            <app-match-events *ngIf="shallShowEvent(); else needsTeamAndPlayers" [match]="getMatch()" (eventAdded)="eventAdded($event)"></app-match-events>
+        </div>
+    </md-tab>
+</md-tab-group>
+
+<h1>Timeline</h1>
+<app-match-timeline *ngIf="shallShowEvent()" [$eventToDisplay]="$eventToDisplay" [match]="getMatch()"></app-match-timeline>
+
+
+<ng-template #needsTeamAndPlayers>
+    The teams and players need to be set first.
+</ng-template>

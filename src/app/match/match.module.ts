@@ -10,7 +10,7 @@ import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
     MdOptionModule,
     MdProgressSpinnerModule, MdSelectModule,
-    MdSliderModule, MdTooltipModule
+    MdSliderModule, MdTableModule, MdTabsModule, MdTooltipModule
 } from '@angular/material';
 
 import {ProfileModule} from '../profile/profile.module';
@@ -28,11 +28,13 @@ import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {MatchPartsComponent} from './match-parts/match-parts.component';
 import {CalendarModule, DataTableModule, SharedModule} from 'primeng/primeng';
+import {CdkTableModule} from '@angular/cdk';
 
 @NgModule({
     imports: [
         MatchRoutingModule,
         FlexLayoutModule,
+        CdkTableModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -58,6 +60,8 @@ import {CalendarModule, DataTableModule, SharedModule} from 'primeng/primeng';
         MdOptionModule,
         MdSelectModule,
         MdSliderModule,
+        MdTableModule,
+        MdTabsModule,
         MdTooltipModule,
         MdProgressSpinnerModule
     ],
