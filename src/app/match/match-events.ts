@@ -1,6 +1,7 @@
 export interface MatchEvent {
     [key: string]: any | {
         when: Date;
+        description: string;
     }
 }
 

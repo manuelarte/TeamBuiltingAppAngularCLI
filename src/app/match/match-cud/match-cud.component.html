@@ -67,9 +67,14 @@
     </md-tab>
 </md-tab-group>
 
-<h1>Timeline</h1>
-<app-match-timeline *ngIf="shallShowEvent()" [$eventToDisplay]="$eventToDisplay" [match]="getMatch()"></app-match-timeline>
 
+<h1>Timeline</h1>
+<div *ngIf="shallShowEvent(); else timelineNotReady">
+    <app-match-timeline [$eventToDisplay]="$eventToDisplay" [match]="getMatch()"></app-match-timeline>
+</div>
+<ng-template #timelineNotReady>
+    The timeline cannot be shown yet
+</ng-template>
 
 <ng-template #needsTeamAndPlayers>
     The teams and players need to be set first.
