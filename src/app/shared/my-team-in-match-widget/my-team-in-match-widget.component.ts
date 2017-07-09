@@ -17,6 +17,9 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
   @Input() schema: {[key: string]: any, widget: {id: string, match: Match}};
   teamsRepresentation: TeamRepresentation[] = [];
   @Input() control: FormControl = new FormControl();
+  @Input() name: string;
+
+  @Input() value: string;
 
   isBusyLoadingHomeTeam = false;
   isBusyLoadingAwayTeam = false;

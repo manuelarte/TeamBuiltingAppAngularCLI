@@ -1,2 +1,2 @@
-<google-chart *ngIf="isReady()" [data]="dataForTimeline" (chartSelect)="show = $event"></google-chart>
-{{show | json}}
+<google-chart *ngIf="isReady()" [data]="dataForTimeline" (chartSelect)="eventClicked = $event"></google-chart>
+{{eventClicked | json}}

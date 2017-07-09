@@ -18,6 +18,9 @@ export class MyPlayerInMatchWidgetComponent implements OnInit {
   @Input() schema: {[key: string]: any, widget: {id: string, match: Match}};
   playersRepresentation: PlayerRepresentation[] = [];
   @Input() control: FormControl = new FormControl();
+  @Input() name: string;
+
+  @Input() value: string;
 
   isBusy = false;
   isErrorLoading = false;

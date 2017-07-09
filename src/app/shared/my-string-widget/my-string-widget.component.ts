@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class MyStringWidgetComponent implements OnInit {
 
+  @Input() schema: {title: string, description: string, readOnly: boolean, [key: string]: Object};
   @Input() value: string = '';
 
   constructor() { }

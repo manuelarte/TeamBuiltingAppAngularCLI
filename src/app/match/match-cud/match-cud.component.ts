@@ -14,7 +14,11 @@ import {Observable} from 'rxjs/Observable';
 })
 export class MatchCudComponent implements OnInit {
 
-  sliderValue = 0;
+  sliderValue: number = 0;
+  sliderMax: number = 100;
+  sliderMin: number = 0;
+  sliderStep: number = 1;
+
   private teamSelectedSliderValue = 100 * 0.2 / 2; // add teams 20%
   private playersSelectedSliderValue = 100 * 0.2 / 2; // add players 20%
 
