@@ -11,7 +11,7 @@ export class MyWidgetRegistry extends DefaultWidgetRegistry {
         this.register('string',  MyStringWidgetComponent);
 
         // custom widgets match specialized
-        this.register('when',  MyTimeInMatchWidgetComponent);
+        this.register('time',  MyTimeInMatchWidgetComponent);
         this.register('player',  MyPlayerInMatchWidgetComponent);
         this.register('team',  MyTeamInMatchWidgetComponent);
     }
