@@ -22,3 +22,15 @@ export class SubstitutionMatchEvent implements MatchEvent {
     description: string;
 }
 */
+
+export class MatchEventSchemaAndWidget {
+    [key: string]: {
+        schema: any;
+        widget: {
+            [property: string]: {
+                id: string,
+                widgetProperties: Object;
+            }
+        };
+    }
+}

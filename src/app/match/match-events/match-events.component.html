@@ -1,4 +1,4 @@
-<ng-container *ngIf="eventsSchemasLoading == false && eventsSchemasErrorLoading == false && eventSchemas">
+<ng-container *ngIf="isReady()">
     <form>
         <md-select placeholder="Add Match Event" [(ngModel)]="selectedMatchEvent" name="event">
             <md-option *ngFor="let eventType of getKeys(eventSchemas)" [value]="eventType">
@@ -11,6 +11,11 @@
     MyEvent: {{'{'}} {{selectedMatchEvent}}:{{myEvent | json}} {{'}'}}<br/>
     <button color="primary" md-raised-button (click)="addMockEvent()">Add Event</button>
 </ng-container>
+
+<ng-template #eventsSchemasLoading>
+    <md-progress-spinner *ngIf="eventsSchemasLoading"></md-progress-spinner>
+    <ng-container *ngIf="eventsSchemasErrorLoading">Error loading schemas</ng-container>
+</ng-template>
 
 goal Schema Event: {{eventSchemas.goal | json}}
 

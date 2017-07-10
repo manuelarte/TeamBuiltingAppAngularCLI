@@ -21,6 +21,8 @@ export class MatchEventsComponent implements OnInit {
   eventsSchemasErrorLoading = false;
   eventSchemas: {[eventType: string]: any} = {};
 
+  numberOfEvents: number;
+
   selectedMatchEvent: string;
 
   myEvent: MatchEvent;
@@ -57,33 +59,23 @@ export class MatchEventsComponent implements OnInit {
 
       this.eventsSchemasLoading = true;
       this.matchService.getMatchEvents().then(matchEventsSchemas => {
-          this.eventsSchemasLoading = false;
-          this.eventSchemas = matchEventsSchemas;
+          this.eventSchemas = {};
 
-          const eventTypes: string[] = Object.keys(this.eventSchemas);
+          const eventTypes: string[] = Object.keys(matchEventsSchemas);
+          this.numberOfEvents = eventTypes.length;
           eventTypes.forEach(eventType => {
-              this.eventSchemas[eventType].properties.when.widget = {
-                  id:'when',
-                  match: this.match
-              };
-
-              const propertiesOfEvent: string[] = Object.keys(this.eventSchemas[eventType].properties);
-              propertiesOfEvent.forEach(property => {
-                  if (property === 'who') {
-                    this.eventSchemas[eventType].properties[property].widget = {
-                      id:'player',
+              // set the schema
+              this.eventSchemas[eventType] = matchEventsSchemas[eventType].schema;
+              // set the widgets in each property
+              const propertiesWithSpecialWidget: string[] = Object.keys(matchEventsSchemas[eventType].widget);
+              propertiesWithSpecialWidget.forEach(property =>{
+                  this.eventSchemas[eventType].properties[property].widget = {
+                      id: matchEventsSchemas[eventType].widget[property].id,
                       match: this.match
-                    }
-                  }
-
-                  if (property === 'teamThatScored') {
-                      this.eventSchemas[eventType].properties[property].widget = {
-                          id:'team',
-                          match: this.match
-                      }
                   }
               });
 
+              this.eventsSchemasLoading = false;
 
           })
 
@@ -100,6 +92,10 @@ export class MatchEventsComponent implements OnInit {
 
   getValue(key: string): {} {
     return this.eventSchemas[key];
+  }
+
+  isReady(): boolean {
+    return this.eventsSchemasLoading == false && this.eventsSchemasErrorLoading == false && Object.keys(this.eventSchemas).length === this.numberOfEvents;
   }
 
   addMockEvent(): void {

@@ -9,6 +9,7 @@ import {PlayerToTeam} from '../player-to-team';
 import {PlayerToTeamSportDetails} from '../player-to-team-sport-details';
 import {environment} from '../../environments/environment';
 import {AuthHttp} from 'angular2-jwt';
+import {MatchEventSchemaAndWidget} from '../match/match-events';
 
 @Injectable()
 export class MatchService {
@@ -19,7 +20,7 @@ export class MatchService {
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
-  getMatchEvents(): Promise<{[eventType: string]: {}}> {
+  getMatchEvents(): Promise<MatchEventSchemaAndWidget> {
     return this.http.get(`${this.matchEventsUrl}`).map(response => <{[eventType: string]: {}}> response.json())
       .toPromise();
   }
