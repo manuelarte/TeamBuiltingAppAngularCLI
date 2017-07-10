@@ -28,15 +28,19 @@
                 <app-match-team-info-cud (teamSelected)="homeTeamSelected($event)" (teamRemoved)="homeTeamRemoved()"></app-match-team-info-cud>
             </div>
             <div class="ui-g-12 ui-md-3 ui-lg-3">
+                <form [formGroup]="scoreForm">
                 <md-input-container>
-                    <input mdInput type="number" placeholder="Goals of Home Team" required class="score">
+                    <input mdInput #homeTeamScoreTemplate name="homeTeamScoreName" type="number" placeholder="Goals of Home Team"
+                           formControlName="scoreHomeTeam" required class="score">
                     <md-error>The home team goals has to be filled.</md-error>
                 </md-input-container>
                 vs:
                 <md-input-container>
-                    <input mdInput type="number" placeholder="Goals of Away Team" required class="score">
+                    <input mdInput #awayTeamScoreTemplate name="awayTeamScoreName" type="number" placeholder="Goals of Away Team"
+                           formControlName="scoreAwayTeam" required class="score">
                     <md-error>The away team goals has to be filled.</md-error>
                 </md-input-container>
+                </form>
             </div>
             <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
                 <h1>Away Team</h1>
@@ -62,7 +66,8 @@
     <md-tab label="Events">
         <div #match>
             <h1>Match Events</h1>
-            <app-match-events *ngIf="shallShowEvent(); else needsTeamAndPlayers" [match]="getMatch()" (eventAdded)="eventAdded($event)"></app-match-events>
+            <app-match-events *ngIf="shallShowEvent(); else needsTeamAndPlayers"  [scoreFormChanged$]="scoreFormChanged$"
+                              [match]="getMatch()" (eventAdded)="eventAdded($event)"></app-match-events>
         </div>
     </md-tab>
 </md-tab-group>
@@ -70,7 +75,7 @@
 
 <h1>Timeline</h1>
 <div *ngIf="shallShowEvent(); else timelineNotReady">
-    <app-match-timeline [$eventToDisplay]="$eventToDisplay" [match]="getMatch()"></app-match-timeline>
+    <app-match-timeline [$eventToDisplay]="eventToDisplay$" [match]="getMatch()"></app-match-timeline>
 </div>
 <ng-template #timelineNotReady>
     The timeline cannot be shown yet

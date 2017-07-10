@@ -16,6 +16,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class MatchEventsComponent implements OnInit {
 
   @Input() match: Match;
+  @Input() scoreFormChanged$: Observable<{homeTeam: number, awayTeam: number}>;
 
   eventsSchemasLoading = false;
   eventsSchemasErrorLoading = false;
@@ -56,6 +57,9 @@ export class MatchEventsComponent implements OnInit {
           });
 
       // /table
+      if (this.scoreFormChanged$) {
+        this.scoreFormChanged$.subscribe(x => console.log(x));
+      }
 
       this.eventsSchemasLoading = true;
       this.matchService.getMatchEvents().then(matchEventsSchemas => {
@@ -87,7 +91,7 @@ export class MatchEventsComponent implements OnInit {
   }
 
   getKeys(): string[] {
-    return Object.keys(this.eventSchemas);
+    return Object.keys(this.eventSchemas).filter(eventSchema => "goal" !== eventSchema);
   }
 
   getValue(key: string): {} {

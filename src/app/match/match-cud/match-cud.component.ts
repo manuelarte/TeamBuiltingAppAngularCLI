@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {TeamInfo} from '../teamInfo';
 import {PlayerInfo} from '../playerInfo';
 import {Match} from "../match";
@@ -6,13 +6,14 @@ import {TeamInMatch} from "../team-in-match";
 import {MatchPart} from '../match-part';
 import {MatchEvent} from '../match-events';
 import {Observable} from 'rxjs/Observable';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-match-cud',
   templateUrl: './match-cud.component.html',
   styleUrls: ['./match-cud.component.scss']
 })
-export class MatchCudComponent implements OnInit {
+export class MatchCudComponent implements OnInit, OnChanges {
 
   sliderValue: number = 0;
   sliderMax: number = 100;
@@ -21,14 +22,21 @@ export class MatchCudComponent implements OnInit {
 
   private teamSelectedSliderValue = 100 * 0.2 / 2; // add teams 20%
   private playersSelectedSliderValue = 100 * 0.2 / 2; // add players 20%
+  private scoreAddedSliderValue = 100 * 0.2 / 2; // add score of the match 20%
 
   /**
    * Date year-month-day of the game, the time will be set in the match parts
   */
   matchDate: Date = new Date();
 
+  scoreForm = new FormGroup({
+    scoreHomeTeam: new FormControl(0, Validators.required),
+    scoreAwayTeam: new FormControl(0, Validators.required),
+  });
+
   @Input() match: Match = new Match();
-  $eventToDisplay: Observable<any>;
+  eventToDisplay$: Observable<any>;
+  scoreFormChanged$: Observable<{homeTeam: number, awayTeam: number}>;
 
   constructor() { }
 
@@ -38,6 +46,10 @@ export class MatchCudComponent implements OnInit {
           this.match.awayTeam = new TeamInMatch();
           this.match.events = [];
       }
+      this.scoreFormChanged$ = this.scoreForm.valueChanges;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
   }
 
   getMatch(): Match {
@@ -126,7 +138,11 @@ export class MatchCudComponent implements OnInit {
   }
 
   private updateTimeline(): void {
-    this.$eventToDisplay = new Observable(observer => observer.next());
+    this.eventToDisplay$ = new Observable(observer => observer.next());
+  }
+
+  print() {
+      console.log('hi!')
   }
 
 }
