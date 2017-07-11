@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {MatchEvent} from '../match-events';
+import {GoalMatchEvent, MatchEvent} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
 import moment = require('moment');
@@ -16,7 +16,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class MatchEventsComponent implements OnInit {
 
   @Input() match: Match;
-  @Input() scoreFormChanged$: Observable<{homeTeam: number, awayTeam: number}>;
+  @Input() scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
   eventsSchemasLoading = false;
   eventsSchemasErrorLoading = false;
@@ -28,37 +28,19 @@ export class MatchEventsComponent implements OnInit {
 
   myEvent: MatchEvent;
 
+  goalEvents: {homeTeam: GoalMatchEvent[], awayTeam: GoalMatchEvent[]} = {homeTeam: [], awayTeam: []};
+
   @Output() eventAdded: EventEmitter<MatchEvent> = new EventEmitter<MatchEvent>();
-
-
-  // table
-    displayedColumns = ['userId', 'userName', 'progress', 'color'];
-    exampleDatabase = new ExampleDatabase();
-    dataSource: ExampleDataSource | null;
-
-    @ViewChild('filter') filter: ElementRef;
-  // /table
-
-
-
 
   constructor(private matchService: MatchService) { }
 
   ngOnInit() {
 
-      // table
-      this.dataSource = new ExampleDataSource(this.exampleDatabase);
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-              if (!this.dataSource) { return; }
-              this.dataSource.filter = this.filter.nativeElement.value;
-          });
-
-      // /table
       if (this.scoreFormChanged$) {
-        this.scoreFormChanged$.subscribe(x => console.log(x));
+        this.scoreFormChanged$.subscribe(x => {
+            console.log(x);
+            this.adjustGoalEvents(x);
+        });
       }
 
       this.eventsSchemasLoading = true;
@@ -110,86 +92,25 @@ export class MatchEventsComponent implements OnInit {
       this.eventAdded.emit(event);
   }
 
-};
+  private adjustGoalEvents(x: {scoreHomeTeam: number, scoreAwayTeam: number}): void {
+      console.log('x:',x)
+      const actualHomeTeamGoals: number = x.scoreHomeTeam;
+      const awayHomeTeamGoals: number = x.scoreAwayTeam;
+      let displayedHomeTeamGoals = this.goalEvents.homeTeam? this.goalEvents.homeTeam: 0;
+      let displayedtAwayTeamGoals = this.goalEvents.awayTeam? this.goalEvents.awayTeam: 0;
 
+      if (displayedHomeTeamGoals !== actualHomeTeamGoals) {
+          if (displayedHomeTeamGoals < actualHomeTeamGoals) {
+              const goal: GoalMatchEvent = new GoalMatchEvent();
+              goal.goal.teamThatScored = this.match.homeTeam.teamInfo.id;
+              this.goalEvents.homeTeam.push(goal);
+          } else {
 
-/** Constants used to fill up our data base. */
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-    'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-    'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-    'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
+          }
+      }
 
-export interface UserData {
-    id: string;
-    name: string;
-    progress: string;
-    color: string;
-}
+      console.log('adjusted:', this.goalEvents)
 
-/** An example database that the data source uses to retrieve data for the table. */
-export class ExampleDatabase {
-    /** Stream that emits whenever the data has been modified. */
-    dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
-    get data(): UserData[] { return this.dataChange.value; }
+  }
 
-    constructor() {
-        // Fill up the database with 100 users.
-        for (let i = 0; i < 100; i++) { this.addUser(); }
-    }
-
-    /** Adds a new user to the database. */
-    addUser() {
-        const copiedData = this.data.slice();
-        copiedData.push(this.createNewUser());
-        this.dataChange.next(copiedData);
-    }
-
-    /** Builds and returns a new User. */
-    private createNewUser() {
-        const name =
-            NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-            NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-        return {
-            id: (this.data.length + 1).toString(),
-            name: name,
-            progress: Math.round(Math.random() * 100).toString(),
-            color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-        };
-    }
-}
-
-/**
- * Data source to provide what data should be rendered in the table. Note that the data source
- * can retrieve its data in any way. In this case, the data source is provided a reference
- * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
- * the underlying data. Instead, it only needs to take the data and send the table exactly what
- * should be rendered.
- */
-export class ExampleDataSource extends DataSource<any> {
-    _filterChange = new BehaviorSubject('');
-    get filter(): string { return this._filterChange.value; }
-    set filter(filter: string) { this._filterChange.next(filter); }
-
-    constructor(private _exampleDatabase: ExampleDatabase) {
-        super();
-    }
-
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<UserData[]> {
-        const displayDataChanges = [
-            this._exampleDatabase.dataChange,
-            this._filterChange,
-        ];
-
-        return Observable.merge(...displayDataChanges).map(() => {
-            return this._exampleDatabase.data.slice().filter((item: UserData) => {
-                let searchStr = (item.name + item.color).toLowerCase();
-                return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-            });
-        });
-    }
-
-    disconnect() {}
 }

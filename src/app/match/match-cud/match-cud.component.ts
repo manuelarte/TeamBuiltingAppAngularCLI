@@ -36,7 +36,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   @Input() match: Match = new Match();
   eventToDisplay$: Observable<any>;
-  scoreFormChanged$: Observable<{homeTeam: number, awayTeam: number}>;
+  scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
   constructor() { }
 

@@ -29,6 +29,7 @@ import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {MatchPartsComponent} from './match-parts/match-parts.component';
 import {CalendarModule, DataTableModule, SharedModule} from 'primeng/primeng';
 import {CdkTableModule} from '@angular/cdk';
+import {MatchEventsShowComponent} from './match-events-show/match-events-show.component';
 
 @NgModule({
     imports: [
@@ -68,6 +69,7 @@ import {CdkTableModule} from '@angular/cdk';
     declarations: [
         MatchCudComponent,
         MatchEventsComponent,
+        MatchEventsShowComponent,
         MatchTeamInfoCudComponent,
         MatchPlayersInfoComponent,
         MatchPlayerInfoComponent,

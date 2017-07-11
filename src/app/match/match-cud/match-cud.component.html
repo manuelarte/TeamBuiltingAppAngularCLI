@@ -68,6 +68,8 @@
             <h1>Match Events</h1>
             <app-match-events *ngIf="shallShowEvent(); else needsTeamAndPlayers"  [scoreFormChanged$]="scoreFormChanged$"
                               [match]="getMatch()" (eventAdded)="eventAdded($event)"></app-match-events>
+
+            <app-match-events-show></app-match-events-show>
         </div>
     </md-tab>
 </md-tab-group>
