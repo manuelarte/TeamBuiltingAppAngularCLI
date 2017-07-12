@@ -21,7 +21,7 @@ export class MatchService {
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
   getMatchEvents(): Promise<MatchEventSchemaAndWidget> {
-    return this.http.get(`${this.matchEventsUrl}`).map(response => <{[eventType: string]: {}}> response.json())
+    return this.http.get(`${this.matchEventsUrl}`).map(response => <MatchEventSchemaAndWidget> response.json())
       .toPromise();
   }
 
