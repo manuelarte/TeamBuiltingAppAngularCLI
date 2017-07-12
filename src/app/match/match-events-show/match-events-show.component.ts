@@ -75,7 +75,7 @@ export class ExampleDataSource extends DataSource<DisplayableEvent> {
         ];
         console.log('displayDataChanges:', displayDataChanges)
         return Observable.merge(...displayDataChanges).map(() => {
-            return this.matchEvents.slice().map(this.convert).filter((item: MatchEvent) => {
+            return this.matchEvents.slice().map(this.convert).filter((item: DisplayableEvent) => {
                 console.log('item?:', item);
                 let searchStr = (item.type + item.when).toLowerCase();
                 return searchStr.indexOf(this.filter.toLowerCase()) != -1;
