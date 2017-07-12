@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
 import {GoalMatchEvent, MatchEvent} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
@@ -13,9 +13,10 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
   styleUrls: ['./match-events-show.component.scss'],
   providers: []
 })
-export class MatchEventsShowComponent implements OnInit {
+export class MatchEventsShowComponent implements OnInit, OnChanges {
 
   @Input() matchEvents: MatchEvent[] = [];
+  @Input() eventToDisplay$: Observable<any>;
 
   // table
   displayedColumns: string[] = ['type', 'when'];
@@ -27,26 +28,23 @@ export class MatchEventsShowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const test: GoalMatchEvent = new GoalMatchEvent();
-    test.goal = {
-      when: new Date(),
-      who: 'Me',
-      teamThatScored: 'Me',
-      description: 'A beautiful goal'
-    };
-    this.matchEvents.push(test);
+    if (this.eventToDisplay$) {
+      this.eventToDisplay$.subscribe(() => this.ngOnChanges())
+    }
 
+  }
+
+  ngOnChanges(...args: any[]) {
     // table
     this.dataSource = new ExampleDataSource(this.matchEvents);
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(150)
-      .distinctUntilChanged()
-      .subscribe(() => {
-         if (!this.dataSource) { return; }
-           this.dataSource.filter = this.filter.nativeElement.value;
-      });
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+              if (!this.dataSource) { return; }
+              this.dataSource.filter = this.filter.nativeElement.value;
+    });
     // /table
-
   }
 
 };

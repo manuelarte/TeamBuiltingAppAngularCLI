@@ -38,11 +38,11 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
             this.isBusyLoadingHomeTeam = true;
             this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {
               this.isBusyLoadingHomeTeam = false;
-                this.setFieldsUsingTeam(homeTeamRepresentation, team);
+              this.setFieldsUsingTeam(homeTeamRepresentation, team);
             })
           } else {
             const unregisteredTeamInfo: UnRegisteredTeamInfo = <UnRegisteredTeamInfo> homeTeamInfo;
-              this.setFieldsUsingUnRegisteredTeam(homeTeamRepresentation, unregisteredTeamInfo);
+            this.setFieldsUsingUnRegisteredTeam(homeTeamRepresentation, unregisteredTeamInfo);
           }
 
 
@@ -64,6 +64,7 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
 
           this.teamsRepresentation.push(homeTeamRepresentation, awayTeamRepresentation);
       }
+
   }
 
   private setFieldsUsingTeam(teamRepresentation: TeamRepresentation, team: Team): void {

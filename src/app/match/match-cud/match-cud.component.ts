@@ -124,7 +124,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   matchPartsUpdated(matchParts: MatchPart[]): void {
       this.match.matchParts = matchParts;
-      this.updateTimeline();
+      this.informRestComponents();
   }
 
   shallShowEvent() {
@@ -134,15 +134,19 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   eventAdded(matchEvent: MatchEvent): void {
       this.match.events.push(matchEvent);
-      this.updateTimeline();
+      this.informRestComponents();
   }
 
-  private updateTimeline(): void {
+  private informRestComponents(): void {
     this.eventToDisplay$ = new Observable(observer => observer.next());
   }
 
   print() {
       console.log('hi!')
+  }
+
+  getEvents(): MatchEvent[] {
+      return this.match.events;
   }
 
 }

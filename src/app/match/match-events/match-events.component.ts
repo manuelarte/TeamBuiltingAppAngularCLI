@@ -96,14 +96,22 @@ export class MatchEventsComponent implements OnInit {
       console.log('x:',x)
       const actualHomeTeamGoals: number = x.scoreHomeTeam;
       const awayHomeTeamGoals: number = x.scoreAwayTeam;
-      let displayedHomeTeamGoals = this.goalEvents.homeTeam? this.goalEvents.homeTeam: 0;
-      let displayedtAwayTeamGoals = this.goalEvents.awayTeam? this.goalEvents.awayTeam: 0;
+      let displayedHomeTeamGoals: number = this.goalEvents.homeTeam? this.goalEvents.homeTeam.length: 0;
+      let displayedAwayTeamGoals: number = this.goalEvents.awayTeam? this.goalEvents.awayTeam.length: 0;
+      console.log('actualHomeTeamGoals:', actualHomeTeamGoals);
+      console.log('displayedHomeTeamGoals:', displayedHomeTeamGoals);
 
       if (displayedHomeTeamGoals !== actualHomeTeamGoals) {
           if (displayedHomeTeamGoals < actualHomeTeamGoals) {
-              const goal: GoalMatchEvent = new GoalMatchEvent();
-              goal.goal.teamThatScored = this.match.homeTeam.teamInfo.id;
-              this.goalEvents.homeTeam.push(goal);
+            const goal: GoalMatchEvent = new GoalMatchEvent();
+            goal.goal = {
+              when: this.match.matchParts[0].startingTime,
+              who: null,
+              teamThatScored: this.match.homeTeam.teamInfo.id,
+              description: ''
+            };
+            this.goalEvents.homeTeam.push(goal);
+            this.eventAdded.emit(goal);
           } else {
 
           }
