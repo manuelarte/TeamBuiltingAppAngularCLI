@@ -1,0 +1,7 @@
+{{schema.description?schema.description:'when?'}}:
+<md-input-container>
+    <input type="number" mdInput [name]="name" [formControl]="control" [placeholder]="schema.title"
+               [attr.id]="id" [readonly]="schema.readOnly?true:null" [min]="0" [max]="90" [value]="value">
+    <md-error>This time is not valid!</md-error>
+</md-input-container>
+minutes.

@@ -1,0 +1,22 @@
+match-events-show
+
+<md-input-container floatPlaceholder="never">
+    <input mdInput #filter placeholder="Filter event">
+</md-input-container>
+
+<md-table #table [dataSource]="dataSource">
+
+    <ng-container cdkColumnDef="type">
+        <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.type}} </md-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container cdkColumnDef="when">
+        <md-header-cell *cdkHeaderCellDef> When </md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.when}} minutes </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+</md-table>

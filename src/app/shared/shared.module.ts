@@ -13,6 +13,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {GoogleChartDirective} from './directives/angular2-google-chart.directive';
 import {Ng2GoogleChartsModule} from 'ng2-google-charts';
 import {MyStringWidgetComponent} from "./my-string-widget/my-string-widget.component";
+import {MyTimeInMatchWidgetComponent} from './my-time-in-match-widget/my-time-in-match-widget.component';
+import {MyPlayerInMatchWidgetComponent} from './my-player-in-match-widget/my-player-in-match-widget.component';
+import {MyTeamInMatchWidgetComponent} from './my-team-in-match-widget/my-team-in-match-widget.component';
 
 @NgModule({
     imports: [
@@ -38,12 +41,15 @@ import {MyStringWidgetComponent} from "./my-string-widget/my-string-widget.compo
         GoogleChartDirective,
         // Widgets
         MyStringWidgetComponent,
+        MyPlayerInMatchWidgetComponent,
+        MyTeamInMatchWidgetComponent,
+        MyTimeInMatchWidgetComponent
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
-    entryComponents: [MyStringWidgetComponent],
-    exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent]
+    entryComponents: [MyStringWidgetComponent, MyPlayerInMatchWidgetComponent, MyTeamInMatchWidgetComponent, MyTimeInMatchWidgetComponent],
+    exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent, MyPlayerInMatchWidgetComponent, MyTeamInMatchWidgetComponent, MyTimeInMatchWidgetComponent]
 })
 export class TeambuiltingSharedModule {
 }

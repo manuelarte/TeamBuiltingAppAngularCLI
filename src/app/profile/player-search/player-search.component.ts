@@ -1,13 +1,12 @@
 import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/switchMap';
 import {PlayerSearchService} from '../../services/player-search.service';
 import {Player} from '../../player';
 import {Page} from '../../page';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import {FormControl} from '@angular/forms';
 
 @Component({

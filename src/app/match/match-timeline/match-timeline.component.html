@@ -1,2 +1,2 @@
-<google-chart *ngIf="isReady()" [data]="dataForTimeline"></google-chart>
-<button md-button (click)="addRow()">Click</button>
+<google-chart *ngIf="isReady()" [data]="dataForTimeline" (chartSelect)="eventClicked = $event"></google-chart>
+{{eventClicked | json}}
