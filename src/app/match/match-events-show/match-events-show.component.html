@@ -11,10 +11,17 @@ match-events-show
         <md-cell *cdkCellDef="let row"> {{row.type}} </md-cell>
     </ng-container>
 
-    <!-- Progress Column -->
     <ng-container cdkColumnDef="when">
         <md-header-cell *cdkHeaderCellDef> When </md-header-cell>
-        <md-cell *cdkCellDef="let row"> {{row.when}} minutes </md-cell>
+        <md-cell *cdkCellDef="let row"> {{row.when | date}} minutes </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="actions">
+        <md-header-cell *cdkHeaderCellDef> Action </md-header-cell>
+        <md-cell *cdkCellDef="let row">
+            <button md-button [disabled]="false"><md-icon>mode_edit</md-icon></button>
+            <button md-button [disabled]="row.type === 'goal'"><md-icon>delete</md-icon></button>
+        </md-cell>
     </ng-container>
 
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>

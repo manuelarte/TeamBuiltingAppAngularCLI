@@ -19,7 +19,7 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
   @Input() eventToDisplay$: Observable<any>;
 
   // table
-  displayedColumns: string[] = ['type', 'when'];
+  displayedColumns: string[] = ['type', 'when', 'actions'];
   dataSource: ExampleDataSource | null;
 
   @ViewChild('filter') filter: ElementRef;
