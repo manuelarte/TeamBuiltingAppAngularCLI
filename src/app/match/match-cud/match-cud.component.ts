@@ -8,6 +8,8 @@ import {MatchEvent} from '../match-events';
 import {Observable} from 'rxjs/Observable';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchUtilsService} from '../../services/match-utils.service';
+import moment = require('moment');
+import {Moment} from 'moment';
 
 @Component({
   selector: 'app-match-cud',
@@ -52,6 +54,10 @@ export class MatchCudComponent implements OnInit, OnChanges {
       this.match.awayTeam = new TeamInMatch();
       this.match.events = [];
       this.scoreFormChanged$ = this.scoreForm.valueChanges;
+    }
+
+    if (this.match && this.match.matchParts && this.matchUtilsService.getMatchParts(this.match).length > 0) {
+      this.matchDate = new Date(this.matchUtilsService.getMatchParts(this.match)[0].startingTime);
     }
 
     if (this.match) {
@@ -138,6 +144,19 @@ export class MatchCudComponent implements OnInit, OnChanges {
       this.sliderValue += this.playersSelectedSliderValue;
     }
     this.match.awayTeam.selectedPlayers = awayPlayers;
+  }
+
+  onMatchDateChange(matchDate: Date) {
+    this.matchDate = new Date(matchDate);
+    const momentDate: Moment  = moment(this.matchDate);
+    this.matchUtilsService.getMatchParts(this.match).forEach(part => {
+      part.startingTime = new Date(part.startingTime);
+      part.endingTime = new Date(part.endingTime);
+      const duration: number = part.endingTime.getTime() - part.startingTime.getTime();
+      part.startingTime = moment(part.startingTime).set('year', momentDate.get('year'))
+          .set('month', momentDate.get('month')).set('date', momentDate.get('date')).toDate();
+      part.endingTime = new Date(part.startingTime.getTime() + duration);
+    });
   }
 
   getMatchParts(): MatchPart[] {
