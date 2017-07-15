@@ -35,11 +35,19 @@ export class MatchUtilsService {
   }
 
   getHomePlayers(match: Match): PlayerInfo[] {
-    return match.homeTeam.selectedPlayers;
+    if (this.areHomePlayersSelected(match)) {
+      return match.homeTeam.selectedPlayers;
+    } else {
+      return null;
+    }
   }
 
   getAwayPlayers(match: Match): PlayerInfo[] {
-    return match.awayTeam.selectedPlayers;
+    if (this.isAwayTeamSelected(match)) {
+      return match.awayTeam.selectedPlayers;
+    } else {
+      return null;
+    }
   }
 
   getMatchParts(match: Match): MatchPart[] {

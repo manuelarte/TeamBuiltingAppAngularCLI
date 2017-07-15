@@ -37,6 +37,10 @@ export class MatchCudComponent implements OnInit, OnChanges {
     scoreAwayTeam: new FormControl(0, Validators.required),
   });
 
+  homeTeamSelected$: Observable<TeamInfo>;
+  homeTeamRemoved$: Observable<any>;
+  awayTeamSelected$: Observable<TeamInfo>;
+  awayTeamRemoved$: Observable<any>;
   eventToDisplay$: Observable<any>;
   scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
@@ -94,24 +98,28 @@ export class MatchCudComponent implements OnInit, OnChanges {
   homeTeamSelectedEventHandler(teamInfo: TeamInfo) {
     this.sliderValue += this.teamSelectedSliderValue;
     this.match.homeTeam.teamInfo = teamInfo;
+    this.homeTeamSelected$ = new Observable(observer => observer.next(teamInfo));
   }
 
   homeTeamRemovedEventHandler() {
     this.match.homeTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
+    this.homeTeamRemoved$ = new Observable(observer => observer.next());
   }
 
   awayTeamSelectedEventHandler(teamInfo: TeamInfo) {
     this.sliderValue += this.teamSelectedSliderValue;
     this.match.awayTeam.teamInfo = teamInfo;
+    this.awayTeamSelected$ = new Observable(observer => observer.next(teamInfo));
   }
 
   awayTeamRemovedEventHandler() {
     this.match.awayTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
+    this.awayTeamRemoved$ = new Observable(observer => observer.next());
   }
 
-  homePlayersAdded(homePlayers: PlayerInfo[]): void {
+  homePlayersAddedEventHandler(homePlayers: PlayerInfo[]): void {
     if (!this.match.homeTeam.selectedPlayers || this.match.homeTeam.selectedPlayers.length === 0) {
       this.sliderValue += this.playersSelectedSliderValue;
     }
