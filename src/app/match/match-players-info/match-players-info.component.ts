@@ -52,7 +52,8 @@ export class MatchPlayersInfoComponent implements OnInit {
     }
   }
 
-  addPlayerInfo(playerInfo: PlayerInfo): void {
+  newPlayerInfoEventHandler(playerInfo: PlayerInfo): void {
+      console.log('newPlayerInfoEventHandler:', playerInfo)
       this.playersInfo.push(playerInfo);
       this.playersSelected.emit(this.playersInfo);
   }

@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
 import {Player} from '../../player';
-import {PlayerService} from '../../services/player.service';
 import {UtilsService} from '../../services/utils.service';
-import {PlayerSearchService} from "../../services/player-search.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UUID} from 'angular2-uuid';
 
@@ -60,7 +58,7 @@ export class MatchPlayerInfoCudComponent implements OnInit {
         if (this.playerRegistered) {
             this.newPlayerInfo.emit(this.playerInfo);
         } else {
-            this.newPlayerInfo.emit(this.createPlayerInfoFromForm());
+          this.newPlayerInfo.emit(this.createPlayerInfoFromForm());
         }
         this.clear();
     }
