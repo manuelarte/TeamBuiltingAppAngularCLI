@@ -23,7 +23,7 @@ export class MatchService {
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
   getMatch(id: string): Promise<Match> {
-    return this.http.get(`${this.matchEventsUrl}/${id}`).map(response => <Match> response.json())
+    return this.http.get(`${this.matchesUrl}/${id}`).map(response => <Match> response.json())
             .toPromise();
   }
 

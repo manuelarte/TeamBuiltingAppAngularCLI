@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TeamSearchComponent} from '../../profile/team-search/team-search.component';
 import {RegisteredTeamInfo, TeamInfo, UnRegisteredTeamInfo} from '../teamInfo';
 import {Team} from '../../team';
@@ -13,6 +13,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   providers: [TeamSearchComponent, UtilsService]
 })
 export class MatchTeamInfoCudComponent implements OnInit {
+
+  @Input() teamInfo: TeamInfo;
 
   /**
    * To check if the team is already registered in TeamBuilting
@@ -31,8 +33,6 @@ export class MatchTeamInfoCudComponent implements OnInit {
     // imageLink: new FormControl('', [ Validators.required, Validators.minLength(6)]),
   });
 
-  teamInfo: TeamInfo;
-
   msgs: Message[] = [];
 
   @Output() teamSelectedEvent: EventEmitter<TeamInfo> = new EventEmitter<TeamInfo>();
@@ -41,7 +41,9 @@ export class MatchTeamInfoCudComponent implements OnInit {
   constructor(private utilsService: UtilsService) { }
 
   ngOnInit() {
-      this.msgs.push({severity:'warn', summary:'', detail:'Team Not Selected'});
+      if (!this.teamInfo) {
+        this.msgs.push({severity:'warn', summary:'', detail:'Team Not Selected'});
+      }
   }
 
   setTeamInfoFromTeam(team: Team): void {

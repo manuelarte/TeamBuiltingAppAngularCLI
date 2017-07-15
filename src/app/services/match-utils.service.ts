@@ -43,7 +43,11 @@ export class MatchUtilsService {
   }
 
   getMatchParts(match: Match): MatchPart[] {
-      return match.matchParts.sort((d1, d2) => new Date(d1.startingTime).getTime() - new Date(d2.startingTime).getTime());
+      if (match.matchParts) {
+        return match.matchParts.sort((d1, d2) => new Date(d1.startingTime).getTime() - new Date(d2.startingTime).getTime());
+      } else {
+        return null;
+      }
   }
 
 }

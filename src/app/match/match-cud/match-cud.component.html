@@ -16,7 +16,7 @@
 </div>
 
 <div #matchParts>
-    <app-match-parts (matchPartsUpdated)="matchPartsUpdated($event)"></app-match-parts>
+    <app-match-parts [matchParts]="getMatchParts()" (matchPartsUpdated)="matchPartsUpdated($event)"></app-match-parts>
 </div>
 
 <md-tab-group>
@@ -25,7 +25,7 @@
         <div #teams class="ui-g">
             <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
                 <h1>Home Team</h1>
-                <app-match-team-info-cud (teamSelectedEvent)="homeTeamSelectedEventHandler($event)" (teamRemovedEvent)="homeTeamRemovedEventHandler()"></app-match-team-info-cud>
+                <app-match-team-info-cud [teamInfo]="getHomeTeam()" (teamSelectedEvent)="homeTeamSelectedEventHandler($event)" (teamRemovedEvent)="homeTeamRemovedEventHandler()"></app-match-team-info-cud>
             </div>
             <div class="ui-g-12 ui-md-3 ui-lg-3">
                 <form [formGroup]="scoreForm">
@@ -44,7 +44,7 @@
             </div>
             <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
                 <h1>Away Team</h1>
-                <app-match-team-info-cud (teamSelectedEvent)="awayTeamSelectedEventHandler($event)" (teamRemovedEvent)="awayTeamRemovedEventHandler()"></app-match-team-info-cud>
+                <app-match-team-info-cud [teamInfo]="getAwayTeam()" (teamSelectedEvent)="awayTeamSelectedEventHandler($event)" (teamRemovedEvent)="awayTeamRemovedEventHandler()"></app-match-team-info-cud>
             </div>
         </div>
     </md-tab>

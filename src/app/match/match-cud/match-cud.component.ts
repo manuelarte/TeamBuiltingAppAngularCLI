@@ -64,7 +64,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
   }
 
   getHomeTeam(): TeamInfo {
-    return this.matchUtilsService.getHomeTeam(this.match);
+    return this.isHomeTeamSelected() ? this.matchUtilsService.getHomeTeam(this.match) : null;
   }
 
   areHomePlayersSelected(): boolean {
@@ -80,7 +80,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
   }
 
   getAwayTeam(): TeamInfo {
-    return this.matchUtilsService.getAwayTeam(this.match);
+    return this.isAwayTeamSelected() ? this.matchUtilsService.getAwayTeam(this.match) : null;
   }
 
   areAwayPlayersSelected(): boolean {
