@@ -21,6 +21,7 @@ export class MatchPlayersInfoComponent implements OnInit {
   @Input() playersInfo: PlayerInfo[] = [];
   @Input() teamSelected$: Observable<TeamInfo>;
   @Input() teamRemoved$: Observable<any>;
+  @Input() private editable = true;
 
   isBusy = false;
   errorOccurred = false;
@@ -40,6 +41,10 @@ export class MatchPlayersInfoComponent implements OnInit {
       this.teamRemoved$.subscribe(() => this.teamInfoRemovedEventHandler())
     }
 
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   private teamInfoSelectedEventHandler(teamInfo: TeamInfo): void {

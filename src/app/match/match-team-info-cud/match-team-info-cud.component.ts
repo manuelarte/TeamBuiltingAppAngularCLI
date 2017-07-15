@@ -15,6 +15,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class MatchTeamInfoCudComponent implements OnInit {
 
   @Input() teamInfo: TeamInfo;
+  @Input() private editable = true;
 
   /**
    * To check if the team is already registered in TeamBuilting
@@ -44,6 +45,10 @@ export class MatchTeamInfoCudComponent implements OnInit {
       if (!this.teamInfo) {
         this.msgs.push({severity:'warn', summary:'', detail:'Team Not Selected'});
       }
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   setTeamInfoFromTeam(team: Team): void {

@@ -17,6 +17,7 @@ export class MatchEventsComponent implements OnInit {
 
   @Input() match: Match;
   @Input() scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
+  @Input() private editable = true;
 
   eventsSchemasLoading = false;
   eventsSchemasErrorLoading = false;
@@ -70,6 +71,10 @@ export class MatchEventsComponent implements OnInit {
           this.eventsSchemasLoading = false;
           this.eventsSchemasErrorLoading = true;
       });
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   getKeys(): string[] {

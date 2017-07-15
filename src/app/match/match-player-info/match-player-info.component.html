@@ -9,6 +9,6 @@
         <md-card-subtitle>{{player?.nickname}}</md-card-subtitle>
     </md-card-header>
     <md-card-actions>
-        <button md-button (click)="removePlayerFromMatch()"><md-icon>delete</md-icon></button>
+        <button *ngIf="isEditable()" md-button (click)="removePlayerFromMatch()"><md-icon>delete</md-icon></button>
     </md-card-actions>
 </md-card>

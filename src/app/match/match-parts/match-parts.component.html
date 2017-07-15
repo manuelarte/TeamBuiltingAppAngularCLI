@@ -2,7 +2,7 @@
 
 <!-- Table to represent the match parts and being able to edit and remove -->
 <ng-container *ngIf="matchParts">
-    <p-dataTable [value]="matchParts" [editable]="true" [responsive]="true" immutable="false">
+    <p-dataTable [value]="matchParts" [editable]="isEditable()" [responsive]="true" immutable="false">
         <p-footer>Match Parts. Click on the rows to edit them.
             <button md-icon-button (click)="addMatchPart()"
                     mdTooltip="Click to add a new part" mdTooltipPosition="above"><md-icon>add</md-icon></button>
@@ -41,7 +41,7 @@
                 {{ getDuration(matchPart, 'minutes')}} minutes
             </ng-template>
         </p-column>
-        <p-column header="Actions">
+        <p-column *ngIf="isEditable()" header="Actions">
             <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
                 <button md-icon-button *ngIf="ri !== 0" (click)="deleteMatchPartInIndex(ri)" mdTooltip="Click to add a new part" mdTooltipPosition="above"><md-icon>delete</md-icon></button>
             </ng-template>

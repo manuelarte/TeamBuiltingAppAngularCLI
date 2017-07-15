@@ -1,4 +1,4 @@
-<div *ngIf="!teamInfo">
+<div *ngIf="!teamInfo && !isEditable()">
     <md-checkbox class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</md-checkbox>
 
     <div *ngIf="teamRegistered">
@@ -23,5 +23,5 @@
 
 <div *ngIf="teamInfo">
     <app-match-team-info [teamInfo]="teamInfo"></app-match-team-info>
-    <button md-button (click)="removeTeam()"><md-icon aria-hidden="true">backspace</md-icon></button>
+    <button *ngIf="isEditable()" md-button (click)="removeTeam()"><md-icon aria-hidden="true">backspace</md-icon></button>
 </div>

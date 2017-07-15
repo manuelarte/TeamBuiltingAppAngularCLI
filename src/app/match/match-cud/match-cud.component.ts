@@ -28,16 +28,14 @@ export class MatchCudComponent implements OnInit, OnChanges {
   private scoreAddedSliderValue = 100 * 0.2 / 2; // add score of the match 20%
 
   @Input() match: Match = new Match();
+  @Input() private editable = true;
 
   /**
    * Date year-month-day of the game, the time will be set in the match parts
    */
   matchDate: Date = new Date();
 
-  scoreForm = new FormGroup({
-    scoreHomeTeam: new FormControl(0, Validators.required),
-    scoreAwayTeam: new FormControl(0, Validators.required),
-  });
+  scoreForm: FormGroup;
 
   homeTeamSelected$: Observable<TeamInfo>;
   homeTeamRemoved$: Observable<any>;
@@ -49,6 +47,12 @@ export class MatchCudComponent implements OnInit, OnChanges {
   constructor(private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
+
+    this.scoreForm = new FormGroup({
+      scoreHomeTeam: new FormControl({value: 0, disabled: !this.editable}, Validators.required),
+      scoreAwayTeam: new FormControl({value: 0, disabled: !this.editable}, Validators.required),
+    });
+
     if (!this.match.homeTeam && !this.match.awayTeam) {
       this.match.homeTeam = new TeamInMatch();
       this.match.awayTeam = new TeamInMatch();
@@ -70,6 +74,10 @@ export class MatchCudComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   getMatch(): Match {
@@ -152,7 +160,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
     this.matchUtilsService.getMatchParts(this.match).forEach(part => {
       part.startingTime = new Date(part.startingTime);
       part.endingTime = new Date(part.endingTime);
-      const duration: number = part.endingTime.getTime() - part.startingTime.getTime();
+      const duration: number = part.getDuration();
       part.startingTime = moment(part.startingTime).set('year', momentDate.get('year'))
           .set('month', momentDate.get('month')).set('date', momentDate.get('date')).toDate();
       part.endingTime = new Date(part.startingTime.getTime() + duration);

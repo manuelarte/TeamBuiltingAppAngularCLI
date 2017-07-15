@@ -1,7 +1,8 @@
 <ng-container *ngIf="!isBusy; else isBusyTemplate">
     <div class="ui-g">
       <div class="ui-g-12 ui-md-3 ui-lg-4" *ngFor="let playerInfo of playersInfo">
-        <app-match-player-info [playerInfo]="playerInfo" (playerRemoved)="removePlayerFromMatch(playerInfo)">Loading players...</app-match-player-info>
+        <app-match-player-info [playerInfo]="playerInfo" [editable]="isEditable()"
+                               (playerRemoved)="removePlayerFromMatch(playerInfo)">Loading players...</app-match-player-info>
       </div>
     </div>
 </ng-container>
@@ -11,5 +12,5 @@
     </md-progress-spinner>
 </ng-template>
 
-<app-match-player-info-cud [playersFilter]="getPlayersFilter()" (newPlayerInfo)="newPlayerInfoEventHandler($event)"></app-match-player-info-cud>
+<app-match-player-info-cud *ngIf="isEditable()" [playersFilter]="getPlayersFilter()" (newPlayerInfo)="newPlayerInfoEventHandler($event)"></app-match-player-info-cud>
 

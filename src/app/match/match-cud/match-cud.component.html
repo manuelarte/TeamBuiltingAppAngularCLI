@@ -9,8 +9,9 @@
 
 <div #date>
     <md-input-container>
-        <input mdInput [mdDatepicker]="picker" [ngModel]="matchDate" (ngModelChange)="onMatchDateChange($event)" placeholder="Choose a date">
-        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        <input mdInput placeholder="Choose a date" [mdDatepicker]="picker" [ngModel]="matchDate"
+               (ngModelChange)="onMatchDateChange($event)" [disabled]="!isEditable()">
+        <button mdSuffix *ngIf="isEditable()" [mdDatepickerToggle]="picker"></button>
     </md-input-container>
     <md-datepicker #picker></md-datepicker>
 </div>
@@ -25,7 +26,8 @@
         <div #teams class="ui-g">
             <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
                 <h1>Home Team</h1>
-                <app-match-team-info-cud [teamInfo]="getHomeTeam()" (teamSelectedEvent)="homeTeamSelectedEventHandler($event)" (teamRemovedEvent)="homeTeamRemovedEventHandler()"></app-match-team-info-cud>
+                <app-match-team-info-cud [teamInfo]="getHomeTeam()" [editable]="isEditable()"
+                                         (teamSelectedEvent)="homeTeamSelectedEventHandler($event)" (teamRemovedEvent)="homeTeamRemovedEventHandler()"></app-match-team-info-cud>
             </div>
             <div class="ui-g-12 ui-md-3 ui-lg-3">
                 <form [formGroup]="scoreForm">
@@ -44,7 +46,8 @@
             </div>
             <div class="team-info ui-g-12 ui-md-4 ui-lg-4">
                 <h1>Away Team</h1>
-                <app-match-team-info-cud [teamInfo]="getAwayTeam()" (teamSelectedEvent)="awayTeamSelectedEventHandler($event)" (teamRemovedEvent)="awayTeamRemovedEventHandler()"></app-match-team-info-cud>
+                <app-match-team-info-cud [teamInfo]="getAwayTeam()" [editable]="isEditable()"
+                                         (teamSelectedEvent)="awayTeamSelectedEventHandler($event)" (teamRemovedEvent)="awayTeamRemovedEventHandler()"></app-match-team-info-cud>
             </div>
         </div>
     </md-tab>
@@ -54,13 +57,13 @@
             <div *ngIf="isHomeTeamSelected()" class="home player-info ui-g-12 ui-md-6 ui-lg-6">
                 <h1>Home Players</h1>
                 <app-match-players-info [playersInfo]="getHomePlayers()" [teamSelected$]="homeTeamSelected$" [teamRemoved$]="homeTeamRemoved$"
-                                        (playersSelected)="homePlayersAddedEventHandler($event)"></app-match-players-info>
+                                        [editable]="isEditable()" (playersSelected)="homePlayersAddedEventHandler($event)"></app-match-players-info>
             </div>
 
             <div *ngIf="isAwayTeamSelected()" class="away player-info ui-g-12 ui-md-6 ui-lg-6">
                 <h1>Away Players</h1>
                 <app-match-players-info [playersInfo]="getAwayPlayers()" [teamSelected$]="awayTeamSelected$" [teamRemoved$]="awayTeamRemoved$"
-                                        (playersSelected)="awayPlayersAddedEventHandler($event)"></app-match-players-info>
+                                        [editable]="isEditable()" (playersSelected)="awayPlayersAddedEventHandler($event)"></app-match-players-info>
             </div>
         </div>
     </md-tab>
@@ -69,9 +72,11 @@
         <div #match>
             <h1>Match Events</h1>
             <app-match-events *ngIf="shallShowEvent(); else needsTeamAndPlayers"  [scoreFormChanged$]="scoreFormChanged$"
-                              [match]="getMatch()" (eventAdded)="eventAdded($event)"></app-match-events>
+                              [match]="getMatch()" [editable]="isEditable()"
+                              (eventAdded)="eventAdded($event)"></app-match-events>
 
-            <app-match-events-show *ngIf="shallShowEvent()" [matchEvents]="getEvents()" [eventToDisplay$]="eventToDisplay$"></app-match-events-show>
+            <app-match-events-show *ngIf="shallShowEvent()" [matchEvents]="getEvents()" [eventToDisplay$]="eventToDisplay$"
+            [editable]="isEditable()"></app-match-events-show>
         </div>
     </md-tab>
 </md-tab-group>

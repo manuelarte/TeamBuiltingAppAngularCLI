@@ -13,6 +13,7 @@ import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playe
 export class MatchPlayerInfoComponent implements OnInit {
 
     @Input() playerInfo: PlayerInfo;
+    @Input() private editable = true;
     registeredPlayerInfo = false;
 
     player: Player;
@@ -44,6 +45,10 @@ export class MatchPlayerInfoComponent implements OnInit {
             this.player = new Player();
             this.player.name = unregisteredPlayerInfo.name;
         }
+    }
+
+    isEditable(): boolean {
+        return this.editable;
     }
 
     removePlayerFromMatch(): void {

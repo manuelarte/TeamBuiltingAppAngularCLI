@@ -17,6 +17,7 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
 
   @Input() matchEvents: MatchEvent[] = [];
   @Input() eventToDisplay$: Observable<any>;
+  @Input() private editable = true;
 
   // table
   displayedColumns: string[] = ['type', 'when', 'actions'];
@@ -45,6 +46,10 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
               this.dataSource.filter = this.filter.nativeElement.value;
     });
     // /table
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
 };

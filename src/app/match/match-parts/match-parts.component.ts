@@ -12,6 +12,7 @@ import {unitOfTime} from 'moment';
 export class MatchPartsComponent implements OnInit, OnChanges {
 
   @Input() matchParts: MatchPart[];
+  @Input() private editable = true;
 
   defaultRestTime: number = 15;
   defautlPartDuration = 45;
@@ -35,6 +36,10 @@ export class MatchPartsComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.matchPartsUpdated.emit(this.matchParts);
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   private createDefaultData(): void {
