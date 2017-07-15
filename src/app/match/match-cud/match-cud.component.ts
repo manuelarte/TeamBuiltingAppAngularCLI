@@ -116,7 +116,8 @@ export class MatchCudComponent implements OnInit, OnChanges {
     this.match.homeTeam.selectedPlayers = homePlayers;
   }
 
-  awayPlayersAdded(awayPlayers: PlayerInfo[]): void {
+  awayPlayersAddedEventHandler(awayPlayers: PlayerInfo[]): void {
+    console.log('awayPlayersAddedEventHandler:', this.matchUtilsService.getAwayTeam(this.match))
     if (!this.match.awayTeam.selectedPlayers || this.match.awayTeam.selectedPlayers.length === 0) {
       this.sliderValue += this.playersSelectedSliderValue;
     }

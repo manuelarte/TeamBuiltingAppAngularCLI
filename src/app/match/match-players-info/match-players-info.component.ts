@@ -17,7 +17,9 @@ export class MatchPlayersInfoComponent implements OnInit {
 
   @Input() matchDate: Date = new Date();
   @Input() teamInfo: TeamInfo;
+
   registeredTeamInfo = false;
+
   playersInfo: PlayerInfo[];
 
   isBusy = false;
@@ -44,6 +46,9 @@ export class MatchPlayersInfoComponent implements OnInit {
           this.isBusy = false;
           this.errorOccurred = true;
         });
+    } else {
+      this.playersInfo = [];
+      this.playersSelected.emit(this.playersInfo);
     }
   }
 

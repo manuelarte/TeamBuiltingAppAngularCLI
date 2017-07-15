@@ -65,9 +65,13 @@ export class MatchTeamInfoCudComponent implements OnInit {
 
   setTeamInfoFromUnRegisteredTeamInfo() {
       this.unregisteredTeamInfo.id = this.utilsService.guidGenerator();
+
+      this.teamInfo = this.unregisteredTeamInfo;
+
       this.team = new DisplayableTeamInfo();
       this.team.name = this.unregisteredTeamInfo.name;
       this.team.teamEmblem = "./images/question-mark.jpg";
+      this.teamSelectedEvent.emit(this.teamInfo);
   }
 
   removeTeam(): void {
