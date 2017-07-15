@@ -1,4 +1,4 @@
-<div *ngIf="!isBusy && team">
+<div *ngIf="!isBusy && team !== null">
     <img class="team_emblem" [src]="team.teamEmblem" alt=""/>
     <h2>{{team.name}}</h2>
 </div>
