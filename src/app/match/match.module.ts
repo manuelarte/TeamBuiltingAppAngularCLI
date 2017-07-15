@@ -32,7 +32,7 @@ import {CdkTableModule} from '@angular/cdk';
 import {MatchEventsShowComponent} from './match-events-show/match-events-show.component';
 import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchTeamInfoComponent} from "./match-team-info/match-team-info.component";
-import {MatchGetComponent} from './match-get/match-get.component';
+import {MatchDetailComponent} from './match-detail/match-detail.component';
 
 @NgModule({
     imports: [
@@ -72,9 +72,9 @@ import {MatchGetComponent} from './match-get/match-get.component';
     ],
     declarations: [
         MatchCudComponent,
+        MatchDetailComponent,
         MatchEventsComponent,
         MatchEventsShowComponent,
-        MatchGetComponent,
         MatchTeamInfoComponent,
         MatchTeamInfoCudComponent,
         MatchPlayersInfoComponent,
