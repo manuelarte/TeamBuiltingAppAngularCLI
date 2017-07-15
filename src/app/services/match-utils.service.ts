@@ -4,6 +4,7 @@ import {PlayerInfo} from '../match/playerInfo';
 import {UUID} from 'angular2-uuid';
 import {Match} from '../match/match';
 import {MatchPart} from '../match/match-part';
+import {GoalMatchEvent, MatchEvent} from '../match/match-events';
 
 @Injectable()
 export class MatchUtilsService {
@@ -56,6 +57,30 @@ export class MatchUtilsService {
       } else {
         return null;
       }
+  }
+
+  getHomeTeamGoals(match: Match): MatchEvent[] {
+    if (this.isHomeTeamSelected(match)) {
+      return this.getGoalsForTeamId(this.getHomeTeam(match).id, match);
+    }
+    return [];
+  }
+
+  getAwayTeamGoals(match: Match): MatchEvent[] {
+    if (this.isAwayTeamSelected(match)) {
+      return this.getGoalsForTeamId(this.getAwayTeam(match).id, match);
+    }
+    return [];
+  }
+
+  private getGoalsForTeamId(teamId: string, match: Match): MatchEvent[] {
+    const teamIdGoals: MatchEvent[] = [];
+    if (match.events) {
+      match.events.filter(event => event.goal && (<GoalMatchEvent>event).goal.teamThatScored === teamId).forEach(goalEvent => {
+          teamIdGoals.push(goalEvent);
+      });
+    }
+    return teamIdGoals;
   }
 
 }

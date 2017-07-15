@@ -54,6 +54,13 @@ export class MatchCudComponent implements OnInit, OnChanges {
       this.scoreFormChanged$ = this.scoreForm.valueChanges;
     }
 
+    if (this.match) {
+      this.scoreForm.setValue({
+        scoreHomeTeam: this.matchUtilsService.getHomeTeamGoals(this.match).length,
+        scoreAwayTeam: this.matchUtilsService.getAwayTeamGoals(this.match).length
+      });
+    }
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -154,6 +161,10 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   private informRestComponents(): void {
     this.eventToDisplay$ = new Observable(observer => observer.next());
+  }
+
+  private getHomeTeamGoals(): MatchEvent[] {
+    return this.matchUtilsService.getHomeTeamGoals(this.match);
   }
 
   getEvents(): MatchEvent[] {
