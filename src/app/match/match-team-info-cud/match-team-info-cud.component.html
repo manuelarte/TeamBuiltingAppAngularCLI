@@ -1,4 +1,4 @@
-<div *ngIf="!teamInfo && !isEditable()">
+<div *ngIf="!teamInfo && isEditable()">
     <md-checkbox class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</md-checkbox>
 
     <div *ngIf="teamRegistered">
