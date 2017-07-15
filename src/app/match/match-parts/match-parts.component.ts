@@ -86,10 +86,6 @@ export class MatchPartsComponent implements OnInit, OnChanges {
       this.matchPartsUpdated.emit(this.matchParts);
   }
 
-  show() {
-      console.log(this.matchParts);
-  }
-
   addMatchPart(): void {
     const matchPart: MatchPart = this.createNextMatchPartByPreviousOne(this.matchParts[this.matchParts.length - 1]);
     this.matchParts.push(matchPart);
