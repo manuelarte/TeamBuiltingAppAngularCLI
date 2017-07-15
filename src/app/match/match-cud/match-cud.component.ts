@@ -25,9 +25,11 @@ export class MatchCudComponent implements OnInit, OnChanges {
   private playersSelectedSliderValue = 100 * 0.2 / 2; // add players 20%
   private scoreAddedSliderValue = 100 * 0.2 / 2; // add score of the match 20%
 
+  @Input() match: Match = new Match();
+
   /**
    * Date year-month-day of the game, the time will be set in the match parts
-  */
+   */
   matchDate: Date = new Date();
 
   scoreForm = new FormGroup({
@@ -35,19 +37,19 @@ export class MatchCudComponent implements OnInit, OnChanges {
     scoreAwayTeam: new FormControl(0, Validators.required),
   });
 
-  @Input() match: Match = new Match();
   eventToDisplay$: Observable<any>;
   scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
   constructor(private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
-      if (!this.match.homeTeam && !this.match.awayTeam) {
-          this.match.homeTeam = new TeamInMatch();
-          this.match.awayTeam = new TeamInMatch();
-          this.match.events = [];
-      }
+    if (!this.match.homeTeam && !this.match.awayTeam) {
+      this.match.homeTeam = new TeamInMatch();
+      this.match.awayTeam = new TeamInMatch();
+      this.match.events = [];
       this.scoreFormChanged$ = this.scoreForm.valueChanges;
+    }
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -121,6 +123,10 @@ export class MatchCudComponent implements OnInit, OnChanges {
       this.sliderValue += this.playersSelectedSliderValue;
     }
     this.match.awayTeam.selectedPlayers = awayPlayers;
+  }
+
+  getMatchParts(): MatchPart[] {
+    return this.matchUtilsService.getMatchParts(this.match);
   }
 
   matchPartsUpdated(matchParts: MatchPart[]): void {

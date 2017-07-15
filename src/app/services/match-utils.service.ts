@@ -3,6 +3,7 @@ import {TeamInfo} from '../match/teamInfo';
 import {PlayerInfo} from '../match/playerInfo';
 import {UUID} from 'angular2-uuid';
 import {Match} from '../match/match';
+import {MatchPart} from '../match/match-part';
 
 @Injectable()
 export class MatchUtilsService {
@@ -39,6 +40,10 @@ export class MatchUtilsService {
 
   getAwayPlayers(match: Match): PlayerInfo[] {
     return match.awayTeam.selectedPlayers;
+  }
+
+  getMatchParts(match: Match): MatchPart[] {
+      return match.matchParts.sort((d1, d2) => new Date(d1.startingTime).getTime() - new Date(d2.startingTime).getTime());
   }
 
 }
