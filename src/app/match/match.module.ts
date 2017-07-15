@@ -31,6 +31,7 @@ import {CalendarModule, DataTableModule, MessagesModule, SharedModule} from 'pri
 import {CdkTableModule} from '@angular/cdk';
 import {MatchEventsShowComponent} from './match-events-show/match-events-show.component';
 import {MatchUtilsService} from '../services/match-utils.service';
+import {MatchTeamInfoComponent} from "./match-team-info/match-team-info.component";
 
 @NgModule({
     imports: [
@@ -72,6 +73,7 @@ import {MatchUtilsService} from '../services/match-utils.service';
         MatchCudComponent,
         MatchEventsComponent,
         MatchEventsShowComponent,
+        MatchTeamInfoComponent,
         MatchTeamInfoCudComponent,
         MatchPlayersInfoComponent,
         MatchPlayerInfoComponent,

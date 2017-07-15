@@ -3,7 +3,7 @@ import {TeamSearchComponent} from '../../profile/team-search/team-search.compone
 import {RegisteredTeamInfo, TeamInfo, UnRegisteredTeamInfo} from '../teamInfo';
 import {Team} from '../../team';
 import {UtilsService} from '../../services/utils.service';
-import {Message, Messages} from 'primeng/primeng';
+import {Message} from 'primeng/primeng';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -21,11 +21,6 @@ export class MatchTeamInfoCudComponent implements OnInit {
   teamRegistered = true;
 
   /**
-   * This is the holder to show it in the screen
-  */
-  team: DisplayableTeamInfo;
-
-  /**
    * This is the holder when the team is not registered
    * @type {UnRegisteredTeamInfo}
   */
@@ -37,7 +32,6 @@ export class MatchTeamInfoCudComponent implements OnInit {
   });
 
   teamInfo: TeamInfo;
-
 
   msgs: Message[] = [];
 
@@ -54,29 +48,18 @@ export class MatchTeamInfoCudComponent implements OnInit {
     const registeredTeamInfo: RegisteredTeamInfo = new RegisteredTeamInfo();
     registeredTeamInfo.id = this.utilsService.guidGenerator();
     registeredTeamInfo.teamId = team.id;
-
     this.teamInfo = registeredTeamInfo;
-    this.team = new DisplayableTeamInfo();
-    this.team.name = team.name;
-    this.team.teamEmblem = team.emblemLink;
-
     this.teamSelectedEvent.emit(this.teamInfo);
   }
 
   setTeamInfoFromUnRegisteredTeamInfo() {
       this.unregisteredTeamInfo.id = this.utilsService.guidGenerator();
-
       this.teamInfo = this.unregisteredTeamInfo;
-
-      this.team = new DisplayableTeamInfo();
-      this.team.name = this.unregisteredTeamInfo.name;
-      this.team.teamEmblem = "./images/question-mark.jpg";
       this.teamSelectedEvent.emit(this.teamInfo);
   }
 
   removeTeam(): void {
     this.teamInfo = null;
-    this.team = null;
     this.teamRemovedEvent.emit();
   }
 
