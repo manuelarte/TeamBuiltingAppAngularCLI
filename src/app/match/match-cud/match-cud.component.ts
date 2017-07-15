@@ -7,6 +7,7 @@ import {MatchPart} from '../match-part';
 import {MatchEvent} from '../match-events';
 import {Observable} from 'rxjs/Observable';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatchUtilsService} from '../../services/match-utils.service';
 
 @Component({
   selector: 'app-match-cud',
@@ -38,7 +39,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
   eventToDisplay$: Observable<any>;
   scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
-  constructor() { }
+  constructor(private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
       if (!this.match.homeTeam && !this.match.awayTeam) {
@@ -57,53 +58,53 @@ export class MatchCudComponent implements OnInit, OnChanges {
   }
 
   isHomeTeamSelected(): boolean {
-    return this.match != null && this.match.homeTeam != null && this.match.homeTeam.teamInfo != null;
+    return this.matchUtilsService.isHomeTeamSelected(this.match);
   }
 
   getHomeTeam(): TeamInfo {
-    return this.match.homeTeam.teamInfo;
+    return this.matchUtilsService.getHomeTeam(this.match);
   }
 
   areHomePlayersSelected(): boolean {
-    return this.match != null && this.match.homeTeam != null && this.match.homeTeam.selectedPlayers != null;
+    return this.matchUtilsService.areHomePlayersSelected(this.match);
   }
 
   getHomePlayers(): PlayerInfo[] {
-    return this.match.homeTeam.selectedPlayers;
+    return this.matchUtilsService.getHomePlayers(this.match);
   }
 
   isAwayTeamSelected(): boolean {
-    return this.match != null && this.match.awayTeam != null && this.match.awayTeam.teamInfo != null;
+    return this.matchUtilsService.isAwayTeamSelected(this.match);
   }
 
   getAwayTeam(): TeamInfo {
-    return this.match.awayTeam.teamInfo;
+    return this.matchUtilsService.getAwayTeam(this.match);
   }
 
   areAwayPlayersSelected(): boolean {
-    return this.match != null && this.match.awayTeam != null && this.match.awayTeam.selectedPlayers != null;
+    return this.matchUtilsService.areAwayPlayersSelected(this.match);
   }
 
   getAwayPlayers(): PlayerInfo[] {
-    return this.match.awayTeam.selectedPlayers;
+    return this.matchUtilsService.getAwayPlayers(this.match);
   }
 
-  homeTeamSelected(teamInfo: TeamInfo) {
+  homeTeamSelectedEventHandler(teamInfo: TeamInfo) {
     this.sliderValue += this.teamSelectedSliderValue;
     this.match.homeTeam.teamInfo = teamInfo;
   }
 
-  homeTeamRemoved() {
+  homeTeamRemovedEventHandler() {
     this.match.homeTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
   }
 
-  awayTeamSelected(teamInfo: TeamInfo) {
+  awayTeamSelectedEventHandler(teamInfo: TeamInfo) {
     this.sliderValue += this.teamSelectedSliderValue;
     this.match.awayTeam.teamInfo = teamInfo;
   }
 
-  awayTeamRemoved() {
+  awayTeamRemovedEventHandler() {
     this.match.awayTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
   }
@@ -139,10 +140,6 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   private informRestComponents(): void {
     this.eventToDisplay$ = new Observable(observer => observer.next());
-  }
-
-  print() {
-      console.log('hi!')
   }
 
   getEvents(): MatchEvent[] {

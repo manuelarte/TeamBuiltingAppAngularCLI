@@ -27,9 +27,10 @@ import {MatchEventsComponent} from './match-events/match-events.component';
 import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {MatchPartsComponent} from './match-parts/match-parts.component';
-import {CalendarModule, DataTableModule, SharedModule} from 'primeng/primeng';
+import {CalendarModule, DataTableModule, MessagesModule, SharedModule} from 'primeng/primeng';
 import {CdkTableModule} from '@angular/cdk';
 import {MatchEventsShowComponent} from './match-events-show/match-events-show.component';
+import {MatchUtilsService} from '../services/match-utils.service';
 
 @NgModule({
     imports: [
@@ -40,6 +41,7 @@ import {MatchEventsShowComponent} from './match-events-show/match-events-show.co
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
+        MessagesModule,
         TeamModule,
         PlayerModule,
         ProfileModule,
@@ -78,6 +80,7 @@ import {MatchEventsShowComponent} from './match-events-show/match-events-show.co
         MatchPartsComponent,
     ],
     providers: [
+        MatchUtilsService,
         {provide: LOCALE_ID, useValue: 'nl'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],

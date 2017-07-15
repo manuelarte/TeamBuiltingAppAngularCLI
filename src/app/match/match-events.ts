@@ -27,7 +27,7 @@ export class SubstitutionMatchEvent implements MatchEvent {
 */
 
 export class MatchEventSchemaAndWidget {
-    [key: string]: {
+    [eventType: string]: {
         schema: any;
         widget: {
             [property: string]: {
