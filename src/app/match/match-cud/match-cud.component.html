@@ -76,7 +76,7 @@
                               (eventAdded)="eventAdded($event)"></app-match-events>
 
             <app-match-events-show *ngIf="shallShowEvent()" [matchEvents]="getEvents()" [eventToDisplay$]="eventToDisplay$"
-            [editable]="isEditable()"></app-match-events-show>
+            [editable]="isEditable()" [match]="getMatch()"></app-match-events-show>
         </div>
     </md-tab>
 </md-tab-group>

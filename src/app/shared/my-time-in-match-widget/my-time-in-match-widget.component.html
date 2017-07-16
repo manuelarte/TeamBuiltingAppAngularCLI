@@ -1,6 +1,6 @@
 {{schema.description?schema.description:'when?'}}:
 <md-input-container>
-    <input mdInput type="number" [(ngModel)]="value" [name]="name" [formControl]="control" [placeholder]="schema.title"
+    <input mdInput type="number" [attr.name]="name" [(ngModel)]="value" [name]="name" [formControl]="control" [placeholder]="schema.title"
                [id]="id" [readonly]="schema.readOnly?true:null" [min]="0" [max]="90" [value]="value">
     <md-error>This time is not valid!</md-error>
 </md-input-container>

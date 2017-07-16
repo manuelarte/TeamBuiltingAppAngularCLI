@@ -16,6 +16,7 @@ import {MatchUtilsService} from '../../services/match-utils.service';
 })
 export class MatchEventsShowComponent implements OnInit, OnChanges {
 
+  @Input() match: Match;
   @Input() matchEvents: MatchEvent[] = [];
   @Input() eventToDisplay$: Observable<any>;
   @Input() private editable = true;
@@ -72,6 +73,18 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
 
   getTableProperties(matchEvent: MatchEvent): string[] {
     return this.schemaAndUiMatchEvents[this.getEventType(matchEvent)].ui.tableProperties;
+  }
+
+  getWhenInMinutes(matchEvent: MatchEvent): number {
+    return moment(this.matchUtilsService.getMatchParts(this.match)[0].startingTime).subtract( new Date(matchEvent[this.getEventType(matchEvent)].when) ).get('minutes');
+  }
+
+  getSchemaAndWidget(matchEvent: MatchEvent, property: string): any {
+    const schemaAndWidget: any = this.schemaAndUiMatchEvents[this.getEventType(matchEvent)].schema.properties[property];
+    schemaAndWidget.readOnly = true;
+    schemaAndWidget.widget = this.schemaAndUiMatchEvents[this.getEventType(matchEvent)].ui.properties[property].widget;
+    schemaAndWidget.widget.match = this.match;
+    return schemaAndWidget;
   }
 
 };
