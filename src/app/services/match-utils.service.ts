@@ -83,4 +83,8 @@ export class MatchUtilsService {
     return teamIdGoals;
   }
 
+  getMatchEventType(matchEvent: MatchEvent): string {
+    return Object.keys(matchEvent)[0];
+  }
+
 }

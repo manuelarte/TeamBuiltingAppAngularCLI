@@ -45,25 +45,27 @@ export class MatchEventsComponent implements OnInit {
 
       this.eventsSchemasLoading = true;
       this.matchService.getMatchEvents().then(matchEventsSchemas => {
-          this.eventSchemas = {};
+        console.log(matchEventsSchemas)
+        this.eventSchemas = {};
 
-          const eventTypes: string[] = Object.keys(matchEventsSchemas);
-          this.numberOfEvents = eventTypes.length;
-          eventTypes.forEach(eventType => {
-              // set the schema
-              this.eventSchemas[eventType] = matchEventsSchemas[eventType].schema;
-              // set the widgets in each property
-              const propertiesWithSpecialWidget: string[] = Object.keys(matchEventsSchemas[eventType].widget);
-              propertiesWithSpecialWidget.forEach(property =>{
-                  this.eventSchemas[eventType].properties[property].widget = {
-                      id: matchEventsSchemas[eventType].widget[property].id,
-                      match: this.match
-                  }
-              });
+        const eventTypes: string[] = Object.keys(matchEventsSchemas);
+        this.numberOfEvents = eventTypes.length;
+        eventTypes.forEach(eventType => {
+            // set the schema
+            this.eventSchemas[eventType] = matchEventsSchemas[eventType].schema;
 
-              this.eventsSchemasLoading = false;
+            // set the widgets in each property
+            const propertiesWithSpecialWidget: string[] = Object.keys(matchEventsSchemas[eventType].ui.properties)
+                  .filter(propertyName => matchEventsSchemas[eventType].ui.properties[propertyName].widget);
+            propertiesWithSpecialWidget.forEach(property =>{
+              this.eventSchemas[eventType].properties[property].widget = {
+                id: matchEventsSchemas[eventType].ui.properties[property].widget.id,
+                match: this.match
+              }
+            });
 
-          })
+            this.eventsSchemasLoading = false;
+        })
 
       }).catch(error => {
           console.log('error', error);

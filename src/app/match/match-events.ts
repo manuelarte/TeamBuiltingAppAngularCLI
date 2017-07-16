@@ -4,8 +4,10 @@ export interface MatchEvent {
         id: string;
         when: Date;
         description: string;
-    }
+    };
+
 }
+
 
 
 export class GoalMatchEvent implements MatchEvent {
@@ -28,14 +30,27 @@ export class SubstitutionMatchEvent implements MatchEvent {
 }
 */
 
-export class MatchEventSchemaAndWidget {
-    [eventType: string]: {
-        schema: JsonSchema;
-        widget: {
-            [property: string]: {
-                id: string,
-                widgetProperties: Object;
-            }
-        };
-    }
+export class MatchEventSchemaAndUi {
+  [eventType: string]: {
+    schema: JsonSchema;
+    ui: Ui;
+  }
+}
+
+export class Ui {
+  tableProperties: string[];
+  properties: {
+    [key: string]: UiProperty
+  };
+
+  getUiProperyFor(propertyName: string): UiProperty {
+    return this[propertyName];
+  }
+}
+
+export class UiProperty {
+  widget: {
+    id: string,
+    widgetProperties: Object;
+  }
 }

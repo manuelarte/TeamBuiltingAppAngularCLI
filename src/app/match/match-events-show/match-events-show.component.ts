@@ -1,17 +1,18 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
-import {GoalMatchEvent, MatchEvent} from '../match-events';
+import {GoalMatchEvent, MatchEvent, MatchEventSchemaAndUi} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
 import moment = require('moment');
 import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {MatchUtilsService} from '../../services/match-utils.service';
 
 @Component({
   selector: 'app-match-events-show',
   templateUrl: './match-events-show.component.html',
   styleUrls: ['./match-events-show.component.scss'],
-  providers: []
+  providers: [MatchService, MatchUtilsService]
 })
 export class MatchEventsShowComponent implements OnInit, OnChanges {
 
@@ -19,16 +20,27 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
   @Input() eventToDisplay$: Observable<any>;
   @Input() private editable = true;
 
+  loadingSchemaAndUiMatchEvents = false;
+  errorLoadingSchemaAndUiMatchEvents = false;
+  schemaAndUiMatchEvents: MatchEventSchemaAndUi;
+
   // table
-  displayedColumns: string[] = ['type', 'when', 'actions'];
+  displayedColumns: string[] = ['type', 'when', 'info', 'actions'];
   dataSource: ExampleDataSource | null;
 
   @ViewChild('filter') filter: ElementRef;
   // /table
 
-  constructor() { }
+  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
+    this.loadingSchemaAndUiMatchEvents = true;
+    this.matchService.getMatchEvents().then(schemaAndUiMatchEvents => {
+      console.log(schemaAndUiMatchEvents)
+      this.schemaAndUiMatchEvents = schemaAndUiMatchEvents;
+      this.loadingSchemaAndUiMatchEvents = false;
+
+    });
     if (this.eventToDisplay$) {
       this.eventToDisplay$.subscribe(() => this.ngOnChanges())
     }
@@ -38,18 +50,28 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
   ngOnChanges(...args: any[]) {
     // table
     this.dataSource = new ExampleDataSource(this.matchEvents);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-              if (!this.dataSource) { return; }
-              this.dataSource.filter = this.filter.nativeElement.value;
-    });
+      if (this.filter){
+          Observable.fromEvent(this.filter.nativeElement, 'keyup')
+              .debounceTime(150)
+              .distinctUntilChanged()
+              .subscribe(() => {
+                if (!this.dataSource) { return; }
+                this.dataSource.filter = this.filter.nativeElement.value;
+          });
+      }
     // /table
   }
 
   isEditable(): boolean {
-    return this.editable;
+    return this.editable
+  }
+
+  getEventType(matchEvent: MatchEvent): string {
+    return this.matchUtilsService.getMatchEventType(matchEvent);
+  }
+
+  getTableProperties(matchEvent: MatchEvent): string[] {
+    return this.schemaAndUiMatchEvents[this.getEventType(matchEvent)].ui.tableProperties;
   }
 
 };
@@ -61,7 +83,7 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
  * the underlying data. Instead, it only needs to take the data and send the table exactly what
  * should be rendered.
  */
-export class ExampleDataSource extends DataSource<DisplayableEvent> {
+export class ExampleDataSource extends DataSource<MatchEvent> {
     _filterChange = new BehaviorSubject('');
     get filter(): string { return this._filterChange.value; }
     set filter(filter: string) { this._filterChange.next(filter); }
@@ -71,16 +93,17 @@ export class ExampleDataSource extends DataSource<DisplayableEvent> {
     }
 
     /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<DisplayableEvent[]> {
-        const displayDataChanges: [DisplayableEvent[], any] = [
-            this.matchEvents.map(this.convert),
+    connect(): Observable<MatchEvent[]> {
+        const displayDataChanges: [MatchEvent[], any] = [
+            this.matchEvents,
             this._filterChange,
         ];
         console.log('displayDataChanges:', displayDataChanges)
         return Observable.merge(...displayDataChanges).map(() => {
-            return this.matchEvents.slice().map(this.convert).filter((item: DisplayableEvent) => {
+            return this.matchEvents.slice().filter((item: MatchEvent) => {
                 console.log('item?:', item);
-                let searchStr = (item.type + item.when).toLowerCase();
+                const type: string = Object.keys(item)[0];
+                let searchStr = (type + item[type].when).toLowerCase();
                 return searchStr.indexOf(this.filter.toLowerCase()) != -1;
             });
         });
@@ -88,15 +111,4 @@ export class ExampleDataSource extends DataSource<DisplayableEvent> {
 
     disconnect() {}
 
-    private convert(matchEvent: MatchEvent): DisplayableEvent {
-        const d: DisplayableEvent = new DisplayableEvent();
-        d.type = Object.keys(matchEvent)[0];
-        d.when = matchEvent[Object.keys(matchEvent)[0]].when;
-        return d;
-    }
-}
-
-class DisplayableEvent {
-    type: string;
-    when: number;
 }
