@@ -1,5 +1,7 @@
+import {JsonSchema} from '../json-schema';
 export interface MatchEvent {
     [key: string]: any | {
+        id: string;
         when: Date;
         description: string;
     }
@@ -7,8 +9,8 @@ export interface MatchEvent {
 
 
 export class GoalMatchEvent implements MatchEvent {
-    // id: string;
     goal: {
+      id: string;
       when: Date;
       who: string;
       teamThatScored: string;
@@ -28,7 +30,7 @@ export class SubstitutionMatchEvent implements MatchEvent {
 
 export class MatchEventSchemaAndWidget {
     [eventType: string]: {
-        schema: any;
+        schema: JsonSchema;
         widget: {
             [property: string]: {
                 id: string,

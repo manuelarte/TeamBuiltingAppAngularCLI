@@ -3,9 +3,8 @@ import {GoalMatchEvent, MatchEvent} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
 import moment = require('moment');
-import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {UUID} from 'angular2-uuid';
 
 @Component({
   selector: 'app-match-events',
@@ -110,6 +109,7 @@ export class MatchEventsComponent implements OnInit {
           if (displayedHomeTeamGoals < actualHomeTeamGoals) {
             const goal: GoalMatchEvent = new GoalMatchEvent();
             goal.goal = {
+              id: UUID.UUID(),
               when: this.match.matchParts[0].startingTime,
               who: null,
               teamThatScored: this.match.homeTeam.teamInfo.id,
