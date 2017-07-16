@@ -29,16 +29,13 @@ export class MatchPlayerRatingComponent implements OnInit {
       this.ratingFeedbackForPlayer[stars].filter(userFeedback => userFeedback.userId)
     }).length;
     console.log('usersWithUserId', this.usersWithUserId)
-
-    this.getKeys(this.ratingFeedbackForPlayer).forEach(stars => {
-      this.ratingFeedbackForPlayer[stars].forEach(userThatGaveFeedback => {
-         if (userThatGaveFeedback.userId) {
-             this.userService.getUser(userThatGaveFeedback.userId).then(user =>
-               this.userMap[userThatGaveFeedback.userId] = user
-             ).catch()
-         }
+     */
+    this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId).forEach(matchFeedback => {
+      this.userService.getUser(matchFeedback.userId).then(user => {
+        this.userMap[matchFeedback.userId] = user;
       });
-    });*/
+    })
+    console.log(this.userMap);
   }
 
   isBusy(): boolean {
