@@ -3,6 +3,7 @@ import {Player} from '../../player';
 import {PlayerService} from '../../services/player.service';
 import {UtilsService} from '../../services/utils.service';
 import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
+import {MatchFeedback} from '../match-feedback';
 
 @Component({
   selector: 'app-match-player-info',
@@ -14,6 +15,8 @@ export class MatchPlayerInfoComponent implements OnInit {
 
     @Input() playerInfo: PlayerInfo;
     @Input() private editable = true;
+    @Input() matchFeedback: MatchFeedback[] = [];
+
     registeredPlayerInfo = false;
 
     player: Player;

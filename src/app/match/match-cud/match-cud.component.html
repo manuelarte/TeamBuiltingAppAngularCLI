@@ -57,13 +57,15 @@
             <div *ngIf="isHomeTeamSelected()" class="home player-info ui-g-12 ui-md-6 ui-lg-6">
                 <h1>Home Players</h1>
                 <app-match-players-info [playersInfo]="getHomePlayers()" [teamSelected$]="homeTeamSelected$" [teamRemoved$]="homeTeamRemoved$"
-                                        [editable]="isEditable()" (playersSelected)="homePlayersAddedEventHandler($event)"></app-match-players-info>
+                                        [editable]="isEditable()" [matchFeedback]="matchFeedback"
+                                        (playersSelected)="homePlayersAddedEventHandler($event)"></app-match-players-info>
             </div>
 
             <div *ngIf="isAwayTeamSelected()" class="away player-info ui-g-12 ui-md-6 ui-lg-6">
                 <h1>Away Players</h1>
                 <app-match-players-info [playersInfo]="getAwayPlayers()" [teamSelected$]="awayTeamSelected$" [teamRemoved$]="awayTeamRemoved$"
-                                        [editable]="isEditable()" (playersSelected)="awayPlayersAddedEventHandler($event)"></app-match-players-info>
+                                        [editable]="isEditable()" [matchFeedback]="matchFeedback"
+                                        (playersSelected)="awayPlayersAddedEventHandler($event)"></app-match-players-info>
             </div>
         </div>
     </md-tab>

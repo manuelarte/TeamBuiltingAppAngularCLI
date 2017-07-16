@@ -10,6 +10,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import moment = require('moment');
 import {Moment} from 'moment';
+import {MatchFeedback} from '../match-feedback';
 
 @Component({
   selector: 'app-match-cud',
@@ -29,6 +30,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   @Input() match: Match = new Match();
   @Input() private editable = true;
+  @Input() matchFeedback: MatchFeedback[] = [];
 
   /**
    * Date year-month-day of the game, the time will be set in the match parts

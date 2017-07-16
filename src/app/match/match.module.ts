@@ -33,6 +33,7 @@ import {MatchEventsShowComponent} from './match-events-show/match-events-show.co
 import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchTeamInfoComponent} from "./match-team-info/match-team-info.component";
 import {MatchDetailComponent} from './match-detail/match-detail.component';
+import {MatchPlayerRatingComponent} from "./match-player-rating/match-player-rating.component";
 
 @NgModule({
     imports: [
@@ -80,6 +81,7 @@ import {MatchDetailComponent} from './match-detail/match-detail.component';
         MatchPlayersInfoComponent,
         MatchPlayerInfoComponent,
         MatchPlayerInfoCudComponent,
+        MatchPlayerRatingComponent,
         MatchTimelineComponent,
         MatchPartsComponent,
     ],

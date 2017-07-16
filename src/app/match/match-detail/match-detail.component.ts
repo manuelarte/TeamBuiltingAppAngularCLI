@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Match} from "../match";
 import {MatchService} from '../../services/match.service';
 import {Params, ActivatedRoute} from '@angular/router';
+import {MatchFeedback} from '../match-feedback';
 
 @Component({
   selector: 'app-match-detail',
@@ -15,16 +16,33 @@ export class MatchDetailComponent implements OnInit {
   errorLoadingMatch = false;
   match: Match;
 
+  loadingFeedback = false;
+  errorLoadingFeedback = false;
+  matchFeedback: MatchFeedback[];
+
   constructor(private matchService: MatchService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       const id = params['id'];
+
       this.loadingMatch = true;
       this.matchService.getMatch(id).then(match => {
         this.loadingMatch = false;
         this.match = match;
       });
+
+      this.loadingFeedback = true;
+      this.matchService.getMatchFeedback(id).then(matchFeedback => {
+        this.matchFeedback = matchFeedback;
+        this.loadingFeedback = false;
+        this.errorLoadingFeedback = false;
+        console.log('matchFeedback:', this.matchFeedback);
+      }).catch(error => {
+        this.loadingFeedback = false;
+        this.errorLoadingFeedback = true;
+      });
+
     });
   }
 

@@ -8,14 +8,17 @@ import {environment} from '../../environments/environment';
 import {AuthHttp} from 'angular2-jwt';
 import {MatchEventSchemaAndUi} from '../match/match-events';
 import {Match} from '../match/match';
+import {MatchFeedback} from '../match/match-feedback';
 
 @Injectable()
 export class MatchService {
 
   private backendMatchesUrl = `${environment.backendMatchesUrl}`;
+  private backendExperienceUrl = `${environment.backendExperienceUrl}`;
 
   private matchesUrl = this.backendMatchesUrl + '/matches';
   private matchEventsUrl = this.backendMatchesUrl + '/matches/events';
+  private matchFeedbacksUrl: string = this.backendExperienceUrl + '/matchFeedback';
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
@@ -27,6 +30,16 @@ export class MatchService {
   getMatchEvents(): Promise<MatchEventSchemaAndUi> {
     return this.http.get(`${this.matchEventsUrl}`).map(response => <MatchEventSchemaAndUi> response.json())
       .toPromise();
+  }
+
+  getMatchFeedback(matchId: string): Promise<MatchFeedback[]> {
+    return this.http.get(`${this.matchFeedbacksUrl}?matchId=${matchId}`)
+        .map(response => <MatchFeedback[]> response.json()).toPromise();
+  }
+
+  getMyMatchFeedback(matchId: string): Promise<MatchFeedback[]> {
+      return this.http.get(`${this.matchFeedbacksUrl}/me?matchId=${matchId}`)
+          .map(response => <MatchFeedback[]> response.json()).toPromise();
   }
 
 }

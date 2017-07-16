@@ -7,6 +7,7 @@ import {PlayerToTeam} from '../../player-to-team';
 import {Player} from "../../player";
 import {UUID} from 'angular2-uuid';
 import {Observable} from 'rxjs/Observable';
+import {MatchFeedback} from '../match-feedback';
 
 @Component({
   selector: 'app-match-players-info',
@@ -22,6 +23,7 @@ export class MatchPlayersInfoComponent implements OnInit {
   @Input() teamSelected$: Observable<TeamInfo>;
   @Input() teamRemoved$: Observable<any>;
   @Input() private editable = true;
+  @Input() matchFeedback: MatchFeedback[] = [];
 
   isBusy = false;
   errorOccurred = false;

@@ -1,7 +1,7 @@
 <ng-container *ngIf="!isBusy; else isBusyTemplate">
     <div class="ui-g">
       <div class="ui-g-12 ui-md-3 ui-lg-4" *ngFor="let playerInfo of playersInfo">
-        <app-match-player-info [playerInfo]="playerInfo" [editable]="isEditable()"
+        <app-match-player-info [playerInfo]="playerInfo" [editable]="isEditable()" [matchFeedback]="matchFeedback"
                                (playerRemoved)="removePlayerFromMatch(playerInfo)">Loading players...</app-match-player-info>
       </div>
     </div>
