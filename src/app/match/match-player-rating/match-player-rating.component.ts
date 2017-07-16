@@ -16,12 +16,19 @@ export class MatchPlayerRatingComponent implements OnInit {
   @Input() matchFeedback: MatchFeedback[];
   ratingFeedbackForPlayer: {[stars: number]: {userId: string}[]};
   userMap: {[userId: string]: User} = {};
+  usersWithUserId: number;
+
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    console.log('ratingFeedbackForPlayer', this.getRatingValuesForUsers())
-    this.ratingFeedbackForPlayer = this.getRatingValuesForUsers();
+    //this.ratingFeedbackForPlayer = this.getRatingValuesForUsers();
+    //  console.log('ratingFeedbackForPlayer', this.ratingFeedbackForPlayer)
+
+    /*this.usersWithUserId = this.getKeys(this.ratingFeedbackForPlayer).filter(stars => {
+      this.ratingFeedbackForPlayer[stars].filter(userFeedback => userFeedback.userId)
+    }).length;
+    console.log('usersWithUserId', this.usersWithUserId)
 
     this.getKeys(this.ratingFeedbackForPlayer).forEach(stars => {
       this.ratingFeedbackForPlayer[stars].forEach(userThatGaveFeedback => {
@@ -31,7 +38,11 @@ export class MatchPlayerRatingComponent implements OnInit {
              ).catch()
          }
       });
-    });
+    });*/
+  }
+
+  isBusy(): boolean {
+    return this.ratingFeedbackForPlayer !== null;
   }
 
   hasPlayerRatingFeedback(): boolean {

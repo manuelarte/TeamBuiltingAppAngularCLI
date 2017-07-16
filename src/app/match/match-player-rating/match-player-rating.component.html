@@ -1,21 +1,17 @@
-<div *ngIf="ratingFeedbackForPlayer">
-
-    <div *ngIf="hasPlayerRatingFeedback()">
+<div *ngIf="hasPlayerRatingFeedback()">
         Rating: <button md-icon-button (click)="op.toggle($event)"><md-icon>search</md-icon></button>
         <p-rating [ngModel]="calculateAverage()" [readonly]="true" [cancel]="false" ></p-rating>
     </div>
 
     <p-overlayPanel #op appendTo="body">
-        <div *ngFor="let stars of getKeys(ratingFeedbackForPlayer)" class="ui-g">
+        <div *ngFor="let stars of getKeys(getRatingValuesForUsers())" class="ui-g">
             <div class="ui-g-8 ui-md-8 ui-lg-8">
                 <p-rating [ngModel]="stars" [readonly]="true" [cancel]="false" ></p-rating>
             </div>
             <div class="ui-g-4 ui-md-4 ui-lg-4">
-                <div *ngFor="let user of ratingFeedbackForPlayer[stars]">
+                <div *ngFor="let user of getKeys(getRatingValuesForUsers()[stars])">
                     <img class="user-id" [src]="getPicture(user.userId)" />
                 </div>
             </div>
         </div>
     </p-overlayPanel>
-
-</div>
