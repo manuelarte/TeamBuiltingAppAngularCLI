@@ -1,0 +1,17 @@
+<div *ngIf="hasPlayerRatingFeedback()">
+    Rating: <button md-icon-button (click)="op.toggle($event)"><md-icon>search</md-icon></button>
+    <p-rating [ngModel]="calculateAverage()" [readonly]="true" [cancel]="false" ></p-rating>
+</div>
+
+<p-overlayPanel #op appendTo="body">
+    <div *ngFor="let stars of getKeys(getRatingValuesForUsers())" class="ui-g">
+        <div class="ui-g-8 ui-md-8 ui-lg-8">
+            <p-rating [ngModel]="stars" [readonly]="true" [cancel]="false" ></p-rating>
+        </div>
+        <div class="ui-g-4 ui-md-4 ui-lg-4">
+            <div *ngFor="let user of getRatingValuesForUsers()[stars]">
+                <img class="user-id" src="https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg" />
+            </div>
+        </div>
+    </div>
+</p-overlayPanel>

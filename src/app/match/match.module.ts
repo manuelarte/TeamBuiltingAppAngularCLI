@@ -27,7 +27,7 @@ import {MatchEventsComponent} from './match-events/match-events.component';
 import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {MatchPartsComponent} from './match-parts/match-parts.component';
-import {CalendarModule, DataTableModule, MessagesModule, SharedModule} from 'primeng/primeng';
+import {CalendarModule, DataTableModule, MessagesModule, OverlayPanelModule, SharedModule} from 'primeng/primeng';
 import {CdkTableModule} from '@angular/cdk';
 import {MatchEventsShowComponent} from './match-events-show/match-events-show.component';
 import {MatchUtilsService} from '../services/match-utils.service';
@@ -50,6 +50,7 @@ import {MatchPlayerRatingComponent} from "./match-player-rating/match-player-rat
         ProfileModule,
         TeambuiltingSharedModule,
         SchemaFormModule,
+        OverlayPanelModule,
         // PrimeNg
         CalendarModule,
         DataTableModule,
