@@ -1,20 +1,37 @@
 import jStat = require('jStat');
 import {Component, Input, OnInit} from '@angular/core';
 import {MatchFeedback} from '../match-feedback';
+import {UserService} from '../../services/user.service';
+import {User} from '../../user';
 
 @Component({
   selector: 'app-match-player-rating',
   templateUrl: './match-player-rating.component.html',
-  styleUrls: ['./match-player-rating.component.scss']
+  styleUrls: ['./match-player-rating.component.scss'],
+  providers: [UserService]
 })
 export class MatchPlayerRatingComponent implements OnInit {
 
   @Input() playerInfo;
   @Input() matchFeedback: MatchFeedback[];
+  ratingFeedbackForPlayer: {[stars: number]: {userId: string}[]};
+  userMap: {[userId: string]: User} = {};
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    console.log('ratingFeedbackForPlayer', this.getRatingValuesForUsers())
+    this.ratingFeedbackForPlayer = this.getRatingValuesForUsers();
+
+    this.getKeys(this.ratingFeedbackForPlayer).forEach(stars => {
+      this.ratingFeedbackForPlayer[stars].forEach(userThatGaveFeedback => {
+         if (userThatGaveFeedback.userId) {
+             this.userService.getUser(userThatGaveFeedback.userId).then(user =>
+               this.userMap[userThatGaveFeedback.userId] = user
+             ).catch()
+         }
+      });
+    });
   }
 
   hasPlayerRatingFeedback(): boolean {
@@ -33,7 +50,15 @@ export class MatchPlayerRatingComponent implements OnInit {
     return jStat(this.ratingsForPlayer()).median();
   }
 
-  getRatingValuesForUsers(): {[stars: number]: {userId: string}[]} {
+  getPicture(userId: string): string {
+    let toReturn: string = 'https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg';
+    if (this.userMap[userId]) {
+      toReturn = this.userMap[userId].picture
+    }
+    return toReturn;
+  }
+
+  private getRatingValuesForUsers(): {[stars: number]: {userId: string}[]} {
     const toReturn: {[stars: number]: {userId: string}[]} = {};
     this.matchFeedbackThatRateThePlayer().forEach(matchFeedback => {
       const value: {userId: string} = {userId: matchFeedback.userId};
