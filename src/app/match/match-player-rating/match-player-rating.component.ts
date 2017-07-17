@@ -15,31 +15,29 @@ export class MatchPlayerRatingComponent implements OnInit {
   @Input() playerInfo;
   @Input() matchFeedback: MatchFeedback[];
   ratingFeedbackForPlayer: {[stars: number]: {userId: string}[]};
+  loadingUserMap = true;
+  errorLoadingUserMap = false;
   userMap: {[userId: string]: User} = {};
-  usersWithUserId: number;
 
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    //this.ratingFeedbackForPlayer = this.getRatingValuesForUsers();
-    //  console.log('ratingFeedbackForPlayer', this.ratingFeedbackForPlayer)
-
-    /*this.usersWithUserId = this.getKeys(this.ratingFeedbackForPlayer).filter(stars => {
-      this.ratingFeedbackForPlayer[stars].filter(userFeedback => userFeedback.userId)
-    }).length;
-    console.log('usersWithUserId', this.usersWithUserId)
-     */
-    this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId).forEach(matchFeedback => {
-      this.userService.getUser(matchFeedback.userId).then(user => {
-        this.userMap[matchFeedback.userId] = user;
-      });
-    })
-    console.log(this.userMap);
+      if (this.hasPlayerRatingFeedback()) {
+          const feedbackWithUserId: MatchFeedback[] = this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId !== null);
+          feedbackWithUserId.forEach(matchFeedback => {
+                this.userService.getUser(matchFeedback.userId).then(user => {
+                    this.userMap[matchFeedback.userId] = user;
+                    this.loadingUserMap = false;
+                });
+            });
+    } else {
+        this.loadingUserMap = false;
+    }
   }
 
   isBusy(): boolean {
-    return this.ratingFeedbackForPlayer !== null;
+    return this.loadingUserMap;
   }
 
   hasPlayerRatingFeedback(): boolean {
