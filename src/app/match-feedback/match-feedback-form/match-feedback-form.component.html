@@ -5,9 +5,7 @@
         <div *ngFor="let player of getHomePlayers()">
             <div class="ui-g-6 ui-md-6 ui-lg-6">
                 <img class="user-id" [src]="displayablePlayer[player.id]?.picture">
-                {{displayablePlayer[player.id]?.name}}:
-            </div>
-            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                {{displayablePlayer[player.id]?.name}}:<br/>
                 <p-rating [(ngModel)]="this.matchFeedback.ratings[player.id]" [stars]="5"></p-rating>
             </div>
         </div>
@@ -18,9 +16,7 @@
         <div *ngFor="let player of getAwayPlayers()">
             <div class="ui-g-6 ui-md-6 ui-lg-6">
                 <img class="user-id" [src]="displayablePlayer[player.id]?.picture">
-                {{displayablePlayer[player.id]?.name}}:
-            </div>
-            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                {{displayablePlayer[player.id]?.name}}:<br/>
                 <p-rating [(ngModel)]="this.matchFeedback.ratings[player.id]" [stars]="5"></p-rating>
             </div>
         </div>
