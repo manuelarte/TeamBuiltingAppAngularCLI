@@ -92,6 +92,9 @@
     </md-tab>
 </md-tab-group>
 
+<div #matchTags>
+    <app-match-tags [match]="getMatch()" [editable]="isEditable()"></app-match-tags>
+</div>
 
 <h1>Timeline</h1>
 <div *ngIf="shallShowEvent(); else timelineNotReady">

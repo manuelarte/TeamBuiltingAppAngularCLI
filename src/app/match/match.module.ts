@@ -7,7 +7,8 @@ import {RatingModule} from 'primeng/components/rating/rating';
 import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
+    MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdDatepickerModule, MdIconModule, MdInputModule,
+    MdNativeDateModule,
     MdOptionModule,
     MdProgressSpinnerModule, MdSelectModule,
     MdSliderModule, MdTableModule, MdTabsModule, MdTooltipModule
@@ -34,6 +35,7 @@ import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchTeamInfoComponent} from "./match-team-info/match-team-info.component";
 import {MatchDetailComponent} from './match-detail/match-detail.component';
 import {MatchFeedbackModule} from '../match-feedback/match-feedback.module';
+import {MatchTagsComponent} from './match-tags/match-tags.component';
 
 @NgModule({
     imports: [
@@ -60,6 +62,7 @@ import {MatchFeedbackModule} from '../match-feedback/match-feedback.module';
         MdButtonModule,
         MdCardModule,
         MdCheckboxModule,
+        MdChipsModule,
         MdDatepickerModule,
         MdNativeDateModule,
         MdIconModule,
@@ -82,6 +85,7 @@ import {MatchFeedbackModule} from '../match-feedback/match-feedback.module';
         MatchPlayersInfoComponent,
         MatchPlayerInfoComponent,
         MatchPlayerInfoCudComponent,
+        MatchTagsComponent,
         MatchTimelineComponent,
         MatchPartsComponent,
     ],

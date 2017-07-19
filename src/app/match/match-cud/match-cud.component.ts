@@ -66,6 +66,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
       this.match.homeTeam = new TeamInMatch();
       this.match.awayTeam = new TeamInMatch();
       this.match.events = [];
+      this.match.tags = [];
       this.scoreFormChanged$ = this.scoreForm.valueChanges;
     }
 

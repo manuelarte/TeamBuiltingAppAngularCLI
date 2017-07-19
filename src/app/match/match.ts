@@ -9,4 +9,5 @@ export class Match {
     location: string;
     matchParts: MatchPart[];
     events: MatchEvent[];
+    tags: string[];
 }
