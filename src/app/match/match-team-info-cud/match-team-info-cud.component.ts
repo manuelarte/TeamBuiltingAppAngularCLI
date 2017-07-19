@@ -71,8 +71,3 @@ export class MatchTeamInfoCudComponent implements OnInit {
   }
 
 }
-
-export class DisplayableTeamInfo {
-    name: string;
-    teamEmblem: string;
-}
