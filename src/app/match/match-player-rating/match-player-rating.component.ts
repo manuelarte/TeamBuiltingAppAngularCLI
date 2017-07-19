@@ -23,16 +23,16 @@ export class MatchPlayerRatingComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-      if (this.hasPlayerRatingFeedback()) {
-          const feedbackWithUserId: MatchFeedback[] = this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId !== null);
-          feedbackWithUserId.forEach(matchFeedback => {
-                this.userService.getUser(matchFeedback.userId).then(user => {
-                    this.userMap[matchFeedback.userId] = user;
-                    this.loadingUserMap = false;
-                });
-            });
-    } else {
+    if (this.hasPlayerRatingFeedback()) {
+      const feedbackWithUserId: MatchFeedback[] = this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId);
+      feedbackWithUserId.forEach(matchFeedback => {
+        this.userService.getUser(matchFeedback.userId).then(user => {
+        this.userMap[matchFeedback.userId] = user;
         this.loadingUserMap = false;
+        });
+      });
+    } else {
+      this.loadingUserMap = false;
     }
   }
 

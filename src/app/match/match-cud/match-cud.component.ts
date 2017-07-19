@@ -11,6 +11,7 @@ import {MatchUtilsService} from '../../services/match-utils.service';
 import moment = require('moment');
 import {Moment} from 'moment';
 import {MatchFeedback} from '../match-feedback';
+import {Messages} from 'primeng/primeng';
 
 @Component({
   selector: 'app-match-cud',
@@ -43,12 +44,18 @@ export class MatchCudComponent implements OnInit, OnChanges {
   homeTeamRemoved$: Observable<any>;
   awayTeamSelected$: Observable<TeamInfo>;
   awayTeamRemoved$: Observable<any>;
+
+  msgs: Messages = new Messages();
+
   eventToDisplay$: Observable<any>;
   scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
   constructor(private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
+    this.msgs.value = [];
+    this.msgs.closable = false;
+    this.msgs.value.push({severity:'warn', summary:'Team Not Selected', detail:'Please select a team before adding players'});
 
     this.scoreForm = new FormGroup({
       scoreHomeTeam: new FormControl({value: 0, disabled: !this.editable}, Validators.required),

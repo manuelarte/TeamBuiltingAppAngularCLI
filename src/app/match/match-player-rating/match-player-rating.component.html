@@ -1,9 +1,5 @@
 <div *ngIf="hasPlayerRatingFeedback()">
-<div>
-    Rating:
-    <button md-icon-button (click)="op.toggle($event)">
-        <md-icon>search</md-icon>
-    </button>
+<div (mouseover)="op.show($event)" (mouseleave)="op.hide()">
     <p-rating [ngModel]="calculateAverage()" [readonly]="true" [cancel]="false"></p-rating>
 </div>
 

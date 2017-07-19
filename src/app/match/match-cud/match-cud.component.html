@@ -54,19 +54,28 @@
 
     <md-tab label="Players of the Match">
         <div #playersSelected class="ui-g">
-            <div *ngIf="isHomeTeamSelected()" class="home player-info ui-g-12 ui-md-6 ui-lg-6">
+            <div class="home player-info ui-g-12 ui-md-6 ui-lg-6">
                 <h1>Home Players</h1>
-                <app-match-players-info [playersInfo]="getHomePlayers()" [teamSelected$]="homeTeamSelected$" [teamRemoved$]="homeTeamRemoved$"
-                                        [editable]="isEditable()" [matchFeedback]="matchFeedback"
-                                        (playersSelected)="homePlayersAddedEventHandler($event)"></app-match-players-info>
+                <div *ngIf="isHomeTeamSelected(); else teamNotSelected">
+                    <app-match-players-info [playersInfo]="getHomePlayers()" [teamSelected$]="homeTeamSelected$" [teamRemoved$]="homeTeamRemoved$"
+                                            [editable]="isEditable()" [matchFeedback]="matchFeedback"
+                                            (playersSelected)="homePlayersAddedEventHandler($event)"></app-match-players-info>
+                </div>
             </div>
 
-            <div *ngIf="isAwayTeamSelected()" class="away player-info ui-g-12 ui-md-6 ui-lg-6">
+            <div class="away player-info ui-g-12 ui-md-6 ui-lg-6">
                 <h1>Away Players</h1>
-                <app-match-players-info [playersInfo]="getAwayPlayers()" [teamSelected$]="awayTeamSelected$" [teamRemoved$]="awayTeamRemoved$"
-                                        [editable]="isEditable()" [matchFeedback]="matchFeedback"
-                                        (playersSelected)="awayPlayersAddedEventHandler($event)"></app-match-players-info>
+                <div *ngIf="isAwayTeamSelected(); else teamNotSelected">
+                    <app-match-players-info [playersInfo]="getAwayPlayers()" [teamSelected$]="awayTeamSelected$" [teamRemoved$]="awayTeamRemoved$"
+                                            [editable]="isEditable()" [matchFeedback]="matchFeedback"
+                                            (playersSelected)="awayPlayersAddedEventHandler($event)"></app-match-players-info>
+                </div>
             </div>
+
+            <ng-template #teamNotSelected>
+                <p-messages [value]="msgs"></p-messages>
+            </ng-template>
+
         </div>
     </md-tab>
 
