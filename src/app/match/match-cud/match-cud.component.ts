@@ -10,7 +10,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import moment = require('moment');
 import {Moment} from 'moment';
-import {MatchFeedback} from '../match-feedback';
+import {MatchFeedback} from '../../match-feedback/match-feedback';
 import {Messages} from 'primeng/primeng';
 
 @Component({

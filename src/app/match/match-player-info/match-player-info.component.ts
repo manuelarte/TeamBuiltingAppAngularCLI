@@ -3,7 +3,7 @@ import {Player} from '../../player';
 import {PlayerService} from '../../services/player.service';
 import {UtilsService} from '../../services/utils.service';
 import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
-import {MatchFeedback} from '../match-feedback';
+import {MatchFeedback} from '../../match-feedback/match-feedback';
 
 @Component({
   selector: 'app-match-player-info',

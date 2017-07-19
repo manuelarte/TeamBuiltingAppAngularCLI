@@ -8,7 +8,7 @@ import {environment} from '../../environments/environment';
 import {AuthHttp} from 'angular2-jwt';
 import {MatchEventSchemaAndUi} from '../match/match-events';
 import {Match} from '../match/match';
-import {MatchFeedback} from '../match/match-feedback';
+import {MatchFeedback} from '../match-feedback/match-feedback';
 
 @Injectable()
 export class MatchService {

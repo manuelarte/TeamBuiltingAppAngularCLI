@@ -5,12 +5,12 @@ import {UserService} from '../../services/user.service';
 import {User} from '../../user';
 
 @Component({
-  selector: 'app-match-player-rating',
-  templateUrl: './match-player-rating.component.html',
-  styleUrls: ['./match-player-rating.component.scss'],
+  selector: 'app-match-show-player-rating',
+  templateUrl: './match-show-player-rating.component.html',
+  styleUrls: ['./match-show-player-rating.component.scss'],
   providers: [UserService]
 })
-export class MatchPlayerRatingComponent implements OnInit {
+export class MatchShowPlayerRatingComponent implements OnInit {
 
   @Input() playerInfo;
   @Input() matchFeedback: MatchFeedback[];

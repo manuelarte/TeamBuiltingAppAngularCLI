@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Match} from "../match";
 import {MatchService} from '../../services/match.service';
 import {Params, ActivatedRoute} from '@angular/router';
-import {MatchFeedback} from '../match-feedback';
+import {MatchFeedback} from '../../match-feedback/match-feedback';
 
 @Component({
   selector: 'app-match-detail',

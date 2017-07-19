@@ -7,7 +7,7 @@ import {PlayerToTeam} from '../../player-to-team';
 import {Player} from "../../player";
 import {UUID} from 'angular2-uuid';
 import {Observable} from 'rxjs/Observable';
-import {MatchFeedback} from '../match-feedback';
+import {MatchFeedback} from '../../match-feedback/match-feedback';
 
 @Component({
   selector: 'app-match-players-info',

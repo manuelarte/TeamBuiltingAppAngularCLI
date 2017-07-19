@@ -9,7 +9,7 @@
         <md-card-subtitle>{{player?.nickname}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-        <app-match-player-rating [playerInfo]="playerInfo" [matchFeedback]="matchFeedback"></app-match-player-rating>
+        <app-match-show-player-rating [playerInfo]="playerInfo" [matchFeedback]="matchFeedback"></app-match-show-player-rating>
     </md-card-content>
     <md-card-actions>
         <button *ngIf="isEditable()" md-button (click)="removePlayerFromMatch()"><md-icon>delete</md-icon></button>
