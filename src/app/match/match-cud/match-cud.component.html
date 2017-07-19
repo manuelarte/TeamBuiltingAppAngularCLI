@@ -108,7 +108,7 @@
     The teams and players need to be set first.
 </ng-template>
 
-<app-match-feedback-form *ngIf="isMatchReadyForFeedback()"></app-match-feedback-form>
+<app-match-feedback-form *ngIf="isMatchReadyForFeedback()" [match]="getMatch()"></app-match-feedback-form>
 
 MATCH JSON:
 <pre>{{getMatch() | json}}</pre>

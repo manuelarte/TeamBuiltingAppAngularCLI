@@ -1,6 +1,6 @@
 <div *ngIf="hasPlayerRatingFeedback()">
 <div (mouseover)="op.show($event)" (mouseleave)="op.hide()">
-    <p-rating [ngModel]="calculateAverage()" [readonly]="true" [cancel]="false"></p-rating>
+    <p-rating [ngModel]="calculateAverage()" [readonly]="true" [cancel]="false" [stars]="maxNumberStars"></p-rating>
 </div>
 
 <p-overlayPanel #op appendTo="body" >
@@ -8,7 +8,7 @@
         <ng-container *ngFor="let stars of getKeys(getRatingValuesForUsers())">
             <div class="ui-g">
                 <div class="ui-g-8 ui-md-8 ui-lg-8">
-                    <p-rating [ngModel]="stars" [readonly]="true" [cancel]="false"></p-rating>
+                    <p-rating [ngModel]="stars" [readonly]="true" [cancel]="false" [stars]="maxNumberStars"></p-rating>
                 </div>
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <div *ngFor="let user of getRatingValuesForUsers()[stars]">

@@ -3,6 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MatchFeedback} from '../match-feedback';
 import {UserService} from '../../services/user.service';
 import {User} from '../../user';
+import {AppConstants} from '../../app-constants';
 
 @Component({
   selector: 'app-match-show-player-rating',
@@ -19,6 +20,8 @@ export class MatchShowPlayerRatingComponent implements OnInit {
   errorLoadingUserMap = false;
   userMap: {[userId: string]: User} = {};
 
+
+  maxNumberStars: number = AppConstants.RATING_MAX_NUMBER_STARS;
 
   constructor(private userService: UserService) { }
 

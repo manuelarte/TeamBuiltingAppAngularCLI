@@ -8,7 +8,7 @@ import {TeamService} from '../../services/team.service';
   selector: 'app-match-team-info',
   templateUrl: './match-team-info.component.html',
   styleUrls: ['./match-team-info.component.scss'],
-  providers: [TeamInfoUtilService, TeamService, UtilsService]
+  providers: []
 })
 export class MatchTeamInfoComponent implements OnInit {
 

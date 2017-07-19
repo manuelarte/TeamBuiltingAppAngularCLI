@@ -38,6 +38,9 @@ import {MatchFeedbackModule} from '../match-feedback/match-feedback.module';
 import {MatchTagsComponent} from './match-tags/match-tags.component';
 import {PlayerInfoUtilService} from '../player-info-util.service';
 import {TeamInfoUtilService} from '../team-info-util.service';
+import {PlayerService} from '../services/player.service';
+import {TeamService} from '../services/team.service';
+import {UtilsService} from '../services/utils.service';
 
 @NgModule({
     imports: [
@@ -94,7 +97,10 @@ import {TeamInfoUtilService} from '../team-info-util.service';
     providers: [
         MatchUtilsService,
         PlayerInfoUtilService,
+        PlayerService,
         TeamInfoUtilService,
+        TeamService,
+        UtilsService,
         {provide: LOCALE_ID, useValue: 'nl'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],

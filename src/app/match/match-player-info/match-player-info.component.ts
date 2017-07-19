@@ -10,7 +10,7 @@ import {PlayerInfoUtilService} from '../../player-info-util.service';
   selector: 'app-match-player-info',
   templateUrl: './match-player-info.component.html',
   styleUrls: ['./match-player-info.component.scss'],
-  providers: [PlayerService, PlayerInfoUtilService, UtilsService]
+  providers: []
 })
 export class MatchPlayerInfoComponent implements OnInit {
 

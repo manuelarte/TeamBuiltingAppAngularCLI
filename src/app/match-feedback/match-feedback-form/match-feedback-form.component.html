@@ -1,3 +1,32 @@
-<p>
-  match-feedback-form works!
-</p>
+<div class="ui-g">
+
+    <div class="ui-g-12 ui-md-6 ui-lg-6">
+        <h1>Home Players</h1>
+        <div *ngFor="let player of getHomePlayers()">
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <img class="user-id" [src]="displayablePlayer[player.id]?.picture">
+                {{displayablePlayer[player.id]?.name}}:
+            </div>
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <p-rating [(ngModel)]="this.matchFeedback.ratings[player.id]" [stars]="5"></p-rating>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-6 ui-lg-6">
+        <h1>Away Players</h1>
+        <div *ngFor="let player of getAwayPlayers()">
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <img class="user-id" [src]="displayablePlayer[player.id]?.picture">
+                {{displayablePlayer[player.id]?.name}}:
+            </div>
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <p-rating [(ngModel)]="this.matchFeedback.ratings[player.id]" [stars]="5"></p-rating>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{{matchFeedback | json}}
