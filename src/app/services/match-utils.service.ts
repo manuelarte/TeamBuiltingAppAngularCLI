@@ -87,4 +87,9 @@ export class MatchUtilsService {
     return Object.keys(matchEvent)[0];
   }
 
+  isMatchReadyForMatchFeedback(match: Match): boolean {
+    return this.isHomeTeamSelected(match) && this.isAwayTeamSelected(match) && this.areHomePlayersSelected(match)
+        && this.areAwayPlayersSelected(match);
+  }
+
 }

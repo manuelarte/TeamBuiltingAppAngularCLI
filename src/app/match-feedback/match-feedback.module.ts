@@ -22,6 +22,7 @@ import {CalendarModule, DataTableModule, MessagesModule, OverlayPanelModule, Sha
 import {CdkTableModule} from '@angular/cdk';
 import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchShowPlayerRatingComponent} from './match-show-player-rating/match-show-player-rating.component';
+import {MatchFeedbackFormComponent} from './match-feedback-form/match-feedback-form.component';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import {MatchShowPlayerRatingComponent} from './match-show-player-rating/match-s
         MdProgressSpinnerModule
     ],
     declarations: [
+        MatchFeedbackFormComponent,
         MatchShowPlayerRatingComponent,
     ],
     providers: [
@@ -67,7 +69,7 @@ import {MatchShowPlayerRatingComponent} from './match-show-player-rating/match-s
         {provide: LOCALE_ID, useValue: 'nl'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],
-    exports: [MatchShowPlayerRatingComponent]
+    exports: [MatchFeedbackFormComponent, MatchShowPlayerRatingComponent]
 })
 export class MatchFeedbackModule {
 }

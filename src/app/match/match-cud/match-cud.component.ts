@@ -208,4 +208,8 @@ export class MatchCudComponent implements OnInit, OnChanges {
       return this.match.events;
   }
 
+  isMatchReadyForFeedback(): boolean {
+    return this.matchUtilsService.isMatchReadyForMatchFeedback(this.match);
+  }
+
 }

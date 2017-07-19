@@ -11,3 +11,10 @@ export class UnRegisteredPlayerInfo implements PlayerInfo {
     id: string;
     name: string;
 }
+
+
+export class DisplayablePlayerInfo {
+  name: string;
+  nickname?: string;
+  picture?: string;
+}
