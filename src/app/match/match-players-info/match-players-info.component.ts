@@ -23,7 +23,7 @@ export class MatchPlayersInfoComponent implements OnInit {
   @Input() teamSelected$: Observable<TeamInfo>;
   @Input() teamRemoved$: Observable<any>;
   @Input() private editable = true;
-  @Input() matchFeedback: MatchFeedback[] = [];
+  @Input() allUsersMatchFeedback: MatchFeedback[] = [];
 
   isBusy = false;
   errorOccurred = false;

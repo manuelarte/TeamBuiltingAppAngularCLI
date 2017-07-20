@@ -18,7 +18,7 @@ export class MatchDetailComponent implements OnInit {
 
   loadingFeedback = false;
   errorLoadingFeedback = false;
-  matchFeedback: MatchFeedback[];
+  allUsersMatchFeedback: MatchFeedback[];
 
   constructor(private matchService: MatchService, private route: ActivatedRoute) { }
 
@@ -33,11 +33,11 @@ export class MatchDetailComponent implements OnInit {
       });
 
       this.loadingFeedback = true;
-      this.matchService.getMatchFeedback(id).then(matchFeedback => {
-        this.matchFeedback = matchFeedback;
+      this.matchService.getMatchFeedback(id).then(allUsersMatchFeedback => {
+        this.allUsersMatchFeedback = allUsersMatchFeedback;
         this.loadingFeedback = false;
         this.errorLoadingFeedback = false;
-        console.log('matchFeedback:', this.matchFeedback);
+        console.log('matchFeedback:', this.allUsersMatchFeedback);
       }).catch(error => {
         this.loadingFeedback = false;
         this.errorLoadingFeedback = true;

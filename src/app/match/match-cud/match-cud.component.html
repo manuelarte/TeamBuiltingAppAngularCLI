@@ -58,7 +58,7 @@
                 <h1>Home Players</h1>
                 <div *ngIf="isHomeTeamSelected(); else teamNotSelected">
                     <app-match-players-info [playersInfo]="getHomePlayers()" [teamSelected$]="homeTeamSelected$" [teamRemoved$]="homeTeamRemoved$"
-                                            [editable]="isEditable()" [matchFeedback]="matchFeedback"
+                                            [editable]="isEditable()" [allUsersMatchFeedback]="allUsersMatchFeedback"
                                             (playersSelected)="homePlayersAddedEventHandler($event)"></app-match-players-info>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                 <h1>Away Players</h1>
                 <div *ngIf="isAwayTeamSelected(); else teamNotSelected">
                     <app-match-players-info [playersInfo]="getAwayPlayers()" [teamSelected$]="awayTeamSelected$" [teamRemoved$]="awayTeamRemoved$"
-                                            [editable]="isEditable()" [matchFeedback]="matchFeedback"
+                                            [editable]="isEditable()" [allUsersMatchFeedback]="allUsersMatchFeedback"
                                             (playersSelected)="awayPlayersAddedEventHandler($event)"></app-match-players-info>
                 </div>
             </div>

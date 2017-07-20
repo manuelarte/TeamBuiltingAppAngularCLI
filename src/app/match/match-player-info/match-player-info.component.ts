@@ -1,8 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Player} from '../../player';
-import {PlayerService} from '../../services/player.service';
-import {UtilsService} from '../../services/utils.service';
-import {DisplayablePlayerInfo, PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
+import {DisplayablePlayerInfo, PlayerInfo} from '../playerInfo';
 import {MatchFeedback} from '../../match-feedback/match-feedback';
 import {PlayerInfoUtilService} from '../../player-info-util.service';
 
@@ -16,7 +13,7 @@ export class MatchPlayerInfoComponent implements OnInit {
 
     @Input() playerInfo: PlayerInfo;
     @Input() private editable = true;
-    @Input() matchFeedback: MatchFeedback[] = [];
+    @Input() allUsersMatchFeedback: MatchFeedback[] = [];
 
     player: DisplayablePlayerInfo;
 

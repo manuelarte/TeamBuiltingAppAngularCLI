@@ -14,7 +14,7 @@ import {AppConstants} from '../../app-constants';
 export class MatchShowPlayerRatingComponent implements OnInit {
 
   @Input() playerInfo;
-  @Input() matchFeedback: MatchFeedback[];
+  @Input() allUsersMatchFeedback: MatchFeedback[];
   ratingFeedbackForPlayer: {[stars: number]: {userId: string}[]};
   loadingUserMap = true;
   errorLoadingUserMap = false;
@@ -30,8 +30,8 @@ export class MatchShowPlayerRatingComponent implements OnInit {
       const feedbackWithUserId: MatchFeedback[] = this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId);
       feedbackWithUserId.forEach(matchFeedback => {
         this.userService.getUser(matchFeedback.userId).then(user => {
-        this.userMap[matchFeedback.userId] = user;
-        this.loadingUserMap = false;
+          this.userMap[matchFeedback.userId] = user;
+          this.loadingUserMap = false;
         });
       });
     } else {
@@ -48,7 +48,7 @@ export class MatchShowPlayerRatingComponent implements OnInit {
   }
 
   matchFeedbackThatRateThePlayer(): MatchFeedback[] {
-    return this.matchFeedback.filter(matchFeedback => matchFeedback.ratings[this.playerInfo.id]);
+    return this.allUsersMatchFeedback.filter(matchFeedback => matchFeedback.ratings[this.playerInfo.id]);
   }
 
   ratingsForPlayer(): number[] {
