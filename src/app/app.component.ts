@@ -29,13 +29,15 @@ export class AppComponent implements OnInit {
       this.mdIconRegistry.addSvgIcon('futsal_pitch', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/futsal/futsal_pitch.svg'));
       this.mdIconRegistry.addSvgIcon('football_field',
           sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-field-top-view.svg'));
+
+      this.auth.handleAuthentication();
   }
 
   ngOnInit(): void {
   }
 
   isAuthenticated(): boolean {
-      return this.auth.authenticated();
+      return this.auth.isAuthenticated();
   }
 
   login(): void {

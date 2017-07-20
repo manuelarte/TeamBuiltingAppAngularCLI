@@ -79,11 +79,11 @@ export class GiveRewardComponent implements OnInit  {
     }
 
     isAuthenticated(): boolean {
-        return this.auth.authenticated();
+        return this.auth.isAuthenticated();
     }
 
     isNotAuthenticated(): boolean {
-        return !this.auth.authenticated();
+        return !this.isAuthenticated();
     }
 
 }

@@ -56,7 +56,7 @@ export class PlayerDetailTeamSportsComponent implements OnInit {
           this.loadingSportsFlag = false;
       });
 
-      if (this.auth.authenticated()) {
+      if (this.auth.isAuthenticated()) {
           this.loadingUserDataFlag = true;
           this.userDataService.getUserPlayerData().then(userData => {
               this.userData = userData;

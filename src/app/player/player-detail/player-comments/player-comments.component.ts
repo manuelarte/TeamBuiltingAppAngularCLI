@@ -57,7 +57,7 @@ export class PlayerCommentsComponent implements OnInit {
         this.errorLoadingComments = true;
     });
 
-    if (this.auth.authenticated()) {
+    if (this.auth.isAuthenticated()) {
         this.userDataService.getUserPlayerData().then(userData => {
             this.userData = userData;
             this.userDataLoaded = true;
@@ -74,7 +74,7 @@ export class PlayerCommentsComponent implements OnInit {
   canUserWriteAComment(): boolean {
 
       const noPreviousComment: boolean = !this.userAndComment[this.auth.userProfile.user_id];
-      return this.auth.authenticated() && !this.sameUser() && noPreviousComment;
+      return this.auth.isAuthenticated() && !this.sameUser() && noPreviousComment;
   }
 
   getUserForUserId(userId: string): User {
