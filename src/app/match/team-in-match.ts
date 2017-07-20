@@ -11,3 +11,7 @@ export interface DisplayableItemInfo {
   name: string;
   picture?: string;
 }
+
+export interface ItemInfo {
+  id: string;
+}

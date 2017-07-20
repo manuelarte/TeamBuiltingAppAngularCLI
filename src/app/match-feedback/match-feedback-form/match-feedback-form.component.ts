@@ -7,6 +7,8 @@ import {AppConstants} from '../../app-constants';
 import {DisplayableTeamInfo, TeamInfo} from '../../match/teamInfo';
 import {TeamInfoUtilService} from '../../team-info-util.service';
 import {MatchService} from '../../services/match.service';
+import {Auth} from '../../services/auth-service';
+import {ItemInfo} from '../../match/team-in-match';
 
 @Component({
   selector: 'app-match-feedback-form',
@@ -23,42 +25,57 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
   displayablePlayer: {[playerInfoId: string]: DisplayablePlayerInfo} = {};
   displayableTeam: {[teamInfoId: string]: DisplayableTeamInfo} = {};
 
-  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService, private playerInfoUtilsService: PlayerInfoUtilService,
+  constructor(private auth: Auth, private matchService: MatchService, private matchUtilsService: MatchUtilsService, private playerInfoUtilsService: PlayerInfoUtilService,
               private teamInfoUtilsService: TeamInfoUtilService) { }
 
   ngOnInit() {
     this.loadingMatchFeedback = true;
     this.matchService.getMyMatchFeedback(this.match.id).then(matchFeedback => {
       this.loadingMatchFeedback = false;
+      this.matchFeedback = matchFeedback;
     }).catch(error => {
       this.loadingMatchFeedback = false;
-      this.errorLoadingMatchFeedback = true;
+      if (error.status == 400 && error.json().errorCode === '0021') {
+        this.matchFeedback = this.createDefaultMatchFeedback();
+      } else {
+        this.errorLoadingMatchFeedback = true;
+      }
     });
 
 
-    if (!this.matchFeedback) {
-      // set up a default
-      this.matchFeedback = new MatchFeedback();
-      this.matchFeedback.ratings = {};
-
-      this.getHomePlayers().concat(this.getAwayPlayers()).forEach(playerInfo => {
-        this.matchFeedback.ratings[playerInfo.id] = (AppConstants.RATING_MAX_NUMBER_STARS - AppConstants.RATING_MIN_NUMBER_STARS)/2;
+    this.getHomePlayers().concat(this.getAwayPlayers()).forEach(playerInfo => {
         this.playerInfoUtilsService.getDisplayablePlayerInfo(playerInfo)
             .subscribe(displayablePlayerInfo => this.displayablePlayer[playerInfo.id] = displayablePlayerInfo);
-      });
+    });
 
-      this.teamInfoUtilsService.getDisplayableTeamInfo(this.match.homeTeam.teamInfo)
+    this.teamInfoUtilsService.getDisplayableTeamInfo(this.match.homeTeam.teamInfo)
           .subscribe(displayableTeamInfo => this.displayableTeam[this.match.homeTeam.teamInfo.id] = displayableTeamInfo);
 
-      this.teamInfoUtilsService.getDisplayableTeamInfo(this.match.awayTeam.teamInfo)
+    this.teamInfoUtilsService.getDisplayableTeamInfo(this.match.awayTeam.teamInfo)
             .subscribe(displayableTeamInfo => this.displayableTeam[this.match.awayTeam.teamInfo.id] = displayableTeamInfo);
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     // TODO, if a new player is added, it does not load the picture, so we need to load the picture,
     // I think we need to subscribe to player added event and then load the picture
     console.log(changes)
+  }
+
+  private createDefaultMatchFeedback(): MatchFeedback {
+      const matchFeedback = new MatchFeedback();
+      console.log(this.auth.userProfile)
+      matchFeedback.matchId = this.match.id;
+      matchFeedback.userId = this.auth.userProfile.userId;
+      matchFeedback.ratings = {};
+
+      this.getAllItemsToRate().forEach(itemInfo => {
+        matchFeedback.ratings[itemInfo.id] = (AppConstants.RATING_MAX_NUMBER_STARS - AppConstants.RATING_MIN_NUMBER_STARS)/2;
+      });
+      return matchFeedback;
+  }
+
+  getAllItemsToRate(): ItemInfo[] {
+    return this.getHomePlayers().concat(this.getAwayPlayers()).concat(this.getHomeTeam()).concat(this.getAwayTeam());
   }
 
   getHomePlayers(): PlayerInfo[] {

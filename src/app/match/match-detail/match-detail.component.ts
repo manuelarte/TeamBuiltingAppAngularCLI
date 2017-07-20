@@ -38,7 +38,6 @@ export class MatchDetailComponent implements OnInit {
         this.allUsersMatchFeedback = allUsersMatchFeedback;
         this.loadingFeedback = false;
         this.errorLoadingFeedback = false;
-        console.log('matchFeedback:', this.allUsersMatchFeedback);
       }).catch(error => {
         this.loadingFeedback = false;
         this.errorLoadingFeedback = true;

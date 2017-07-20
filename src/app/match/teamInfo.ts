@@ -1,5 +1,5 @@
-import {DisplayableItemInfo} from './team-in-match';
-export interface TeamInfo {
+import {DisplayableItemInfo, ItemInfo} from './team-in-match';
+export interface TeamInfo extends ItemInfo {
     id: string;
 }
 
