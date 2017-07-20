@@ -38,7 +38,7 @@ export class MatchService {
   }
 
   getMyMatchFeedback(matchId: string): Promise<MatchFeedback[]> {
-      return this.http.get(`${this.matchFeedbacksUrl}/me?matchId=${matchId}`)
+      return this.authHttp.get(`${this.matchFeedbacksUrl}/me?matchId=${matchId}`)
           .map(response => <MatchFeedback[]> response.json()).toPromise();
   }
 

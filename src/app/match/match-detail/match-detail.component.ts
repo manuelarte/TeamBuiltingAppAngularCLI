@@ -3,6 +3,7 @@ import {Match} from "../match";
 import {MatchService} from '../../services/match.service';
 import {Params, ActivatedRoute} from '@angular/router';
 import {MatchFeedback} from '../../match-feedback/match-feedback';
+import {Auth} from '../../services/auth-service';
 
 @Component({
   selector: 'app-match-detail',
@@ -20,7 +21,7 @@ export class MatchDetailComponent implements OnInit {
   errorLoadingFeedback = false;
   allUsersMatchFeedback: MatchFeedback[];
 
-  constructor(private matchService: MatchService, private route: ActivatedRoute) { }
+  constructor(private auth: Auth, private matchService: MatchService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {

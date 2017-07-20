@@ -4,9 +4,9 @@ import {DisplayablePlayerInfo, PlayerInfo} from '../../match/playerInfo';
 import {PlayerInfoUtilService} from '../../player-info-util.service';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import {AppConstants} from '../../app-constants';
-import {Observable} from 'rxjs/Observable';
 import {DisplayableTeamInfo, TeamInfo} from '../../match/teamInfo';
 import {TeamInfoUtilService} from '../../team-info-util.service';
+import {MatchService} from '../../services/match.service';
 
 @Component({
   selector: 'app-match-feedback-form',
@@ -16,15 +16,26 @@ import {TeamInfoUtilService} from '../../team-info-util.service';
 export class MatchFeedbackFormComponent implements OnInit, OnChanges {
 
   @Input() match;
-  @Input() matchFeedback;
+  loadingMatchFeedback = false;
+  errorLoadingMatchFeedback
+  matchFeedback;
 
   displayablePlayer: {[playerInfoId: string]: DisplayablePlayerInfo} = {};
   displayableTeam: {[teamInfoId: string]: DisplayableTeamInfo} = {};
 
-  constructor(private matchUtilsService: MatchUtilsService, private playerInfoUtilsService: PlayerInfoUtilService,
+  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService, private playerInfoUtilsService: PlayerInfoUtilService,
               private teamInfoUtilsService: TeamInfoUtilService) { }
 
   ngOnInit() {
+    this.loadingMatchFeedback = true;
+    this.matchService.getMyMatchFeedback(this.match.id).then(matchFeedback => {
+      this.loadingMatchFeedback = false;
+    }).catch(error => {
+      this.loadingMatchFeedback = false;
+      this.errorLoadingMatchFeedback = true;
+    });
+
+
     if (!this.matchFeedback) {
       // set up a default
       this.matchFeedback = new MatchFeedback();
