@@ -96,7 +96,7 @@ export class MatchPlayersInfoComponent implements OnInit {
 
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {
       const playerInfo: RegisteredPlayerInfo = new RegisteredPlayerInfo();
-      playerInfo.id = UUID.UUID(); // this call breaks everything... do not know why
+      playerInfo.id = UUID.UUID();
       playerInfo.playerId = playerToTeam.playerId;
       return playerInfo;
   }

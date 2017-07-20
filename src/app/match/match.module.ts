@@ -3,7 +3,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {TeamModule} from '../team/team.module';
-import {RatingModule} from 'primeng/components/rating/rating';
 import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
 import {

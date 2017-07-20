@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {TeamInfo} from '../match/teamInfo';
 import {PlayerInfo} from '../match/playerInfo';
-import {UUID} from 'angular2-uuid';
 import {Match} from '../match/match';
 import {MatchPart} from '../match/match-part';
 import {GoalMatchEvent, MatchEvent} from '../match/match-events';

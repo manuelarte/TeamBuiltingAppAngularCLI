@@ -5,7 +5,7 @@ import {PlayerRewardsService} from "../../services/player-rewards.service";
 import {Player} from "../../player";
 import {Team} from "../../team";
 import {Season} from "../../services/season-utils.service";
-import {PlayerReward} from "../../player-reward";
+import {PlayerReward} from '../../player-reward';
 import {Auth} from "../../services/auth-service";
 import {MdDialogRef, MdIconRegistry, MdSnackBar} from "@angular/material";
 import {Reward, Rewards} from "../../rewards";

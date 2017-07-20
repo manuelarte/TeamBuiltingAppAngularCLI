@@ -32,10 +32,8 @@ export class MatchTagsComponent implements OnInit {
   }
 
   isTagValid(tag: string): boolean {
-    if (!tag || tag === '' || this.getTags().filter(previousTag => previousTag === tag).length > 0) {
-      return false;
-    }
-    return true;
+    return !(!tag || tag === '' || this.getTags().filter(previousTag => previousTag === tag).length > 0);
+
   }
 
 }

@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
-import {GoalMatchEvent, MatchEvent, MatchEventSchemaAndUi} from '../match-events';
+import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {MatchEvent, MatchEventSchemaAndUi} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
 import moment = require('moment');
@@ -87,7 +87,7 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
     return schemaAndWidget;
   }
 
-};
+}
 
 /**
  * Data source to provide what data should be rendered in the table. Note that the data source
