@@ -19,7 +19,7 @@ export class Auth {
         },
         auth: {
             params: {
-                scope: 'openid user_id email given_name family_name nickname picture roles user_metadata read:users'
+                scope: 'openid profile user_id email given_name family_name nickname picture roles user_metadata read:users'
             },
         }
     };
@@ -52,6 +52,10 @@ export class Auth {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 window.location.hash = '';
                 this.setSession(authResult);
+                this.loginService.loginEvent();
+                this.getProfile((err, profile) => {
+                    console.log('Profile:', profile)
+                });
                 this.router.navigate(['/home']);
             } else if (err) {
                 this.router.navigate(['/home']);
@@ -85,5 +89,20 @@ export class Auth {
         // access token's expiry time
         const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         return new Date().getTime() < expiresAt;
+    }
+
+    public getProfile(cb): void {
+        const accessToken = localStorage.getItem('access_token');
+        if (!accessToken) {
+            throw new Error('Access token must exist to fetch profile');
+        }
+
+        const self = this;
+        this.auth0.client.userInfo(accessToken, (err, profile) => {
+            if (profile) {
+                self.userProfile = profile;
+            }
+            cb(err, profile);
+        });
     }
 }
