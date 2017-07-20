@@ -1,3 +1,4 @@
+import {DisplayableItemInfo} from './team-in-match';
 export interface PlayerInfo {
     id: string;
 }
@@ -13,7 +14,7 @@ export class UnRegisteredPlayerInfo implements PlayerInfo {
 }
 
 
-export class DisplayablePlayerInfo {
+export class DisplayablePlayerInfo implements DisplayableItemInfo {
   name: string;
   nickname?: string;
   picture?: string;

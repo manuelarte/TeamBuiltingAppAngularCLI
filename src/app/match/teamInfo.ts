@@ -1,3 +1,4 @@
+import {DisplayableItemInfo} from './team-in-match';
 export interface TeamInfo {
     id: string;
 }
@@ -12,7 +13,7 @@ export class UnRegisteredTeamInfo implements TeamInfo {
     name: string;
 }
 
-export class DisplayableTeamInfo {
+export class DisplayableTeamInfo implements DisplayableItemInfo {
     name: string;
     picture?: string;
 }
