@@ -2,8 +2,8 @@
 
     <div class="ui-g-12 ui-md-6 ui-lg-6">
         <div class="ui-g-6 ui-md-6 ui-lg-6">
-            <img class="user-id" [src]="displayableTeam[getHomeTeam().id]?.picture">
-            {{displayableTeam[getHomeTeam().id]?.name}}:<br/>
+            <img class="user-id" [src]="displayableItem[getHomeTeam().id]?.picture">
+            {{displayableItem[getHomeTeam().id]?.name}}:<br/>
             <button md-icon-button mdTooltip="Click to not rate this team"><md-icon>delete</md-icon></button>
             <p-rating [(ngModel)]="this.matchFeedback.ratings[getHomeTeam().id]" [stars]="5"></p-rating>
         </div>
@@ -11,8 +11,8 @@
 
     <div class="ui-g-12 ui-md-6 ui-lg-6">
         <div class="ui-g-6 ui-md-6 ui-lg-6">
-            <img class="user-id" [src]="displayableTeam[getAwayTeam().id]?.picture">
-            {{displayableTeam[getAwayTeam().id]?.name}}:<br/>
+            <img class="user-id" [src]="displayableItem[getAwayTeam().id]?.picture">
+            {{displayableItem[getAwayTeam().id]?.name}}:<br/>
             <button md-icon-button mdTooltip="Click to not rate this team"><md-icon>delete</md-icon></button>
             <p-rating [(ngModel)]="this.matchFeedback.ratings[getAwayTeam().id]" [stars]="5"></p-rating>
         </div>
@@ -21,8 +21,8 @@
     <div class="ui-g-12 ui-md-6 ui-lg-6">
         <div *ngFor="let player of getHomePlayers()">
             <div class="ui-g-6 ui-md-6 ui-lg-6">
-                <img class="user-id" [src]="displayablePlayer[player.id]?.picture">
-                {{displayablePlayer[player.id]?.name}}:<br/>
+                <img class="user-id" [src]="displayableItem[player.id]?.picture">
+                {{displayableItem[player.id]?.name}}:<br/>
                 <button md-icon-button mdTooltip="Click to not rate this player"><md-icon>delete</md-icon></button>
                 <p-rating [(ngModel)]="this.matchFeedback.ratings[player.id]" [stars]="5"></p-rating>
             </div>
@@ -33,8 +33,8 @@
     <div class="ui-g-12 ui-md-6 ui-lg-6">
         <div *ngFor="let player of getAwayPlayers()">
             <div class="ui-g-6 ui-md-6 ui-lg-6">
-                <img class="user-id" [src]="displayablePlayer[player.id]?.picture">
-                {{displayablePlayer[player.id]?.name}}:<br/>
+                <img class="user-id" [src]="displayableItem[player.id]?.picture">
+                {{displayableItem[player.id]?.name}}:<br/>
                 <button md-icon-button mdTooltip="Click to not rate this player"><md-icon>delete</md-icon></button>
                 <p-rating [(ngModel)]="this.matchFeedback.ratings[player.id]" [stars]="5"></p-rating>
             </div>

@@ -8,7 +8,7 @@ import {environment} from '../../environments/environment';
 import {AuthHttp} from 'angular2-jwt';
 import {MatchEventSchemaAndUi} from '../match/match-events';
 import {Match} from '../match/match';
-import {MatchFeedback} from '../match-feedback/match-feedback';
+import {IncomingMatchFeedback, MatchFeedback} from '../match-feedback/match-feedback';
 
 @Injectable()
 export class MatchService {
@@ -37,9 +37,11 @@ export class MatchService {
         .map(response => <MatchFeedback[]> response.json()).toPromise();
   }
 
-  getMyMatchFeedback(matchId: string): Promise<MatchFeedback[]> {
+  getMyMatchFeedback(matchId: string): Promise<IncomingMatchFeedback> {
       return this.authHttp.get(`${this.matchFeedbacksUrl}/me?matchId=${matchId}`)
-          .map(response => <MatchFeedback[]> response.json()).toPromise();
+          .map(response => <IncomingMatchFeedback> response.json()).toPromise();
   }
+
+  // when posting match feedback, it is incomingMatchFeedback
 
 }

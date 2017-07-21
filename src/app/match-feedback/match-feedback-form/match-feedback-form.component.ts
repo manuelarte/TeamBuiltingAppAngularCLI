@@ -1,14 +1,14 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {MatchFeedback} from '../match-feedback';
-import {DisplayablePlayerInfo, PlayerInfo} from '../../match/playerInfo';
+import {IncomingMatchFeedback, MatchFeedback} from '../match-feedback';
+import {PlayerInfo} from '../../match/playerInfo';
 import {PlayerInfoUtilService} from '../../player-info-util.service';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import {AppConstants} from '../../app-constants';
-import {DisplayableTeamInfo, TeamInfo} from '../../match/teamInfo';
+import {TeamInfo} from '../../match/teamInfo';
 import {TeamInfoUtilService} from '../../team-info-util.service';
 import {MatchService} from '../../services/match.service';
 import {Auth} from '../../services/auth-service';
-import {ItemInfo} from '../../match/team-in-match';
+import {DisplayableItemInfo, ItemInfo} from '../../match/team-in-match';
 
 @Component({
   selector: 'app-match-feedback-form',
@@ -19,11 +19,10 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
 
   @Input() match;
   loadingMatchFeedback = false;
-  errorLoadingMatchFeedback
-  matchFeedback;
+  errorLoadingMatchFeedback = false;
+  matchFeedback: IncomingMatchFeedback;
 
-  displayablePlayer: {[playerInfoId: string]: DisplayablePlayerInfo} = {};
-  displayableTeam: {[teamInfoId: string]: DisplayableTeamInfo} = {};
+  displayableItem: {[itemInfoId: string]: DisplayableItemInfo} = {};
 
   constructor(private auth: Auth, private matchService: MatchService, private matchUtilsService: MatchUtilsService, private playerInfoUtilsService: PlayerInfoUtilService,
               private teamInfoUtilsService: TeamInfoUtilService) { }
@@ -45,14 +44,14 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
 
     this.getHomePlayers().concat(this.getAwayPlayers()).forEach(playerInfo => {
         this.playerInfoUtilsService.getDisplayablePlayerInfo(playerInfo)
-            .subscribe(displayablePlayerInfo => this.displayablePlayer[playerInfo.id] = displayablePlayerInfo);
+            .subscribe(displayablePlayerInfo => this.displayableItem[playerInfo.id] = displayablePlayerInfo);
     });
 
-    this.teamInfoUtilsService.getDisplayableTeamInfo(this.match.homeTeam.teamInfo)
-          .subscribe(displayableTeamInfo => this.displayableTeam[this.match.homeTeam.teamInfo.id] = displayableTeamInfo);
+    this.teamInfoUtilsService.getDisplayableTeamInfo(this.getHomeTeam())
+          .subscribe(displayableTeamInfo => this.displayableItem[this.getHomeTeam().id] = displayableTeamInfo);
 
-    this.teamInfoUtilsService.getDisplayableTeamInfo(this.match.awayTeam.teamInfo)
-            .subscribe(displayableTeamInfo => this.displayableTeam[this.match.awayTeam.teamInfo.id] = displayableTeamInfo);
+    this.teamInfoUtilsService.getDisplayableTeamInfo(this.getAwayTeam())
+            .subscribe(displayableTeamInfo => this.displayableItem[this.getAwayTeam().id] = displayableTeamInfo);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
