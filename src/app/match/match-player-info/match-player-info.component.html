@@ -4,11 +4,14 @@
 </ng-container>
 <md-card *ngIf="player" class="player-card">
     <md-card-header>
-        <div md-card-avatar [ngStyle]="{'background-image': 'url(' + player.imageLink + ')'}" class="player-card-avatar"></div>
+        <div md-card-avatar [ngStyle]="{'background-image': 'url(' + player.picture + ')'}" class="player-card-avatar"></div>
         <md-card-title>{{player.name}}</md-card-title>
         <md-card-subtitle>{{player?.nickname}}</md-card-subtitle>
     </md-card-header>
+    <md-card-content>
+        <app-match-show-player-rating [playerInfo]="playerInfo" [allUsersMatchFeedback]="allUsersMatchFeedback"></app-match-show-player-rating>
+    </md-card-content>
     <md-card-actions>
-        <button md-button (click)="removePlayerFromMatch()"><md-icon>delete</md-icon></button>
+        <button *ngIf="isEditable()" md-button (click)="removePlayerFromMatch()"><md-icon>delete</md-icon></button>
     </md-card-actions>
 </md-card>

@@ -7,6 +7,11 @@ import {MatchPart} from '../match-part';
 import {MatchEvent} from '../match-events';
 import {Observable} from 'rxjs/Observable';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatchUtilsService} from '../../services/match-utils.service';
+import moment = require('moment');
+import {Moment} from 'moment';
+import {MatchFeedback} from '../../match-feedback/match-feedback';
+import {Messages} from 'primeng/primeng';
 
 @Component({
   selector: 'app-match-cud',
@@ -24,32 +29,65 @@ export class MatchCudComponent implements OnInit, OnChanges {
   private playersSelectedSliderValue = 100 * 0.2 / 2; // add players 20%
   private scoreAddedSliderValue = 100 * 0.2 / 2; // add score of the match 20%
 
+  @Input() match: Match = new Match();
+  @Input() private editable = true;
+  @Input() allUsersMatchFeedback: MatchFeedback[] = [];
+
   /**
    * Date year-month-day of the game, the time will be set in the match parts
-  */
+   */
   matchDate: Date = new Date();
 
-  scoreForm = new FormGroup({
-    scoreHomeTeam: new FormControl(0, Validators.required),
-    scoreAwayTeam: new FormControl(0, Validators.required),
-  });
+  scoreForm: FormGroup;
 
-  @Input() match: Match = new Match();
+  homeTeamSelected$: Observable<TeamInfo>;
+  homeTeamRemoved$: Observable<any>;
+  awayTeamSelected$: Observable<TeamInfo>;
+  awayTeamRemoved$: Observable<any>;
+
+  msgs: Messages = new Messages();
+
   eventToDisplay$: Observable<any>;
   scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
-  constructor() { }
+  constructor(private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
-      if (!this.match.homeTeam && !this.match.awayTeam) {
-          this.match.homeTeam = new TeamInMatch();
-          this.match.awayTeam = new TeamInMatch();
-          this.match.events = [];
-      }
+    this.msgs.value = [];
+    this.msgs.closable = false;
+    this.msgs.value.push({severity:'warn', summary:'Team Not Selected', detail:'Please select a team before adding players'});
+
+    this.scoreForm = new FormGroup({
+      scoreHomeTeam: new FormControl({value: 0, disabled: !this.editable}, Validators.required),
+      scoreAwayTeam: new FormControl({value: 0, disabled: !this.editable}, Validators.required),
+    });
+
+    if (!this.match.homeTeam && !this.match.awayTeam) {
+      this.match.homeTeam = new TeamInMatch();
+      this.match.awayTeam = new TeamInMatch();
+      this.match.events = [];
+      this.match.tags = [];
       this.scoreFormChanged$ = this.scoreForm.valueChanges;
+    }
+
+    if (this.match && this.match.matchParts && this.matchUtilsService.getMatchParts(this.match).length > 0) {
+      this.matchDate = new Date(this.matchUtilsService.getMatchParts(this.match)[0].startingTime);
+    }
+
+    if (this.match) {
+      this.scoreForm.setValue({
+        scoreHomeTeam: this.matchUtilsService.getHomeTeamGoals(this.match).length,
+        scoreAwayTeam: this.matchUtilsService.getAwayTeamGoals(this.match).length
+      });
+    }
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   getMatch(): Match {
@@ -57,74 +95,95 @@ export class MatchCudComponent implements OnInit, OnChanges {
   }
 
   isHomeTeamSelected(): boolean {
-    return this.match != null && this.match.homeTeam != null && this.match.homeTeam.teamInfo != null;
+    return this.matchUtilsService.isHomeTeamSelected(this.match);
   }
 
   getHomeTeam(): TeamInfo {
-    return this.match.homeTeam.teamInfo;
+    return this.isHomeTeamSelected() ? this.matchUtilsService.getHomeTeam(this.match) : null;
   }
 
   areHomePlayersSelected(): boolean {
-    return this.match != null && this.match.homeTeam != null && this.match.homeTeam.selectedPlayers != null;
+    return this.matchUtilsService.areHomePlayersSelected(this.match);
   }
 
   getHomePlayers(): PlayerInfo[] {
-    return this.match.homeTeam.selectedPlayers;
+    return this.matchUtilsService.getHomePlayers(this.match);
   }
 
   isAwayTeamSelected(): boolean {
-    return this.match != null && this.match.awayTeam != null && this.match.awayTeam.teamInfo != null;
+    return this.matchUtilsService.isAwayTeamSelected(this.match);
   }
 
   getAwayTeam(): TeamInfo {
-    return this.match.awayTeam.teamInfo;
+    return this.isAwayTeamSelected() ? this.matchUtilsService.getAwayTeam(this.match) : null;
   }
 
   areAwayPlayersSelected(): boolean {
-    return this.match != null && this.match.awayTeam != null && this.match.awayTeam.selectedPlayers != null;
+    return this.matchUtilsService.areAwayPlayersSelected(this.match);
   }
 
   getAwayPlayers(): PlayerInfo[] {
-    return this.match.awayTeam.selectedPlayers;
+    return this.matchUtilsService.getAwayPlayers(this.match);
   }
 
-  homeTeamSelected(teamInfo: TeamInfo) {
+  homeTeamSelectedEventHandler(teamInfo: TeamInfo) {
     this.sliderValue += this.teamSelectedSliderValue;
     this.match.homeTeam.teamInfo = teamInfo;
+    this.homeTeamSelected$ = new Observable(observer => observer.next(teamInfo));
   }
 
-  homeTeamRemoved() {
+  homeTeamRemovedEventHandler() {
     this.match.homeTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
+    this.homeTeamRemoved$ = new Observable(observer => observer.next());
   }
 
-  awayTeamSelected(teamInfo: TeamInfo) {
+  awayTeamSelectedEventHandler(teamInfo: TeamInfo) {
     this.sliderValue += this.teamSelectedSliderValue;
     this.match.awayTeam.teamInfo = teamInfo;
+    this.awayTeamSelected$ = new Observable(observer => observer.next(teamInfo));
   }
 
-  awayTeamRemoved() {
+  awayTeamRemovedEventHandler() {
     this.match.awayTeam = new TeamInMatch();
     this.sliderValue -= this.teamSelectedSliderValue;
+    this.awayTeamRemoved$ = new Observable(observer => observer.next());
   }
 
-  homePlayersAdded(homePlayers: PlayerInfo[]): void {
+  homePlayersAddedEventHandler(homePlayers: PlayerInfo[]): void {
     if (!this.match.homeTeam.selectedPlayers || this.match.homeTeam.selectedPlayers.length === 0) {
       this.sliderValue += this.playersSelectedSliderValue;
     }
     this.match.homeTeam.selectedPlayers = homePlayers;
   }
 
-  awayPlayersAdded(awayPlayers: PlayerInfo[]): void {
+  awayPlayersAddedEventHandler(awayPlayers: PlayerInfo[]): void {
     if (!this.match.awayTeam.selectedPlayers || this.match.awayTeam.selectedPlayers.length === 0) {
       this.sliderValue += this.playersSelectedSliderValue;
     }
     this.match.awayTeam.selectedPlayers = awayPlayers;
   }
 
+  onMatchDateChange(matchDate: Date) {
+    this.matchDate = new Date(matchDate);
+    const momentDate: Moment  = moment(this.matchDate);
+    this.matchUtilsService.getMatchParts(this.match).forEach(part => {
+      part.startingTime = new Date(part.startingTime);
+      part.endingTime = new Date(part.endingTime);
+      const duration: number = part.getDuration();
+      part.startingTime = moment(part.startingTime).set('year', momentDate.get('year'))
+          .set('month', momentDate.get('month')).set('date', momentDate.get('date')).toDate();
+      part.endingTime = new Date(part.startingTime.getTime() + duration);
+    });
+  }
+
+  getMatchParts(): MatchPart[] {
+    return this.matchUtilsService.getMatchParts(this.match);
+  }
+
   matchPartsUpdated(matchParts: MatchPart[]): void {
       this.match.matchParts = matchParts;
-      this.updateTimeline();
+      this.informRestComponents();
   }
 
   shallShowEvent() {
@@ -134,15 +193,23 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   eventAdded(matchEvent: MatchEvent): void {
       this.match.events.push(matchEvent);
-      this.updateTimeline();
+      this.informRestComponents();
   }
 
-  private updateTimeline(): void {
+  private informRestComponents(): void {
     this.eventToDisplay$ = new Observable(observer => observer.next());
   }
 
-  print() {
-      console.log('hi!')
+  private getHomeTeamGoals(): MatchEvent[] {
+    return this.matchUtilsService.getHomeTeamGoals(this.match);
+  }
+
+  getEvents(): MatchEvent[] {
+      return this.match.events;
+  }
+
+  isMatchReadyForFeedback(): boolean {
+    return this.matchUtilsService.isMatchReadyForMatchFeedback(this.match);
   }
 
 }

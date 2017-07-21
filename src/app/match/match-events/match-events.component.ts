@@ -1,11 +1,10 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GoalMatchEvent, MatchEvent} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
 import moment = require('moment');
-import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {UUID} from 'angular2-uuid';
 
 @Component({
   selector: 'app-match-events',
@@ -17,6 +16,7 @@ export class MatchEventsComponent implements OnInit {
 
   @Input() match: Match;
   @Input() scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
+  @Input() private editable = true;
 
   eventsSchemasLoading = false;
   eventsSchemasErrorLoading = false;
@@ -45,31 +45,37 @@ export class MatchEventsComponent implements OnInit {
 
       this.eventsSchemasLoading = true;
       this.matchService.getMatchEvents().then(matchEventsSchemas => {
-          this.eventSchemas = {};
+        console.log(matchEventsSchemas)
+        this.eventSchemas = {};
 
-          const eventTypes: string[] = Object.keys(matchEventsSchemas);
-          this.numberOfEvents = eventTypes.length;
-          eventTypes.forEach(eventType => {
-              // set the schema
-              this.eventSchemas[eventType] = matchEventsSchemas[eventType].schema;
-              // set the widgets in each property
-              const propertiesWithSpecialWidget: string[] = Object.keys(matchEventsSchemas[eventType].widget);
-              propertiesWithSpecialWidget.forEach(property =>{
-                  this.eventSchemas[eventType].properties[property].widget = {
-                      id: matchEventsSchemas[eventType].widget[property].id,
-                      match: this.match
-                  }
-              });
+        const eventTypes: string[] = Object.keys(matchEventsSchemas);
+        this.numberOfEvents = eventTypes.length;
+        eventTypes.forEach(eventType => {
+            // set the schema
+            this.eventSchemas[eventType] = matchEventsSchemas[eventType].schema;
 
-              this.eventsSchemasLoading = false;
+            // set the widgets in each property
+            const propertiesWithSpecialWidget: string[] = Object.keys(matchEventsSchemas[eventType].ui.properties)
+                  .filter(propertyName => matchEventsSchemas[eventType].ui.properties[propertyName].widget);
+            propertiesWithSpecialWidget.forEach(property =>{
+              this.eventSchemas[eventType].properties[property].widget = {
+                id: matchEventsSchemas[eventType].ui.properties[property].widget.id,
+                match: this.match
+              }
+            });
 
-          })
+            this.eventsSchemasLoading = false;
+        })
 
       }).catch(error => {
           console.log('error', error);
           this.eventsSchemasLoading = false;
           this.eventsSchemasErrorLoading = true;
       });
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   getKeys(): string[] {
@@ -96,14 +102,23 @@ export class MatchEventsComponent implements OnInit {
       console.log('x:',x)
       const actualHomeTeamGoals: number = x.scoreHomeTeam;
       const awayHomeTeamGoals: number = x.scoreAwayTeam;
-      let displayedHomeTeamGoals = this.goalEvents.homeTeam? this.goalEvents.homeTeam: 0;
-      let displayedtAwayTeamGoals = this.goalEvents.awayTeam? this.goalEvents.awayTeam: 0;
+      let displayedHomeTeamGoals: number = this.goalEvents.homeTeam? this.goalEvents.homeTeam.length: 0;
+      let displayedAwayTeamGoals: number = this.goalEvents.awayTeam? this.goalEvents.awayTeam.length: 0;
+      console.log('actualHomeTeamGoals:', actualHomeTeamGoals);
+      console.log('displayedHomeTeamGoals:', displayedHomeTeamGoals);
 
       if (displayedHomeTeamGoals !== actualHomeTeamGoals) {
           if (displayedHomeTeamGoals < actualHomeTeamGoals) {
-              const goal: GoalMatchEvent = new GoalMatchEvent();
-              goal.goal.teamThatScored = this.match.homeTeam.teamInfo.id;
-              this.goalEvents.homeTeam.push(goal);
+            const goal: GoalMatchEvent = new GoalMatchEvent();
+            goal.goal = {
+              id: UUID.UUID(),
+              when: this.match.matchParts[0].startingTime,
+              who: null,
+              teamThatScored: this.match.homeTeam.teamInfo.id,
+              description: ''
+            };
+            this.goalEvents.homeTeam.push(goal);
+            this.eventAdded.emit(goal);
           } else {
 
           }

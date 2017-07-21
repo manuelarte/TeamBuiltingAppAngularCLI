@@ -24,7 +24,11 @@ export class TeamService {
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
   getTeam(id: string): Promise<Team> {
-    return this.http.get(this.teamUrl + id).map(this.convertFromDateAndToDate).toPromise();
+    return this.getTeam$(id).toPromise();
+  }
+
+  getTeam$(id: string): Observable<Team> {
+    return this.http.get(this.teamUrl + id).map(this.convertFromDateAndToDate);
   }
 
   postTeam(team: Team): Promise<Team> {

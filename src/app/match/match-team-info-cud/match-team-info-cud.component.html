@@ -1,21 +1,27 @@
-<md-checkbox *ngIf="!teamInfo" class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</md-checkbox>
+<div *ngIf="!teamInfo && isEditable()">
+    <md-checkbox class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</md-checkbox>
 
-<div *ngIf="teamRegistered">
-    <ng-container *ngIf="!team">
-        <team-search (teamClicked)="setTeamInfoFromTeam($event)"></team-search>
-    </ng-container>
+    <div *ngIf="teamRegistered">
+        <ng-container>
+            <team-search (teamClicked)="setTeamInfoFromTeam($event)"></team-search>
+        </ng-container>
+    </div>
+
+    <div *ngIf="!teamRegistered">
+        <form [formGroup]="unregisteredTeamInfoForm">
+            <md-input-container>
+                <input mdInput type="text" placeholder="Team Name" formControlName="name" [(ngModel)]="unregisteredTeamInfo.name" required>
+                <md-error>Name is required.</md-error>
+            </md-input-container>
+        </form>
+        <button md-button (click)="setTeamInfoFromUnRegisteredTeamInfo()"><md-icon>add</md-icon></button>
+        {{unregisteredTeamInfo | json}}
+    </div>
+
+    <p-messages [(value)]="msgs" [closable]="false"></p-messages>
 </div>
 
-<div *ngIf="!teamRegistered">
-    Team Not Registered
+<div *ngIf="teamInfo">
+    <app-match-team-info [teamInfo]="teamInfo"></app-match-team-info>
+    <button *ngIf="isEditable()" md-button (click)="removeTeam()"><md-icon aria-hidden="true">backspace</md-icon></button>
 </div>
-
-<div *ngIf="team; else teamNotSelected">
-    <img class="team_emblem" [src]="team.emblemLink" alt=""/>
-    <h2>{{team.name}}</h2>
-    <button md-button (click)="removeTeam()"><md-icon aria-hidden="true">backspace</md-icon></button>
-</div>
-
-<ng-template #teamNotSelected>
-    Team Not Selected Yet.
-</ng-template>

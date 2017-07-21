@@ -1,14 +1,18 @@
+import {JsonSchema} from '../json-schema';
 export interface MatchEvent {
     [key: string]: any | {
+        id: string;
         when: Date;
         description: string;
-    }
+    };
+
 }
 
 
+
 export class GoalMatchEvent implements MatchEvent {
-    // id: string;
     goal: {
+      id: string;
       when: Date;
       who: string;
       teamThatScored: string;
@@ -26,14 +30,27 @@ export class SubstitutionMatchEvent implements MatchEvent {
 }
 */
 
-export class MatchEventSchemaAndWidget {
-    [key: string]: {
-        schema: any;
-        widget: {
-            [property: string]: {
-                id: string,
-                widgetProperties: Object;
-            }
-        };
-    }
+export class MatchEventSchemaAndUi {
+  [eventType: string]: {
+    schema: JsonSchema;
+    ui: Ui;
+  }
+}
+
+export class Ui {
+  tableProperties: string[];
+  properties: {
+    [key: string]: UiProperty
+  };
+
+  getUiProperyFor(propertyName: string): UiProperty {
+    return this[propertyName];
+  }
+}
+
+export class UiProperty {
+  widget: {
+    id: string,
+    widgetProperties: Object;
+  }
 }

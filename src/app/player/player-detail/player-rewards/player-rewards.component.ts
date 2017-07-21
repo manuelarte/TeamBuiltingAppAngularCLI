@@ -60,7 +60,7 @@ export class PlayerRewardsComponent implements OnInit {
         this.errorLoadingRewards = true;
     });
 
-    if (this.auth.authenticated()) {
+    if (this.auth.isAuthenticated()) {
         this.userDataService.getUserPlayerData().then(userData => {
             this.userData = userData;
             this.userDataLoaded = true;

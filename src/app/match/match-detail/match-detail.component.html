@@ -1,0 +1,8 @@
+<ng-container *ngIf="match && !loadingFeedback; else matchNotReady">
+    <app-match-cud [(match)]="match" [editable]="false" [allUsersMatchFeedback]="allUsersMatchFeedback"></app-match-cud>
+</ng-container>
+
+<ng-template #matchNotReady>
+    <md-progress-spinner *ngIf="loadingMatch" mode="indeterminate">
+    </md-progress-spinner>
+</ng-template>

@@ -70,7 +70,7 @@ export class PlayerToTeamCardComponent implements OnInit {
           });
       }
 
-       if (this.auth.authenticated()) {
+       if (this.auth.isAuthenticated()) {
           this.loadingUserDataFlag = true;
           this.userDataService.getUserPlayerData().then(userData => {
               this.userData = userData;

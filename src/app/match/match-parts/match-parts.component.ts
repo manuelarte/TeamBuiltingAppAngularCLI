@@ -1,10 +1,8 @@
 import * as moment from 'moment';
 
-import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {MatchPart} from '../match-part';
 import {unitOfTime} from 'moment';
-import {Match} from '../match';
 
 @Component({
   selector: 'app-match-parts',
@@ -13,7 +11,8 @@ import {Match} from '../match';
 })
 export class MatchPartsComponent implements OnInit, OnChanges {
 
-  public matchParts: MatchPart[] = [];
+  @Input() matchParts: MatchPart[];
+  @Input() private editable = true;
 
   defaultRestTime: number = 15;
   defautlPartDuration = 45;
@@ -24,11 +23,23 @@ export class MatchPartsComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
+    if (!this.matchParts) {
+      this.matchParts = [];
       this.createDefaultData();
+    } else {
+      this.matchParts.forEach(part => {
+          part.startingTime = new Date(part.startingTime);
+          part.endingTime = new Date(part.endingTime);
+      });
+    }
   }
 
   ngOnChanges() {
     this.matchPartsUpdated.emit(this.matchParts);
+  }
+
+  isEditable(): boolean {
+    return this.editable;
   }
 
   private createDefaultData(): void {
@@ -78,10 +89,6 @@ export class MatchPartsComponent implements OnInit, OnChanges {
   updateMatchParts(): void {
       console.log('updating!')
       this.matchPartsUpdated.emit(this.matchParts);
-  }
-
-  show() {
-      console.log(this.matchParts);
   }
 
   addMatchPart(): void {

@@ -20,7 +20,7 @@
         <player-comment-form [player]="player" [commentReasons]="commentReasons" (onSaved)="onSaved($event)"></player-comment-form>
     </div>
 
-    <div *ngIf="!(auth.authenticated() && auth.userProfile)">
+    <div *ngIf="!(auth.isAuthenticated() && auth.userProfile)">
         <p-messages [value]="[{severity:'info', summary:'Authentication Required', detail:'You should be authenticated if you want to write a comment.'}]" [closable]="false"></p-messages>
     </div>
 

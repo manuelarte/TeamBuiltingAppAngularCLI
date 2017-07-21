@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Auth} from '../services/auth-service';
 import {RouterUtilsService} from '../services/router-utils.service';
 import {UserDataService} from '../services/user-data.service';
@@ -23,13 +23,13 @@ export class ProfileSidenavComponent implements OnInit, OnDestroy {
   constructor(private auth: Auth, private loginService: LoginService,
               private userDataService: UserDataService) {
       this.subscription = loginService.loginEvent$.subscribe( response => {
-          this.logged = this.auth.authenticated();
+          this.logged = this.auth.isAuthenticated();
           this.ngOnInit();
       });
   }
 
   ngOnInit(): void {
-      if (this.auth.authenticated()) {
+      if (this.auth.isAuthenticated()) {
           this.userDataService.getUserPlayerData().then(userData => {
               this.userData = userData;
               this.userDataLoadingFlag = false;
@@ -54,7 +54,7 @@ export class ProfileSidenavComponent implements OnInit, OnDestroy {
   }
 
   isAuthenticated(): boolean {
-      return this.auth.authenticated();
+      return this.auth.isAuthenticated();
   }
 
 }

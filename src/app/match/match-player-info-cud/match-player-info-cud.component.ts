@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../playerInfo';
 import {Player} from '../../player';
-import {PlayerService} from '../../services/player.service';
 import {UtilsService} from '../../services/utils.service';
-import {PlayerSearchService} from "../../services/player-search.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UUID} from 'angular2-uuid';
 
@@ -17,16 +15,19 @@ export class MatchPlayerInfoCudComponent implements OnInit {
 
     playerRegistered = true;
     playerInfo: PlayerInfo;
-    player: Player;
 
-    @Output() newPlayerInfo: EventEmitter<PlayerInfo> = new EventEmitter<PlayerInfo>();
+    /**
+     * Holder for the player when PlayerInfo is made for a registered player
+     */
+    player: Player;
+    unregisteredPlayerInfo: UnRegisteredPlayerInfo = new UnRegisteredPlayerInfo();
 
     unregisteredPlayerInfoForm = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         // imageLink: new FormControl('', [ Validators.required, Validators.minLength(6)]),
     });
 
-    name: string;
+    @Output() newPlayerInfo: EventEmitter<PlayerInfo> = new EventEmitter<PlayerInfo>();
 
     @Input() playersFilter: (player: Player) => boolean = player => true;
 
@@ -45,10 +46,8 @@ export class MatchPlayerInfoCudComponent implements OnInit {
     }
 
     createPlayerInfoFromForm(): PlayerInfo {
-        const unRegisteredPlayerInfo = new UnRegisteredPlayerInfo();
-        unRegisteredPlayerInfo.id = UUID.UUID();
-        unRegisteredPlayerInfo.name = this.name;
-        return unRegisteredPlayerInfo;
+        this.unregisteredPlayerInfo.id = UUID.UUID();
+        return this.unregisteredPlayerInfo;
     }
 
     isValid(): boolean {
@@ -59,7 +58,7 @@ export class MatchPlayerInfoCudComponent implements OnInit {
         if (this.playerRegistered) {
             this.newPlayerInfo.emit(this.playerInfo);
         } else {
-            this.newPlayerInfo.emit(this.createPlayerInfoFromForm());
+          this.newPlayerInfo.emit(this.createPlayerInfoFromForm());
         }
         this.clear();
     }
@@ -68,7 +67,7 @@ export class MatchPlayerInfoCudComponent implements OnInit {
         this.playerInfo = null;
         this.player = null;
         this.playerRegistered = true;
-        this.name = null;
+        this.unregisteredPlayerInfo = new UnRegisteredPlayerInfo();
     }
 
     private isValidRegisteredPlayerInfo(): boolean {

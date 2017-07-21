@@ -6,6 +6,8 @@ import {PlayerInfo, RegisteredPlayerInfo} from '../playerInfo';
 import {PlayerToTeam} from '../../player-to-team';
 import {Player} from "../../player";
 import {UUID} from 'angular2-uuid';
+import {Observable} from 'rxjs/Observable';
+import {MatchFeedback} from '../../match-feedback/match-feedback';
 
 @Component({
   selector: 'app-match-players-info',
@@ -16,9 +18,12 @@ import {UUID} from 'angular2-uuid';
 export class MatchPlayersInfoComponent implements OnInit {
 
   @Input() matchDate: Date = new Date();
-  @Input() teamInfo: TeamInfo;
-  registeredTeamInfo = false;
-  playersInfo: PlayerInfo[];
+
+  @Input() playersInfo: PlayerInfo[] = [];
+  @Input() teamSelected$: Observable<TeamInfo>;
+  @Input() teamRemoved$: Observable<any>;
+  @Input() private editable = true;
+  @Input() allUsersMatchFeedback: MatchFeedback[] = [];
 
   isBusy = false;
   errorOccurred = false;
@@ -29,31 +34,54 @@ export class MatchPlayersInfoComponent implements OnInit {
 
   ngOnInit() {
     this.matchDate = new Date(this.matchDate);
-    this.registeredTeamInfo = this.teamInfo != null && this.utils.isRegisteredTeam(this.teamInfo);
-    if (this.registeredTeamInfo) {
-        // get the active players for that team
-        const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> this.teamInfo;
-        this.isBusy = true;
+    if (this.teamSelected$) {
+      this.teamSelected$.subscribe(teamInfo => {
+          this.teamInfoSelectedEventHandler(teamInfo);
+      });
+    }
+    if (this.teamRemoved$) {
+      this.teamRemoved$.subscribe(() => this.teamInfoRemovedEventHandler())
+    }
+
+  }
+
+  isEditable(): boolean {
+    return this.editable;
+  }
+
+  private teamInfoSelectedEventHandler(teamInfo: TeamInfo): void {
+    if (this.isRegisteredTeamInfo(teamInfo)) {
+      // get the active players for that team
+      const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> teamInfo;
+      this.isBusy = true;
+      this.errorOccurred = false;
+      this.teamService.getPlayers(registeredTeamInfo.teamId, this.matchDate).then(playersToTeam => {
+        this.playersInfo = playersToTeam.map(this.convertToPlayerInfo);
+        this.isBusy = false;
         this.errorOccurred = false;
-        this.teamService.getPlayers(registeredTeamInfo.teamId, this.matchDate).then(playersToTeam => {
-          this.playersInfo = playersToTeam.map(this.convertToPlayerInfo);
-          this.isBusy = false;
-          this.errorOccurred = false;
-          this.playersSelected.emit(this.playersInfo);
-        }).catch(error => {
-          this.isBusy = false;
-          this.errorOccurred = true;
-        });
+        this.playersSelected.emit(this.playersInfo);
+      }).catch(error => {
+        this.isBusy = false;
+        this.errorOccurred = true;
+      });
+    } else {
+      this.playersInfo = [];
+      this.playersSelected.emit(this.playersInfo);
     }
   }
 
-  addPlayerInfo(playerInfo: PlayerInfo): void {
-      this.playersInfo.push(playerInfo);
-      this.playersSelected.emit(this.playersInfo);
+  private teamInfoRemovedEventHandler(): void {
+    this.playersInfo = [];
+  }
+
+  newPlayerInfoEventHandler(playerInfo: PlayerInfo): void {
+    this.playersInfo.push(playerInfo);
+    this.playersSelected.emit(this.playersInfo);
   }
 
   removePlayerFromMatch(playerInfo: PlayerInfo) {
-      this.playersInfo = this.playersInfo.filter(pI => pI !== playerInfo);
+    this.playersInfo = this.playersInfo.filter(pI => pI !== playerInfo);
+    this.playersSelected.emit(this.playersInfo);
   }
 
   getPlayersFilter(): (player: Player) => boolean {
@@ -62,9 +90,13 @@ export class MatchPlayersInfoComponent implements OnInit {
       return (player) => notAllowedIds.indexOf(player.id) < 0 ;
   }
 
+  private isRegisteredTeamInfo(teamInfo: TeamInfo): boolean {
+    return this.utils.isRegisteredTeam(teamInfo);
+  }
+
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {
       const playerInfo: RegisteredPlayerInfo = new RegisteredPlayerInfo();
-      playerInfo.id = UUID.UUID(); // this call breaks everything... do not know why
+      playerInfo.id = UUID.UUID();
       playerInfo.playerId = playerToTeam.playerId;
       return playerInfo;
   }

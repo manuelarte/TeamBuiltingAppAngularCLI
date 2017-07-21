@@ -9,6 +9,7 @@ import {PlayerToTeam} from '../player-to-team';
 import {PlayerToTeamSportDetails} from '../player-to-team-sport-details';
 import {environment} from '../../environments/environment';
 import {AuthHttp} from 'angular2-jwt';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class PlayerService {
@@ -24,8 +25,11 @@ export class PlayerService {
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
   getPlayer(id: number): Promise<Player> {
-    return this.http.get(`${this.playerUrl}/${id}`).map(response => <Player> response.json())
-      .toPromise();
+    return this.getPlayerObservable(id).toPromise();
+  }
+
+  getPlayerObservable(id: number): Observable<Player> {
+    return this.http.get(`${this.playerUrl}/${id}`).map(response => <Player> response.json());
   }
 
   savePlayer(player: Player): Promise<Player> {

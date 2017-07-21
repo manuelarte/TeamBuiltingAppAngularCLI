@@ -30,7 +30,7 @@ export class PlayerCudCardComponent implements OnInit {
               public snackBar: MdSnackBar, private userRightsService: UserRightsService) { }
 
   ngOnInit() {
-      if (this.auth.authenticated()) {
+      if (this.auth.isAuthenticated()) {
           this.loadingUserDataFlag = true;
           this.userDataService.getUserPlayerData().then(userData => {
               this.userData = userData;

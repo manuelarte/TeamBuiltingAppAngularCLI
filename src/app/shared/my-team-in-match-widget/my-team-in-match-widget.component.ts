@@ -28,7 +28,7 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
   constructor(private teamService: TeamService, private utilsService: UtilsService) { }
 
   ngOnInit() {
-      if (this.teamsAreSelected()) {
+    if (this.teamsAreSelected()) {
 
           const homeTeamInfo: TeamInfo = this.schema.widget.match.homeTeam.teamInfo;
           const homeTeamRepresentation = new TeamRepresentation();
@@ -38,11 +38,11 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
             this.isBusyLoadingHomeTeam = true;
             this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {
               this.isBusyLoadingHomeTeam = false;
-                this.setFieldsUsingTeam(homeTeamRepresentation, team);
+              this.setFieldsUsingTeam(homeTeamRepresentation, team);
             })
           } else {
             const unregisteredTeamInfo: UnRegisteredTeamInfo = <UnRegisteredTeamInfo> homeTeamInfo;
-              this.setFieldsUsingUnRegisteredTeam(homeTeamRepresentation, unregisteredTeamInfo);
+            this.setFieldsUsingUnRegisteredTeam(homeTeamRepresentation, unregisteredTeamInfo);
           }
 
 
@@ -63,7 +63,8 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
           }
 
           this.teamsRepresentation.push(homeTeamRepresentation, awayTeamRepresentation);
-      }
+    }
+
   }
 
   private setFieldsUsingTeam(teamRepresentation: TeamRepresentation, team: Team): void {
@@ -80,7 +81,7 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
   }
 
   private teamsAreSelected(): boolean {
-    if (this.schema.widget.match.homeTeam || this.schema.widget.match.awayTeam) {
+    if (this.schema && this.schema.widget.match.homeTeam || this.schema.widget.match.awayTeam) {
         return true;
     }
     return false;

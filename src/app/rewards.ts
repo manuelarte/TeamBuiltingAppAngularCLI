@@ -1,6 +1,7 @@
 /**
- * Created by manuel.doncel.martos on 30-4-2017.
- */
+    * @author Manuel Doncel Martos
+    * @since 30-4-2017.
+    */
 export class Rewards {
 
     static readonly rewards: {[name: string]: Reward} = {

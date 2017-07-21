@@ -4,5 +4,5 @@
     */
 export interface Timeslice {
     fromDate: Date,
-    toDate: Date
+    toDate?: Date
 }

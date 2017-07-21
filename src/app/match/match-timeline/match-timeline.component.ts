@@ -85,8 +85,8 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
       if (this.match && this.match.matchParts) {
         this.match.matchParts.forEach((matchPart, i) => {
             const row: [string, string, Date, Date] = ['Match',  i+1 + ' Part',
-                new Date(0, 0, 0, matchPart.startingTime.getHours(), matchPart.startingTime.getMinutes(), 0),
-                new Date(0, 0, 0, matchPart.endingTime.getHours(), matchPart.endingTime.getMinutes(), 0)];
+                new Date(0, 0, 0, new Date(matchPart.startingTime).getHours(), new Date(matchPart.startingTime).getMinutes(), 0),
+                new Date(0, 0, 0, new Date(matchPart.endingTime).getHours(), new Date(matchPart.endingTime).getMinutes(), 0)];
             toReturn.push(row)
         })
       }
@@ -99,8 +99,8 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
       this.match.events.forEach(matchEvent => {
           const eventType: string = Object.getOwnPropertyNames(matchEvent)[0];
           const row: [string, string, Date, Date] = ['Match Events', eventType,
-              new Date(0, 0, 0, matchEvent[eventType].when.getHours(), matchEvent[eventType].when.getMinutes(), 0),
-              new Date(0, 0, 0, matchEvent[eventType].when.getHours(), matchEvent[eventType].when.getMinutes(), 30)];
+              new Date(0, 0, 0, new Date(matchEvent[eventType].when).getHours(), new Date(matchEvent[eventType].when).getMinutes(), 0),
+              new Date(0, 0, 0, new Date(matchEvent[eventType].when).getHours(), new Date(matchEvent[eventType].when).getMinutes(), 30)];
           toReturn.push(row)
       })
     }
