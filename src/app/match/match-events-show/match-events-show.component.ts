@@ -76,7 +76,7 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
   }
 
   getWhenInMinutes(matchEvent: MatchEvent): number {
-    return moment(this.matchUtilsService.getMatchParts(this.match)[0].startingTime).subtract( new Date(matchEvent[this.getEventType(matchEvent)].when) ).get('minutes');
+    return moment(this.matchUtilsService.getMatchParts(this.match)[0].startingTime).subtract( new Date(matchEvent[this.getEventType(matchEvent)].when).getTime() ).get('minutes');
   }
 
   getSchemaAndWidget(matchEvent: MatchEvent, property: string): any {
