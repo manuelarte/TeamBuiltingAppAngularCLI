@@ -23,6 +23,7 @@ import {CdkTableModule} from '@angular/cdk';
 import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchShowPlayerRatingComponent} from './match-show-player-rating/match-show-player-rating.component';
 import {MatchFeedbackFormComponent} from './match-feedback-form/match-feedback-form.component';
+import {MatchFeedbackItemInfoRatingComponent} from './match-feedback-item-info-rating/match-feedback-item-info-rating.component';
 
 @NgModule({
     imports: [
@@ -62,6 +63,7 @@ import {MatchFeedbackFormComponent} from './match-feedback-form/match-feedback-f
     ],
     declarations: [
         MatchFeedbackFormComponent,
+        MatchFeedbackItemInfoRatingComponent,
         MatchShowPlayerRatingComponent,
     ],
     providers: [

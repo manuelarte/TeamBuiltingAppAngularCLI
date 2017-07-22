@@ -1,0 +1,13 @@
+<img class="user-id" [src]="displayableItemInfo?.picture">
+{{displayableItemInfo?.name}}:<br/>
+<div class="ui-g-2 ui-md-2 ui-lg-2">
+    <ng-container *ngIf="isValueDefined()">
+        <button md-icon-button mdTooltip="Click to not rate this player" (click)="value = null"><md-icon>delete</md-icon></button>
+    </ng-container>
+    <ng-container *ngIf="!isValueDefined()">
+        <button md-icon-button mdTooltip="Click to rate this player" (click)="value = 2.5"><md-icon>add</md-icon></button>
+    </ng-container>
+</div>
+<div *ngIf="isValueDefined()" class="ui-g-10 ui-md-10 ui-lg-10">
+    <p-rating [(ngModel)]="value" (onCancel)="value = 0" [stars]="5"></p-rating>
+</div>
