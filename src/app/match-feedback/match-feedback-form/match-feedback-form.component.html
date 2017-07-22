@@ -1,42 +1,43 @@
-<div *ngIf="matchFeedback" class="ui-g">
+<form>
+    <div *ngIf="matchFeedback" class="ui-g">
 
-    <div class="ui-g-12 ui-md-6 ui-lg-6">
-        <div class="ui-g-6 ui-md-6 ui-lg-6">
-            <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getHomeTeam().id]"
-                                                 [(value)]="this.matchFeedback.ratings[getHomeTeam().id]">
-            </app-match-feedback-item-info-rating>
-        </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-6 ui-lg-6">
-        <div class="ui-g-6 ui-md-6 ui-lg-6">
-            <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getAwayTeam().id]"
-                                                 [(value)]="this.matchFeedback.ratings[getAwayTeam().id]">
-            </app-match-feedback-item-info-rating>
-        </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-6 ui-lg-6">
-        <div *ngFor="let playerInfo of getHomePlayers()">
+        <div class="ui-g-12 ui-md-6 ui-lg-6">
             <div class="ui-g-6 ui-md-6 ui-lg-6">
-                <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
-                                                     [(value)]="this.matchFeedback.ratings[playerInfo.id]">
+                <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getHomeTeam().id]"
+                                                     [(value)]="this.matchFeedback.ratings[getHomeTeam().id]">
                 </app-match-feedback-item-info-rating>
             </div>
         </div>
-    </div>
 
-    <div class="ui-g-12 ui-md-6 ui-lg-6">
-        <div *ngFor="let playerInfo of getAwayPlayers()">
+        <div class="ui-g-12 ui-md-6 ui-lg-6">
             <div class="ui-g-6 ui-md-6 ui-lg-6">
-                <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
-                                                     [(value)]="this.matchFeedback.ratings[playerInfo.id]">
+                <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getAwayTeam().id]"
+                                                     [(value)]="this.matchFeedback.ratings[getAwayTeam().id]">
                 </app-match-feedback-item-info-rating>
             </div>
         </div>
+
+        <div class="ui-g-12 ui-md-6 ui-lg-6">
+            <div *ngFor="let playerInfo of getHomePlayers()">
+                <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
+                                                         [(value)]="this.matchFeedback.ratings[playerInfo.id]">
+                    </app-match-feedback-item-info-rating>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 ui-lg-6">
+            <div *ngFor="let playerInfo of getAwayPlayers()">
+                <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
+                                                         [(value)]="this.matchFeedback.ratings[playerInfo.id]">
+                    </app-match-feedback-item-info-rating>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-</div>
-
+</form>
 
 {{matchFeedback | json}}
