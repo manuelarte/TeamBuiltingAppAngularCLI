@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {IncomingMatchFeedback, MatchFeedback} from '../match-feedback';
+import {IncomingMatchFeedback} from '../match-feedback';
 import {PlayerInfo} from '../../match/playerInfo';
 import {PlayerInfoUtilService} from '../../player-info-util.service';
 import {MatchUtilsService} from '../../services/match-utils.service';
@@ -7,7 +7,6 @@ import {AppConstants} from '../../app-constants';
 import {TeamInfo} from '../../match/teamInfo';
 import {TeamInfoUtilService} from '../../team-info-util.service';
 import {MatchService} from '../../services/match.service';
-import {Auth} from '../../services/auth-service';
 import {DisplayableItemInfo, ItemInfo} from '../../match/team-in-match';
 
 @Component({
@@ -20,12 +19,15 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
   @Input() match;
   loadingMatchFeedback = false;
   errorLoadingMatchFeedback = false;
+
+  submittingMatchFeedback = false;
+  errorSubmittingMatchFeedback = false;
   matchFeedback: IncomingMatchFeedback;
 
   displayableItem: {[itemInfoId: string]: DisplayableItemInfo} = {};
 
-  constructor(private auth: Auth, private matchService: MatchService, private matchUtilsService: MatchUtilsService, private playerInfoUtilsService: PlayerInfoUtilService,
-              private teamInfoUtilsService: TeamInfoUtilService) { }
+  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService,
+              private playerInfoUtilsService: PlayerInfoUtilService, private teamInfoUtilsService: TeamInfoUtilService) { }
 
   ngOnInit() {
     this.loadingMatchFeedback = true;
@@ -40,7 +42,6 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
         this.errorLoadingMatchFeedback = true;
       }
     });
-
 
     this.getHomePlayers().concat(this.getAwayPlayers()).forEach(playerInfo => {
         this.playerInfoUtilsService.getDisplayablePlayerInfo(playerInfo)
@@ -60,11 +61,9 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
     console.log(changes)
   }
 
-  private createDefaultMatchFeedback(): MatchFeedback {
-      const matchFeedback = new MatchFeedback();
-      console.log(this.auth.userProfile)
+  private createDefaultMatchFeedback(): IncomingMatchFeedback {
+      const matchFeedback: IncomingMatchFeedback = new IncomingMatchFeedback();
       matchFeedback.matchId = this.match.id;
-      matchFeedback.userId = this.auth.userProfile.userId;
       matchFeedback.ratings = {};
 
       this.getAllItemsToRate().forEach(itemInfo => {
@@ -94,6 +93,19 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
 
   getAwayTeam(): TeamInfo {
     return this.match.awayTeam.teamInfo;
+  }
+
+  onSubmit(): void {
+    this.submittingMatchFeedback = true;
+    this.errorSubmittingMatchFeedback = false;
+    this.matchService.saveMatchFeedback(this.matchFeedback).then(matchFeedback => {
+      this.matchFeedback = matchFeedback;
+      this.submittingMatchFeedback = false;
+      this.errorSubmittingMatchFeedback = false;
+    }).catch(error => {
+      this.submittingMatchFeedback = false;
+      this.errorSubmittingMatchFeedback = true;
+    });
   }
 
 }

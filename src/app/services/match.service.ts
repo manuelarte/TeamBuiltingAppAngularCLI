@@ -38,10 +38,13 @@ export class MatchService {
   }
 
   getMyMatchFeedback(matchId: string): Promise<IncomingMatchFeedback> {
-      return this.authHttp.get(`${this.matchFeedbacksUrl}/me?matchId=${matchId}`)
+    return this.authHttp.get(`${this.matchFeedbacksUrl}/me?matchId=${matchId}`)
           .map(response => <IncomingMatchFeedback> response.json()).toPromise();
   }
 
-  // when posting match feedback, it is incomingMatchFeedback
+  saveMatchFeedback(incomingMatchFeedback: IncomingMatchFeedback): Promise<IncomingMatchFeedback> {
+    return this.authHttp.post(`${this.matchFeedbacksUrl}`, incomingMatchFeedback).map(response => <IncomingMatchFeedback> response.json())
+      .toPromise();
+  }
 
 }
