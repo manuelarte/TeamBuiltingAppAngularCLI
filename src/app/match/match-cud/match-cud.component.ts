@@ -31,6 +31,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   @Input() match: Match = new Match();
   @Input() private editable = true;
+  editing: boolean = true;
   @Input() allUsersMatchFeedback: MatchFeedback[] = [];
 
   /**
@@ -56,6 +57,8 @@ export class MatchCudComponent implements OnInit, OnChanges {
     this.msgs.value = [];
     this.msgs.closable = false;
     this.msgs.value.push({severity:'warn', summary:'Team Not Selected', detail:'Please select a team before adding players'});
+
+    this.editing = this.editable ? true : false;
 
     this.scoreForm = new FormGroup({
       scoreHomeTeam: new FormControl({value: 0, disabled: !this.editable}, Validators.required),
@@ -210,6 +213,11 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   isMatchReadyForFeedback(): boolean {
     return this.matchUtilsService.isMatchReadyForMatchFeedback(this.match);
+  }
+
+  isMatchValid(): boolean {
+    return this.matchUtilsService.isHomeTeamSelected(this.match) && this.matchUtilsService.isAwayTeamSelected(this.match) &&
+            this.matchUtilsService.areHomePlayersSelected(this.match) && this.matchUtilsService.areAwayPlayersSelected(this.match);
   }
 
 }

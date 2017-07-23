@@ -41,6 +41,7 @@ import {PlayerService} from '../services/player.service';
 import {TeamService} from '../services/team.service';
 import {UtilsService} from '../services/utils.service';
 import {MatchService} from '../services/match.service';
+import {TeamSearchService} from '../services/team-search.service';
 
 @NgModule({
     imports: [
@@ -101,6 +102,7 @@ import {MatchService} from '../services/match.service';
         PlayerService,
         TeamInfoUtilService,
         TeamService,
+        TeamSearchService,
         UtilsService,
         {provide: LOCALE_ID, useValue: 'nl'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}

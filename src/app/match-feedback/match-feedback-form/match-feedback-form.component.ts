@@ -29,6 +29,7 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
   displayableItem: {[itemInfoId: string]: DisplayableItemInfo} = {};
 
   msgs = [];
+  notPossibleToSaveMsgs = [];
 
   constructor(private auth: Auth, private matchService: MatchService, private matchUtilsService: MatchUtilsService,
               private playerInfoUtilsService: PlayerInfoUtilService, private teamInfoUtilsService: TeamInfoUtilService,
@@ -36,6 +37,7 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.msgs.push({severity:'warn', summary:'Not Authenticated', detail:'You have to be authenticated to give feedback'});
+    this.notPossibleToSaveMsgs.push({severity:'info', summary:'Match not saved', detail:'You first have to save the match to send the feedback'});
 
     this.loadingMatchFeedback = true;
     this.matchService.getMyMatchFeedback(this.match.id).then(matchFeedback => {
