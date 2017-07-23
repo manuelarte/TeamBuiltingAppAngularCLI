@@ -2,7 +2,9 @@
     <ng-container *ngFor="let rewardAvailable of getRewardsAvailable()">
         <div class="ui-g-12 ui-md-4 ui-lg-3">
             <h3>{{rewardAvailable}}</h3>
-            <app-team-player-select [match]="match" (change)="onChange(rewardAvailable, $event)"></app-team-player-select>
+            <app-team-player-select [match]="match" [value]="getRewarded(rewardAvailable)"
+                                    (change)="onChange(rewardAvailable, $event)"></app-team-player-select>
         </div>
     </ng-container>
 </div>
+

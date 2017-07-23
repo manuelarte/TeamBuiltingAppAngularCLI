@@ -1,7 +1,7 @@
 <ng-container *ngIf="!loadingPlayerRepresentation && getPlayersRepresentation()">
-    <md-select [placeholder]="placeholder" (change)="change.emit(getPlayerInfoFromEvent($event))">
+    <md-select [placeholder]="placeholder" [(ngModel)]="value" (change)="change.emit($event.value)">
         <md-option value="Select a Player" [value]="null">Not give</md-option>
-        <md-option *ngFor="let playerRepresentation of getPlayersRepresentation()" [value]="playerRepresentation">
+        <md-option *ngFor="let playerRepresentation of getPlayersRepresentation()" [value]="playerRepresentation.id">
             <img class="entry-img" [src]="playerRepresentation.teamEmblem">
             <img class="entry-img" [src]="playerRepresentation.playerImage">
             {{ playerRepresentation.name }}

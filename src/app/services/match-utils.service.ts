@@ -50,6 +50,10 @@ export class MatchUtilsService {
     }
   }
 
+  getAllPlayers(match: Match): PlayerInfo[] {
+    return this.getHomePlayers(match).concat(this.getAwayPlayers(match));
+  }
+
   getMatchParts(match: Match): MatchPart[] {
       if (match.matchParts) {
         return match.matchParts.sort((d1, d2) => new Date(d1.startingTime).getTime() - new Date(d2.startingTime).getTime());

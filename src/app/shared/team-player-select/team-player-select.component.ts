@@ -13,9 +13,10 @@ import {PlayerInfoUtilService} from '../../player-info-util.service';
 export class TeamPlayerSelectComponent implements OnInit {
 
   @Input() match;
+  @Input() value: string;
   loadingPlayerRepresentation = true;
   playersRepresentation: PlayerRepresentation[] = [];
-  @Output() change: EventEmitter<PlayerInfo> = new EventEmitter<PlayerInfo>();
+  @Output() change: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private matchUtilsService: MatchUtilsService, private teamInfoUtilService: TeamInfoUtilService,
               private playerInfoUtilService: PlayerInfoUtilService) { }
@@ -54,11 +55,6 @@ export class TeamPlayerSelectComponent implements OnInit {
           this.playersRepresentation.push(representation);
           this.loadingPlayerRepresentation = false;
       });
-  }
-
-  getPlayerInfoFromEvent(event: {value: PlayerRepresentation}): PlayerInfo {
-    return this.matchUtilsService.getHomePlayers(this.match).concat(this.matchUtilsService.getAwayPlayers(this.match))
-        .filter(player => player.id === event.value.id)[0];
   }
 
 }

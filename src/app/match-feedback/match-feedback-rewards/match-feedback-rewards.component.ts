@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatchService} from '../../services/match.service';
 import {PlayerInfo} from '../../match/playerInfo';
+import {MatchUtilsService} from '../../services/match-utils.service';
 
 @Component({
   selector: 'app-match-feedback-rewards',
@@ -14,7 +15,7 @@ export class MatchFeedbackRewardsComponent implements OnInit {
   @Output() rewardsChange: EventEmitter<{[reward: string]: string}> = new EventEmitter<{[reward: string]: string}>();
   rewardsAvailable: string[];
 
-  constructor(private matchService: MatchService) { }
+  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
     this.matchService.getMatchRewardsForSport('Football')
@@ -32,19 +33,25 @@ export class MatchFeedbackRewardsComponent implements OnInit {
   set rewards(val: {[reward: string]: string}) {
     this.rewardsValue = val;
     this.rewardsChange.emit(this.rewardsValue);
-    console.log('emitting:', this.rewardsValue)
   }
 
   getRewardsAvailable(): string[] {
     return this.rewardsAvailable
   }
 
-  onChange(reward: string, playerInfo: PlayerInfo): void {
+  getRewarded(reward: string): string {
+    if (!this.rewardsValue || !this.rewardsValue[reward]) {
+      return null;
+    }
+    return this.rewardsValue[reward];
+  }
+
+  onChange(reward: string, playerInfoId: string): void {
+    console.log('event received:', playerInfoId)
     if (!this.rewardsValue) {
       this.rewardsValue = {};
     }
-    this.rewardsValue[reward] = playerInfo.id;
-    console.log('rewards:', this.rewardsValue)
+    this.rewardsValue[reward] = playerInfoId;
     this.rewardsChange.emit(this.rewardsValue);
   }
 
