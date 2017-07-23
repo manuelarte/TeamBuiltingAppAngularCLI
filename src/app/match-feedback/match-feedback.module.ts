@@ -10,7 +10,7 @@ import {
     MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
     MdOptionModule,
     MdProgressSpinnerModule, MdSelectModule,
-    MdSliderModule, MdTableModule, MdTabsModule, MdTooltipModule
+    MdSliderModule, MdSnackBarModule, MdTableModule, MdTabsModule, MdTooltipModule
 } from '@angular/material';
 
 import {ProfileModule} from '../profile/profile.module';
@@ -57,6 +57,7 @@ import {MatchFeedbackRewardsComponent} from './match-feedback-rewards/match-feed
         MdOptionModule,
         MdSelectModule,
         MdSliderModule,
+        MdSnackBarModule,
         MdTableModule,
         MdTabsModule,
         MdTooltipModule,
