@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, RequestOptionsArgs} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -18,7 +18,7 @@ export class MatchService {
 
   private matchesUrl = this.backendMatchesUrl + '/matches';
   private matchEventsUrl = this.backendMatchesUrl + '/matches/events';
-  private matchFeedbacksUrl: string = this.backendExperienceUrl + '/matchFeedback';
+  private matchFeedbackUrl: string = this.backendExperienceUrl + '/matchFeedback';
 
   constructor(private http: Http, private authHttp: AuthHttp) { }
 
@@ -32,18 +32,23 @@ export class MatchService {
       .toPromise();
   }
 
+  getMatchRewardsForSport(sportName: string): Promise<string[]> {
+    const options: RequestOptionsArgs = {params: {sport: sportName}};
+    return this.http.get(`${this.matchFeedbackUrl}/rewards`, options).map(response => <string[]> response.json()).toPromise();
+  }
+
   getMatchFeedback(matchId: string): Promise<MatchFeedback[]> {
-    return this.http.get(`${this.matchFeedbacksUrl}?matchId=${matchId}`)
+    return this.http.get(`${this.matchFeedbackUrl}?matchId=${matchId}`)
         .map(response => <MatchFeedback[]> response.json()).toPromise();
   }
 
   getMyMatchFeedback(matchId: string): Promise<IncomingMatchFeedback> {
-    return this.authHttp.get(`${this.matchFeedbacksUrl}/me?matchId=${matchId}`)
+    return this.authHttp.get(`${this.matchFeedbackUrl}/me?matchId=${matchId}`)
           .map(response => <IncomingMatchFeedback> response.json()).toPromise();
   }
 
   saveMatchFeedback(incomingMatchFeedback: IncomingMatchFeedback): Promise<IncomingMatchFeedback> {
-    return this.authHttp.post(`${this.matchFeedbacksUrl}`, incomingMatchFeedback).map(response => <IncomingMatchFeedback> response.json())
+    return this.authHttp.post(`${this.matchFeedbackUrl}`, incomingMatchFeedback).map(response => <IncomingMatchFeedback> response.json())
       .toPromise();
   }
 

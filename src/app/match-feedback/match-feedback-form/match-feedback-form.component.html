@@ -1,50 +1,59 @@
 Here you can rate the performance of the teams and players of the match:
-<div class="match-feedback-form">
-<form *ngIf="matchFeedback" #matchFeedbackForm="ngForm" (ngSubmit)="onSubmit()">
+<div *ngIf="isAuthenticated(); else notAuthenticated" class="match-feedback-form">
+    <form *ngIf="matchFeedback" #matchFeedbackForm="ngForm" (ngSubmit)="onSubmit()">
 
-    <md-checkbox name="anonymous" [(ngModel)]="matchFeedback.anonymous">Anonymous Feedback?</md-checkbox>
-    <div *ngIf="matchFeedback" class="ui-g">
+        <md-checkbox name="anonymous" [(ngModel)]="matchFeedback.anonymous">Anonymous Feedback?</md-checkbox>
+        <div class="ui-g">
 
-        <div class="ui-g-12 ui-md-6 ui-lg-6">
-            <div class="ui-g-6 ui-md-6 ui-lg-6">
-                <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getHomeTeam().id]"
-                                                     [(value)]="matchFeedback.ratings[getHomeTeam().id]">
-                </app-match-feedback-item-info-rating>
-            </div>
-        </div>
-
-        <div class="ui-g-12 ui-md-6 ui-lg-6">
-            <div class="ui-g-6 ui-md-6 ui-lg-6">
-                <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getAwayTeam().id]"
-                                                     [(value)]="matchFeedback.ratings[getAwayTeam().id]">
-                </app-match-feedback-item-info-rating>
-            </div>
-        </div>
-
-        <div class="ui-g-12 ui-md-6 ui-lg-6">
-            <div *ngFor="let playerInfo of getHomePlayers()">
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
-                    <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
-                                                         [(value)]="matchFeedback.ratings[playerInfo.id]">
+                    <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getHomeTeam().id]"
+                                                         [(value)]="matchFeedback.ratings[getHomeTeam().id]">
                     </app-match-feedback-item-info-rating>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getAwayTeam().id]"
+                                                         [(value)]="matchFeedback.ratings[getAwayTeam().id]">
+                    </app-match-feedback-item-info-rating>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <div *ngFor="let playerInfo of getHomePlayers()">
+                    <div class="ui-g-6 ui-md-6 ui-lg-6">
+                        <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
+                                                             [(value)]="matchFeedback.ratings[playerInfo.id]">
+                        </app-match-feedback-item-info-rating>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <div *ngFor="let playerInfo of getAwayPlayers()">
+                    <div class="ui-g-6 ui-md-6 ui-lg-6">
+                        <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
+                                                             [(value)]="matchFeedback.ratings[playerInfo.id]">
+                        </app-match-feedback-item-info-rating>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-6 ui-lg-6">
-            <div *ngFor="let playerInfo of getAwayPlayers()">
-                <div class="ui-g-6 ui-md-6 ui-lg-6">
-                    <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
-                                                         [(value)]="matchFeedback.ratings[playerInfo.id]">
-                    </app-match-feedback-item-info-rating>
-                </div>
-            </div>
-        </div>
-    </div>
+        <app-match-feedback-rewards [match]="match" [(rewards)]="matchFeedback.rewards">
 
-    <button md-raised-button type="submit" color="primary"
-            [disabled]="matchFeedbackForm.invalid">Save</button>
+        </app-match-feedback-rewards>
 
-</form>
+        <button md-raised-button type="submit" color="primary"
+                [disabled]="matchFeedbackForm.invalid">Save</button>
+
+    </form>
+    matchFeedback: <pre>{{matchFeedback | json}}</pre>
 </div>
-{{matchFeedback | json}}
+
+
+<ng-template #notAuthenticated>
+    <p-messages [value]="msgs" [closable]="false"></p-messages>
+</ng-template>

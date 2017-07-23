@@ -4,7 +4,7 @@ export class MatchFeedback {
     userId: string;
     anonymous: boolean;
     ratings: {[playerInfo: string]: number};
-    rewards: {[playerInfo: string]: string}
+    rewards: {[reward: string]: string}
 
 }
 
@@ -16,6 +16,6 @@ export class IncomingMatchFeedback {
     matchId: string;
     anonymous: boolean;
     ratings: {[playerInfo: string]: number};
-    rewards: {[playerInfo: string]: string}
+    rewards: {[reward: string]: string}
 
 }

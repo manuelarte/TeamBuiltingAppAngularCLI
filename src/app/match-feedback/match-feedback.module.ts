@@ -24,6 +24,7 @@ import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchShowPlayerRatingComponent} from './match-show-player-rating/match-show-player-rating.component';
 import {MatchFeedbackFormComponent} from './match-feedback-form/match-feedback-form.component';
 import {MatchFeedbackItemInfoRatingComponent} from './match-feedback-item-info-rating/match-feedback-item-info-rating.component';
+import {MatchFeedbackRewardsComponent} from './match-feedback-rewards/match-feedback-rewards.component';
 
 @NgModule({
     imports: [
@@ -64,6 +65,7 @@ import {MatchFeedbackItemInfoRatingComponent} from './match-feedback-item-info-r
     declarations: [
         MatchFeedbackFormComponent,
         MatchFeedbackItemInfoRatingComponent,
+        MatchFeedbackRewardsComponent,
         MatchShowPlayerRatingComponent,
     ],
     providers: [

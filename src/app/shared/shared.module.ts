@@ -16,6 +16,7 @@ import {MyStringWidgetComponent} from "./my-string-widget/my-string-widget.compo
 import {MyTimeInMatchWidgetComponent} from './my-time-in-match-widget/my-time-in-match-widget.component';
 import {MyPlayerInMatchWidgetComponent} from './my-player-in-match-widget/my-player-in-match-widget.component';
 import {MyTeamInMatchWidgetComponent} from './my-team-in-match-widget/my-team-in-match-widget.component';
+import {TeamPlayerSelectComponent} from './team-player-select/team-player-select.component';
 
 @NgModule({
     imports: [
@@ -43,13 +44,15 @@ import {MyTeamInMatchWidgetComponent} from './my-team-in-match-widget/my-team-in
         MyStringWidgetComponent,
         MyPlayerInMatchWidgetComponent,
         MyTeamInMatchWidgetComponent,
-        MyTimeInMatchWidgetComponent
+        MyTimeInMatchWidgetComponent,
+        TeamPlayerSelectComponent,
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
     entryComponents: [MyStringWidgetComponent, MyPlayerInMatchWidgetComponent, MyTeamInMatchWidgetComponent, MyTimeInMatchWidgetComponent],
-    exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent, MyPlayerInMatchWidgetComponent, MyTeamInMatchWidgetComponent, MyTimeInMatchWidgetComponent]
+    exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent, MyPlayerInMatchWidgetComponent,
+        MyTeamInMatchWidgetComponent, MyTimeInMatchWidgetComponent, TeamPlayerSelectComponent]
 })
 export class TeambuiltingSharedModule {
 }

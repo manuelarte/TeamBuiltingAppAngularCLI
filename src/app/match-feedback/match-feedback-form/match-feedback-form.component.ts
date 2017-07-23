@@ -8,6 +8,7 @@ import {TeamInfo} from '../../match/teamInfo';
 import {TeamInfoUtilService} from '../../team-info-util.service';
 import {MatchService} from '../../services/match.service';
 import {DisplayableItemInfo, ItemInfo} from '../../match/team-in-match';
+import {Auth} from '../../services/auth-service';
 
 @Component({
   selector: 'app-match-feedback-form',
@@ -26,15 +27,20 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
 
   displayableItem: {[itemInfoId: string]: DisplayableItemInfo} = {};
 
-  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService,
+  msgs = [];
+
+  constructor(private auth: Auth, private matchService: MatchService, private matchUtilsService: MatchUtilsService,
               private playerInfoUtilsService: PlayerInfoUtilService, private teamInfoUtilsService: TeamInfoUtilService) { }
 
   ngOnInit() {
+    this.msgs.push({severity:'warn', summary:'Not Authenticated', detail:'You have to be authenticated to give feedback'});
+
     this.loadingMatchFeedback = true;
     this.matchService.getMyMatchFeedback(this.match.id).then(matchFeedback => {
       this.loadingMatchFeedback = false;
       this.matchFeedback = matchFeedback;
     }).catch(error => {
+      console.error(error)
       this.loadingMatchFeedback = false;
       if (error.status == 400 && error.json().errorCode === '0021') {
         this.matchFeedback = this.createDefaultMatchFeedback();
@@ -106,6 +112,10 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
       this.submittingMatchFeedback = false;
       this.errorSubmittingMatchFeedback = true;
     });
+  }
+
+  isAuthenticated(): boolean {
+    return this.auth.isAuthenticated();
   }
 
 }
