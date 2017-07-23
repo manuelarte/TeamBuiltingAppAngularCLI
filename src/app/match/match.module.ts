@@ -40,6 +40,7 @@ import {TeamInfoUtilService} from '../team-info-util.service';
 import {PlayerService} from '../services/player.service';
 import {TeamService} from '../services/team.service';
 import {UtilsService} from '../services/utils.service';
+import {MatchService} from '../services/match.service';
 
 @NgModule({
     imports: [
@@ -94,6 +95,7 @@ import {UtilsService} from '../services/utils.service';
         MatchPartsComponent,
     ],
     providers: [
+        MatchService,
         MatchUtilsService,
         PlayerInfoUtilService,
         PlayerService,

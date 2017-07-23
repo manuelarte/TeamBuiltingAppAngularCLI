@@ -17,6 +17,8 @@ import {MyTimeInMatchWidgetComponent} from './my-time-in-match-widget/my-time-in
 import {MyPlayerInMatchWidgetComponent} from './my-player-in-match-widget/my-player-in-match-widget.component';
 import {MyTeamInMatchWidgetComponent} from './my-team-in-match-widget/my-team-in-match-widget.component';
 import {TeamPlayerSelectComponent} from './team-player-select/team-player-select.component';
+import {TeamService} from '../services/team.service';
+import {PlayerService} from '../services/player.service';
 
 @NgModule({
     imports: [
@@ -48,6 +50,8 @@ import {TeamPlayerSelectComponent} from './team-player-select/team-player-select
         TeamPlayerSelectComponent,
     ],
     providers: [
+        TeamService,
+        PlayerService,
         {provide: LOCALE_ID, useValue: 'nl'},
     ],
     entryComponents: [MyStringWidgetComponent, MyPlayerInMatchWidgetComponent, MyTeamInMatchWidgetComponent, MyTimeInMatchWidgetComponent],

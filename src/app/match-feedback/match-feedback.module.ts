@@ -25,6 +25,9 @@ import {MatchShowPlayerRatingComponent} from './match-show-player-rating/match-s
 import {MatchFeedbackFormComponent} from './match-feedback-form/match-feedback-form.component';
 import {MatchFeedbackItemInfoRatingComponent} from './match-feedback-item-info-rating/match-feedback-item-info-rating.component';
 import {MatchFeedbackRewardsComponent} from './match-feedback-rewards/match-feedback-rewards.component';
+import {TeamService} from '../services/team.service';
+import {PlayerService} from '../services/player.service';
+import {MatchService} from '../services/match.service';
 
 @NgModule({
     imports: [
@@ -70,7 +73,10 @@ import {MatchFeedbackRewardsComponent} from './match-feedback-rewards/match-feed
         MatchShowPlayerRatingComponent,
     ],
     providers: [
+        MatchService,
         MatchUtilsService,
+        TeamService,
+        PlayerService,
         {provide: LOCALE_ID, useValue: 'nl'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],
