@@ -15,7 +15,12 @@
         <ng-container cdkColumnDef="team">
             <md-header-cell *cdkHeaderCellDef> Team </md-header-cell>
             <md-cell *cdkCellDef="let row">
-                {{getTeam(row).name}}
+                <ng-container *ngIf="isATeamEvent(row); else noTeamEventDom">
+                    {{getTeam(row)?.name}}
+                </ng-container>
+                <ng-template #noTeamEventDom>
+                    N/A
+                </ng-template>
             </md-cell>
         </ng-container>
 

@@ -38,6 +38,9 @@ export class MatchEventSchemaAndUi {
 }
 
 export class Ui {
+  iconName?: string;
+  teamProperty?: string;
+  playerProperty?: string;
   tableProperties: string[];
   properties: {
     [key: string]: UiProperty

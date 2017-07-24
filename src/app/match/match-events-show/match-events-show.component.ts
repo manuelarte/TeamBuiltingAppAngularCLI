@@ -96,11 +96,12 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
   }
 
   isATeamEvent(matchEvent: MatchEvent): boolean {
-    return true;
+    return this.schemaAndUiMatchEvents[this.getEventType(matchEvent)].ui.teamProperty != null;
   }
 
   getTeam(matchEvent: MatchEvent): DisplayableTeamInfo {
-    return this.teamMap[matchEvent.goal.teamThatScored];
+    console.log()
+    return this.teamMap[matchEvent[this.getEventType(matchEvent)][this.schemaAndUiMatchEvents[this.getEventType(matchEvent)].ui.teamProperty]];
   }
 
   getTableProperties(matchEvent: MatchEvent): string[] {
