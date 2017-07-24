@@ -7,7 +7,14 @@
 
         <ng-container cdkColumnDef="type">
             <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{getEventType(row)}} </md-cell>
+            <md-cell *cdkCellDef="let row">
+                <md-icon [svgIcon]="getEventType(row)" mdTooltip="{{getEventType(row)}}"></md-icon>
+            </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="team">
+            <md-header-cell *cdkHeaderCellDef> Team </md-header-cell>
+            <md-cell *cdkCellDef="let row"> Home Team </md-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="when">

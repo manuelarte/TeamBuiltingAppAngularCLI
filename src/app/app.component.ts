@@ -30,6 +30,11 @@ export class AppComponent implements OnInit {
       this.mdIconRegistry.addSvgIcon('football_field',
           sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-field-top-view.svg'));
 
+      this.mdIconRegistry.addSvgIcon('substitution',
+          sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/up-and-down-arrows-inside-boxes.svg'));
+      this.mdIconRegistry.addSvgIcon('goal',
+          sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/flaming-football.svg'));
+
       this.auth.handleAuthentication();
   }
 

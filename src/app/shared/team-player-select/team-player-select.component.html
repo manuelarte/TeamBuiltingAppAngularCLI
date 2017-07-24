@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loadingPlayerRepresentation && getPlayersRepresentation()">
+<ng-container *ngIf="!loadingPlayerRepresentation && getPlayersRepresentation() != null">
     <md-select [placeholder]="placeholder" [(ngModel)]="value" (change)="change.emit($event.value)">
         <md-option value="Select a Player" [value]="null">Not give</md-option>
         <md-option *ngFor="let playerRepresentation of getPlayersRepresentation()" [value]="playerRepresentation.id">
