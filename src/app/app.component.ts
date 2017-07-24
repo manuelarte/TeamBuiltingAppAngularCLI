@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Auth} from './services/auth-service';
 import {MdIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AppConstants} from './app-constants';
 
 export const title = 'Team Builting App';
 
@@ -24,16 +25,16 @@ export class AppComponent implements OnInit {
       this.mdIconRegistry.addSvgIcon('player-profile',
         sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-with-the-ball-under-the-feet.svg'));
       this.mdIconRegistry.addSvgIcon('shorts-with-number-12',
-        sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-shorts-with-number-12.svg'));
-      this.mdIconRegistry.addSvgIcon('reward', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-medal.svg'));
-      this.mdIconRegistry.addSvgIcon('futsal_pitch', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/futsal/futsal_pitch.svg'));
+        sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/football-shorts-with-number-12.svg'));
+      this.mdIconRegistry.addSvgIcon('reward', sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/football-medal.svg'));
+      this.mdIconRegistry.addSvgIcon('futsal_pitch', sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FUTSAL_ICONS_URL + '/futsal_pitch.svg'));
       this.mdIconRegistry.addSvgIcon('football_field',
-          sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-field-top-view.svg'));
+          sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/football-field-top-view.svg'));
 
       this.mdIconRegistry.addSvgIcon('substitution',
-          sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/up-and-down-arrows-inside-boxes.svg'));
+          sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/up-and-down-arrows-inside-boxes.svg'));
       this.mdIconRegistry.addSvgIcon('goal',
-          sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/flaming-football.svg'));
+          sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/flaming-football.svg'));
 
       this.auth.handleAuthentication();
   }

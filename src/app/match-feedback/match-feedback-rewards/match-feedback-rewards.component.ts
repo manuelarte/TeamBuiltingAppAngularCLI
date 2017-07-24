@@ -47,7 +47,6 @@ export class MatchFeedbackRewardsComponent implements OnInit {
   }
 
   onChange(reward: string, playerInfoId: string): void {
-    console.log('event received:', playerInfoId)
     if (!this.rewardsValue) {
       this.rewardsValue = {};
     }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loadingSchemaAndUiMatchEvents">
+<ng-container *ngIf="!loadingSchemaAndUiMatchEvents && !isBusy()">
     <md-input-container floatPlaceholder="never">
         <input mdInput #filter placeholder="Filter event">
     </md-input-container>
@@ -14,7 +14,9 @@
 
         <ng-container cdkColumnDef="team">
             <md-header-cell *cdkHeaderCellDef> Team </md-header-cell>
-            <md-cell *cdkCellDef="let row"> Home Team </md-cell>
+            <md-cell *cdkCellDef="let row">
+                {{getTeam(row).name}}
+            </md-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="when">

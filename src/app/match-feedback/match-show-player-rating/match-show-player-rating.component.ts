@@ -26,7 +26,6 @@ export class MatchShowPlayerRatingComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    console.log('allUsersMatchFeedback', this.allUsersMatchFeedback)
     if (this.hasPlayerRatingFeedback() &&
         this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId).length > 0) {
       const feedbackWithUserId: MatchFeedback[] = this.matchFeedbackThatRateThePlayer().filter(matchFeedback => matchFeedback.userId);

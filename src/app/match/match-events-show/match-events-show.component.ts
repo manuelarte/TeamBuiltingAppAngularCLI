@@ -7,6 +7,8 @@ import {DataSource} from '@angular/cdk';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MatchUtilsService} from '../../services/match-utils.service';
+import {TeamInfoUtilService} from '../../team-info-util.service';
+import {DisplayableTeamInfo} from '../teamInfo';
 
 @Component({
   selector: 'app-match-events-show',
@@ -32,7 +34,12 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
   @ViewChild('filter') filter: ElementRef;
   // /table
 
-  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService) { }
+  loadingHomeTeam = true;
+  loadingAwayTeam = true;
+  teamMap: {[id: string]: DisplayableTeamInfo} = {};
+
+  constructor(private matchService: MatchService, private matchUtilsService: MatchUtilsService,
+              private teamInfoUtilService: TeamInfoUtilService) { }
 
   ngOnInit() {
     this.loadingSchemaAndUiMatchEvents = true;
@@ -42,6 +49,19 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
       this.loadingSchemaAndUiMatchEvents = false;
 
     });
+
+    this.loadingHomeTeam = true;
+    this.teamInfoUtilService.getDisplayableTeamInfo(this.matchUtilsService.getHomeTeam(this.match)).subscribe(homeTeam => {
+      this.teamMap[this.matchUtilsService.getHomeTeam(this.match).id] = homeTeam;
+      this.loadingHomeTeam = false;
+    });
+
+    this.loadingAwayTeam = true;
+    this.teamInfoUtilService.getDisplayableTeamInfo(this.matchUtilsService.getAwayTeam(this.match)).subscribe(awayTeam => {
+      this.teamMap[this.matchUtilsService.getAwayTeam(this.match).id] = awayTeam;
+      this.loadingAwayTeam = false;
+    });
+
     if (this.eventToDisplay$) {
       this.eventToDisplay$.subscribe(() => this.ngOnChanges())
     }
@@ -63,12 +83,24 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
     // /table
   }
 
+  isBusy(): boolean {
+    return this.loadingHomeTeam || this.loadingAwayTeam;
+  }
+
   isEditable(): boolean {
     return this.editable
   }
 
   getEventType(matchEvent: MatchEvent): string {
     return this.matchUtilsService.getMatchEventType(matchEvent);
+  }
+
+  isATeamEvent(matchEvent: MatchEvent): boolean {
+    return true;
+  }
+
+  getTeam(matchEvent: MatchEvent): DisplayableTeamInfo {
+    return this.teamMap[matchEvent.goal.teamThatScored];
   }
 
   getTableProperties(matchEvent: MatchEvent): string[] {
@@ -116,6 +148,7 @@ export class ExampleDataSource extends DataSource<MatchEvent> {
             return this.matchEvents.slice().filter((item: MatchEvent) => {
                 console.log('item?:', item);
                 const type: string = Object.keys(item)[0];
+                // TODO add the team to filtering
                 let searchStr = (type + item[type].when).toLowerCase();
                 return searchStr.indexOf(this.filter.toLowerCase()) != -1;
             });
