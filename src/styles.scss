@@ -4,7 +4,17 @@
 @include mat-core();
 
 // import our custom theme
-@import 'theme.scss';
+// @import 'theme.scss';
+// a theme
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// @import 'app/candy-carousel/candy-carousel-theme.scss';
+// $primary: mat-palette($mat-indigo);
+// $accent:  mat-palette($mat-pink, A200, A100, A400);
+// $theme: mat-light-theme($primary, $accent);
+// Using the $theme variable from the pre-built theme you can call the theming function
+// @include candy-carousel-theme($theme);
+
 
 //.my-theme {
     // use our theme with angular-material-theme mixin
@@ -14,4 +24,20 @@
 /* You can add global styles to this file, and also import other style files */
 .clickable {
     cursor: pointer;
+}
+
+hr.line {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 8px auto;
+    height: 0;
+    width: 100%;
+    max-height: 0;
+    font-size: 1px;
+    line-height: 0;
+    clear: both;
+    border: none;
+    border-top: 1px solid #aaaaaa;
+    border-bottom: 1px solid #ffffff;
 }
