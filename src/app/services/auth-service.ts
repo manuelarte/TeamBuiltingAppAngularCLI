@@ -29,7 +29,6 @@ export class Auth {
         domain: myConfig.domain,
         responseType: 'token id_token',
         audience: 'https://manuelarte.eu.auth0.com/userinfo',
-        redirectUri: 'http://localhost:4200/home',
         scope: 'openid user_id email given_name family_name nickname picture roles user_metadata read:users'
     });
 
