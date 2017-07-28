@@ -17,10 +17,14 @@ import {ExceptionMessageBackend} from '../../exception-message-backend';
   providers: [TeamService, PlayerService, SeasonUtilService]
 })
 export class TeamDetailComponent implements OnInit {
-  team: Team;
-  teamLoadingFlag = false;
+  teamLoadingFlag = true;
   errorTeamLoadingFlag = false;
+  team: Team;
+
+  loadingPlayersToTeam = true;
+  errorLoadingPlayersToTeam = false;
   playersToTeam: PlayerToTeam[];
+
   players: Player[];
 
   /**
@@ -57,16 +61,22 @@ export class TeamDetailComponent implements OnInit {
                     this.handleError(error);
                     this.forwardError(error.json());
               });
+              this.loadingPlayersToTeam = true;
               this.teamService.getPlayers(id, this.date)
                   .then(playersToTeam => {
                       this.playersToTeam = playersToTeam;
+                      this.loadingPlayersToTeam = false;
                       this.players = [];
                       this.playersToTeam.forEach(playerToTeam => {
                           this.playerService.getPlayer(playerToTeam.playerId).then(player => {
                               this.players.push(player);
                           });
                       });
-                  }).catch(this.handleError);
+                  }).catch(error => {
+                      this.loadingPlayersToTeam = false;
+                      this.errorLoadingPlayersToTeam = true;
+                      this.handleError(error);
+                  });
           });
           this.season = this.seasonUtilService.getSeasonForDate(this.date, this.seasonStartsInMonth);
       });

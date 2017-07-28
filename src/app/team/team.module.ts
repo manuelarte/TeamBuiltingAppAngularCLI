@@ -12,7 +12,7 @@ import {TeamDetailSportIntroComponent} from './team-detail/team-detail-sport-int
 import {TeamRoutingModule} from './team-routing.module';
 import {CommonModule} from '@angular/common';
 import {ErrorHandlingModule} from '../error-handling/error-handling.module';
-import {MdProgressSpinnerModule} from '@angular/material';
+import {MdProgressSpinnerModule, MdProgressBarModule} from '@angular/material';
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import {MdProgressSpinnerModule} from '@angular/material';
         AgmCoreModule,
         // Material
         MdProgressSpinnerModule,
+        MdProgressBarModule,
         // App Modules
         PlayerModule,
         ErrorHandlingModule,

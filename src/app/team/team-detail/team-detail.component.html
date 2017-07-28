@@ -1,4 +1,4 @@
-<div *ngIf="!teamLoadingFlag && !errorTeamLoadingFlag; else loadingTeam" class="content-container">
+<div *ngIf="!teamLoadingFlag && !errorTeamLoadingFlag; else loading" class="content-container">
     <div class="content-area">
 
         <team-detail-sport-intro [team]="team"></team-detail-sport-intro>
@@ -7,14 +7,23 @@
 
         <div class="team-players">
             <h1 id="players">The Players:</h1>
-            <div *ngIf="players && team" class="ui-g">
+
+            <div *ngIf="!loadingPlayersToTeam; else loadingPlayers" class="ui-g">
                 <div class="ui-g-12 ui-md-4 ui-lg-3" *ngFor="let playerToTeam of playersToTeam">
                     <app-player-in-team #playerInTeam [playerToTeam]="playerToTeam" [season]="season" class="team-player-card">Loading players...</app-player-in-team>
                 </div>
             </div>
+
+            <ng-template #loadingPlayers>
+                <md-progress-bar
+                    [color]="primary"
+                    [mode]="indeterminate">
+                </md-progress-bar>
+            </ng-template>
+
         </div>
 
-        <div *ngIf="players && getPlayerIds().length === players.length && team" class="team-in-google-maps">
+        <div *ngIf="players && getPlayerIds().length === players.length && team; else loading" class="team-in-google-maps">
             <h1 id="team-in-google-maps">Locations In the Map:</h1>
             <team-in-google-maps [players]="players" [team]="team">Loading map...</team-in-google-maps>
         </div>
@@ -36,6 +45,7 @@
         </section>
     </nav>-->
 </div>
-<ng-template #loadingTeam>
+
+<ng-template #loading>
     <md-progress-spinner mode="indeterminate">Loading team</md-progress-spinner>
 </ng-template>
