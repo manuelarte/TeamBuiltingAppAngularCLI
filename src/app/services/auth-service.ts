@@ -4,6 +4,7 @@ import {LoginService} from './login.service';
 
 import * as auth0 from 'auth0-js';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable()
 export class Auth {
@@ -23,6 +24,7 @@ export class Auth {
         domain: myConfig.domain,
         responseType: 'token id_token',
         audience: 'https://manuelarte.eu.auth0.com/userinfo',
+        redirectUri: environment.production ? 'https://teambuiltingapp-aa7b4.firebaseapp.com/home' : 'http://localhost:4200/home',
         scope: 'openid user_id email given_name family_name nickname picture roles user_metadata read:users'
     });
 
