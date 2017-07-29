@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt';
 import {myConfig} from './auth.config';
 import {LoginService} from './login.service';
 
@@ -16,11 +15,6 @@ export class Auth {
         // socialButtonStyle: 'small',
         theme: {
             primaryColor: '#31324F'
-        },
-        auth: {
-            params: {
-                scope: 'openid profile user_id email given_name family_name nickname picture roles user_metadata read:users'
-            },
         }
     };
 
