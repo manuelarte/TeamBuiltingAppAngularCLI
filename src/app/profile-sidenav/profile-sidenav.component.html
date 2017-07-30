@@ -1,4 +1,4 @@
-<div *ngIf="isAuthenticated(); else notAuthenticated">
+<div *ngIf="isAuthenticated() && getUserProfile(); else notAuthenticated">
 
     <div *ngIf="!userDataLoadingFlag && userData; else userDataNotLoaded">
         <div #profileHeader id="profileHeader">

@@ -4,7 +4,7 @@ import {LoginService} from './login.service';
 
 import * as auth0 from 'auth0-js';
 import {Router} from '@angular/router';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class Auth {
@@ -25,7 +25,7 @@ export class Auth {
         responseType: 'token id_token',
         audience: 'https://manuelarte.eu.auth0.com/userinfo',
         redirectUri: environment.redirectUri,
-        scope: 'openid user_id email given_name family_name nickname picture roles user_metadata read:users'
+        scope: 'openid profile user_id email given_name family_name nickname picture roles user_metadata read:users'
     });
 
 
@@ -50,7 +50,7 @@ export class Auth {
                 this.loginService.loginEvent();
                 this.getProfile((err, profile) => {
                     console.log('Profile:', profile);
-                    localStorage.setItem('profile', profile);
+                    localStorage.setItem('profile', JSON.stringify(profile));
                     this.router.navigate(['/home']);
                 });
 
