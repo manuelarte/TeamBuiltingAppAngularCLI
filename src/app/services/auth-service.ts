@@ -24,7 +24,7 @@ export class Auth {
         domain: myConfig.domain,
         responseType: 'token id_token',
         audience: 'https://manuelarte.eu.auth0.com/userinfo',
-        redirectUri: environment.production ? 'https://teambuiltingapp-aa7b4.firebaseapp.com/home' : 'http://localhost:4200/home',
+        redirectUri: environment.redirectUri,
         scope: 'openid user_id email given_name family_name nickname picture roles user_metadata read:users'
     });
 
@@ -49,9 +49,11 @@ export class Auth {
                 this.setSession(authResult);
                 this.loginService.loginEvent();
                 this.getProfile((err, profile) => {
-                    console.log('Profile:', profile)
+                    console.log('Profile:', profile);
+                    localStorage.setItem('profile', profile);
+                    this.router.navigate(['/home']);
                 });
-                this.router.navigate(['/home']);
+
             } else if (err) {
                 this.router.navigate(['/home']);
                 console.log(err);

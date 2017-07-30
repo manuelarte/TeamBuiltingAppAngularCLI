@@ -5,6 +5,7 @@ export const environment = {
   statistics: 'statistics',
   experience: 'experience',
 
+  redirectUri: 'https://teambuiltingapp-aa7b4.firebaseapp.com/home',
   backendTeamsUrl: `https://teambuiltingteams.herokuapp.com/teams`,
   backendPlayersUrl: `https://teambuiltingplayers.herokuapp.com`,
   backendSportsUrl: `https://teambuiltingsports.herokuapp.com/sports`,

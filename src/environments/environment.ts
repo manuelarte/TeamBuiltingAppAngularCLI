@@ -10,6 +10,7 @@ export const environment = {
   statistics: 'statistics',
   experience: 'experience',
 
+  redirectUri: 'https://localhost:4200/home',
   backendTeamsUrl: `http://localhost:8090/teams`,
   backendPlayersUrl: `http://localhost:8091`,
   backendSportsUrl: `http://localhost:8092/sports`,
