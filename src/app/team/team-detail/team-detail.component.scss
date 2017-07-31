@@ -1,6 +1,8 @@
+@import '../../../sass/theme/_colors.scss';
+
 .team-players {
-    position:relative;
-    background-color: lightgray;
+    position: relative;
+    background-color: rgba(mat-color($primary, 200), 0.5);
 }
 
 .team-players:after {
@@ -11,7 +13,7 @@
     margin-left: -50px;
     width: 0;
     height: 0;
-    border-top: solid 50px lightgray;
+    border-top: solid 50px rgba(mat-color($primary, 200), 0.5);
     border-left: solid 50px transparent;
     border-right: solid 50px transparent;
     z-index:99;
@@ -23,5 +25,5 @@
 
 .team-in-google-maps {
     position:relative;
-    background-color: lightgoldenrodyellow;
+    background-color: rgba(mat-color($accent, 200), 0.5);
 }

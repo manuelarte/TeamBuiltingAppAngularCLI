@@ -7,10 +7,13 @@
 
     <img *ngIf="!loadingTeamFlag" class="playerToTeam-team-img clickable" (click)="routerUtilsService.gotoTeamDetails(team)" [src]="team.emblemLink">
     <img *ngIf="!loadingPlayerFlag" class="playerToTeam-player-img" [src]="player.imageLink">
-    <md-card-content>
+
+    <md-card-content class="card-content">
+
         <app-player-to-team-cud *ngIf="!submittingFlag" [(model)]="playerToTeam" [(editing)]="editing" (form)="playerToTeamForm = $event"></app-player-to-team-cud>
         <md-progress-spinner *ngIf="submittingFlag" mode="indeterminate">
         </md-progress-spinner>
+
     </md-card-content>
     <!--
     <md-card-actions>

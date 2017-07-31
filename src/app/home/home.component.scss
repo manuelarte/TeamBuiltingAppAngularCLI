@@ -1,3 +1,5 @@
+@import '../../sass/theme/_colors.scss';
+
 $intro_div_width: 100%;
 
 .galleria-container {
@@ -32,4 +34,8 @@ $intro_div_width: 100%;
 
 .galleria-container {
     max-width: 900px;
+}
+
+.search-card {
+    color: rgba(mat-color($primary, 900), 0.8)
 }

@@ -1,8 +1,10 @@
-$color__blue_regular: #00c5d7;
-$color__blue_light: #1ADFF1;
-$color__blue_dark: #009dab;
-$color__gray_light: #eeeeee;
-$color__gray_regular: #f6f9fc;
+@import '../../../../sass/theme/_colors.scss';
+
+$color__blue_regular: rgba(mat-color($primary, 500), 1);
+$color__blue_light: rgba(mat-color($primary, 300), 1);
+$color__blue_dark: rgba(mat-color($primary, 900), 1);
+$color__gray_light: rgba(mat-color($accent, 500), 1);
+$color__gray_regular: rgba(mat-color($accent, 300), 1);;
 
 .row{
     position: relative;

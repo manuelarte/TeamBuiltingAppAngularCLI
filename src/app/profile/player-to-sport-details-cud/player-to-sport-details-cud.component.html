@@ -1,20 +1,30 @@
 <div *ngIf="!isBusyLoadingSports && !isErrorLoadingSports(); else notReady">
 
-    <md-select #sportName placeholder="Select the Sport" [(ngModel)]="model.sport" required>
-        <md-option *ngFor="let sport of sports" [value]="sport.name" [disabled]="isSportRegistered(sport.name)">
-            {{sport.name}}
-        </md-option>
-    </md-select>
-    <app-player-to-sport-details-common-cud *ngIf="model.sport" [sport]="filterTeamSportBySportName(model.sport)[0]" [(model)]="model" (form)="emitForm($event)"></app-player-to-sport-details-common-cud>
+    <section class="section">
+        <md-select #sportName placeholder="Select the Sport" [(ngModel)]="model.sport" required>
+            <md-option *ngFor="let sport of sports" [value]="sport.name" [disabled]="isSportRegistered(sport.name)">
+                {{sport.name}}
+            </md-option>
+        </md-select>
+    </section>
+
+    <section class="section">
+        <label class="label-margin">Position</label>
+        <app-player-to-sport-details-common-cud *ngIf="model.sport" class="margin"
+                                                [sport]="filterTeamSportBySportName(model.sport)[0]" [(model)]="model" (form)="emitForm($event)"></app-player-to-sport-details-common-cud>
+    </section>
 
     <div *ngIf="isShowSportField()">
         <h1>Position:</h1>
-        <div [ngSwitch]="model.sport">
-            <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
-                                      [playersDetails]="[model]">Loading football position...</player-football-position>
-            <player-futsal-position *ngSwitchCase="'Futsal'" [players]="[player]"
-                                    [playersDetails]="[model]">Loading futsal position...</player-futsal-position>
-        </div>
+
+        <section class="section">
+            <div [ngSwitch]="model.sport">
+                <player-football-position *ngSwitchCase="'Football'" [players]="[player]"
+                                          [playersDetails]="[model]">Loading football position...</player-football-position>
+                <player-futsal-position *ngSwitchCase="'Futsal'" [players]="[player]"
+                                        [playersDetails]="[model]">Loading futsal position...</player-futsal-position>
+            </div>
+        </section>
     </div>
 
 </div>

@@ -1,7 +1,9 @@
+// Palette for TeamBuilting
+
 $black-87-opacity: rgba(black, 0.87);
 $white-87-opacity: rgba(white, 0.87);
 
-$mat-primary: ( // Dark Blue
+$teambuilting-mat-primary: ( // Dark Blue
     50: #4ea4ff,
     100: #027dff,
     200: #0061c9,
@@ -36,7 +38,7 @@ $mat-primary: ( // Dark Blue
   )
 );
 
-$mat-secondary: ( // Light blue
+$teambuilting-mat-secondary: ( // Light blue
   50: #e6faff,
   100: #9beafd,
   200: #63defc,
@@ -70,7 +72,7 @@ $mat-secondary: ( // Light blue
   )
 );
 
-$mat-error: (
+$teambuilting-mat-error: (
   50 : #fae9e7,
   100 : #f4c9c3,
   200 : #eca59c,

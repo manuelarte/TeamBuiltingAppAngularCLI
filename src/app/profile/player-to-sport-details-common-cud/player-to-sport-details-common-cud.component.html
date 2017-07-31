@@ -1,6 +1,6 @@
 <form *ngIf="sport" [formGroup]="sportDetailsForm" (change)="emitForm()">
 
-    <section>
+    <section class="positions margin">
 
         <md-select #mainPosition placeholder="Select Your Main Position" [(ngModel)]="model.mainPosition"
                    formControlName="mainPosition" (change)="emitForm()" required>
@@ -18,7 +18,7 @@
 
     </section>
 
-    <section>
+    <section class="bio margin">
         <md-input-container class="example-full-width">
             <textarea #bio mdInput placeholder="Bio" rows="5" [(ngModel)]="model.bio" formControlName="bio" id="bio"
                       name="bio" [readOnly]="!editing"></textarea>
