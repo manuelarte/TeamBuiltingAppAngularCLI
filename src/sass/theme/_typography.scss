@@ -1,0 +1,32 @@
+// TYPOGRAPHY
+
+h1 {
+  font-size: 25px;
+  font-weight: 400;
+  color: mat-color($mat-primary, 500);
+  margin:0;
+  margin-bottom: $main-padding/2;
+  padding-top: $main-padding/2;
+}
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: mat-color($mat-primary, 500);
+  margin:0;
+  margin-bottom: $main-padding/2;
+  padding-top: $main-padding/2;
+}
+h3 {
+
+}
+h4 {
+
+}
+h5 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: $main-padding/2 0;
+}
+h6 {
+
+}

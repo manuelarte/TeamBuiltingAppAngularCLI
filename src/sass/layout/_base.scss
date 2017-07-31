@@ -1,0 +1,52 @@
+// BASE BLOCKS SETTINGS
+// Body
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: $base-font-size;
+  height: 100vh;
+}
+
+// Set font (annoying overrides). Can't find a better way.
+.header-bar,
+.breadcrumb-toolbar,
+.global-toolbar,
+md-card-subtitle,
+md-card-content,
+.mat-select-trigger {
+  font-size: $base-font-size !important;
+}
+
+// Set font (annoying overrides). Can't find a better way.
+.header-bar,
+.breadcrumb-toolbar,
+.global-toolbar,
+md-card-title,
+md-card-content {
+  color: $black-87-opacity;
+}
+
+// Header
+.logo {
+  background: $logo-image no-repeat center center;
+  text-align: center;
+  width: 100%;
+  height: $logo-cnt-height;
+}
+
+// Main content
+.inni-main {
+  display: block;
+  padding: $main-padding;
+}
+
+hr {
+  background-color: mat-color($mat-grey, 200);
+  border: 0 none;
+  color: mat-color($mat-grey, 200);
+  height: 1px;
+  margin: $main-padding 0;
+}
+

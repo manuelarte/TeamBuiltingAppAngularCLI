@@ -1,0 +1,11 @@
+// PANELS
+// Default button holder (ie: within md-cards or md-tabs)
+.button-holder {
+  background: none;
+}
+
+md-tab-body {
+  .mat-toolbar {
+    padding: 0 0;
+  }
+}

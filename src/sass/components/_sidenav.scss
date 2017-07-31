@@ -1,0 +1,56 @@
+// SIDENAV
+md-sidenav-container {
+  @include gradient();
+}
+
+md-sidenav.sidenav.mat-sidenav-opened {
+  min-width: 240px;
+  @include box_shadow(3);
+}
+
+.mat-nav-list {
+  $category-icon-size: 18px;
+
+  .mat-list-item {
+    &.nav-main-category {
+      > .mat-list-item-content {
+        font-size: 15px;
+        border-bottom: solid 1px mat-color($mat-grey, 200);
+        display: flex;
+        height: $sidenav-item-height;
+
+        .category-icon {
+          font-size: $category-icon-size;
+          height: $category-icon-size;
+          width: $category-icon-size;
+          margin-right: 4px;
+          margin-left: -2px;
+          opacity: .75;
+        }
+        .toggle-icon {
+          flex: 1 1 auto;
+          text-align: right;
+        }
+      }
+    }
+
+    &.nav-category-items {
+      > .mat-list-item-content {
+        font-size: 15px;
+        height: $sidenav-item-height;
+      }
+    }
+  }
+  .nav-category-items-container {
+    background-color: mat-color($mat-grey, 50);
+    border-bottom: solid 1px mat-color($mat-grey, 200);
+
+    .mat-list-item {
+      > .mat-list-item-content {
+        padding-left: 37px;
+        font-size: 13px;
+        height: 34px;
+      }
+    }
+  }
+}

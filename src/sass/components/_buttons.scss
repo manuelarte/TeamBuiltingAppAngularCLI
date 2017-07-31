@@ -1,0 +1,38 @@
+// BUTTONS
+button {
+  font-weight: 400 !important;
+  line-height: $btn-height !important;
+}
+
+[md-button] {
+  min-width: initial !important;
+  width: $btn-height !important;
+  padding: 0 !important;
+}
+
+// Passive raised button.
+[md-raised-button] {
+  padding: 0;
+
+  &.passive {
+    background-color: $btn-bg-passive;
+    color: $btn-clr-passive;
+  }
+}
+
+// Add hover effect to icon button
+.mat-icon-button:not([disabled]) {
+  width: $table-row-height;
+  height: $table-row-height;
+  @include border-radius();
+
+  &:hover {
+    background: rgba(mat-color($mat-secondary, 500), 0.08);
+  }
+}
+
+// Position buttons before inputs/selects (i.e. see passports related entity)
+.mat-button.pre-button {
+  margin-left: -5px;
+  margin-right: 5px;
+}

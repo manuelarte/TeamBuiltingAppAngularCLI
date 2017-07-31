@@ -1,0 +1,17 @@
+// Content boxes
+.content-subtle-highlight-box {
+  border: solid 1px mat-color($mat-grey, 300);
+  background: mat-color($mat-grey, 50);
+  padding: $main-padding;
+  margin-bottom: $main-padding;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 14px;
+    font-weight: 700;
+    margin: $main-padding/2 0 $main-padding 0;
+  }
+}

@@ -65,7 +65,7 @@ export class MatchPartsComponent implements OnInit, OnChanges {
   }
 
   getDuration(matchPart: MatchPart, unit: unitOfTime.All): number {
-      return moment(new Date(matchPart.endingTime).getTime()).subtract(new Date(matchPart.endingTime).getTime()).get(unit);
+      return moment(matchPart.endingTime).subtract(new Date(matchPart.startingTime).getTime()).get(unit);
   }
 
   getAndsortMatchParts(): MatchPart[] {

@@ -1,0 +1,117 @@
+// GRID
+// Uses flexbox
+
+// Fill remaining space (better alternative to float:right)
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+// Apply to Flex row if you want consistent column/row gutters (handy for forms)
+.with-gutter {
+    padding-bottom: $main-padding;
+
+  > [fxFlex] {
+    padding-left: $main-padding;
+
+    &:first-child {
+     padding-left: 0;
+    }
+
+    .mat-card {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.flex-container {
+  height: 100%;
+}
+
+// Display flexbox as a table - default is clean
+// HEADER
+.flex-table-header {
+  font-weight: bold;
+  height: $table-row-height;
+  border-bottom: solid 1px $table-brd-td;
+}
+// ROW
+.flex-table-row {
+  border-bottom: solid 1px $table-brd-td;
+  height: $table-row-height;
+
+  > div[fxFlex] {
+    .mat-slide-toggle {
+      display: flex;
+    }
+  }
+}
+
+// Make a default class for flexBox properties - better control for generic divs / formly formly fields
+.flex-box {
+  margin-bottom: $main-padding;
+
+  & > div,
+  & > formly-field {
+    margin-right: $main-padding;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  [class*="flex-"] {
+    padding-left: $main-padding;
+  }
+
+  [class*="flex-"]:first-child {
+    padding-left: 0;
+  }
+
+  & > formly-field {
+    width: 100%;
+
+    .mat-input-container {
+      width: 100%;
+    }
+  }
+}
+
+// TO MANAGE DISPLAY OF FORMLY FORM GROUPS & FIELDS
+.display-flex > formly-group > formly-form {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: $main-padding;
+
+  > formly-field {
+    padding-left: $main-padding;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .flex-1 {
+    flex: 1 0 200px;
+  }
+
+  .flex-2 {
+    flex: 2 0 200px;
+  }
+
+  .flex-3 {
+    flex: 3 0 200px;
+  }
+
+  // Alignment fix.
+  md-input-container {
+    margin-top: 3px;
+  }
+  md2-datepicker {
+    margin-top: 11px;
+    margin-bottom: 15px;
+  }
+  .mat-select-trigger {
+    margin-top: 11px;
+  }
+  .mat-select-value { }
+}

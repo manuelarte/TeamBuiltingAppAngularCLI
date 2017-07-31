@@ -1,0 +1,18 @@
+// GLOBAL COLORS
+// Main Background
+$bg-gradient-primary:     rgba(mat-color($primary, 500), 0.1);
+$bg-gradient-accent:      rgba(mat-color($accent, 500), 0.1);
+// Header
+$bg-global-toolbar:       rgba(white, 0.8);
+$bg-breadcrumb-toolbar:   rgba(white, 0.4);
+$brdr-toolbar:            rgba(white, 0);
+// Buttons
+$btn-bg-passive:          mat-color($mat-grey, 600);
+$btn-clr-passive:         $white-87-opacity;
+// Tables
+$table-bg:                white;
+$table-row-hover:         mat-color($mat-grey, 100);
+$table-bg-header:         mat-color($mat-grey, 200);
+$table-brd-header:        mat-color($mat-grey, A400);
+$table-brd-td:            mat-color($mat-grey, 200);
+// Inputs

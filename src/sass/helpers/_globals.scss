@@ -1,0 +1,31 @@
+// File to define global re-usable classes
+
+// Set pointer cursor to anything with this class.
+.clickable {
+  cursor: pointer;
+}
+
+// Align blocks/columns to the right when values
+.value {
+  text-align: right !important;
+}
+
+// Minimize and center align actions in blocks/columns
+.actions {
+  width: 1px;
+  text-align: center !important;
+}
+
+// Align it's contents to the right
+.aRight {
+  text-align: right;
+}
+
+.debug-panel {
+  font-size: xx-small; color: lightgrey; cursor: pointer;
+}
+
+// Hide stuff
+.hide {
+  display: none;
+}

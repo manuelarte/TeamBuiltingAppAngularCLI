@@ -1,0 +1,62 @@
+.legend-vertical {
+
+  &.two-col {
+    .legend-row {
+      clear: both;
+
+      > div {
+        float:left;
+        margin: 2px;
+        $element-height: 20px;
+        height: $element-height;
+        line-height: $element-height;
+
+        &:first-child {
+          width: 30px;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .sent {
+    background: #5576A4;
+  }
+  .calc {
+    background: #44A0C9;
+  }
+  .error {
+    background: mat-color($mat-error, 500);
+  }
+  .warn {
+    background: mat-color($mat-warn, 500);
+  }
+  .success {
+    background: mat-color($mat-success, 500);
+  }
+}
+
+//&.sent {
+//  background: #5576A4;
+//}
+//
+//&.calc {
+//  background: #44A0C9;
+//}
+//
+//&.status {
+//
+//  &.error {
+//    background: mat-color($mat-error, 500);
+//    border-right-color: mat-color($mat-error, 500);
+//  }
+//  &.warn {
+//    background: mat-color($mat-warn, 500);
+//    border-right-color: mat-color($mat-warn, 500);
+//  }
+//
+//  &.success {
+//    background: mat-color($mat-success, 500);
+//    border-right-color: mat-color($mat-success, 500);
+//  }
+//}

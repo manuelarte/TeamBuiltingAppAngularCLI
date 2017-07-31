@@ -21,6 +21,11 @@
 //    @include angular-material-theme($my-theme);
 //}
 
+// Theme
+@import 'sass/theme/brands/theme-inni';
+@import 'sass/theme/colors';
+// @import 'sass/theme/typography';
+
 /* You can add global styles to this file, and also import other style files */
 .clickable {
     cursor: pointer;

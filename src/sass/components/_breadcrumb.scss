@@ -1,0 +1,9 @@
+.breadcrumb-toolbar {
+  min-height: $hdr-toolbar-height;
+  background-color: $bg-breadcrumb-toolbar;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.23);
+
+  md-toolbar-row {
+    height: $hdr-toolbar-height;
+  }
+}
