@@ -1,8 +1,8 @@
-import {Component, Input, IterableDiffers, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {MatchEvent} from '../match-events';
 import {Match} from '../match';
-import moment = require('moment');
 import {Observable} from 'rxjs/Observable';
+import {MatchUtilsService} from '../../services/match-utils.service';
 
 @Component({
   selector: 'app-match-timeline',
@@ -62,7 +62,7 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
 
   @Input() events: MatchEvent[] = [];
 
-  constructor() { }
+  constructor(private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
       this.setTimelineData(false);
@@ -97,14 +97,20 @@ export class MatchTimelineComponent implements OnInit, OnChanges {
     let toReturn: [string, string, Date, Date][] = [];
     if (this.match && this.match.events) {
       this.match.events.forEach(matchEvent => {
-          const eventType: string = Object.getOwnPropertyNames(matchEvent)[0];
+          const eventType: string = this.matchUtilsService.getMatchEventType(matchEvent);
           const row: [string, string, Date, Date] = ['Match Events', eventType,
-              new Date(0, 0, 0, new Date(matchEvent[eventType].when).getHours(), new Date(matchEvent[eventType].when).getMinutes(), 0),
-              new Date(0, 0, 0, new Date(matchEvent[eventType].when).getHours(), new Date(matchEvent[eventType].when).getMinutes(), 30)];
+              new Date(0, 0, 0, this.getWhenOrStartingTimeIfNull(matchEvent).getHours(), this.getWhenOrStartingTimeIfNull(matchEvent).getMinutes(), 0),
+              new Date(0, 0, 0, this.getWhenOrStartingTimeIfNull(matchEvent).getHours(), this.getWhenOrStartingTimeIfNull(matchEvent).getMinutes(), 30)];
           toReturn.push(row)
       })
     }
     return toReturn;
+  }
+
+  private getWhenOrStartingTimeIfNull(matchEvent: MatchEvent): Date {
+    return matchEvent[this.matchUtilsService.getMatchEventType(matchEvent)].when != null ?
+      new Date(matchEvent[this.matchUtilsService.getMatchEventType(matchEvent)].when) :
+      new Date(this.match.matchParts[0].startingTime);
   }
 
   private setTimelineData(update: boolean): void {

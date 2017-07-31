@@ -87,7 +87,7 @@ export class MatchUtilsService {
   }
 
   getMatchEventType(matchEvent: MatchEvent): string {
-    return Object.keys(matchEvent)[0];
+    return Object.getOwnPropertyNames(matchEvent)[0];
   }
 
   isMatchReadyForMatchFeedback(match: Match): boolean {
