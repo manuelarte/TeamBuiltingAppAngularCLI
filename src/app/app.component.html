@@ -21,12 +21,6 @@
       <router-outlet (activate)="sidenav.opened = false"></router-outlet>
     </div>
 
-    <div *ngIf="!isAuthenticated()">
-        Please login to continue.
-        <button md-raised-button color="primary" (click)="login()">Login</button>
-    </div>
-    <button md-raised-button color="accent" [disabled]="!isAuthenticated()" (click)="logout()">Logout</button>
-
     <md-toolbar #footer class="footer" color="primary">
         <span><donate></donate></span>
         <span class="btn-space"></span>
@@ -40,4 +34,8 @@
 
 <ng-container *ngIf="isAuthenticated()">
     <button *ngIf="!sidenav.opened" md-fab class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>add</md-icon></button>
+</ng-container>
+
+<ng-container *ngIf="!isAuthenticated()" mdTooltip="Click to log in">
+    <button md-fab class="action-button" (click)="login()"><md-icon>person</md-icon></button>
 </ng-container>

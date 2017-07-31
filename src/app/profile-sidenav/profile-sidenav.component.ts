@@ -45,7 +45,7 @@ export class ProfileSidenavComponent implements OnInit, OnDestroy {
   }
 
   getPlayerId(): number {
-      return this.userData.playerId;
+    return this.userData.playerId;
   }
 
   ngOnDestroy() {
@@ -54,7 +54,11 @@ export class ProfileSidenavComponent implements OnInit, OnDestroy {
   }
 
   isAuthenticated(): boolean {
-      return this.auth.isAuthenticated();
+    return this.auth.isAuthenticated();
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 
 }

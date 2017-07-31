@@ -18,6 +18,10 @@
                 <md-icon md-list-icon>accessibility</md-icon>
                 <a md-line [href]="'/player/' + getPlayerId()">My Profile</a>
             </md-list-item>
+            <md-list-item (click)="logout()">
+                <md-icon md-list-icon>share</md-icon>
+                Log out
+            </md-list-item>
         </md-nav-list>
 
         <hr class="line">
