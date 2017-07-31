@@ -33,13 +33,15 @@
                 <form [formGroup]="scoreForm">
                 <md-input-container>
                     <input mdInput #homeTeamScoreTemplate name="homeTeamScoreName" type="number" placeholder="Goals of Home Team"
-                           formControlName="scoreHomeTeam" required class="score">
+                           formControlName="scoreHomeTeam" required class="score" [readOnly]="!isHomeTeamSelected()"
+                           [min]="0">
                     <md-error>The home team goals has to be filled.</md-error>
                 </md-input-container>
                 vs:
                 <md-input-container>
                     <input mdInput #awayTeamScoreTemplate name="awayTeamScoreName" type="number" placeholder="Goals of Away Team"
-                           formControlName="scoreAwayTeam" required class="score">
+                           formControlName="scoreAwayTeam" required class="score" [readOnly]="!isAwayTeamSelected()"
+                           [min]="0">
                     <md-error>The away team goals has to be filled.</md-error>
                 </md-input-container>
                 </form>

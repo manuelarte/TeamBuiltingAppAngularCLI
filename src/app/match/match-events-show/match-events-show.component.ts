@@ -28,7 +28,7 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
   schemaAndUiMatchEvents: MatchEventSchemaAndUi;
 
   // table
-  displayedColumns: string[] = ['type', 'team', 'when', 'info', 'actions'];
+  displayedColumns: string[] = ['type', 'team', 'when', 'actions'];
   dataSource: ExampleDataSource | null;
 
   @ViewChild('filter') filter: ElementRef;

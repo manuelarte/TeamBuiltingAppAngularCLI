@@ -26,9 +26,10 @@
 
         <ng-container cdkColumnDef="when">
             <md-header-cell *cdkHeaderCellDef> When </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{getWhenInMinutes(row)}} minutes </md-cell>
+            <md-cell *cdkCellDef="let row"> {{getWhenInMinutes(row) ? getWhenInMinutes(row) : 0}} minutes </md-cell>
         </ng-container>
 
+        <!--
         <ng-container cdkColumnDef="info">
             <md-header-cell *cdkHeaderCellDef> Info </md-header-cell>
             <md-cell *cdkCellDef="let row">
@@ -36,12 +37,13 @@
                 <ng-container *ngFor="let property of getTableProperties(row)">
                     <ng-container *ngIf="row[getEventType(row)][property]">
                         <app-my-team-in-match-widget [schema]="getSchemaAndWidget(row, property)" [value]="row[getEventType(row)][property]"></app-my-team-in-match-widget>
-                        <!--<b>{{property}}</b>: {{row[getEventType(row)][property]}} <br/>-->
+                        <b>{{property}}</b>: {{row[getEventType(row)][property]}} <br/>
                     </ng-container>
                 </ng-container>
 
             </md-cell>
         </ng-container>
+        -->
 
         <ng-container cdkColumnDef="actions">
             <md-header-cell *cdkHeaderCellDef> Action </md-header-cell>

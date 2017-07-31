@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GoalMatchEvent, MatchEvent} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
-import moment = require('moment');
 import {Observable} from 'rxjs/Observable';
 import {UUID} from 'angular2-uuid';
 
@@ -101,7 +100,7 @@ export class MatchEventsComponent implements OnInit {
   private adjustGoalEvents(x: {scoreHomeTeam: number, scoreAwayTeam: number}): void {
       console.log('x:',x)
       const actualHomeTeamGoals: number = x.scoreHomeTeam;
-      const awayHomeTeamGoals: number = x.scoreAwayTeam;
+      const actualAwayTeamGoals: number = x.scoreAwayTeam;
       let displayedHomeTeamGoals: number = this.goalEvents.homeTeam? this.goalEvents.homeTeam.length: 0;
       let displayedAwayTeamGoals: number = this.goalEvents.awayTeam? this.goalEvents.awayTeam.length: 0;
       console.log('actualHomeTeamGoals:', actualHomeTeamGoals);
@@ -112,7 +111,7 @@ export class MatchEventsComponent implements OnInit {
             const goal: GoalMatchEvent = new GoalMatchEvent();
             goal.goal = {
               id: UUID.UUID(),
-              when: this.match.matchParts[0].startingTime,
+              when: null,
               who: null,
               teamThatScored: this.match.homeTeam.teamInfo.id,
               description: ''
@@ -120,7 +119,24 @@ export class MatchEventsComponent implements OnInit {
             this.goalEvents.homeTeam.push(goal);
             this.eventAdded.emit(goal);
           } else {
+            this.goalEvents.homeTeam = this.goalEvents.homeTeam.splice(0, 1);
+          }
+      }
 
+      if (displayedAwayTeamGoals !== actualAwayTeamGoals) {
+          if (displayedAwayTeamGoals < actualAwayTeamGoals) {
+              const goal: GoalMatchEvent = new GoalMatchEvent();
+              goal.goal = {
+                  id: UUID.UUID(),
+                  when: null,
+                  who: null,
+                  teamThatScored: this.match.awayTeam.teamInfo.id,
+                  description: ''
+              };
+              this.goalEvents.awayTeam.push(goal);
+              this.eventAdded.emit(goal);
+          } else {
+              this.goalEvents.awayTeam = this.goalEvents.awayTeam.splice(0, 1);
           }
       }
 
