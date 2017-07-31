@@ -2,9 +2,7 @@
     <md-checkbox class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</md-checkbox>
 
     <div *ngIf="teamRegistered">
-        <ng-container>
-            <team-search (teamClicked)="setTeamInfoFromTeam($event)"></team-search>
-        </ng-container>
+        <team-search (teamClicked)="setTeamInfoFromTeam($event)"></team-search>
     </div>
 
     <div *ngIf="!teamRegistered">
@@ -22,5 +20,7 @@
 
 <div *ngIf="teamInfo">
     <app-match-team-info [teamInfo]="teamInfo"></app-match-team-info>
-    <button *ngIf="isEditable()" md-button (click)="removeTeam()"><md-icon aria-hidden="true">backspace</md-icon></button>
+    <button *ngIf="isEditable()" md-button (click)="removeTeam()" mdTooltip="Remove team from match">
+        <md-icon aria-hidden="true">backspace</md-icon>
+    </button>
 </div>
