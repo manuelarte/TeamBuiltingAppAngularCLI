@@ -86,7 +86,7 @@
             <h1>Match Events</h1>
             <app-match-events *ngIf="shallShowEvent(); else needsTeamAndPlayers"  [scoreFormChanged$]="scoreFormChanged$"
                               [match]="getMatch()" [editable]="isEditable()"
-                              (eventAdded)="eventAdded($event)"></app-match-events>
+                              (eventAdded)="eventAdded($event)" (eventRemoved)="eventRemoved($event)"></app-match-events>
 
             <app-match-events-show *ngIf="shallShowEvent()" [matchEvents]="getEvents()" [eventToDisplay$]="eventToDisplay$"
             [editable]="isEditable()" [match]="getMatch()"></app-match-events-show>

@@ -30,6 +30,7 @@ export class MatchEventsComponent implements OnInit {
   goalEvents: {homeTeam: GoalMatchEvent[], awayTeam: GoalMatchEvent[]} = {homeTeam: [], awayTeam: []};
 
   @Output() eventAdded: EventEmitter<MatchEvent> = new EventEmitter<MatchEvent>();
+  @Output() eventRemoved: EventEmitter<MatchEvent> = new EventEmitter<MatchEvent>();
 
   constructor(private matchService: MatchService) { }
 
@@ -107,36 +108,48 @@ export class MatchEventsComponent implements OnInit {
       console.log('displayedHomeTeamGoals:', displayedHomeTeamGoals);
 
       if (displayedHomeTeamGoals !== actualHomeTeamGoals) {
-          if (displayedHomeTeamGoals < actualHomeTeamGoals) {
-            const goal: GoalMatchEvent = new GoalMatchEvent();
-            goal.goal = {
-              id: UUID.UUID(),
-              when: null,
-              who: null,
-              teamThatScored: this.match.homeTeam.teamInfo.id,
-              description: ''
-            };
-            this.goalEvents.homeTeam.push(goal);
-            this.eventAdded.emit(goal);
+          const difference: number = actualHomeTeamGoals - displayedHomeTeamGoals;
+          if (difference > 0) {
+            for (let i = 0; i < difference; i++) {
+                const goal = new GoalMatchEvent();
+                goal.goal = {
+                    id: UUID.UUID(),
+                    when: null,
+                    who: null,
+                    teamThatScored: this.match.homeTeam.teamInfo.id,
+                    description: ''
+                };
+              this.goalEvents.homeTeam.push(goal)
+              this.eventAdded.emit(goal);
+            }
           } else {
-            this.goalEvents.homeTeam = this.goalEvents.homeTeam.splice(0, 1);
+              for (let i = 0; i < -difference; i++) {
+                  const toRemove: MatchEvent = this.goalEvents.homeTeam.splice(0, 1)[0];
+                  this.eventRemoved.emit(toRemove);
+              }
           }
       }
 
       if (displayedAwayTeamGoals !== actualAwayTeamGoals) {
-          if (displayedAwayTeamGoals < actualAwayTeamGoals) {
-              const goal: GoalMatchEvent = new GoalMatchEvent();
-              goal.goal = {
-                  id: UUID.UUID(),
-                  when: null,
-                  who: null,
-                  teamThatScored: this.match.awayTeam.teamInfo.id,
-                  description: ''
-              };
-              this.goalEvents.awayTeam.push(goal);
-              this.eventAdded.emit(goal);
+          const difference: number = actualAwayTeamGoals - displayedAwayTeamGoals;
+          if (difference > 0) {
+              for (let i = 0; i < difference; i++) {
+                  const goal = new GoalMatchEvent();
+                  goal.goal = {
+                      id: UUID.UUID(),
+                      when: null,
+                      who: null,
+                      teamThatScored: this.match.awayTeam.teamInfo.id,
+                      description: ''
+                  };
+                  this.goalEvents.awayTeam.push(goal)
+                  this.eventAdded.emit(goal);
+              }
           } else {
-              this.goalEvents.awayTeam = this.goalEvents.awayTeam.splice(0, 1);
+              for (let i = 0; i < -difference; i++) {
+                  const toRemove: MatchEvent = this.goalEvents.awayTeam.splice(0, 1)[0];
+                  this.eventRemoved.emit(toRemove);
+              }
           }
       }
 

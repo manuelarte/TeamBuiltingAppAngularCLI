@@ -199,6 +199,12 @@ export class MatchCudComponent implements OnInit, OnChanges {
       this.informRestComponents();
   }
 
+  eventRemoved(matchEvent: MatchEvent): void {
+    const i: number = this.match.events.indexOf(matchEvent);
+    this.match.events.splice(i, 1);
+    this.informRestComponents();
+  }
+
   private informRestComponents(): void {
     this.eventToDisplay$ = new Observable(observer => observer.next());
   }
