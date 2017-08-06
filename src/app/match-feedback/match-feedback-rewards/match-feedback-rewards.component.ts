@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatchService} from '../../services/match.service';
-import {PlayerInfo} from '../../match/playerInfo';
 import {MatchUtilsService} from '../../services/match-utils.service';
 
 @Component({

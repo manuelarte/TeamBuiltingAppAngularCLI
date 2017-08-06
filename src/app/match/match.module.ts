@@ -42,6 +42,7 @@ import {TeamService} from '../services/team.service';
 import {UtilsService} from '../services/utils.service';
 import {MatchService} from '../services/match.service';
 import {TeamSearchService} from '../services/team-search.service';
+import {CanActivateViaAuthGuard} from '../shared/can-activate-via-auth-guard';
 
 @NgModule({
     imports: [
@@ -104,6 +105,7 @@ import {TeamSearchService} from '../services/team-search.service';
         TeamService,
         TeamSearchService,
         UtilsService,
+        CanActivateViaAuthGuard,
         {provide: LOCALE_ID, useValue: 'nl'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],

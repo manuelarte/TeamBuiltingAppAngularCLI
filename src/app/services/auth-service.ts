@@ -25,7 +25,7 @@ export class Auth {
         responseType: 'token id_token',
         audience: 'https://manuelarte.eu.auth0.com/userinfo',
         redirectUri: environment.redirectUri,
-        scope: 'openid profile roles user_id email given_name family_name nickname picture user_metadata read:users'
+        scope: 'openid profile roles app_metadata user_metadata user_id email given_name family_name nickname'
     });
 
 
