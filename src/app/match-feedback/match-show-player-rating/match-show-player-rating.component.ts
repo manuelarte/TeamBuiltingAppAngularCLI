@@ -14,7 +14,7 @@ import {AppConstants} from '../../app-constants';
 export class MatchShowPlayerRatingComponent implements OnInit {
 
   @Input() playerInfo;
-  @Input() allUsersMatchFeedback: MatchFeedback[];
+  @Input() allUsersMatchFeedback: MatchFeedback[] = [];
   ratingFeedbackForPlayer: {[stars: number]: {userId: string}[]};
   loadingUserMap = true;
   errorLoadingUserMap = false;

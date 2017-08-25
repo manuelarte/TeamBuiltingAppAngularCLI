@@ -19,7 +19,7 @@ export class MatchDetailComponent implements OnInit {
 
   loadingFeedback = false;
   errorLoadingFeedback = false;
-  allUsersMatchFeedback: MatchFeedback[];
+  allUsersMatchFeedback: MatchFeedback[] = [];
 
   constructor(private auth: Auth, private matchService: MatchService, private route: ActivatedRoute) { }
 
