@@ -21,6 +21,6 @@
 <div *ngIf="teamInfo">
     <app-match-team-info [teamInfo]="teamInfo"></app-match-team-info>
     <button *ngIf="isEditable()" md-button (click)="removeTeam()" mdTooltip="Remove team from match">
-        <md-icon aria-hidden="true">backspace</md-icon>
+        <md-icon>backspace</md-icon>
     </button>
 </div>

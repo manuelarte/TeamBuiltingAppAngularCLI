@@ -7,32 +7,28 @@ Here you can rate the performance of the teams and players of the match:
 
             <div class="ui-g-12 ui-md-6 ui-lg-6">
                 <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getHomeTeam().id]"
-                                                         [(value)]="matchFeedback.ratings[getHomeTeam().id]">
-                </app-match-feedback-item-info-rating>
+                    [(value)]="matchFeedback.ratings[getHomeTeam().id]"></app-match-feedback-item-info-rating>
             </div>
 
             <div class="ui-g-12 ui-md-6 ui-lg-6">
                 <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[getAwayTeam().id]"
-                                                         [(value)]="matchFeedback.ratings[getAwayTeam().id]">
-                </app-match-feedback-item-info-rating>
+                    [(value)]="matchFeedback.ratings[getAwayTeam().id]"></app-match-feedback-item-info-rating>
             </div>
 
             <div class="ui-g-12 ui-md-6 ui-lg-6">
                 <div *ngFor="let playerInfo of getHomePlayers()">
-                    <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
                         <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
-                                                             [(value)]="matchFeedback.ratings[playerInfo.id]">
-                        </app-match-feedback-item-info-rating>
+                            [(value)]="matchFeedback.ratings[playerInfo.id]"></app-match-feedback-item-info-rating>
                     </div>
                 </div>
             </div>
 
             <div class="ui-g-12 ui-md-6 ui-lg-6">
                 <div *ngFor="let playerInfo of getAwayPlayers()">
-                    <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
                         <app-match-feedback-item-info-rating [displayableItemInfo]="displayableItem[playerInfo.id]"
-                                                             [(value)]="matchFeedback.ratings[playerInfo.id]">
-                        </app-match-feedback-item-info-rating>
+                            [(value)]="matchFeedback.ratings[playerInfo.id]"></app-match-feedback-item-info-rating>
                     </div>
                 </div>
             </div>
