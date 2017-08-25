@@ -19,6 +19,8 @@ export class PlayerInfoUtilService {
           const unregisteredPlayerInfo: UnRegisteredPlayerInfo = <UnRegisteredPlayerInfo> playerInfo;
           const displayablePlayerInfo = new DisplayablePlayerInfo();
           displayablePlayerInfo.name = unregisteredPlayerInfo.name;
+          displayablePlayerInfo.picture = unregisteredPlayerInfo.picture ? unregisteredPlayerInfo.picture :
+              "./images/question-mark.jpg";
           return Observable.of(displayablePlayerInfo);
       }
   }

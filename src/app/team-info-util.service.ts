@@ -18,7 +18,8 @@ export class TeamInfoUtilService {
           const unregisteredTeamInfo: UnRegisteredTeamInfo = <UnRegisteredTeamInfo> teamInfo;
           const displayableTeam: DisplayableTeamInfo = new DisplayableTeamInfo();
           displayableTeam.name = unregisteredTeamInfo.name;
-          displayableTeam.picture = "./images/question-mark.jpg";
+          displayableTeam.picture = unregisteredTeamInfo.picture ? unregisteredTeamInfo.picture :
+              "./images/question-mark.jpg";
           return Observable.of(displayableTeam);
       }
   }

@@ -12,6 +12,7 @@ export class RegisteredPlayerInfo implements PlayerInfo {
 export class UnRegisteredPlayerInfo implements PlayerInfo {
     id: string;
     name: string;
+    picture: string;
 }
 
 

@@ -11,6 +11,7 @@ export class RegisteredTeamInfo implements TeamInfo {
 export class UnRegisteredTeamInfo implements TeamInfo {
     id: string;
     name: string;
+    picture: string;
 }
 
 export class DisplayableTeamInfo implements DisplayableItemInfo {
