@@ -108,8 +108,9 @@ export class MatchEventsShowComponent implements OnInit, OnChanges {
     return this.schemaAndUiMatchEvents[this.getEventType(matchEvent)].ui.tableProperties;
   }
 
-  getWhenInMinutes(matchEvent: MatchEvent): number {
-    return moment(this.matchUtilsService.getMatchParts(this.match)[0].startingTime).subtract( new Date(matchEvent[this.getEventType(matchEvent)].when).getTime() ).get('minutes');
+  getWhenOrStartingTime(matchEvent: MatchEvent): Date {
+    return matchEvent[this.getEventType(matchEvent)].when ? new Date(matchEvent[this.getEventType(matchEvent)].when) :
+        this.matchUtilsService.getMatchParts(this.match)[0].startingTime;
   }
 
   getSchemaAndWidget(matchEvent: MatchEvent, property: string): any {

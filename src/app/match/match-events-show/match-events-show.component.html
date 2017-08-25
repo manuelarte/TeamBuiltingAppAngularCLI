@@ -27,7 +27,7 @@
         <ng-container cdkColumnDef="when">
             <md-header-cell *cdkHeaderCellDef> When </md-header-cell>
             <md-cell *cdkCellDef="let row">
-                {{getWhenInMinutes(row) ? getWhenInMinutes(row) : 0}} minutes
+                {{getWhenOrStartingTime(row) | date:"hh:mm"}}
             </md-cell>
         </ng-container>
 

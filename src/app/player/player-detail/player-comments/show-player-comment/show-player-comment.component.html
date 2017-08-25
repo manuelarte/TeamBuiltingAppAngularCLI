@@ -2,7 +2,7 @@
     <md-card-header>
         <div md-card-avatar [ngStyle]="{'background-image': 'url(' + user.picture + ')'}" class="example-header-image"></div>
         <md-card-title>{{getUsername()}}</md-card-title>
-        <md-card-subtitle>Comment written {{playerComment.when}}: {{playerComment.reason}}</md-card-subtitle>
+        <md-card-subtitle>Comment written {{playerComment.when | date}}: {{playerComment.reason}}</md-card-subtitle>
     </md-card-header>
     <md-card-content>
         <hr class="line">
