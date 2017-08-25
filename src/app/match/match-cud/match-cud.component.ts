@@ -35,7 +35,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
   @Input() allUsersMatchFeedback: MatchFeedback[] = [];
 
   /**
-   * Date year-month-day of the game, the time will be set in the match parts
+   * Date year-month-day of the match, the time will be set in the match parts
    */
   matchDate: Date = new Date();
 

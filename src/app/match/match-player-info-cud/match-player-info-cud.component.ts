@@ -34,7 +34,7 @@ export class MatchPlayerInfoCudComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        // TODO do not forget to filter the players that are already in the game
+        // TODO do not forget to filter the players that are already in the match
     }
 
     createPlayerInfoFrom(player: Player): PlayerInfo {

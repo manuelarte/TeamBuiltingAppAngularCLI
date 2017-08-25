@@ -9,7 +9,7 @@
 
 <div #date>
     <md-input-container>
-        <input mdInput placeholder="Choose a date" [mdDatepicker]="picker" [ngModel]="matchDate"
+        <input mdInput placeholder="Date" [mdDatepicker]="picker" [ngModel]="matchDate"
                (ngModelChange)="onMatchDateChange($event)" [disabled]="!isEditable()">
         <button mdSuffix *ngIf="isEditable()" [mdDatepickerToggle]="picker"></button>
     </md-input-container>
@@ -20,7 +20,7 @@
 </div>
 
 <md-tab-group>
-    <md-tab label="Teams of the Game">
+    <md-tab label="Teams of the Match">
 
         <div #teams class="ui-g">
             <div class="team-info ui-g-12 ui-md-4 ui-lg-4">

@@ -31,12 +31,11 @@ export class MatchPlayerInfoComponent implements OnInit {
     }
 
     isEditable(): boolean {
-        return this.editable;
+      return this.editable;
     }
 
     removePlayerFromMatch(): void {
-        console.log("Removing player", this.playerInfo);
-        this.playerRemoved.emit(this.playerInfo);
+      this.playerRemoved.emit(this.playerInfo);
     }
 
 }
