@@ -16,7 +16,7 @@
     <md-datepicker #picker></md-datepicker>
 </div>
 <div #matchParts>
-    <app-match-parts [matchParts]="getMatchParts()" [editable]="editable" (matchPartsUpdated)="matchPartsUpdated($event)"></app-match-parts>
+    <app-match-parts [matchParts]="getMatchParts()" [editable]="isEditable()" (matchPartsUpdated)="matchPartsUpdated($event)"></app-match-parts>
 </div>
 
 <md-tab-group>
@@ -118,5 +118,7 @@
     <app-match-feedback-form *ngIf="isMatchReadyForFeedback()" [match]="getMatch()"></app-match-feedback-form>
 </div>
 
-MATCH JSON:
-<pre>{{getMatch() | json}}</pre>
+<ng-container *ngIf="isEditable()">
+    MATCH JSON:
+    <pre>{{getMatch() | json}}</pre>
+</ng-container>
