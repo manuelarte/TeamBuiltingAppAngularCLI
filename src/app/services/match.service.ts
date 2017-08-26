@@ -9,6 +9,7 @@ import {AuthHttp} from 'angular2-jwt';
 import {MatchEventSchemaAndUi} from '../match/match-events';
 import {Match} from '../match/match';
 import {IncomingMatchFeedback, MatchFeedback} from '../match-feedback/match-feedback';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class MatchService {
@@ -45,6 +46,10 @@ export class MatchService {
   getMyMatchFeedback(matchId: string): Promise<IncomingMatchFeedback> {
     return this.authHttp.get(`${this.matchFeedbackUrl}/me?matchId=${matchId}`)
           .map(response => <IncomingMatchFeedback> response.json()).toPromise();
+  }
+
+  saveMatch(match: Match): Observable<Match> {
+    return this.authHttp.post(this.matchesUrl, match).map(response => <Match> response.json())
   }
 
   saveMatchFeedback(incomingMatchFeedback: IncomingMatchFeedback): Promise<IncomingMatchFeedback> {

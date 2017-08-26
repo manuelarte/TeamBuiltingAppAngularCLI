@@ -103,8 +103,9 @@
 </div>
 
 <div *ngIf="editing">
-<button [disabled]="!isMatchValid()" md-raised-button color="primary">Save match</button>
+<button [disabled]="!isMatchValid() || submittingMatch" md-raised-button color="primary" (click)="saveMatch()">Save match</button>
 </div>
+<md-progress-spinner *ngIf="submittingMatch"></md-progress-spinner>
 
 <ng-template #timelineNotReady>
     The timeline cannot be shown yet

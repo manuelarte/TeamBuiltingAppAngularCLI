@@ -12,6 +12,8 @@ import moment = require('moment');
 import {Moment} from 'moment';
 import {MatchFeedback} from '../../match-feedback/match-feedback';
 import {Messages} from 'primeng/primeng';
+import {MatchService} from '../../services/match.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-match-cud',
@@ -51,7 +53,12 @@ export class MatchCudComponent implements OnInit, OnChanges {
   eventToDisplay$: Observable<any>;
   scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
-  constructor(private matchUtilsService: MatchUtilsService) { }
+  submittingMatch = false;
+  errorSubmittingMatch = false;
+
+  constructor(private matchService: MatchService,
+              private matchUtilsService: MatchUtilsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.msgs.value = [];
@@ -224,6 +231,17 @@ export class MatchCudComponent implements OnInit, OnChanges {
   isMatchValid(): boolean {
     return this.matchUtilsService.isHomeTeamSelected(this.match) && this.matchUtilsService.isAwayTeamSelected(this.match) &&
             this.matchUtilsService.areHomePlayersSelected(this.match) && this.matchUtilsService.areAwayPlayersSelected(this.match);
+  }
+
+  saveMatch(): void {
+    this.submittingMatch = true;
+    this.errorSubmittingMatch = false;
+    this.matchService.saveMatch(this.match).subscribe(match => {
+        this.submittingMatch = false;
+        this.errorSubmittingMatch = false;
+        console.log(match)
+        this.router.navigate(['/match', match.id]);
+    });
   }
 
 }
