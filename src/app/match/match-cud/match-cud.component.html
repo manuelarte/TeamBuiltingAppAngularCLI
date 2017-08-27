@@ -107,6 +107,10 @@
 </div>
 <md-progress-spinner *ngIf="submittingMatch"></md-progress-spinner>
 
+<div *ngIf="!editing">
+<app-match-feedback-rewards-display [match]="getMatch()" [allUsersMatchFeedback]="allUsersMatchFeedback"></app-match-feedback-rewards-display>
+</div>
+
 <ng-template #timelineNotReady>
     The timeline cannot be shown yet
 </ng-template>
