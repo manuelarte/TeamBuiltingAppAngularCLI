@@ -15,6 +15,7 @@ export class GoalMatchEvent implements MatchEvent {
       id: string;
       when: Date;
       who: string;
+      assist: string;
       teamThatScored: string;
       description: string;
     }
