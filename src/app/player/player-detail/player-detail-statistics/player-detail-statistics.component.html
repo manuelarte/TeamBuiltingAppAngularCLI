@@ -15,7 +15,8 @@
                 <p-chart *ngSwitchDefault type="doughnut" [data]="dataTimeInTheTeams"
                          [options]="optionsTimeInTheTeams"></p-chart>
                 <p-chart *ngSwitchCase="2" type="pie" [data]="dataNumberOfTeamsPerSport"></p-chart>
-                <app-player-detail-statistics-match-feedback-rating *ngSwitchCase="3"></app-player-detail-statistics-match-feedback-rating>
+                <app-player-detail-statistics-match-feedback-rating *ngSwitchCase="3" [player]="player">
+                </app-player-detail-statistics-match-feedback-rating>
             </div>
         </md-card-content>
     </md-card>

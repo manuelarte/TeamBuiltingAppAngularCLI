@@ -31,6 +31,7 @@ import {PlayerCudCardComponent} from './player-cud-card/player-cud-card.componen
 import {UserRightsService} from '../services/user-rights.service';
 import {TeambuiltingSharedModule} from '../shared/shared.module';
 import {PlayerDetailStatisticsMatchFeedbackRatingComponent} from './player-detail-statistics-match-feedback-rating/player-detail-statistics-match-feedback-rating.component';
+import {Ng2GoogleChartsModule} from 'ng2-google-charts';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import {PlayerDetailStatisticsMatchFeedbackRatingComponent} from './player-detai
     MdMenuModule,
     MdOptionModule,
     MdDialogModule,
+    Ng2GoogleChartsModule,
     // Other modules
     TeambuiltingSharedModule,
     SportModule,

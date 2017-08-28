@@ -1,0 +1,11 @@
+<div *ngIf="!isBusy() && isReady(); else loading">
+   player-detail-statistics-match-feedback-rating works!
+
+  <ng-container *ngIf="isReady()">
+    <google-chart [data]="chartTable"></google-chart>
+  </ng-container>
+</div>
+
+<ng-template #loading>
+    <md-progress-spinner></md-progress-spinner>
+</ng-template>
