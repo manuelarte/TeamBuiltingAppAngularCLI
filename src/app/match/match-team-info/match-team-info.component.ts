@@ -40,8 +40,6 @@ export class MatchTeamInfoComponent implements OnInit {
   }
 
   imgLoaded(event): void {
-    console.log("img loaded:", event)
-    setTimeout(10000);
     this.isImgLoaded = true;
   }
 

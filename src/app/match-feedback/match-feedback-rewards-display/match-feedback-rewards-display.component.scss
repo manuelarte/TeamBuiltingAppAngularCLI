@@ -1,13 +1,16 @@
 .wrapper{
     display: inline-block;
-    position:relative;
-    width: 10vh
+    position: relative;
+    width: 30vh;
+    border: 3px solid black;
 }
 .big-img{
-    width: 100%;
+    width: 80%;
     max-width: 100%;
-    border: 1px solid blue;
+    border: 3px solid blue;
     border-radius: 50%;
+    display: block;
+    margin: auto;
 }
 .small-img{
     position:absolute;
@@ -15,4 +18,347 @@
     top: 30%;
     width: 80%;
     max-width: 80%;
+}
+
+.Confetti{
+    width:2vh;
+    height:2vh;
+    position:absolute;
+    -webkit-perspective: 600;
+    -webkit-perspective-origin: 50% 50%;
+    -webkit-transform-style: preserve-3d;
+    top:-30px;
+}
+.Confetti div{
+    position:relative;
+    -webkit-transform-origin: 50% 50%;
+    margin:0 auto;
+
+}
+
+/*position*/
+.pos1{
+    left:2vh;
+    -webkit-animation:p1 4s 1.5s infinite linear;
+}
+.pos2{
+    left:7vh;
+    -webkit-animation:p2 3s .5s infinite linear;
+}
+.pos3{
+    left:120px;
+    -webkit-animation:p3 4s infinite linear;
+}
+.pos4{
+    left:180px;
+    -webkit-animation:p4 6s 2.5s infinite linear;
+}
+.pos5{
+    left:230px;
+    -webkit-animation:p5 4.5s infinite linear;
+}
+.pos6{
+    left:30px;
+    -webkit-animation:p6 4s 3s infinite linear;
+}
+.pos7{
+    left:80px;
+    -webkit-animation:p7 3s 1.5s infinite linear;
+}
+.pos8{
+    left:150px;
+    -webkit-animation:p8 5s infinite linear;
+}
+.pos9{
+    left:200px;
+    -webkit-animation:p9 6s 2s infinite linear;
+}
+.pos10{
+    left:250px;
+    -webkit-animation:p10 4.5s .5s infinite linear;
+}
+.pos11{
+    left:50px;
+    -webkit-animation:p11 3s 4.8s infinite linear;
+}
+.pos12{
+    left:60px;
+    -webkit-animation:p12 5s 2.3sinfinite linear;
+}
+.pos13{
+    left:90px;
+    -webkit-animation:p13 4.5s 3.8s infinite linear;
+}
+.pos14{
+    left:110px;
+    -webkit-animation:p14 4s 2.8s infinite linear;
+}
+.pos15{
+    left:150px;
+    -webkit-animation:p15 6s 3.8s infinite linear;
+}
+@-webkit-keyframes p1{
+    to{
+        left:120px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p2{
+    to{
+        left:-20px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p3{
+    to{
+        left:320px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p4{
+    to{
+        left:50px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p5{
+    to{
+        left:300px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p6{
+    to{
+        left:-60px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p7{
+    to{
+        left:-30px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p8{
+    to{
+        left:90px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p9{
+    to{
+        left:20px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p10{
+    to{
+        left:380px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p11{
+    to{
+        left:10px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p12{
+    to{
+        left:70px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p13{
+    to{
+        left:140px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p14{
+    to{
+        left:210px;
+        top:95%;
+    }
+}
+@-webkit-keyframes p15{
+    to{
+        left:280px;
+        top:95%;
+    }
+}
+
+/*size*/
+.size1 div{
+    width:20px;
+    height:10px;
+}
+.size2 div{
+    width:15px;
+    height:8px;
+}
+.size3 div{
+    width:30px;
+    height:14px;
+}
+.size4 div{
+    width:18px;
+    height:8px;
+}
+.size5 div{
+    width:16px;
+    height:24px;
+}
+.size6 div{
+    width:10px;
+    height:7px;
+}
+.size7 div{
+    width:12px;
+    height:12px;
+}
+.size8 div{
+    width:12px;
+    height:20px;
+}
+.size9 div{
+    width:10px;
+    height:26px;
+}
+.size10 div{
+    width:20px;
+    height:13px;
+}
+
+/*color*/
+.color1 div{
+    background:#0f9;
+}
+.color2 div{
+    background:#09f;
+}
+.color3 div{
+    background:#f30;
+}
+.color4 div{
+    background:#f90;
+}
+.color5 div{
+    background:#f59;
+}
+.color6 div{
+    background:#ff9;
+}
+.color7 div{
+    background:#9ff;
+}
+.color8 div{
+    background:#f9f;
+}
+.color9 div{
+    background:#9f9;
+}
+.color10 div{
+    background:#99f;
+}
+
+
+/*animation*/
+.animate1 div{
+    -webkit-transform:rotateX(0deg) rotateY(60deg);
+    -webkit-animation:c1 2s infinite linear;
+}
+@-webkit-keyframes c1{
+    to{
+        -webkit-transform:rotateX(360deg) rotateY(240deg);
+    }
+}
+
+.animate2 div{
+    -webkit-transform:rotateX(120deg) rotateY(30deg);
+    -webkit-animation:c2 3s infinite linear;
+}
+@-webkit-keyframes c2{
+    to{
+        -webkit-transform:rotateX(480deg) rotateY(210deg);
+    }
+}
+
+.animate3 div{
+    -webkit-transform:rotateZ(0deg) rotateY(0deg);
+    -webkit-animation:c3 3s infinite linear;
+}
+@-webkit-keyframes c3{
+    to{
+        -webkit-transform:rotateZ(180deg) rotateY(1080deg);
+    }
+}
+
+.animate4 div{
+    -webkit-transform:rotateX(0deg) rotateY(0deg);
+    -webkit-animation:c4 2s infinite linear;
+}
+@-webkit-keyframes c4{
+    to{
+        -webkit-transform:rotateX(180deg) rotateY(540deg);
+    }
+}
+
+.animate5 div{
+    -webkit-transform:rotateX(0deg) rotateZ(0deg);
+    -webkit-animation:c5 2.5s infinite linear;
+}
+@-webkit-keyframes c5{
+    to{
+        -webkit-transform:rotateX(-360deg) rotateZ(360deg);
+    }
+}
+.animate6 div{
+    -webkit-transform:rotateX(180deg) rotateY(90deg);
+    -webkit-animation:c6 2s infinite linear;
+}
+@-webkit-keyframes c6{
+    to{
+        -webkit-transform:rotateX(360deg) rotateY(270deg);
+    }
+}
+
+.animate7 div{
+    -webkit-transform:rotateX(0deg) rotateY(30deg);
+    -webkit-animation:c7 3s infinite linear;
+}
+@-webkit-keyframes c7{
+    to{
+        -webkit-transform:rotateX(360deg) rotateY(210deg);
+    }
+}
+
+.animate8 div{
+    -webkit-transform:rotateZ(0deg) rotateY(0deg);
+    -webkit-animation:c8 3.5s infinite linear;
+}
+@-webkit-keyframes c8{
+    to{
+        -webkit-transform:rotateZ(1080deg) rotateY(1080deg);
+    }
+}
+
+.animate9 div{
+    -webkit-transform:rotateX(0deg) rotateY(0deg);
+    -webkit-animation:c9 3s infinite linear;
+}
+@-webkit-keyframes c9{
+    to{
+        -webkit-transform:rotateX(540deg) rotateY(540deg);
+    }
+}
+
+.animate10 div{
+    -webkit-transform:rotateX(0deg) rotateZ(0deg);
+    -webkit-animation:c10 3.5s infinite linear;
+}
+@-webkit-keyframes c10{
+    to{
+        -webkit-transform:rotateX(-360deg) rotateZ(360deg);
+    }
 }
