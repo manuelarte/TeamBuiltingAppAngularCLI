@@ -2,16 +2,17 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from '../../match/playerInfo';
 import {FormControl} from '@angular/forms';
 import {Match} from '../../match/match';
-import {UtilsService} from '../../services/utils.service';
 import {PlayerService} from '../../services/player.service';
 import {TeamService} from '../../services/team.service';
 import {RegisteredTeamInfo, UnRegisteredTeamInfo} from '../../match/teamInfo';
+import {PlayerInfoUtilService} from '../../player-info-util.service';
+import {TeamInfoUtilService} from '../../team-info-util.service';
 
 @Component({
   selector: 'app-my-player-in-match-widget',
   templateUrl: './my-player-in-match-widget.component.html',
   styleUrls: ['./my-player-in-match-widget.component.scss'],
-  providers: [PlayerService, TeamService, UtilsService]
+  providers: [PlayerService, TeamService, PlayerInfoUtilService, TeamInfoUtilService]
 })
 export class MyPlayerInMatchWidgetComponent implements OnInit {
 
@@ -25,13 +26,15 @@ export class MyPlayerInMatchWidgetComponent implements OnInit {
   isBusy = false;
   isErrorLoading = false;
 
-  constructor(private playerService: PlayerService, private teamService: TeamService, private utilsService: UtilsService) { }
+  constructor(private playerService: PlayerService, private teamService: TeamService,
+              private playerInfoUtilsService: PlayerInfoUtilService,
+              private teamInfoUtilsService: TeamInfoUtilService) { }
 
   ngOnInit() {
       if (this.playersAreSelected()) {
 
           const homePlayersSelected: PlayerInfo[] = this.schema.widget.match.homeTeam.selectedPlayers?this.schema.widget.match.homeTeam.selectedPlayers:[];
-          if (this.utilsService.isRegisteredTeam(this.schema.widget.match.homeTeam.teamInfo)) {
+          if (this.teamInfoUtilsService.isRegisteredTeam(this.schema.widget.match.homeTeam.teamInfo)) {
             const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> this.schema.widget.match.homeTeam.teamInfo;
             this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {
               homePlayersSelected.forEach(homePlayer => this.convertPlayerInfoToRepresentation(team.emblemLink, homePlayer));
@@ -42,7 +45,7 @@ export class MyPlayerInMatchWidgetComponent implements OnInit {
           }
 
           const awayPlayersSelected: PlayerInfo[] = this.schema.widget.match.awayTeam.selectedPlayers?this.schema.widget.match.awayTeam.selectedPlayers:[];
-          if (this.utilsService.isRegisteredTeam(this.schema.widget.match.awayTeam.teamInfo)) {
+          if (this.teamInfoUtilsService.isRegisteredTeam(this.schema.widget.match.awayTeam.teamInfo)) {
               const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> this.schema.widget.match.awayTeam.teamInfo;
               this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {
                   awayPlayersSelected.forEach(awayPlayer => this.convertPlayerInfoToRepresentation(team.emblemLink, awayPlayer));
@@ -69,7 +72,7 @@ export class MyPlayerInMatchWidgetComponent implements OnInit {
       const representation = new PlayerRepresentation();
       representation.id = playerInfo.id;
       representation.teamEmblem = teamEmblem;
-      if (this.utilsService.isRegisteredPlayer(playerInfo)) {
+      if (this.playerInfoUtilsService.isRegisteredPlayer(playerInfo)) {
         const registeredPlayerInfo: RegisteredPlayerInfo = <RegisteredPlayerInfo> playerInfo;
         this.playerService.getPlayer(registeredPlayerInfo.playerId).then(player => {
           representation.name = player.name;

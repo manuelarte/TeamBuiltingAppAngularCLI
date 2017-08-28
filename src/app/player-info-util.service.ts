@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import {DisplayablePlayerInfo, PlayerInfo, RegisteredPlayerInfo, UnRegisteredPlayerInfo} from './match/playerInfo';
 import {Observable} from 'rxjs/Observable';
-import {UtilsService} from './services/utils.service';
 import {PlayerService} from './services/player.service';
 import {Player} from './player';
 
 @Injectable()
 export class PlayerInfoUtilService {
 
-  constructor(private playerService: PlayerService, private utilsService: UtilsService) { }
+  constructor(private playerService: PlayerService) { }
+
+  isRegisteredPlayer(playerInfo: PlayerInfo): boolean {
+    return 'playerId' in playerInfo;
+  }
 
   getDisplayablePlayerInfo(playerInfo: PlayerInfo): Observable<DisplayablePlayerInfo> {
-      if (this.utilsService.isRegisteredPlayer(playerInfo)) {
+      if (this.isRegisteredPlayer(playerInfo)) {
           // get the player details
           const registeredPlayerInfo: RegisteredPlayerInfo = <RegisteredPlayerInfo> playerInfo;
           return this.playerService.getPlayerObservable(registeredPlayerInfo.playerId).map(player => this.convertToDisplayablePlayer(player))

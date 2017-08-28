@@ -1,7 +1,6 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {DisplayableTeamInfo, RegisteredTeamInfo, TeamInfo} from '../teamInfo';
 import {TeamInfoUtilService} from '../../team-info-util.service';
-import {UtilsService} from '../../services/utils.service';
 import {RouterUtilsService} from '../../services/router-utils.service';
 
 @Component({
@@ -23,8 +22,7 @@ export class MatchTeamInfoComponent implements OnInit {
   */
   team: DisplayableTeamInfo;
 
-  constructor(private utilsService: UtilsService,
-              private teamInfoUtilsService: TeamInfoUtilService,
+  constructor(private teamInfoUtilsService: TeamInfoUtilService,
               private routerUtilsService: RouterUtilsService) { }
 
   ngOnInit() {
@@ -44,7 +42,7 @@ export class MatchTeamInfoComponent implements OnInit {
   }
 
   isHomePageLinkAvailable(): boolean {
-    return this.utilsService.isRegisteredTeam(this.teamInfo);
+    return this.teamInfoUtilsService.isRegisteredTeam(this.teamInfo);
   }
 
   goToTeamPage(): void {

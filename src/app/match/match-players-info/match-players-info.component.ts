@@ -8,12 +8,14 @@ import {Player} from "../../player";
 import {UUID} from 'angular2-uuid';
 import {Observable} from 'rxjs/Observable';
 import {MatchFeedback} from '../../match-feedback/match-feedback';
+import {PlayerInfoUtilService} from '../../player-info-util.service';
+import {TeamInfoUtilService} from '../../team-info-util.service';
 
 @Component({
   selector: 'app-match-players-info',
   templateUrl: './match-players-info.component.html',
   styleUrls: ['./match-players-info.component.scss'],
-  providers: [TeamService, UtilsService]
+  providers: [TeamService, PlayerInfoUtilService, TeamInfoUtilService]
 })
 export class MatchPlayersInfoComponent implements OnInit {
 
@@ -30,7 +32,8 @@ export class MatchPlayersInfoComponent implements OnInit {
 
   @Output() playersSelected: EventEmitter<PlayerInfo[]> = new EventEmitter<PlayerInfo[]>();
 
-  constructor(private teamService: TeamService, private utils: UtilsService) { }
+  constructor(private teamService: TeamService, private playerInfoUtilsService: PlayerInfoUtilService,
+              private teamInfoUtilService: TeamInfoUtilService) { }
 
   ngOnInit() {
     this.matchDate = new Date(this.matchDate);
@@ -85,13 +88,13 @@ export class MatchPlayersInfoComponent implements OnInit {
   }
 
   getPlayersFilter(): (player: Player) => boolean {
-      const notAllowedIds: number[] = this.playersInfo ? this.playersInfo.filter(this.utils.isRegisteredPlayer)
+      const notAllowedIds: number[] = this.playersInfo ? this.playersInfo.filter(this.playerInfoUtilsService.isRegisteredPlayer)
           .map(playerInfo => (<RegisteredPlayerInfo> playerInfo).playerId) : [];
       return (player) => notAllowedIds.indexOf(player.id) < 0 ;
   }
 
   private isRegisteredTeamInfo(teamInfo: TeamInfo): boolean {
-    return this.utils.isRegisteredTeam(teamInfo);
+    return this.teamInfoUtilService.isRegisteredTeam(teamInfo);
   }
 
   private convertToPlayerInfo(playerToTeam: PlayerToTeam): PlayerInfo {

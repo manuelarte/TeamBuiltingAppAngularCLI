@@ -4,12 +4,13 @@ import {Match} from '../../match/match';
 import {MatchFeedback} from '../../match-feedback/match-feedback';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import {RegisteredPlayerInfo} from '../../match/playerInfo';
+import {PlayerInfoUtilService} from '../../player-info-util.service';
 
 @Component({
   selector: 'app-player-detail-statistics-match-feedback-rating',
   templateUrl: './player-detail-statistics-match-feedback-rating.component.html',
   styleUrls: ['./player-detail-statistics-match-feedback-rating.component.scss'],
-  providers: [MatchService, MatchUtilsService]
+  providers: [MatchService, MatchUtilsService, PlayerInfoUtilService]
 })
 export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnInit {
 
@@ -47,14 +48,14 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
   };
 
   constructor(private matchService: MatchService,
-              private matchUtilsService: MatchUtilsService) { }
+              private matchUtilsService: MatchUtilsService,
+              private playerInfoUtilsService: PlayerInfoUtilService) { }
 
   ngOnInit() {
     this.isLoadingMatches = true;
     this.matchService.getMatchesForDatesAndPlayerId(this.fromDate, this.toDate, 1).subscribe(matchesPage => {
         this.isLoadingMatches = false;
         this.matches = matchesPage.content;
-        console.log("Matches of player:", matchesPage);
         this.matches.forEach(match => {
             this.matchService.getMatchFeedback(match.id).then(matchFeedback => {
                 const feedback: {entry: MatchFeedback, rate: number}[] = matchFeedback.filter(entry => this.didFeedbackRatePlayer(match, entry)).map(entry => this.matchFeedbackPlayerRated(match, entry));
@@ -65,7 +66,6 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
                 }
             })
         });
-        console.log("matchAndFeedback", this.matchAndFeedback)
     });
   }
 
@@ -79,7 +79,7 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
 
   getIdForPlayerIdInMatch(match: Match, playerId: number): string {
       return this.matchUtilsService.getAllPlayers(match).filter(playerInfo =>
-          this.matchUtilsService.isRegisteredPlayer(playerInfo) && (<RegisteredPlayerInfo> playerInfo).playerId === playerId)[0].id
+          this.playerInfoUtilsService.isRegisteredPlayer(playerInfo) && (<RegisteredPlayerInfo> playerInfo).playerId === playerId)[0].id
   }
 
   matchFeedbackPlayerRated(match: Match, matchFeedback: MatchFeedback): {entry: MatchFeedback, rate: number} {
@@ -119,7 +119,6 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
         row.push(this.getXAxisValue(this.matchAndFeedback[matchId].match));
         usersWhoVoted.forEach(userId => {
             const entryMatchFeedback: {entry: MatchFeedback, rate: number}[] = this.matchAndFeedback[matchId].feedbackInMatch.filter(feedback => feedback.entry.userId === userId);
-            console.log("entryMatchFeedback for:", matchId, userId, entryMatchFeedback);
             if (entryMatchFeedback.length === 1) {
                row.push(entryMatchFeedback[0].rate)
             } else if (entryMatchFeedback.length == 0) {

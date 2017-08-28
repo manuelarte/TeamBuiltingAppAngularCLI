@@ -5,12 +5,13 @@ import {Match} from '../../match/match';
 import {UtilsService} from '../../services/utils.service';
 import {TeamService} from '../../services/team.service';
 import {Team} from '../../team';
+import {TeamInfoUtilService} from '../../team-info-util.service';
 
 @Component({
   selector: 'app-my-team-in-match-widget',
   templateUrl: './my-team-in-match-widget.component.html',
   styleUrls: ['./my-team-in-match-widget.component.scss'],
-  providers: [TeamService, UtilsService]
+  providers: [TeamService, TeamInfoUtilService]
 })
 export class MyTeamInMatchWidgetComponent implements OnInit {
 
@@ -25,7 +26,7 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
   isBusyLoadingAwayTeam = false;
   isErrorLoading = false;
 
-  constructor(private teamService: TeamService, private utilsService: UtilsService) { }
+  constructor(private teamService: TeamService, private teamInfoUtilsService: TeamInfoUtilService) { }
 
   ngOnInit() {
     if (this.teamsAreSelected()) {
@@ -33,7 +34,7 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
           const homeTeamInfo: TeamInfo = this.schema.widget.match.homeTeam.teamInfo;
           const homeTeamRepresentation = new TeamRepresentation();
           homeTeamRepresentation.id = homeTeamInfo.id;
-          if (this.utilsService.isRegisteredTeam(homeTeamInfo)) {
+          if (this.teamInfoUtilsService.isRegisteredTeam(homeTeamInfo)) {
             const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> homeTeamInfo;
             this.isBusyLoadingHomeTeam = true;
             this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {
@@ -49,7 +50,7 @@ export class MyTeamInMatchWidgetComponent implements OnInit {
           const awayTeamInfo: TeamInfo = this.schema.widget.match.awayTeam.teamInfo;
           const awayTeamRepresentation = new TeamRepresentation();
           awayTeamRepresentation.id = awayTeamInfo.id;
-          if (this.utilsService.isRegisteredTeam(awayTeamInfo)) {
+          if (this.teamInfoUtilsService.isRegisteredTeam(awayTeamInfo)) {
             const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> awayTeamInfo;
             this.isBusyLoadingAwayTeam = true;
             this.teamService.getTeam(registeredTeamInfo.teamId).then(team => {

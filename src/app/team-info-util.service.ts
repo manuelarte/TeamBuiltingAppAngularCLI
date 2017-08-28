@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {UtilsService} from './services/utils.service';
 import {DisplayableTeamInfo, RegisteredTeamInfo, TeamInfo, UnRegisteredTeamInfo} from './match/teamInfo';
 import {Observable} from 'rxjs/Observable';
 import {TeamService} from './services/team.service';
@@ -8,10 +7,14 @@ import {Team} from './team';
 @Injectable()
 export class TeamInfoUtilService {
 
-  constructor(private teamService: TeamService, private utilsService: UtilsService) { }
+  constructor(private teamService: TeamService) { }
+
+  isRegisteredTeam(teamInfo: TeamInfo): boolean {
+    return 'teamId' in teamInfo;
+  }
 
   getDisplayableTeamInfo(teamInfo: TeamInfo): Observable<DisplayableTeamInfo> {
-      if (this.utilsService.isRegisteredTeam(teamInfo)) {
+      if (this.isRegisteredTeam(teamInfo)) {
           const registeredTeamInfo: RegisteredTeamInfo = <RegisteredTeamInfo> teamInfo;
           return this.teamService.getTeam$(registeredTeamInfo.teamId).map(team => this.convertToDisplayableTeamInfo(team));
       } else {

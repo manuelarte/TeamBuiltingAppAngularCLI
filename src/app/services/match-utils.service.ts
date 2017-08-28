@@ -95,8 +95,4 @@ export class MatchUtilsService {
         && this.areAwayPlayersSelected(match);
   }
 
-  isRegisteredPlayer(playerInfo: PlayerInfo): boolean {
-    return 'playerId' in playerInfo;
-  }
-
 }
