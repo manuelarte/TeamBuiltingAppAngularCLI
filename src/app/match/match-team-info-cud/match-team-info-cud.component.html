@@ -18,7 +18,7 @@
     <p-messages [(value)]="msgs" [closable]="false"></p-messages>
 </div>
 
-<div *ngIf="teamInfo">
+<div class="section" *ngIf="teamInfo">
     <app-match-team-info [teamInfo]="teamInfo"></app-match-team-info>
     <button *ngIf="isEditable()" md-button (click)="removeTeam()" mdTooltip="Remove team from match">
         <md-icon>backspace</md-icon>

@@ -1,4 +1,6 @@
-<div class="section" *ngIf="!isBusy && team !== null">
-    <img class="team_emblem" [src]="team?.picture" alt=""/>
+<div class="section">
+    <img class="team_emblem" [src]="team?.picture" alt="" (load)="imgLoaded($event)"/>
     <h2>{{team?.name}}</h2>
 </div>
+
+<md-progress-spinner *ngIf="!isImgLoaded" mode="indeterminate"></md-progress-spinner>
