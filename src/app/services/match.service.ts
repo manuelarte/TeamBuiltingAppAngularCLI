@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, RequestOptionsArgs} from '@angular/http';
+import {Http, RequestOptions, RequestOptionsArgs} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -10,6 +10,7 @@ import {MatchEventSchemaAndUi} from '../match/match-events';
 import {Match} from '../match/match';
 import {IncomingMatchFeedback, MatchFeedback} from '../match-feedback/match-feedback';
 import {Observable} from 'rxjs/Observable';
+import {Page} from '../page';
 
 @Injectable()
 export class MatchService {
@@ -26,6 +27,22 @@ export class MatchService {
   getMatch(id: string): Promise<Match> {
     return this.http.get(`${this.matchesUrl}/${id}`).map(response => <Match> response.json())
             .toPromise();
+  }
+
+  getMatchesForDatesAndPlayerId(from?: Date, to?: Date, playerId?: number): Observable<Page<Match>> {
+    const myParams = new URLSearchParams();
+    if (from) {
+        myParams.append('from', from.format('YYYY-MM-dd'));
+    }
+    if (to) {
+      myParams.append('from', to.format('YYYY-MM-dd'));
+    }
+    if (playerId) {
+      myParams.append('playerId', playerId.toString());
+    }
+
+    let options = new RequestOptions({ params: myParams });
+    return this.http.get(`${this.matchesUrl}`, options).map(response => <Page<Match>> response.json());
   }
 
   getMatchEvents(): Promise<MatchEventSchemaAndUi> {

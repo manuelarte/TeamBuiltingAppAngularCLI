@@ -30,6 +30,7 @@ import {ProfileModule} from '../profile/profile.module';
 import {PlayerCudCardComponent} from './player-cud-card/player-cud-card.component';
 import {UserRightsService} from '../services/user-rights.service';
 import {TeambuiltingSharedModule} from '../shared/shared.module';
+import {PlayerDetailStatisticsMatchFeedbackRatingComponent} from './player-detail-statistics-match-feedback-rating/player-detail-statistics-match-feedback-rating.component';
 
 @NgModule({
   imports: [
@@ -67,6 +68,7 @@ import {TeambuiltingSharedModule} from '../shared/shared.module';
       PlayerCudCardComponent,
       PlayerToTeamCardComponent,
       PlayerDetailStatisticsComponent,
+      PlayerDetailStatisticsMatchFeedbackRatingComponent,
       PlayerDetailTeamSportsComponent,
       PlayerCommentFormComponent,
       PlayerRewardsComponent,

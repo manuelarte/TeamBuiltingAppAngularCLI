@@ -6,6 +6,7 @@
             <md-select placeholder="Statistic" [(ngModel)]="selectedValue" name="food">
                 <md-option selected (click)="statisticSelected = 1">Teams played</md-option>
                 <md-option (click)="statisticSelected = 2">Number of teams per sport</md-option>
+                <md-option (click)="statisticSelected = 3">Performance</md-option>
             </md-select>
         </md-card-header>
         <md-card-content>
@@ -14,6 +15,7 @@
                 <p-chart *ngSwitchDefault type="doughnut" [data]="dataTimeInTheTeams"
                          [options]="optionsTimeInTheTeams"></p-chart>
                 <p-chart *ngSwitchCase="2" type="pie" [data]="dataNumberOfTeamsPerSport"></p-chart>
+                <app-player-detail-statistics-match-feedback-rating *ngSwitchCase="3"></app-player-detail-statistics-match-feedback-rating>
             </div>
         </md-card-content>
     </md-card>

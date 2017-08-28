@@ -111,14 +111,7 @@ export class MatchEventsComponent implements OnInit {
           const difference: number = actualHomeTeamGoals - displayedHomeTeamGoals;
           if (difference > 0) {
             for (let i = 0; i < difference; i++) {
-                const goal = new GoalMatchEvent();
-                goal.goal = {
-                    id: UUID.UUID(),
-                    when: null,
-                    who: null,
-                    teamThatScored: this.match.homeTeam.teamInfo.id,
-                    description: ''
-                };
+              const goal = this.createGoalForTeam(this.match.homeTeam.teamInfo.id);
               this.goalEvents.homeTeam.push(goal)
               this.eventAdded.emit(goal);
             }
@@ -134,14 +127,7 @@ export class MatchEventsComponent implements OnInit {
           const difference: number = actualAwayTeamGoals - displayedAwayTeamGoals;
           if (difference > 0) {
               for (let i = 0; i < difference; i++) {
-                  const goal = new GoalMatchEvent();
-                  goal.goal = {
-                      id: UUID.UUID(),
-                      when: null,
-                      who: null,
-                      teamThatScored: this.match.awayTeam.teamInfo.id,
-                      description: ''
-                  };
+                  const goal = this.createGoalForTeam(this.match.awayTeam.teamInfo.id);
                   this.goalEvents.awayTeam.push(goal)
                   this.eventAdded.emit(goal);
               }
@@ -155,6 +141,19 @@ export class MatchEventsComponent implements OnInit {
 
       console.log('adjusted:', this.goalEvents)
 
+  }
+
+  private createGoalForTeam(id: string): GoalMatchEvent {
+      const goal = new GoalMatchEvent();
+      goal.goal = {
+          id: UUID.UUID(),
+          when: null,
+          who: null,
+          assist: null,
+          teamThatScored: id,
+          description: ''
+      };
+      return goal;
   }
 
 }
