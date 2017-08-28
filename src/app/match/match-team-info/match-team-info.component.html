@@ -1,4 +1,4 @@
-<div class="section">
+<div class="section" [className]="isHomePageLinkAvailable() ? 'clickable' : ''" (click)="goToTeamPage()">
     <img class="team_emblem" [src]="team?.picture" alt="" (load)="imgLoaded($event)"/>
     <h2>{{team?.name}}</h2>
 </div>

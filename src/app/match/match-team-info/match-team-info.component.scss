@@ -17,3 +17,12 @@ $height: 20vh;
     margin-left: auto;
     margin-right: auto;
 }
+
+.clickable img {
+    opacity: 1;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.clickable img:hover {
+    opacity: .5;
+}
