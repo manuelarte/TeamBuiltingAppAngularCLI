@@ -4,8 +4,8 @@
             <div>
                 <label><strong>Player Name</strong></label>
                     <md-input-container>
-                        <input mdInput #name type="text" placeholder="Player Name" size="35" required
-                           [(ngModel)]="model.name" id="name" name="name" formControlName="name" [readOnly]="!editing">
+                        <input mdInput #name placeholder="Player Name" size="35" required
+                               [(ngModel)]="model.name" id="name" name="name" formControlName="name" [readOnly]="!editing">
                         <md-error>The player name is not valid!</md-error>
                         <md-hint align="end"> {{name.value.length}} / 35</md-hint>
                     </md-input-container>
@@ -13,7 +13,7 @@
             <div>
                 <label><strong>Player Nickname</strong></label>
                 <md-input-container>
-                    <input mdInput #nickname type="text" placeholder="Nickname" size="35" required
+                    <input mdInput #nickname placeholder="Nickname" size="35" required
                            [(ngModel)]="model.nickname" id="nickname" name="nickname" formControlName="nickname" [readOnly]="!editing">
                     <md-error>The nickname is not valid!</md-error>
                     <md-hint align="end"> {{nickname.value.length}} / 35</md-hint>
@@ -23,7 +23,7 @@
             <div>
                 <label for="bornAddress"><strong>Born Address of the player:</strong></label>
                 <md-input-container>
-                    <input mdInput #bornAddress type="text" placeholder="Born Address" size="55"
+                    <input mdInput #bornAddress placeholder="Born Address" size="55"
                            [(ngModel)]="model.bornAddress" id="bornAddress" name="bornAddress" formControlName="bornAddress" [readOnly]="!editing">
                     <md-error>The born address is not valid!</md-error>
                 </md-input-container>

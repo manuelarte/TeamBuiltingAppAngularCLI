@@ -32,7 +32,7 @@ html {
 }
 body {
     background-color: #eee;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-weight: 400;
     font-size: 1.6em;
     line-height: 1.6;
@@ -174,7 +174,7 @@ h2 {
 }
 .share-toggle:before {
     content: "\f1e0";
-    font-family: 'FontAwesome';
+    font-family: 'FontAwesome', serif;
     color: #3498db;
 }
 .share-toggle.share-expanded:before {

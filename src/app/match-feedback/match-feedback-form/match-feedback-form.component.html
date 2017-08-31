@@ -41,7 +41,7 @@ Here you can rate the performance of the teams and players of the match:
         <ng-container *ngIf="match.id == null">
             <p-messages [value]="notPossibleToSaveMsgs" [closable]="false"></p-messages>
         </ng-container>
-        <button md-raised-button type="submit" color="primary"
+        <button md-raised-button color="primary"
                 [disabled]="matchFeedbackForm.invalid || match.id == null || submittingMatchFeedback">Save</button>
 
         <md-progress-spinner *ngIf="submittingMatchFeedback"></md-progress-spinner>
