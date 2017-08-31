@@ -35,7 +35,7 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
       }
   } = {};
 
-  chartTable: any = {
+  chartTable: {chartType: string, dataTable: any, options: any} = {
       chartType: 'ComboChart',
       dataTable: null,
       options: {
@@ -48,8 +48,7 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
   };
 
   constructor(private matchService: MatchService,
-              private matchUtilsService: MatchUtilsService,
-              private playerInfoUtilsService: PlayerInfoUtilService) { }
+              private matchUtilsService: MatchUtilsService) { }
 
   ngOnInit() {
     this.isLoadingMatches = true;
@@ -57,8 +56,9 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
         this.isLoadingMatches = false;
         this.matches = matchesPage.content;
         this.matches.forEach(match => {
+            const playerInfoId = this.matchUtilsService.getIdForPlayerIdInMatch(match, this.player.id);
             this.matchService.getMatchFeedback(match.id).then(matchFeedback => {
-                const feedback: {entry: MatchFeedback, rate: number}[] = matchFeedback.filter(entry => this.didFeedbackRatePlayer(match, entry)).map(entry => this.matchFeedbackPlayerRated(match, entry));
+                const feedback: {entry: MatchFeedback, rate: number}[] = matchFeedback.filter(entry => this.didFeedbackRatePlayer(playerInfoId, entry)).map(entry => this.matchFeedbackPlayerRated(entry, playerInfoId));
                 this.matchAndFeedback[match.id] = {match: match, feedbackInMatch: feedback}
 
                 if (!this.isBusy()) {
@@ -77,17 +77,12 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
     return Object.keys(this.matchAndFeedback).length < this.matches.length;
   }
 
-  getIdForPlayerIdInMatch(match: Match, playerId: number): string {
-      return this.matchUtilsService.getAllPlayers(match).filter(playerInfo =>
-          this.playerInfoUtilsService.isRegisteredPlayer(playerInfo) && (<RegisteredPlayerInfo> playerInfo).playerId === playerId)[0].id
+  matchFeedbackPlayerRated(matchFeedback: MatchFeedback, playerInfoId: string): {entry: MatchFeedback, rate: number} {
+      return {entry: matchFeedback, rate: matchFeedback.ratings[playerInfoId]};
   }
 
-  matchFeedbackPlayerRated(match: Match, matchFeedback: MatchFeedback): {entry: MatchFeedback, rate: number} {
-      return {entry: matchFeedback, rate: matchFeedback.ratings[this.getIdForPlayerIdInMatch(match, this.player.id)]};
-  }
-
-  didFeedbackRatePlayer(match: Match, matchFeedback: MatchFeedback): boolean {
-      return matchFeedback.ratings[this.getIdForPlayerIdInMatch(match, this.player.id)] != null;
+  didFeedbackRatePlayer(playerInfoId: string, matchFeedback: MatchFeedback): boolean {
+    return matchFeedback.ratings[playerInfoId] != null;
   }
 
     /*  pieChartData =  {

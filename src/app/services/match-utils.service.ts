@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {TeamInfo} from '../match/teamInfo';
-import {PlayerInfo} from '../match/playerInfo';
+import {PlayerInfo, RegisteredPlayerInfo} from '../match/playerInfo';
 import {Match} from '../match/match';
 import {MatchPart} from '../match/match-part';
 import {GoalMatchEvent, MatchEvent} from '../match/match-events';
+import {PlayerInfoUtilService} from "../player-info-util.service";
 
 @Injectable()
 export class MatchUtilsService {
 
-  constructor() { }
+  constructor(private playerInfoUtilService: PlayerInfoUtilService) { }
 
   isHomeTeamSelected(match: Match): boolean {
     return match != null && match.homeTeam != null && match.homeTeam.teamInfo != null;
@@ -90,9 +91,9 @@ export class MatchUtilsService {
     return Object.getOwnPropertyNames(matchEvent)[0];
   }
 
-  isMatchReadyForMatchFeedback(match: Match): boolean {
-    return this.isHomeTeamSelected(match) && this.isAwayTeamSelected(match) && this.areHomePlayersSelected(match)
-        && this.areAwayPlayersSelected(match);
+  getIdForPlayerIdInMatch(match: Match, playerId: number): string {
+    return this.getAllPlayers(match).filter(playerInfo =>
+      this.playerInfoUtilService.isRegisteredPlayer(playerInfo) && (<RegisteredPlayerInfo> playerInfo).playerId === playerId)[0].id
   }
 
 }

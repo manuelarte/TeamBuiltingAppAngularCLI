@@ -14,6 +14,7 @@ import {MatchFeedback} from '../../match-feedback/match-feedback';
 import {Messages} from 'primeng/primeng';
 import {MatchService} from '../../services/match.service';
 import {Router} from '@angular/router';
+import {MatchFeedbackUtilsService} from "../../services/match-feedback-utils.service";
 
 @Component({
   selector: 'app-match-cud',
@@ -58,6 +59,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
 
   constructor(private matchService: MatchService,
               private matchUtilsService: MatchUtilsService,
+              private matchFeedbackUtilsService: MatchFeedbackUtilsService,
               private router: Router) { }
 
   ngOnInit() {
@@ -225,7 +227,7 @@ export class MatchCudComponent implements OnInit, OnChanges {
   }
 
   isMatchReadyForFeedback(): boolean {
-    return this.matchUtilsService.isMatchReadyForMatchFeedback(this.match);
+    return this.matchFeedbackUtilsService.isMatchReadyForMatchFeedback(this.match);
   }
 
   isMatchValid(): boolean {
