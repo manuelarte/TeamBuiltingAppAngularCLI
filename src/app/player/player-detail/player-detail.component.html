@@ -6,6 +6,8 @@
             <img class="player_image" [src]="player.imageLink" alt="{{player.name}}"/>
         </div>
 
+        <hr/>
+
         <app-player-cud-card class="player-detail-card" [player]="player"></app-player-cud-card>
 
         <div *ngIf="isEverythingLoaded() && playerHistory && playerHistory.length > 0; else loadingplayerHistory">
@@ -23,7 +25,6 @@
             </md-progress-spinner>
             <p-messages *ngIf="playerHistoryErrorFlag" [value]="[{severity:'info', summary:'Error Loading Player History', detail:'Player History could not be loaded.'}]" [closable]="false"></p-messages>
         </ng-template>
-
 
         <div *ngIf="playerToTeamSportLoaded">
 

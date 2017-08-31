@@ -12,26 +12,21 @@ $padding_bottom_container: 1.1 * ($max_height_player-profile - $max_height_img1)
     position:relative;
     height: 30vh;
     width: 100%;
-    overflow: hidden; background-attachment: fixed; background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; background-repeat: no-repeat; background-position: top center;
+    overflow: hidden;
+    background: fixed top center;
+    background-size: cover; -moz-background-size: cover; -webkit-background-size: cover;
     padding-bottom: 5vh;
+    display: block;
 }
 #container h2 {
     font-family:'Oswald', sans-serif; font-size:24px; text-align:center; color:white; font-weight:400; text-transform:uppercase; z-index:10; opacity:.9;
 }
 
-.player-detail-intro-img {
-    width: 100%;
-    max-height: $max_height_img1;
-    opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-}
-
 .player_image {
-    width: 20%;
     max-height: $max_height_player-profile;
     height: auto;
     border-radius: 50%;
     position: absolute;
-    bottom: 0%;
+    bottom: 0;
     transform: translate(0%, 0%);
 }

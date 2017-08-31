@@ -5,66 +5,6 @@
   margin-bottom: 16px;
 }
 
-// TODO: Have to remove the hint block (legacy)
-// Formly fields hint fix
-md-hint,div {
-  &.warn {
-    color: mat-color($mat-error, 500);
-  }
-}
-
-// Make inputs always 100% width. Size them using FlexBox.
-.mat-input-container,
-md2-datepicker,
-.mat-select {
-  width: 100%;
-}
-
-// Alignment fixes
-.mat-input-container {
-
-  .mat-input-wrapper {
-    padding-bottom: 0;
-  }
-
-  .mat-input-element {
-    height: 20px;
-  }
-}
-
-// Fix alignment Select box
-.mat-select {
-
-  .mat-select-trigger {
-    margin-top: 6px;
-
-    .mat-floating-placeholder {
-      margin-top: 16px;
-    }
-  }
-}
-
-
-// Remove Flexbox within the select element, conflicts with parent flexbox width sizing
-.mat-select-trigger {
-  display: block;
-  position: relative;
-
-  .mat-select-value {
-    top: 4px;
-  }
-
-  .mat-select-placeholder{
-    position: absolute;
-    bottom: 24%;
-  }
-  .mat-select-arrow {
-    position:absolute;
-    right: 0;
-    bottom: 40%;
-  }
-}
-
 inni-ml-field-checkbox {
   display: flex;
   height:100%;
