@@ -2,7 +2,8 @@
    player-detail-statistics-match-feedback-rating works!
 
   <ng-container *ngIf="isReady()">
-    <google-chart [data]="chartTable"></google-chart>
+    <google-chart [data]="chartTable" (chartReady)="chartReady($event)"></google-chart>
+    <md-progress-spinner *ngIf="chartLoading"></md-progress-spinner>
   </ng-container>
 </div>
 
