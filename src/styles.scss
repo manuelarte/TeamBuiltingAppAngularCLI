@@ -26,10 +26,9 @@
 @import 'sass/theme/colors';
 // @import 'sass/theme/typography';
 
-/* You can add global styles to this file, and also import other style files */
-.clickable {
-    cursor: pointer;
-}
+
+@import "sass/helpers/_globals.scss";
+@import "sass/layout/_base.scss";
 
 hr.line {
     display: block;
