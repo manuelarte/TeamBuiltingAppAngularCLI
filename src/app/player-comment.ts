@@ -6,3 +6,10 @@ export class PlayerComment {
     comment: string;
     when: Date;
 }
+
+export class IncomingPlayerComment {
+    id: string;
+    playerId: number;
+    reason: string;
+    comment: string;
+}
