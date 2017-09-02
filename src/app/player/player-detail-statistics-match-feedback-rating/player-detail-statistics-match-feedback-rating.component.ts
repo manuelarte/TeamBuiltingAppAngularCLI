@@ -5,6 +5,7 @@ import {MatchFeedback} from '../../match-feedback/match-feedback';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import {RegisteredPlayerInfo} from '../../match/playerInfo';
 import {PlayerInfoUtilService} from '../../player-info-util.service';
+import {ChartReadyEvent} from "ng2-google-charts";
 
 @Component({
   selector: 'app-player-detail-statistics-match-feedback-rating',
@@ -25,6 +26,8 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
 
   errorLoadingMatcheFeedback = false;
   matcheFeedback: Match[];
+
+  chartLoading = true;
 
   matchAndFeedback: {[matchId: string]: {
       match: Match,
@@ -158,6 +161,10 @@ export class PlayerDetailStatisticsMatchFeedbackRatingComponent implements OnIni
 
   isReady(): boolean {
     return this.chartTable != null;
+  }
+
+  chartReady(event: ChartReadyEvent): void {
+    this.chartLoading = false;
   }
 
 }
