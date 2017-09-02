@@ -35,6 +35,8 @@ export class AppComponent implements OnInit {
           sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/up-and-down-arrows-inside-boxes.svg'));
       this.mdIconRegistry.addSvgIcon('goal',
           sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/flaming-football.svg'));
+      this.mdIconRegistry.addSvgIcon('card',
+          sanitizer.bypassSecurityTrustResourceUrl(AppConstants.FOOTBALL_ICONS_URL + '/football-red-card-in-a-hand.svg'));
 
       this.auth.handleAuthentication();
   }
