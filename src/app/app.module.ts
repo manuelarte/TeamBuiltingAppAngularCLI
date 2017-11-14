@@ -29,7 +29,8 @@ import {UserService} from './services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import {
-    MatAutocompleteModule, MatDialogModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
+    MatAutocompleteModule, MatButtonModule, MatDialogModule, MatIconModule, MatListModule, MatMenuModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatToolbarModule
 } from '@angular/material';
@@ -57,6 +58,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ErrorHandlingModule,
         // MaterialModule
         MatAutocompleteModule,
+        MatButtonModule,
         MatDialogModule,
         MatMenuModule,
         MatIconModule,
