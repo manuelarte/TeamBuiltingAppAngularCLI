@@ -1,5 +1,4 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
@@ -8,27 +7,27 @@ import 'rxjs/add/operator/map'
 import {Team} from "../team";
 import {Page} from "../page";
 import {environment} from "../../environments/environment";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class TeamSearchService {
 
   private backendUrl: string = `${environment.backendTeamsUrl}`;
 
-  constructor(private http: Http) {}
+  constructor(private httpClient: HttpClient) {}
 
-  search(term: string): Observable<Page<Team>> {
-    return this.http
-               .get(`${this.backendUrl}?name=${term}`)
-               .map((r: Response) => this.convertFromDatesAndToDatesForArray(r) as Page<Team>);
+  search$(term: string): Observable<Page<Team>> {
+    return this.httpClient
+               .get<Page<Team>>(`${this.backendUrl}?name=${term}`)
+               .map(this.convertFromDatesAndToDatesForArray);
   }
 
 
-  private convertFromDatesAndToDatesForArray(res: Response) {
-      let data = res.json() || {};
-      data.content.forEach(d => {
-          d.fromDate = new Date(d.fromDate);
-          if (d.toDate) {
-              d.toDate = new Date(d.toDate);
+  private convertFromDatesAndToDatesForArray(data: Page<Team>): Page<Team> {
+      data.content.forEach(team => {
+          team.fromDate = new Date(team.fromDate);
+          if (team.toDate) {
+              team.toDate = new Date(team.toDate);
           }
       });
       return data;

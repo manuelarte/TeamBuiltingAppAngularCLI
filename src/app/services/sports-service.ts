@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import {TeamSport, TeamSportPosition} from '../team-sports';
 import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 /**
-    * @author Manuel
+    * @author Manuel Doncel Martos
     * @since 20/11/2016
     */
 @Injectable()
@@ -13,19 +13,17 @@ export class TeamSportService {
     private teamSportsUrl = this.backendUrl + '/';
     public sportToIcon: Map<string, string> = new Map<string, string>();
 
-    constructor(private http: Http) {
+    constructor(private httpClient: HttpClient) {
         this.sportToIcon.set('Football', 'football_field');
         this.sportToIcon.set('Futsal', 'futsal_pitch');
     }
 
     getTeamSportsAvailable(): Promise<TeamSport[]> {
-        return this.http.get(this.teamSportsUrl).map(response => <TeamSport[]> response.json())
-            .toPromise();
+        return this.httpClient.get<TeamSport[]>(this.teamSportsUrl).toPromise();
     }
 
     getTeamSportPositions(teamSportName: string): Promise<TeamSportPosition[]> {
-        return this.http.get(`${this.teamSportsUrl}/${teamSportName}`).map(response => <TeamSportPosition[]> response.json())
-            .toPromise();
+        return this.httpClient.get<TeamSportPosition[]>(`${this.teamSportsUrl}/${teamSportName}`).toPromise();
     }
 
 

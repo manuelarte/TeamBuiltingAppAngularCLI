@@ -42,7 +42,7 @@ export class PlayerSearchComponent implements OnInit {
             .distinctUntilChanged()   // ignore if next search term is same as previous
             .switchMap(term => term   // switch to new observable each time
                 // return the http search observable
-                ? this.playerSearchService.search(term)
+                ? this.playerSearchService.search$(term)
                 // or the observable of empty players if no search term
                 : Observable.of<Page<Player>>(defaultPage))
             .catch(error => {

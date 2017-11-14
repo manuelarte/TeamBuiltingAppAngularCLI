@@ -43,7 +43,7 @@ export class TeamSearchComponent implements OnInit {
           .distinctUntilChanged()   // ignore if next search term is same as previous
           .switchMap(term => term   // switch to new observable each time
               // return the http search observable
-              ? this.teamSearchService.search(term)
+              ? this.teamSearchService.search$(term)
               // or the observable of empty heroes if no search term
               : Observable.of<Page<Team>>(defaultPage))
           .catch(error => {

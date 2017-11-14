@@ -1,7 +1,6 @@
 import * as moment from 'moment';
 
 import { Injectable } from '@angular/core';
-import {Http, URLSearchParams} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -11,6 +10,8 @@ import {AuthHttp} from 'angular2-jwt';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {PlayerToTeam} from '../player-to-team';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Timeslice} from '../timeslice';
 
 
 @Injectable()
@@ -21,14 +22,14 @@ export class TeamService {
   private teamUrl = this.backendTeamsUrl + '/';
   private playerToTeamsUrl: string = this.backendPlayersUrl + '/playersToTeams';
 
-  constructor(private http: Http, private authHttp: AuthHttp) { }
+  constructor(private httpClient: HttpClient, private authHttp: AuthHttp) { }
 
   getTeam(id: string): Promise<Team> {
     return this.getTeam$(id).toPromise();
   }
 
   getTeam$(id: string): Observable<Team> {
-    return this.http.get(this.teamUrl + id).map(this.convertFromDateAndToDate);
+    return this.httpClient.get<Team>(this.teamUrl + id).map(this.convertFromDateAndToDateGeneric);
   }
 
   postTeam(team: Team): Promise<Team> {
@@ -40,17 +41,24 @@ export class TeamService {
   }
 
   getPlayers(id: string, date: Date = null): Promise<PlayerToTeam[]> {
-    const params: URLSearchParams = new URLSearchParams();
+    const params: HttpParams = new HttpParams();
     if (date) {
         const myMoment: moment.Moment = moment(date);
         params.set('date', myMoment.format('YYYY-MM-DD'));
     }
-    return this.http.get(`${this.playerToTeamsUrl}/teams/${id}`, {search: params}).map(response => <PlayerToTeam[]> response.json())
-      .toPromise();
+    return this.httpClient.get<PlayerToTeam[]>(`${this.playerToTeamsUrl}/teams/${id}`, {params: params}).toPromise();
   }
 
-  private convertFromDateAndToDate(value: any) {
-    const data = value.json() || {};
+    private convertFromDateAndToDate(value: any) {
+        const data = value.json() || {};
+        data.fromDate = new Date(data.fromDate);
+        if (data.toDate) {
+            data.toDate = new Date(data.toDate);
+        }
+        return data;
+    }
+
+  private convertFromDateAndToDateGeneric<T extends Timeslice>(data: T) {
     data.fromDate = new Date(data.fromDate);
     if (data.toDate) {
       data.toDate = new Date(data.toDate);

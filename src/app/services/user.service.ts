@@ -3,6 +3,7 @@ import {Http} from "@angular/http";
 import {environment} from "../../environments/environment";
 import {User} from "../user";
 import {Observable} from 'rxjs/Observable';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class UserService {
@@ -10,10 +11,10 @@ export class UserService {
     private backendUrl: string = `${environment.backendUsersUrl}`;
     private usersUrl = this.backendUrl + '/users/';
 
-    constructor(private http: Http) {}
+    constructor(private httpClient: HttpClient) {}
 
     public getUser$(user_id: string): Observable<User> {
-        return this.http.get(`${this.usersUrl}/${user_id}`).map(response => response.json());
+        return this.httpClient.get<User>(`${this.usersUrl}/${user_id}`);
     }
 
 }
