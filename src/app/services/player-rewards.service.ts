@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map'
 import {PlayerReward} from "../player-reward";
 import {environment} from "../../environments/environment";
 import {AuthHttp} from "angular2-jwt";
+import {HttpClient} from '@angular/common/http';
+import {Timeslice} from '../timeslice';
 
 @Injectable()
 export class PlayerRewardsService {
@@ -15,10 +17,10 @@ export class PlayerRewardsService {
   private rewardsPrefix = '/rewards';
   private playersUrl = this.backendUrl + this.rewardsPrefix + '/players';
 
-  constructor(private http: Http, private authHttp: AuthHttp) { }
+  constructor(private httpClient: HttpClient, private authHttp: AuthHttp) { }
 
   getPlayerRewards(playerId: number): Promise<PlayerReward[]> {
-    return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertFromDatesAndToDatesForArray)
+    return this.httpClient.get<PlayerReward[]>(`${this.playersUrl}/${playerId}`).map(this.convertFromDatesAndToDatesForArray)
       .toPromise();
   }
 
@@ -31,12 +33,11 @@ export class PlayerRewardsService {
   }
 
   getRewards(): Promise<string[]> {
-      return this.http.get(`${this.backendUrl}${this.rewardsPrefix}`).map((r: Response) => r.json() as string[]).toPromise();
+      return this.httpClient.get<string[]>(`${this.backendUrl}${this.rewardsPrefix}`).toPromise();
   }
 
 
-    private convertFromDatesAndToDatesForArray(res: Response) {
-        let data = res.json() || [];
+    private convertFromDatesAndToDatesForArray<T extends Timeslice>(data: T[]) {
         data.forEach(d => {
             d.fromDate = new Date(d.fromDate);
             if (d.toDate) {

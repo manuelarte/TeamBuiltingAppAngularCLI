@@ -1,6 +1,5 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {TeamModule} from '../team/team.module';
 import {RatingModule} from 'primeng/components/rating/rating';
@@ -38,7 +37,6 @@ import {MatchFeedbackUtilsService} from '../services/match-feedback-utils.servic
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         MessagesModule,
         TeamModule,
         PlayerModule,

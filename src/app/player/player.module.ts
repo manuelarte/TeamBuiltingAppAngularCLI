@@ -1,7 +1,6 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -42,7 +41,6 @@ import {Ng2GoogleChartsModule} from 'ng2-google-charts';
     MessagesModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     AgmCoreModule,
     // Material Modules
     MdCardModule,

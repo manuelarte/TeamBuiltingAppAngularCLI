@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import {PlayerComment} from '../player-comment';
 import {environment} from '../../environments/environment';
 import {AuthHttp} from 'angular2-jwt';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class PlayerCommentService {
@@ -16,10 +17,10 @@ export class PlayerCommentService {
   private playersUrl = this.backendUrl + this.commentsPrefix + '/players';
   private reasonsUrl = this.backendUrl + this.commentsPrefix + '/reasons';
 
-  constructor(private http: Http, private authHttp: AuthHttp) { }
+  constructor(private httpClient: HttpClient, private authHttp: AuthHttp) { }
 
   getPlayerComments(playerId: number): Promise<PlayerComment[]> {
-    return this.http.get(`${this.playersUrl}/${playerId}`).map(this.convertWhenForArray)
+    return this.httpClient.get<PlayerComment[]>(`${this.playersUrl}/${playerId}`).map(this.convertWhenForArray)
       .toPromise();
   }
 
@@ -32,12 +33,11 @@ export class PlayerCommentService {
   }
 
   getCommentReasons(): Promise<string[]> {
-      return this.http.get(`${this.reasonsUrl}`).map((r: Response) => r.json() as string[]).toPromise();
+      return this.httpClient.get<string[]>(`${this.reasonsUrl}`).toPromise();
   }
 
 
-  private convertWhenForArray(res: Response) {
-    const data = res.json() || [];
+  private convertWhenForArray(data: PlayerComment[]) {
     data.forEach(d => {
         d.when = new Date(d.when);
     });

@@ -1,6 +1,5 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {HomeComponent} from './home.component';
 import {TeamModule} from '../team/team.module';
@@ -25,7 +24,6 @@ import {HomeIntroComponent} from './home-intro/home-intro.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         RatingModule,
         TeamModule,
         PlayerModule,

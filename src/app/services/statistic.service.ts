@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map'
 import {Page} from "../page";
 import {TeamStatistic} from "../team-statistic";
 import {environment} from "../../environments/environment";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class StatisticService {
@@ -14,11 +15,10 @@ export class StatisticService {
   private backendUrl: string = `${environment.backendStatisticsUrl}`;
   private statisticsTeamsUrl = this.backendUrl + '/teams';
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   getTeamsMostVisited(): Promise<Page<TeamStatistic>> {
-      return this.http.get(`${this.statisticsTeamsUrl}`).map(response => response.json())
-          .toPromise();
+      return this.httpClient.get<Page<TeamStatistic>>(`${this.statisticsTeamsUrl}`).toPromise();
   }
 
 }

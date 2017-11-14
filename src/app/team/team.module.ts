@@ -1,7 +1,6 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -21,7 +20,6 @@ import {MdProgressSpinnerModule, MdProgressBarModule} from '@angular/material';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         AgmCoreModule,
         // Material
         MdProgressSpinnerModule,

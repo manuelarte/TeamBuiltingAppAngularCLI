@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {Http, HttpModule, RequestOptions} from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import {AgmCoreModule} from '@agm/core';
 
 import {DonateComponent} from './donate/donate.component';
@@ -41,7 +41,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpClientModule,
         CdkTableModule,
         FlexLayoutModule,
-        HttpModule,
         MaterialModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'

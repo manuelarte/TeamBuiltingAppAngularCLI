@@ -1,6 +1,5 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {CommonModule} from '@angular/common';
 import {
@@ -26,7 +25,6 @@ import {PlayerService} from '../services/player.service';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         Ng2GoogleChartsModule,
         // Material Modules
         MdButtonModule,

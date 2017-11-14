@@ -1,6 +1,5 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {TeamModule} from '../team/team.module';
 import {CommonModule} from '@angular/common';
@@ -52,7 +51,6 @@ import {CanActivateViaAuthGuard} from '../shared/can-activate-via-auth-guard';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         MessagesModule,
         TeamModule,
         PlayerModule,

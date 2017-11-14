@@ -2,7 +2,6 @@ import {NgModule, LOCALE_ID} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -29,7 +28,6 @@ import {PlayerSearchComponent} from './player-search/player-search.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         // Material Modules,
         MdButtonModule,
         MdAutocompleteModule,
