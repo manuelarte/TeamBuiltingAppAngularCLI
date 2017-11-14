@@ -2,7 +2,6 @@ import {NgModule, LOCALE_ID} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -21,15 +20,16 @@ import {PlayerToSportDetailsCommonCudComponent} from './player-to-sport-details-
 import {PlayerToTeamWizardComponent} from './player-to-team-wizard/player-to-team-wizard.component';
 import {TeamSearchComponent} from './team-search/team-search.component';
 import {PlayerSearchComponent} from './player-search/player-search.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
     imports: [
         AgmCoreModule,
         CommonModule,
+        HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         // Material Modules,
         MdButtonModule,
         MdAutocompleteModule,

@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {Http, HttpModule, RequestOptions} from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import {AgmCoreModule} from '@agm/core';
 
 import {DonateComponent} from './donate/donate.component';
@@ -27,6 +27,8 @@ import {TeambuiltingSharedModule} from './shared/shared.module';
 import { UUID } from 'angular2-uuid';
 import {CdkTableModule} from '@angular/cdk/table';
 import {UserService} from './services/user.service';
+import {HttpClientModule} from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -38,9 +40,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     imports: [
         AppRoutingModule,
         BrowserModule,
+        HttpClientModule,
+        HttpModule,
         CdkTableModule,
         FlexLayoutModule,
-        HttpModule,
         MaterialModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'

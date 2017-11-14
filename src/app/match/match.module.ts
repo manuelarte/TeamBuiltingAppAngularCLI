@@ -1,6 +1,5 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {TeamModule} from '../team/team.module';
 import {CommonModule} from '@angular/common';
@@ -43,16 +42,17 @@ import {UtilsService} from '../services/utils.service';
 import {MatchService} from '../services/match.service';
 import {TeamSearchService} from '../services/team-search.service';
 import {CanActivateViaAuthGuard} from '../shared/can-activate-via-auth-guard';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     imports: [
+        HttpClientModule,
         MatchRoutingModule,
         FlexLayoutModule,
         CdkTableModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         MessagesModule,
         TeamModule,
         PlayerModule,

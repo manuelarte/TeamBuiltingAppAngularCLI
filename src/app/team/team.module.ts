@@ -1,7 +1,6 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -13,15 +12,16 @@ import {TeamRoutingModule} from './team-routing.module';
 import {CommonModule} from '@angular/common';
 import {ErrorHandlingModule} from '../error-handling/error-handling.module';
 import {MdProgressSpinnerModule, MdProgressBarModule} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
     imports: [
+        HttpClientModule,
         TeamRoutingModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         AgmCoreModule,
         // Material
         MdProgressSpinnerModule,

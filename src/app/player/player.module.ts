@@ -1,7 +1,6 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -32,9 +31,11 @@ import {UserRightsService} from '../services/user-rights.service';
 import {TeambuiltingSharedModule} from '../shared/shared.module';
 import {PlayerDetailStatisticsMatchFeedbackRatingComponent} from './player-detail-statistics-match-feedback-rating/player-detail-statistics-match-feedback-rating.component';
 import {Ng2GoogleChartsModule} from 'ng2-google-charts';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
+    HttpClientModule,
     PlayerRoutingModule,
     CommonModule,
     ChartModule,
@@ -42,7 +43,6 @@ import {Ng2GoogleChartsModule} from 'ng2-google-charts';
     MessagesModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     AgmCoreModule,
     // Material Modules
     MdCardModule,

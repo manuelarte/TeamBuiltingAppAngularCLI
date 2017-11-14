@@ -1,6 +1,5 @@
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {TeamModule} from '../team/team.module';
 import {RatingModule} from 'primeng/components/rating/rating';
@@ -30,15 +29,16 @@ import {PlayerService} from '../services/player.service';
 import {MatchService} from '../services/match.service';
 import {MatchFeedbackRewardsDisplayComponent} from './match-feedback-rewards-display/match-feedback-rewards-display.component';
 import {MatchFeedbackUtilsService} from '../services/match-feedback-utils.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     imports: [
         FlexLayoutModule,
+        HttpClientModule,
         CdkTableModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
         MessagesModule,
         TeamModule,
         PlayerModule,
