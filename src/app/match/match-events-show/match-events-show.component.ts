@@ -2,9 +2,8 @@ import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angul
 import {MatchEvent, MatchEventSchemaAndUi} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
-import moment = require('moment');
 import {DataSource} from '@angular/cdk';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from "rxjs/Rx";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import {TeamInfoUtilService} from '../../team-info-util.service';

@@ -15,6 +15,7 @@ import {Messages} from 'primeng/primeng';
 import {MatchService} from '../../services/match.service';
 import {Router} from '@angular/router';
 import {MatchFeedbackUtilsService} from "../../services/match-feedback-utils.service";
+import {MessageService} from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-match-cud',
@@ -49,23 +50,20 @@ export class MatchCudComponent implements OnInit, OnChanges {
   awayTeamSelected$: Observable<TeamInfo>;
   awayTeamRemoved$: Observable<any>;
 
-  msgs: Messages = new Messages();
-
   eventToDisplay$: Observable<any>;
   scoreFormChanged$: Observable<{scoreHomeTeam: number, scoreAwayTeam: number}>;
 
   submittingMatch = false;
   errorSubmittingMatch = false;
 
-  constructor(private matchService: MatchService,
+  constructor(private msgs: MessageService,
+              private matchService: MatchService,
               private matchUtilsService: MatchUtilsService,
               private matchFeedbackUtilsService: MatchFeedbackUtilsService,
               private router: Router) { }
 
   ngOnInit() {
-    this.msgs.value = [];
-    this.msgs.closable = false;
-    this.msgs.value.push({severity:'warn', summary:'Team Not Selected', detail:'Please select a team before adding players'});
+    this.msgs.add({severity:'warn', summary:'Team Not Selected', detail:'Please select a team before adding players'});
 
     this.editing = this.editable ? true : false;
 
