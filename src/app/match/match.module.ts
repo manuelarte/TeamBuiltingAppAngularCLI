@@ -28,7 +28,7 @@ import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {MatchPartsComponent} from './match-parts/match-parts.component';
 import {CalendarModule, DataTableModule, MessagesModule, OverlayPanelModule, SharedModule} from 'primeng/primeng';
-import {CdkTableModule} from '@angular/cdk';
+import {CdkTableModule} from '@angular/cdk/table';
 import {MatchEventsShowComponent} from './match-events-show/match-events-show.component';
 import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchTeamInfoComponent} from "./match-team-info/match-team-info.component";

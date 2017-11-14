@@ -19,7 +19,7 @@ import {TeambuiltingSharedModule} from '../shared/shared.module';
 import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
 import {MyWidgetRegistry} from '../shared/my-widget-registry';
 import {CalendarModule, DataTableModule, MessagesModule, OverlayPanelModule, SharedModule} from 'primeng/primeng';
-import {CdkTableModule} from '@angular/cdk';
+import {CdkTableModule} from '@angular/cdk/table';
 import {MatchUtilsService} from '../services/match-utils.service';
 import {MatchShowPlayerRatingComponent} from './match-show-player-rating/match-show-player-rating.component';
 import {MatchFeedbackFormComponent} from './match-feedback-form/match-feedback-form.component';

@@ -25,7 +25,7 @@ import {PlayerToTeamSportService} from './services/player-to-team-sport.service'
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {TeambuiltingSharedModule} from './shared/shared.module';
 import { UUID } from 'angular2-uuid';
-import {CdkTableModule} from '@angular/cdk';
+import {CdkTableModule} from '@angular/cdk/table';
 import {UserService} from './services/user.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {

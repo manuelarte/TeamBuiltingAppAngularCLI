@@ -3,12 +3,14 @@ import {MatchEvent, MatchEventSchemaAndUi} from '../match-events';
 import {Match} from '../match';
 import {MatchService} from '../../services/match.service';
 import moment = require('moment');
-import {DataSource} from '@angular/cdk';
+import {DataSource} from '@angular/cdk/table';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MatchUtilsService} from '../../services/match-utils.service';
 import {TeamInfoUtilService} from '../../team-info-util.service';
 import {DisplayableTeamInfo} from '../teamInfo';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/merge';
 
 @Component({
   selector: 'app-match-events-show',
