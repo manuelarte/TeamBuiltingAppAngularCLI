@@ -11,6 +11,7 @@ import {Match} from '../match/match';
 import {IncomingMatchFeedback, MatchFeedback} from '../match-feedback/match-feedback';
 import {Observable} from 'rxjs/Observable';
 import {Page} from '../page';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable()
 export class MatchService {
@@ -22,15 +23,14 @@ export class MatchService {
   private matchEventsUrl = this.backendMatchesUrl + '/matches/events';
   private matchFeedbackUrl: string = this.backendExperienceUrl + '/matchFeedback';
 
-  constructor(private http: Http, private authHttp: AuthHttp) { }
+  constructor(private httpClient: HttpClient, private authHttp: AuthHttp) { }
 
   getMatch(id: string): Promise<Match> {
-    return this.http.get(`${this.matchesUrl}/${id}`).map(response => <Match> response.json())
-            .toPromise();
+    return this.httpClient.get<Match>(`${this.matchesUrl}/${id}`).toPromise();
   }
 
   getMatchesForDatesAndPlayerId(from?: Date, to?: Date, playerId?: number): Observable<Page<Match>> {
-    const myParams = new URLSearchParams();
+    const myParams: HttpParams = new HttpParams();
     if (from) {
         myParams.append('from', from.format('YYYY-MM-dd'));
     }
@@ -41,23 +41,21 @@ export class MatchService {
       myParams.append('playerId', playerId.toString());
     }
 
-    let options = new RequestOptions({ params: myParams });
-    return this.http.get(`${this.matchesUrl}`, options).map(response => <Page<Match>> response.json());
+    let options = { params: myParams };
+    return this.httpClient.get<Page<Match>>(`${this.matchesUrl}`, options);
   }
 
   getMatchEvents(): Promise<MatchEventSchemaAndUi> {
-    return this.http.get(`${this.matchEventsUrl}`).map(response => <MatchEventSchemaAndUi> response.json())
-      .toPromise();
+    return this.httpClient.get<MatchEventSchemaAndUi>(`${this.matchEventsUrl}`).toPromise();
   }
 
   getMatchRewardsForSport(sportName: string): Promise<string[]> {
-    const options: RequestOptionsArgs = {params: {sport: sportName}};
-    return this.http.get(`${this.matchFeedbackUrl}/rewards`, options).map(response => <string[]> response.json()).toPromise();
+    const options = {params: {sport: sportName}};
+    return this.httpClient.get<string[]>(`${this.matchFeedbackUrl}/rewards`, options).toPromise();
   }
 
   getMatchFeedback(matchId: string): Promise<MatchFeedback[]> {
-    return this.http.get(`${this.matchFeedbackUrl}?matchId=${matchId}`)
-        .map(response => <MatchFeedback[]> response.json()).toPromise();
+    return this.httpClient.get<MatchFeedback[]>(`${this.matchFeedbackUrl}?matchId=${matchId}`).toPromise();
   }
 
   getMyMatchFeedback(matchId: string): Promise<IncomingMatchFeedback> {

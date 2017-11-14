@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -10,6 +10,8 @@ import {PlayerToTeamSportDetails} from '../player-to-team-sport-details';
 import {environment} from '../../environments/environment';
 import {AuthHttp} from 'angular2-jwt';
 import {Observable} from 'rxjs/Observable';
+import {HttpClient} from '@angular/common/http';
+import {Timeslice} from '../timeslice';
 
 @Injectable()
 export class PlayerService {
@@ -22,14 +24,14 @@ export class PlayerService {
   private playerToTeamUrl = this.backendPlayersUrl + '/playersToTeams';
   private sportsUrl: string = this.backendSportsUrl;
 
-  constructor(private http: Http, private authHttp: AuthHttp) { }
+  constructor(private httpClient: HttpClient, private authHttp: AuthHttp) { }
 
   getPlayer(id: number): Promise<Player> {
     return this.getPlayerObservable(id).toPromise();
   }
 
   getPlayerObservable(id: number): Observable<Player> {
-    return this.http.get(`${this.playerUrl}/${id}`).map(response => <Player> response.json());
+    return this.httpClient.get<Player>(`${this.playerUrl}/${id}`);
   }
 
   savePlayer(player: Player): Promise<Player> {
@@ -41,13 +43,11 @@ export class PlayerService {
   }
 
   getPlayerToTeamSportDetails(playerId: number): Promise<PlayerToTeamSportDetails[]> {
-    return this.http.get(`${this.sportsUrl}/players?playerId=${playerId}`).map(response => <PlayerToTeamSportDetails[]> response.json())
-      .toPromise();
+    return this.httpClient.get<PlayerToTeamSportDetails[]>(`${this.sportsUrl}/players?playerId=${playerId}`).toPromise();
   }
 
   getPlayerToTeamSportDetailsFor(playerId: string, sport: string): Promise<PlayerToTeamSportDetails> {
-      return this.http.get(`${this.sportsUrl}/players/${sport}?playerId=${playerId}`)
-          .map(response => <PlayerToTeamSportDetails> response.json())
+      return this.httpClient.get<PlayerToTeamSportDetails>(`${this.sportsUrl}/players/${sport}?playerId=${playerId}`)
           .toPromise();
   }
 
@@ -61,7 +61,7 @@ export class PlayerService {
   }
 
   getPlayerHistory(playerId: string): Promise<PlayerToTeam[]> {
-    return this.http.get(`${this.playerToTeamUrl}?playerId=${playerId}`).map(this.convertFromDatesAndToDatesForArray)
+    return this.httpClient.get<PlayerToTeam[]>(`${this.playerToTeamUrl}?playerId=${playerId}`).map(this.convertFromDatesAndToDatesForArray)
       .toPromise();
   }
 
@@ -74,8 +74,7 @@ export class PlayerService {
       return this.authHttp.delete(`${this.playerToTeamUrl}/${playerToTeam.id}`).toPromise();
   }
 
-  private convertFromDatesAndToDatesForArray(res: Response) {
-    const data = res.json() || [];
+  private convertFromDatesAndToDatesForArray<T extends Timeslice>(data: T[]) {
     data.forEach(d => {
         d.fromDate = new Date(d.fromDate);
         if (d.toDate) {

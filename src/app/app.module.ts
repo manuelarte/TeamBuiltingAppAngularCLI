@@ -26,6 +26,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {TeambuiltingSharedModule} from './shared/shared.module';
 import { UUID } from 'angular2-uuid';
 import {CdkTableModule} from '@angular/cdk';
+import {HttpClientModule} from '@angular/common/http';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -37,6 +38,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     imports: [
         AppRoutingModule,
         BrowserModule,
+        HttpClientModule,
         CdkTableModule,
         FlexLayoutModule,
         HttpModule,

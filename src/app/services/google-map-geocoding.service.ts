@@ -1,21 +1,21 @@
 import { Injectable }    from '@angular/core';
-import {Http, URLSearchParams} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
 import {GoogleMapGeocoding} from "../google-map-geocoding";
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable()
 export class GoogleMapGeocodingService {
 
     private googleMapGeocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json';  // URL to web api
 
-    constructor(private http: Http) { }
+    constructor(private httpClient: HttpClient) { }
 
     getGeocoding(address: string): Promise<GoogleMapGeocoding> {
-        let params = new URLSearchParams();
+        let params = new HttpParams();
         params.set('address', address);
-        return this.http.get(this.googleMapGeocodingUrl, { search: params }).map(response => response.json())
+        return this.httpClient.get<GoogleMapGeocoding>(this.googleMapGeocodingUrl, { params: params })
             .toPromise();
     }
 
