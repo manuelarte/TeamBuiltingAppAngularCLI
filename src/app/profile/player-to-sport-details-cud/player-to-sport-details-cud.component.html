@@ -1,11 +1,11 @@
 <div *ngIf="!isBusyLoadingSports && !isErrorLoadingSports(); else notReady">
 
     <section class="section">
-        <md-select #sportName placeholder="Select the Sport" [(ngModel)]="model.sport" required>
-            <md-option *ngFor="let sport of sports" [value]="sport.name" [disabled]="isSportRegistered(sport.name)">
+        <mat-select #sportName placeholder="Select the Sport" [(ngModel)]="model.sport" required>
+            <mat-option *ngFor="let sport of sports" [value]="sport.name" [disabled]="isSportRegistered(sport.name)">
                 {{sport.name}}
-            </md-option>
-        </md-select>
+            </mat-option>
+        </mat-select>
     </section>
 
     <section class="section">
@@ -30,8 +30,8 @@
 </div>
 
 <ng-template #notReady>
-    <md-progress-spinner *ngIf="isBusyLoadingSports" mode="indeterminate">
-    </md-progress-spinner>
+    <mat-progress-spinner *ngIf="isBusyLoadingSports" mode="indeterminate">
+    </mat-progress-spinner>
     <div *ngIf="isErrorLoadingSports()">
         Error loading the sports, try again.
     </div>

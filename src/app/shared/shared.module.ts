@@ -3,9 +3,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {CommonModule} from '@angular/common';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
-    MdProgressSpinnerModule, MdSelectModule,
-    MdSliderModule
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
+    MatProgressSpinnerModule, MatSelectModule,
+    MatSliderModule
 } from '@angular/material';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -27,16 +27,16 @@ import {PlayerService} from '../services/player.service';
         ReactiveFormsModule,
         Ng2GoogleChartsModule,
         // Material Modules
-        MdButtonModule,
-        MdCardModule,
-        MdCheckboxModule,
-        MdDatepickerModule,
-        MdNativeDateModule,
-        MdIconModule,
-        MdInputModule,
-        MdSliderModule,
-        MdSelectModule,
-        MdProgressSpinnerModule,
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule,
+        MatInputModule,
+        MatSliderModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
     ],
     declarations: [
         GoogleChartDirective,

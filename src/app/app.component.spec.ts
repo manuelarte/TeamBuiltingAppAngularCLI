@@ -8,7 +8,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {ProfileModule} from './profile/profile.module';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {DonateComponent} from './donate/donate.component';
-import {MaterialModule} from '@angular/material';
 
 describe('AppComponent', () => {
 
@@ -25,7 +24,6 @@ describe('AppComponent', () => {
             ],
             imports: [
                 AppRoutingModule,
-                MaterialModule,
                 ProfileModule,
             ],
             providers: [{provide: APP_BASE_HREF, useValue: '/'}]

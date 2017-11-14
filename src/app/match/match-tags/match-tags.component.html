@@ -1,12 +1,12 @@
 <div *ngIf="isEditable()">
-    <md-input-container>
-        <input #inputTag mdInput placeholder="Add tag" (keyup.enter)="addTag(inputTag.value); inputTag.value = ''">
-        <md-error *ngIf="isTagValid(inputTag.value)">
+    <mat-form-field>
+        <input #inputTag matInput placeholder="Add tag" (keyup.enter)="addTag(inputTag.value); inputTag.value = ''">
+        <mat-error *ngIf="isTagValid(inputTag.value)">
             Tag not valid
-        </md-error>
-    </md-input-container>
+        </mat-error>
+    </mat-form-field>
 </div>
 
-<md-chip-list>
-    <md-chip *ngFor="let tag of getTags()" class="chip">{{tag}}</md-chip>
-</md-chip-list>
+<mat-chip-list>
+    <mat-chip *ngFor="let tag of getTags()" class="chip">{{tag}}</mat-chip>
+</mat-chip-list>

@@ -4,7 +4,7 @@ import {Auth} from '../../services/auth-service';
 import {UserData} from '../../user-data';
 import {UserDataService} from '../../services/user-data.service';
 import {PlayerService} from '../../services/player.service';
-import {MdSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import {UserRightsService} from '../../services/user-rights.service';
 import {FormGroup} from '@angular/forms';
 
@@ -27,7 +27,7 @@ export class PlayerCudCardComponent implements OnInit {
   errorLoadingUserData = false;
 
   constructor(private auth: Auth, private userDataService: UserDataService, private playerService: PlayerService,
-              public snackBar: MdSnackBar, private userRightsService: UserRightsService) { }
+              public snackBar: MatSnackBar, private userRightsService: UserRightsService) { }
 
   ngOnInit() {
       if (this.auth.isAuthenticated()) {

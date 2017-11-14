@@ -1,15 +1,15 @@
 {{schema.description}}:
 <ng-container *ngIf="!schema.enum">
-    <md-input-container>
-        <input [attr.id]="id" [attr.name]="name" mdInput [formControl]="control" [placeholder]="schema.title"
+    <mat-form-field>
+        <input [attr.id]="id" [attr.name]="name" matInput [formControl]="control" [placeholder]="schema.title"
                [readonly]="schema.readOnly?true:null" [value]="value">
-    </md-input-container>
+    </mat-form-field>
 </ng-container>
 
 <ng-container *ngIf="schema.enum">
-    <md-select [placeholder]="schema.title" [formControl]="control" name="name">
-        <md-option *ngFor="let value of schema.enum" [value]="value">
+    <mat-select [placeholder]="schema.title" [formControl]="control" name="name">
+        <mat-option *ngFor="let value of schema.enum" [value]="value">
             {{value}}
-        </md-option>
-    </md-select>
+        </mat-option>
+    </mat-select>
 </ng-container>

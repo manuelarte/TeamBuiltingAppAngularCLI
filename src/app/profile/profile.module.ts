@@ -6,9 +6,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AgmCoreModule} from '@agm/core';
 
 import {
-    MdAutocompleteModule,
-    MdButtonModule, MdCheckboxModule, MdIconModule, MdInputModule, MdProgressSpinnerModule,
-    MdSelectModule, MdTabsModule
+    MatAutocompleteModule,
+    MatButtonModule, MatCheckboxModule, MatIconModule, MatInputModule, MatProgressSpinnerModule,
+    MatSelectModule, MatTabsModule, MatDialogModule, MatSidenavModule
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
 import {PlayerCudComponent} from './player-cud/player-cud.component';
@@ -31,15 +31,16 @@ import {HttpClientModule} from '@angular/common/http';
         FormsModule,
         ReactiveFormsModule,
         // Material Modules,
-        MdButtonModule,
-        MdAutocompleteModule,
-        MdInputModule,
-        MdSelectModule,
-        MdCheckboxModule,
-        MdIconModule,
-        MdProgressSpinnerModule,
-        MdButtonModule,
-        MdTabsModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatProgressSpinnerModule,
+        MatTabsModule,
         // Other modules
         SportModule,
     ],

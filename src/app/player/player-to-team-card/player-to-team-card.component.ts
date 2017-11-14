@@ -7,7 +7,7 @@ import {PlayerService} from '../../services/player.service';
 import {Auth} from '../../services/auth-service';
 import {UserDataService} from '../../services/user-data.service';
 import {UserData} from '../../user-data';
-import {MdSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import {UserRightsService} from "../../services/user-rights.service";
 import {RouterUtilsService} from "../../services/router-utils.service";
 import {UtilsService} from "../../services/utils.service";
@@ -42,7 +42,7 @@ export class PlayerToTeamCardComponent implements OnInit {
   @Output() entryDeleted: EventEmitter<PlayerToTeam> = new EventEmitter<PlayerToTeam>();
 
   constructor(private playerService: PlayerService, private teamService: TeamService, private userDataService: UserDataService,
-              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService, public routerUtilsService: RouterUtilsService,
+              private auth: Auth, public snackBar: MatSnackBar, private userRightsService: UserRightsService, public routerUtilsService: RouterUtilsService,
   private utilsService: UtilsService) { }
 
   ngOnInit() {

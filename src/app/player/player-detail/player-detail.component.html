@@ -21,8 +21,8 @@
 
         </div>
         <ng-template #loadingplayerHistory>
-            <md-progress-spinner *ngIf="loadingPlayerHistoryFlag" mode="indeterminate">
-            </md-progress-spinner>
+            <mat-progress-spinner *ngIf="loadingPlayerHistoryFlag" mode="indeterminate">
+            </mat-progress-spinner>
             <p-messages *ngIf="playerHistoryErrorFlag" [value]="[{severity:'info', summary:'Error Loading Player History', detail:'Player History could not be loaded.'}]" [closable]="false"></p-messages>
         </ng-template>
 
@@ -50,6 +50,6 @@
     </div>
 </div>
 <ng-template #loadingPlayerTemplate>
-    <md-progress-spinner *ngIf="loadingPlayerFlag" mode="indeterminate">Loading player info...</md-progress-spinner>
+    <mat-progress-spinner *ngIf="loadingPlayerFlag" mode="indeterminate">Loading player info...</mat-progress-spinner>
     <p-messages *ngIf="errorLoadingPlayer" [value]="[{severity:'warning', summary:'The player profile could not be loaded', detail:''}]" [closable]="false"></p-messages>
 </ng-template>

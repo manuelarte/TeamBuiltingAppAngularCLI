@@ -2,28 +2,28 @@
 
     <section class="positions margin">
 
-        <md-select #mainPosition placeholder="Select Your Main Position" [(ngModel)]="model.mainPosition"
+        <mat-select #mainPosition placeholder="Select Your Main Position" [(ngModel)]="model.mainPosition"
                    formControlName="mainPosition" (change)="emitForm()" required>
-            <md-option *ngFor="let position of getPositions(model.sport)" [value]="position.abbreviation">
+            <mat-option *ngFor="let position of getPositions(model.sport)" [value]="position.abbreviation">
                 {{position.fullName}}
-            </md-option>
-        </md-select>
+            </mat-option>
+        </mat-select>
 
-        <md-select #otherPositions placeholder="Select Your Other Positions" [multiple]="true"
+        <mat-select #otherPositions placeholder="Select Your Other Positions" [multiple]="true"
                    [(ngModel)]="model.otherPositions" formControlName="otherPositions" (change)="emitForm()">
-            <md-option *ngFor="let position of getSparePositions(model.sport)" [value]="position.abbreviation">
+            <mat-option *ngFor="let position of getSparePositions(model.sport)" [value]="position.abbreviation">
                 {{position.fullName}}
-            </md-option>
-        </md-select>
+            </mat-option>
+        </mat-select>
 
     </section>
 
     <section class="bio margin">
-        <md-input-container class="example-full-width">
-            <textarea #bio mdInput placeholder="Bio" rows="5" [(ngModel)]="model.bio" formControlName="bio" id="bio"
+        <mat-form-field class="example-full-width">
+            <textarea #bio matInput placeholder="Bio" rows="5" [(ngModel)]="model.bio" formControlName="bio" id="bio"
                       name="bio" [readOnly]="!editing"></textarea>
-            <md-error>Description of the position not valid.</md-error>
-        </md-input-container>
+            <mat-error>Description of the position not valid.</mat-error>
+        </mat-form-field>
     </section>
 
 </form>

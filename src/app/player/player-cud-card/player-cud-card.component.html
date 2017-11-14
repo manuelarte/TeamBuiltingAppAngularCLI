@@ -1,11 +1,11 @@
-<md-card class="example-card">
-    <md-card-content>
+<mat-card class="example-card">
+    <mat-card-content>
         <app-player-cud [(model)]="player" [(editing)]="editing" (form)="playerForm = $event"></app-player-cud>
-    </md-card-content>
-    <md-card-actions *ngIf="userData && userCanEdit()">
-        <button md-button *ngIf="editing == false" [disabled]="submittingFlag" (click)="editing = true"><md-icon>mode_edit</md-icon></button>
-        <button md-button *ngIf="editing == true" [disabled]="submittingFlag || !playerForm || !playerForm.valid" (click)="editEntry()">
-            <md-icon>save</md-icon>
+    </mat-card-content>
+    <mat-card-actions *ngIf="userData && userCanEdit()">
+        <button mat-button *ngIf="editing == false" [disabled]="submittingFlag" (click)="editing = true"><mat-icon>mode_edit</mat-icon></button>
+        <button mat-button *ngIf="editing == true" [disabled]="submittingFlag || !playerForm || !playerForm.valid" (click)="editEntry()">
+            <mat-icon>save</mat-icon>
         </button>
-    </md-card-actions>
-</md-card>
+    </mat-card-actions>
+</mat-card>

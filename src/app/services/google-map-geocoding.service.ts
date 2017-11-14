@@ -13,9 +13,9 @@ export class GoogleMapGeocodingService {
     constructor(private httpClient: HttpClient) { }
 
     getGeocoding(address: string): Promise<GoogleMapGeocoding> {
-        let params = new HttpParams();
-        params.set('address', address);
-        return this.httpClient.get<GoogleMapGeocoding>(this.googleMapGeocodingUrl, { params: params }).toPromise();
+        const params: HttpParams = new HttpParams();
+        params.append('address', address);
+        return this.httpClient.get<GoogleMapGeocoding>(this.googleMapGeocodingUrl + "?address=" + address).toPromise();
     }
 
 }

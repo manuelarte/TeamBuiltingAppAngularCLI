@@ -1,35 +1,35 @@
 <form [formGroup]="playerCommentForm">
 
-    <md-card class="example-card">
-        <md-card-header>
-            <div md-card-avatar [ngStyle]="{'background-image': 'url(' + auth.userProfile.picture + ')'}" class="example-header-image"></div>
-            <md-card-title>Write a comment</md-card-title>
-            <md-card-subtitle>to {{player.name}}</md-card-subtitle>
-        </md-card-header>
-        <md-card-content>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + auth.userProfile.picture + ')'}" class="example-header-image"></div>
+            <mat-card-title>Write a comment</mat-card-title>
+            <mat-card-subtitle>to {{player.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
             <hr class="line">
             <section>
-                <md-select #reason placeholder="How do you know this player?" [(ngModel)]="model.reason" formControlName="reason">
-                    <md-option *ngFor="let reason of commentReasons" [value]="reason">
+                <mat-select #reason placeholder="How do you know this player?" [(ngModel)]="model.reason" formControlName="reason">
+                    <mat-option *ngFor="let reason of commentReasons" [value]="reason">
                         {{reason}}
-                    </md-option>
-                </md-select>
+                    </mat-option>
+                </mat-select>
             </section>
 
             <section>
-                <md-input-container>
-                <textarea mdInput #comment name="comment" placeholder="Comment" [(ngModel)]="model.comment"
+                <mat-form-field>
+                <textarea matInput #comment name="comment" placeholder="Comment" [(ngModel)]="model.comment"
                           formControlName="comment" id="comment" cols="50"
                           rows="5" [required]></textarea>
-                    <md-error>Comment is required.</md-error>
-                </md-input-container>
+                    <mat-error>Comment is required.</mat-error>
+                </mat-form-field>
             </section>
 
-        </md-card-content>
-        <md-card-actions>
-            <button md-raised-button [disabled]="playerCommentForm.invalid || playerCommentSubmitting"
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button [disabled]="playerCommentForm.invalid || playerCommentSubmitting"
                     (click)="submitComment()">Submit</button>
-        </md-card-actions>
-    </md-card>
+        </mat-card-actions>
+    </mat-card>
 
 </form>

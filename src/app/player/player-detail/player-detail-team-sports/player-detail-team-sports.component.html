@@ -1,13 +1,13 @@
-<md-card class="example-card">
-    <md-card-header>
-        <md-card-title>Player Position:</md-card-title>
-        <md-select placeholder="Select the Sport" [(ngModel)]="sportSelected" name="sportSelected">
-            <md-option *ngFor="let sport of getSportsPlayed()" [value]="sport">
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Player Position:</mat-card-title>
+        <mat-select placeholder="Select the Sport" [(ngModel)]="sportSelected" name="sportSelected">
+            <mat-option *ngFor="let sport of getSportsPlayed()" [value]="sport">
                 {{sport}}
-            </md-option>
-        </md-select>
-    </md-card-header>
-    <md-card-content>
+            </mat-option>
+        </mat-select>
+    </mat-card-header>
+    <mat-card-content>
         <br/>
         <app-player-to-sport-details-common-cud *ngIf="sportSelected && !loadingSportsFlag && sports[sportSelected]" [(model)]="playerToTeamSport[sportSelected]" [sport]="sports[sportSelected]" (form)="form = $event"></app-player-to-sport-details-common-cud>
         <div [ngSwitch]="sportSelected">
@@ -17,12 +17,12 @@
                                     [playersDetails]="[playerToTeamSport['Futsal']]">Loading futsal position...</player-futsal-position>
         </div>
 
-    </md-card-content>
-    <md-card-footer *ngIf="sportSelected && userData && userCanEdit()">
-        <button md-button *ngIf="editing == false" [disabled]="submittingFlag" (click)="editing = true"><md-icon>mode_edit</md-icon></button>
-        <button md-button *ngIf="editing == true" [disabled]="submittingFlag || !form || !form.valid" (click)="editEntry(sportSelected)">
-            <md-icon>save</md-icon>
+    </mat-card-content>
+    <mat-card-footer *ngIf="sportSelected && userData && userCanEdit()">
+        <button mat-button *ngIf="editing == false" [disabled]="submittingFlag" (click)="editing = true"><mat-icon>mode_edit</mat-icon></button>
+        <button mat-button *ngIf="editing == true" [disabled]="submittingFlag || !form || !form.valid" (click)="editEntry(sportSelected)">
+            <mat-icon>save</mat-icon>
         </button>
-        <button md-button [disabled]="submittingFlag" (click)="deleteEntry(sportSelected)"><md-icon>delete</md-icon></button>
-    </md-card-footer>
-</md-card>
+        <button mat-button [disabled]="submittingFlag" (click)="deleteEntry(sportSelected)"><mat-icon>delete</mat-icon></button>
+    </mat-card-footer>
+</mat-card>

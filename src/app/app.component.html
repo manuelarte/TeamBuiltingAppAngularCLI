@@ -1,41 +1,41 @@
-<md-sidenav-container class="example-sidenav-fab-container">
-    <md-sidenav #sidenav mode="over" class="app-sidenav" opened="false">
+<mat-sidenav-container class="example-sidenav-fab-container">
+    <mat-sidenav #sidenav mode="over" class="app-sidenav" opened="false">
         <app-profile-sidenav></app-profile-sidenav>
-    </md-sidenav>
+    </mat-sidenav>
 
-    <md-toolbar #header id="header" class="header" color="primary">
+    <mat-toolbar #header id="header" class="header" color="primary">
         <i (click)="sidenav.toggle()" class="material-icons app-toolbar-menu clickable">menu</i>
         <span>TeamBuilting App</span>
         <span class="example-fill-remaining-space"></span>
         <!--
-        <button md-icon-button [mdMenuTriggerFor]="menu">
-            <md-icon>more_vert</md-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
         </button>
-        <md-menu #menu="mdMenu">
+        <mat-menu #menu="matMenu">
             <app-toolbar-menu></app-toolbar-menu>
-        </md-menu>
+        </mat-menu>
         -->
-    </md-toolbar>
+    </mat-toolbar>
 
     <div class="app-content">
       <router-outlet (activate)="sidenav.opened = false"></router-outlet>
     </div>
 
-    <md-toolbar #footer class="footer" color="primary">
+    <mat-toolbar #footer class="footer" color="primary">
         <span><donate></donate></span>
         <span class="btn-space"></span>
-    </md-toolbar>
+    </mat-toolbar>
 
-    <md-menu #actionButtonMenu="mdMenu">
+    <mat-menu #actionButtonMenu="matMenu">
         <app-toolbar-menu></app-toolbar-menu>
-    </md-menu>
+    </mat-menu>
 
-</md-sidenav-container>
+</mat-sidenav-container>
 
 <ng-container *ngIf="isAuthenticated()">
-    <button *ngIf="!sidenav.opened" md-fab class="action-button" [mdMenuTriggerFor]="actionButtonMenu"><md-icon>add</md-icon></button>
+    <button *ngIf="!sidenav.opened" mat-fab class="action-button" [matMenuTriggerFor]="actionButtonMenu"><mat-icon>add</mat-icon></button>
 </ng-container>
 
-<ng-container *ngIf="!isAuthenticated()" mdTooltip="Click to log in">
-    <button md-fab class="action-button" (click)="login()"><md-icon>person</md-icon></button>
+<ng-container *ngIf="!isAuthenticated()" matTooltip="Click to log in">
+    <button mat-fab class="action-button" (click)="login()"><mat-icon>person</mat-icon></button>
 </ng-container>

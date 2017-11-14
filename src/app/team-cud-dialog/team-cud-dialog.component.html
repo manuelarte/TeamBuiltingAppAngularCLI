@@ -1,9 +1,9 @@
-<h3 md-dialog-title>Team details:</h3>
-<md-dialog-content>
+<h3 matDialogTitle>Team details:</h3>
+<mat-dialog-content>
     <app-team-cud class="compact" [model]="model" (form)="teamForm = $event"></app-team-cud>
-</md-dialog-content>
-<md-dialog-actions class="footer">
-    <button md-button color="primary" md-dialog-close (click)="closeDialog()">Cancel</button>
-    <button md-raised-button color="primary" [disabled]="teamForm == null || !teamForm.valid || flagSubmittingTeam" type="button" (click)="onSubmit()">Ok
+</mat-dialog-content>
+<mat-dialog-actions class="footer">
+    <button mat-button color="primary" matDialogClose (click)="closeDialog()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="teamForm == null || !teamForm.valid || flagSubmittingTeam" type="button" (click)="onSubmit()">Ok
     </button>
-</md-dialog-actions>
+</mat-dialog-actions>

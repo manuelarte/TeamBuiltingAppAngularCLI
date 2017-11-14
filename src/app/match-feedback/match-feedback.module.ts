@@ -6,10 +6,10 @@ import {RatingModule} from 'primeng/components/rating/rating';
 import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdDatepickerModule, MdIconModule, MdInputModule, MdNativeDateModule,
-    MdOptionModule,
-    MdProgressSpinnerModule, MdSelectModule,
-    MdSliderModule, MdSnackBarModule, MdTableModule, MdTabsModule, MdTooltipModule
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
+    MatOptionModule,
+    MatProgressSpinnerModule, MatSelectModule,
+    MatSliderModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatTooltipModule
 } from '@angular/material';
 
 import {ProfileModule} from '../profile/profile.module';
@@ -52,21 +52,21 @@ import {HttpClientModule} from '@angular/common/http';
         RatingModule,
         SharedModule,
         // Material Modules
-        MdButtonModule,
-        MdCardModule,
-        MdCheckboxModule,
-        MdDatepickerModule,
-        MdNativeDateModule,
-        MdIconModule,
-        MdInputModule,
-        MdOptionModule,
-        MdSelectModule,
-        MdSliderModule,
-        MdSnackBarModule,
-        MdTableModule,
-        MdTabsModule,
-        MdTooltipModule,
-        MdProgressSpinnerModule
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule,
+        MatInputModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatSliderModule,
+        MatSnackBarModule,
+        MatTableModule,
+        MatTabsModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule
     ],
     declarations: [
         MatchFeedbackFormComponent,

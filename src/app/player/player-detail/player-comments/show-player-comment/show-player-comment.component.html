@@ -1,10 +1,10 @@
-<md-card class="example-card" [@cardplayercomment]>
-    <md-card-header>
-        <div md-card-avatar [ngStyle]="{'background-image': 'url(' + user.picture + ')'}" class="example-header-image"></div>
-        <md-card-title>{{getUsername()}}</md-card-title>
-        <md-card-subtitle>Comment written {{playerComment.when | date}}: {{playerComment.reason}}</md-card-subtitle>
-    </md-card-header>
-    <md-card-content>
+<mat-card class="example-card" [@cardplayercomment]>
+    <mat-card-header>
+        <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + user.picture + ')'}" class="example-header-image"></div>
+        <mat-card-title>{{getUsername()}}</mat-card-title>
+        <mat-card-subtitle>Comment written {{playerComment.when | date}}: {{playerComment.reason}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
         <hr class="line">
         <blockquote>
             <div class='fa fa-quote-right'></div>
@@ -15,9 +15,9 @@
                 </cite>
             </footer>
         </blockquote>
-    </md-card-content>
-    <md-card-actions *ngIf="deleteable">
+    </mat-card-content>
+    <mat-card-actions *ngIf="deleteable">
         <hr class="line">
-        <button md-button (click)="deleteComment()"><md-icon>delete</md-icon></button>
-    </md-card-actions>
-</md-card>
+        <button mat-button (click)="deleteComment()"><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+</mat-card>

@@ -2,22 +2,22 @@
 
     <section class="team-info">
         <label>Team Info:</label>
-        <md-input-container class="example-full-width">
-            <input mdInput type="text" placeholder="Team Name" formControlName="name" [(ngModel)]="model.name" required>
-            <md-error>Name is required.</md-error>
-        </md-input-container>
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="Team Name" formControlName="name" [(ngModel)]="model.name" required>
+            <mat-error>Name is required.</mat-error>
+        </mat-form-field>
 
-        <md-select placeholder="Sport" [(ngModel)]="model.sport" formControlName="sport" required>
-            <md-option value="" [disabled]="true">Select a sport...</md-option>
-            <md-option *ngFor="let sport of sports" [value]="sport.name">
-                <md-icon [svgIcon]="getIconForSport(sport.name)"></md-icon>
-                {{sport.name}}</md-option>
-        </md-select>
+        <mat-select placeholder="Sport" [(ngModel)]="model.sport" formControlName="sport" required>
+            <mat-option value="" [disabled]="true">Select a sport...</mat-option>
+            <mat-option *ngFor="let sport of sports" [value]="sport.name">
+                <mat-icon [svgIcon]="getIconForSport(sport.name)"></mat-icon>
+                {{sport.name}}</mat-option>
+        </mat-select>
 
-        <md-input-container class="example-full-width">
-            <textarea mdInput placeholder="Description" rows="3" [(ngModel)]="model.bio" id="bio" name="bio" formControlName="bio"></textarea>
-            <md-error>Description of the team not valid.</md-error>
-        </md-input-container>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Description" rows="3" [(ngModel)]="model.bio" id="bio" name="bio" formControlName="bio"></textarea>
+            <mat-error>Description of the team not valid.</mat-error>
+        </mat-form-field>
     </section>
 
     <section>
@@ -27,37 +27,37 @@
             </div>
 
             <div class="ui-g-12 ui-md-3 ui-lg-3">
-            <md-input-container>
-                <input #fromDate mdInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
+            <mat-form-field>
+                <input #fromDate matInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
                        formControlName="fromDate" required>
-                <md-error *ngIf="teamForm.get('fromDate').invalid">Not valid</md-error>
-            </md-input-container>
+                <mat-error *ngIf="teamForm.get('fromDate').invalid">Not valid</mat-error>
+            </mat-form-field>
             </div>
 
             <div class="ui-g-12 ui-md-3 ui-lg-3">
-            <md-input-container>
-                <input #toDate mdInput placeholder="To date" id="toDate" type="date" formControlName="toDate" [(ngModel)]="model.toDate" [value]="getToDate()"
+            <mat-form-field>
+                <input #toDate matInput placeholder="To date" id="toDate" type="date" formControlName="toDate" [(ngModel)]="model.toDate" [value]="getToDate()"
                        [required]="!stillActive" [readOnly]="stillActive">
-                <md-error *ngIf="teamForm.get('toDate').invalid">Not valid</md-error>
-            </md-input-container>
+                <mat-error *ngIf="teamForm.get('toDate').invalid">Not valid</mat-error>
+            </mat-form-field>
             </div>
 
             <div class="ui-g-12 ui-md-3 ui-lg-3">
-                <md-checkbox class="example-margin" [(ngModel)]="stillActive" [ngModelOptions]="{standalone: true}">Still Active</md-checkbox>
+                <mat-checkbox class="example-margin" [(ngModel)]="stillActive" [ngModelOptions]="{standalone: true}">Still Active</mat-checkbox>
             </div>
         </div>
     </section>
 
-    <md-input-container>
-        <input #emblemLink mdInput placeholder="Team Emblem Link" id="emblemLink" type="url" formControlName="emblemLink" [(ngModel)]="model.emblemLink">
-        <md-error *ngIf="teamForm.get('emblemLink').invalid">Not valid</md-error>
-    </md-input-container>
+    <mat-form-field>
+        <input #emblemLink matInput placeholder="Team Emblem Link" id="emblemLink" type="url" formControlName="emblemLink" [(ngModel)]="model.emblemLink">
+        <mat-error *ngIf="teamForm.get('emblemLink').invalid">Not valid</mat-error>
+    </mat-form-field>
 
-    <md-input-container>
-        <button md-icon-button mdPrefix [disabled]="!theLocation.value" (click)="searchLocation(theLocation.value)"><md-icon>search</md-icon></button>
-        <input mdInput #theLocation placeholder="Team Location" id="location" type="url" formControlName="location" [(ngModel)]="model.location">
-        <md-error *ngIf="!validLocation">Location not found in the map</md-error>
-    </md-input-container>
+    <mat-form-field>
+        <button mat-icon-button matPrefix [disabled]="!theLocation.value" (click)="searchLocation(theLocation.value)"><mat-icon>search</mat-icon></button>
+        <input matInput #theLocation placeholder="Team Location" id="location" type="url" formControlName="location" [(ngModel)]="model.location">
+        <mat-error *ngIf="!validLocation">Location not found in the map</mat-error>
+    </mat-form-field>
 
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
         <img [src]="model.emblemLink" class="emblemImage">
@@ -74,8 +74,8 @@
 
 </form>
 
-<md-progress-spinner *ngIf="isBusy" mode="indeterminate">
-</md-progress-spinner>
+<mat-progress-spinner *ngIf="isBusy" mode="indeterminate">
+</mat-progress-spinner>
 
 <div *ngIf="!isBusy && !sports" class="alert alert-danger">
     <div class="alert-item">

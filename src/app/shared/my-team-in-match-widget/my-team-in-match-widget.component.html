@@ -1,10 +1,10 @@
 <ng-container *ngIf="teamsRepresentation.length === 2">
     {{schema.description?schema.description:'Team'}}:
-    <md-select [placeholder]="schema.title" [formControl]="control" name="name" [(ngModel)]="value" [disabled]="schema.readOnly">
-        <md-option value="Select a Team" disabled>Select a Team</md-option>
-        <md-option *ngFor="let teamRepresentation of teamsRepresentation" [value]="teamRepresentation.id">
+    <mat-select [placeholder]="schema.title" [formControl]="control" name="name" [(ngModel)]="value" [disabled]="schema.readOnly">
+        <mat-option value="Select a Team" disabled>Select a Team</mat-option>
+        <mat-option *ngFor="let teamRepresentation of teamsRepresentation" [value]="teamRepresentation.id">
             <img class="entry-img" [src]="teamRepresentation.teamEmblem">
             {{ teamRepresentation.name }}
-        </md-option>
-    </md-select>
+        </mat-option>
+    </mat-select>
 </ng-container>

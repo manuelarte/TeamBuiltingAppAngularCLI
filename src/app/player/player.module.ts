@@ -21,8 +21,8 @@ import {PlayerRoutingModule} from './player-routing.module';
 import {PlayerDetailIntroComponent} from './player-detail-intro/player-detail-intro.component';
 import {PlayerToTeamCardComponent} from './player-to-team-card/player-to-team-card.component';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdDialogModule, MdGridListModule, MdIconModule,
-    MdInputModule, MdMenuModule, MdOptionModule, MdProgressSpinnerModule, MdSelectModule, MdSnackBarModule
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatGridListModule, MatIconModule,
+    MatInputModule, MatMenuModule, MatOptionModule, MatProgressSpinnerModule, MatSelectModule, MatSnackBarModule
 } from '@angular/material';
 import {SportModule} from '../sport/sport.module';
 import {ProfileModule} from '../profile/profile.module';
@@ -45,18 +45,18 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     AgmCoreModule,
     // Material Modules
-    MdCardModule,
-    MdButtonModule,
-    MdInputModule,
-    MdIconModule,
-    MdGridListModule,
-    MdCheckboxModule,
-    MdSnackBarModule,
-    MdProgressSpinnerModule,
-    MdSelectModule,
-    MdMenuModule,
-    MdOptionModule,
-    MdDialogModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatOptionModule,
+    MatDialogModule,
     Ng2GoogleChartsModule,
     // Other modules
     TeambuiltingSharedModule,

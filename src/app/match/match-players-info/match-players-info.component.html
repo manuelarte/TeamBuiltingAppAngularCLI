@@ -8,8 +8,8 @@
 </ng-container>
 
 <ng-template #isBusyTemplate>
-    <md-progress-spinner mode="indeterminate">
-    </md-progress-spinner>
+    <mat-progress-spinner mode="indeterminate">
+    </mat-progress-spinner>
 </ng-template>
 
 <app-match-player-info-cud *ngIf="isEditable()" [playersFilter]="getPlayersFilter()" (newPlayerInfo)="newPlayerInfoEventHandler($event)"></app-match-player-info-cud>

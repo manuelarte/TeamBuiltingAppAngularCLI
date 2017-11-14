@@ -1,5 +1,5 @@
 <div *ngIf="!teamInfo && isEditable()">
-    <md-checkbox class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</md-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="teamRegistered">Team Already Registered</mat-checkbox>
 
     <div *ngIf="teamRegistered">
         <team-search (teamClicked)="setTeamInfoFromTeam($event)"></team-search>
@@ -7,12 +7,12 @@
 
     <div *ngIf="!teamRegistered">
         <form [formGroup]="unregisteredTeamInfoForm">
-            <md-input-container>
-                <input mdInput type="text" placeholder="Team Name" formControlName="name" [(ngModel)]="unregisteredTeamInfo.name" required>
-                <md-error>Name is required.</md-error>
-            </md-input-container>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Team Name" formControlName="name" [(ngModel)]="unregisteredTeamInfo.name" required>
+                <mat-error>Name is required.</mat-error>
+            </mat-form-field>
         </form>
-        <button md-button (click)="setTeamInfoFromUnRegisteredTeamInfo()"><md-icon>add</md-icon></button>
+        <button mat-button (click)="setTeamInfoFromUnRegisteredTeamInfo()"><mat-icon>add</mat-icon></button>
     </div>
 
     <p-messages [(value)]="msgs" [closable]="false"></p-messages>
@@ -20,7 +20,7 @@
 
 <div class="section" *ngIf="teamInfo">
     <app-match-team-info [teamInfo]="teamInfo"></app-match-team-info>
-    <button *ngIf="isEditable()" md-button (click)="removeTeam()" mdTooltip="Remove team from match">
-        <md-icon>backspace</md-icon>
+    <button *ngIf="isEditable()" mat-button (click)="removeTeam()" matTooltip="Remove team from match">
+        <mat-icon>backspace</mat-icon>
     </button>
 </div>

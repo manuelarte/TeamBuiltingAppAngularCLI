@@ -3,10 +3,10 @@
 
   <ng-container *ngIf="isReady()">
     <google-chart [data]="chartTable" (chartReady)="chartReady($event)"></google-chart>
-    <md-progress-spinner *ngIf="chartLoading"></md-progress-spinner>
+    <mat-progress-spinner *ngIf="chartLoading"></mat-progress-spinner>
   </ng-container>
 </div>
 
 <ng-template #loading>
-    <md-progress-spinner></md-progress-spinner>
+    <mat-progress-spinner></mat-progress-spinner>
 </ng-template>

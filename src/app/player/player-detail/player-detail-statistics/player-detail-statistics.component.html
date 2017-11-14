@@ -1,15 +1,15 @@
 <div *ngIf="dataLoaded">
-    <md-card>
-        <md-card-header>
-            <div md-card-avatar [ngStyle]="{'background-image': 'url(' + player.imageLink + ')'}" class="example-header-image"></div>
-            <md-card-title>Player Statistics</md-card-title>
-            <md-select placeholder="Statistic" [(ngModel)]="selectedValue" name="food">
-                <md-option selected (click)="statisticSelected = 1">Teams played</md-option>
-                <md-option (click)="statisticSelected = 2">Number of teams per sport</md-option>
-                <md-option (click)="statisticSelected = 3">Performance</md-option>
-            </md-select>
-        </md-card-header>
-        <md-card-content>
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + player.imageLink + ')'}" class="example-header-image"></div>
+            <mat-card-title>Player Statistics</mat-card-title>
+            <mat-select placeholder="Statistic" [(ngModel)]="selectedValue" name="food">
+                <mat-option selected (click)="statisticSelected = 1">Teams played</mat-option>
+                <mat-option (click)="statisticSelected = 2">Number of teams per sport</mat-option>
+                <mat-option (click)="statisticSelected = 3">Performance</mat-option>
+            </mat-select>
+        </mat-card-header>
+        <mat-card-content>
             <hr class="line">
             <div [ngSwitch]="statisticSelected">
                 <p-chart *ngSwitchDefault type="doughnut" [data]="dataTimeInTheTeams"
@@ -18,6 +18,6 @@
                 <app-player-detail-statistics-match-feedback-rating *ngSwitchCase="3" [player]="player">
                 </app-player-detail-statistics-match-feedback-rating>
             </div>
-        </md-card-content>
-    </md-card>
+        </mat-card-content>
+    </mat-card>
 </div>

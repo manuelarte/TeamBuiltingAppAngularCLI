@@ -3,7 +3,7 @@ import {Player} from '../../player';
 import {PlayerService} from '../../services/player.service';
 import {PlayerToTeamSportDetails} from '../../player-to-team-sport-details';
 import {UserDataService} from '../../services/user-data.service';
-import {MdDialogRef, MdSnackBar} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormGroup} from '@angular/forms';
 import {PlayerToTeamSportService} from '../../services/player-to-team-sport.service';
 
@@ -27,7 +27,7 @@ export class PlayerToSportDetailsModalComponent implements OnInit {
 
   constructor(private userDataService: UserDataService, private playerService: PlayerService,
               private playerToTeamSportService: PlayerToTeamSportService,
-              public dialogRef: MdDialogRef<PlayerToSportDetailsModalComponent>, public snackBar: MdSnackBar) { }
+              public dialogRef: MatDialogRef<PlayerToSportDetailsModalComponent>, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.userDataService.getUserPlayerData().then(userData => {

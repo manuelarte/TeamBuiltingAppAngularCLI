@@ -4,7 +4,7 @@ import {Season} from '../../services/season-utils.service';
 import {Player} from '../../player';
 import {Team} from '../../team';
 import {RouterUtilsService} from '../../services/router-utils.service';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {GiveRewardComponent} from '../give-reward/give-reward.component';
 import {TeamService} from '../../services/team.service';
 import {PlayerService} from '../../services/player.service';
@@ -43,7 +43,7 @@ export class PlayerInTeamComponent implements OnInit {
   constructor(private teamService: TeamService, private playerService: PlayerService,
               private datesService: DatesService,
               private userRightsService: UserRightsService, private userDataService: UserDataService,
-              public routerUtilsService: RouterUtilsService, public dialog: MdDialog) {}
+              public routerUtilsService: RouterUtilsService, public dialog: MatDialog) {}
 
 
   ngOnInit(): void {

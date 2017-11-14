@@ -7,7 +7,7 @@ import {Auth} from '../../../services/auth-service';
 import {UserDataService} from '../../../services/user-data.service';
 import {UserData} from '../../../user-data';
 import {PlayerService} from '../../../services/player.service';
-import {MdSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import {UserRightsService} from '../../../services/user-rights.service';
 import {PlayerToTeamSportService} from '../../../services/player-to-team-sport.service';
 
@@ -45,7 +45,7 @@ export class PlayerDetailTeamSportsComponent implements OnInit {
 
   constructor(private teamSportService: TeamSportService, private playerService: PlayerService, private userDataService: UserDataService,
               private playerToTeamSportService: PlayerToTeamSportService,
-              private auth: Auth, public snackBar: MdSnackBar, private userRightsService: UserRightsService) {}
+              private auth: Auth, public snackBar: MatSnackBar, private userRightsService: UserRightsService) {}
 
   ngOnInit(): void {
       this.loadingSportsFlag = true;

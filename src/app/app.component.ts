@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Auth} from './services/auth-service';
-import {MdIconRegistry} from '@angular/material';
+import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AppConstants} from './app-constants';
 
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   languagesAvailable: string[] = [];
 
-  constructor(private auth: Auth, private mdIconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
+  constructor(private auth: Auth, private mdIconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
       this.mdIconRegistry.addSvgIcon('team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-badge.svg'));
       this.mdIconRegistry.addSvgIcon('player-to-team', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-fans-group.svg'));
       this.mdIconRegistry.addSvgIcon('sport-position', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football-field.svg'));

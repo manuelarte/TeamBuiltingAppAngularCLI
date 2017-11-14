@@ -1,5 +1,5 @@
-<h3 md-dialog-title>Add reward to {{player?.name}}</h3>
-<md-dialog-content>
+<h3 matDialogTitle>Add reward to {{player?.name}}</h3>
+<mat-dialog-content>
     <div *ngIf="!isAuthenticated()" class="alert alert-warning">
         <div class="alert-item">
             <span class="alert-text">You need to be logged in to give a reward</span>
@@ -11,35 +11,35 @@
     <form *ngIf="!submittingReward; else submitting" [formGroup]="playerRewardForm">
 
         <section>
-            <md-select #reward placeholder="Reward" name="reward" [(ngModel)]="model.reward" formControlName="reward" required>
-                <md-option *ngFor="let reward of rewards" [value]="reward.dbName">
-                    <md-icon [svgIcon]="'reward:' + reward.object.icon"></md-icon>
+            <mat-select #reward placeholder="Reward" name="reward" [(ngModel)]="model.reward" formControlName="reward" required>
+                <mat-option *ngFor="let reward of rewards" [value]="reward.dbName">
+                    <mat-icon [svgIcon]="'reward:' + reward.object.icon"></mat-icon>
                     {{reward.object.name}}
-                </md-option>
-            </md-select>
+                </mat-option>
+            </mat-select>
         </section>
         <section>
             <div>
                 <label for="comment">Comment</label>
-                <md-input-container>
-                    <textarea mdInput #comment id="comment" placeholder="Comment..." rows="5" maxlength="200" [(ngModel)]="model.comment"
+                <mat-form-field>
+                    <textarea matInput #comment id="comment" placeholder="Comment..." rows="5" maxlength="200" [(ngModel)]="model.comment"
                               formControlName="comment"></textarea>
-                    <md-error>Comment not allowed</md-error>
-                    <md-hint>{{comment.value.length}} / 200</md-hint>
-                </md-input-container>
+                    <mat-error>Comment not allowed</mat-error>
+                    <mat-hint>{{comment.value.length}} / 200</mat-hint>
+                </mat-form-field>
             </div>
         </section>
 
     </form>
     <ng-template #submitting>
         Submitting...
-        <md-progress-spinner mode="indeterminate">
-        </md-progress-spinner>
+        <mat-progress-spinner mode="indeterminate">
+        </mat-progress-spinner>
     </ng-template>
-</md-dialog-content>
-<md-dialog-actions class="footer">
-    <button md-button (click)="closeModal()">Cancel</button>
-    <button md-raised-button color="primary" [disabled]="isNotAuthenticated() || playerRewardForm.invalid || submittingReward" (click)="onSubmit()">
+</mat-dialog-content>
+<mat-dialog-actions class="footer">
+    <button mat-button (click)="closeModal()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="isNotAuthenticated() || playerRewardForm.invalid || submittingReward" (click)="onSubmit()">
         Ok
     </button>
-</md-dialog-actions>
+</mat-dialog-actions>

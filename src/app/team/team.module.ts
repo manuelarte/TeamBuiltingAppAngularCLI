@@ -11,7 +11,7 @@ import {TeamDetailSportIntroComponent} from './team-detail/team-detail-sport-int
 import {TeamRoutingModule} from './team-routing.module';
 import {CommonModule} from '@angular/common';
 import {ErrorHandlingModule} from '../error-handling/error-handling.module';
-import {MdProgressSpinnerModule, MdProgressBarModule} from '@angular/material';
+import {MatProgressSpinnerModule, MatProgressBarModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -24,8 +24,8 @@ import {HttpClientModule} from '@angular/common/http';
         ReactiveFormsModule,
         AgmCoreModule,
         // Material
-        MdProgressSpinnerModule,
-        MdProgressBarModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
         // App Modules
         PlayerModule,
         ErrorHandlingModule,

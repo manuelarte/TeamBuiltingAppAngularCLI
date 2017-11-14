@@ -3,21 +3,21 @@
 
   <div class="row">
     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-      <md-input-container>
-            <input mdInput type="text" #searchInput id="search_input" placeholder="Search for a Team..."
-                   [formControl]="myControl" [mdAutocomplete]="auto">
-      </md-input-container>
+      <mat-form-field>
+            <input matInput type="text" #searchInput id="search_input" placeholder="Search for a Team..."
+                   [formControl]="myControl" [matAutocomplete]="auto">
+      </mat-form-field>
 
-      <md-autocomplete #auto="mdAutocomplete">
-            <md-option *ngIf="(teamsPage | async)?.content?.length == 0" disabled>Teams not found</md-option>
-            <md-option *ngFor="let team of (teamsPage | async)?.content" [value]="team.name"
+      <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngIf="(teamsPage | async)?.content?.length == 0" disabled>Teams not found</mat-option>
+            <mat-option *ngFor="let team of (teamsPage | async)?.content" [value]="team.name"
                        (click)="searchInput.value = '';onTeamClicked(team)">
               <img class="entry-img" [src]="team.emblemLink">{{ team.name }}
-            </md-option>
-      </md-autocomplete>
+            </mat-option>
+      </mat-autocomplete>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <md-progress-spinner class="adjust" *ngIf="myControl.value && (teamsPage | async)?.content == null" mode="indeterminate"></md-progress-spinner>
+        <mat-progress-spinner class="adjust" *ngIf="myControl.value && (teamsPage | async)?.content == null" mode="indeterminate"></mat-progress-spinner>
     </div>
   </div>
 

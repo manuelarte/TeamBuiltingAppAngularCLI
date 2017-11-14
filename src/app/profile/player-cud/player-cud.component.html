@@ -3,41 +3,41 @@
         <section class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
             <div>
                 <label><strong>Player Name</strong></label>
-                    <md-input-container>
-                        <input mdInput #name type="text" placeholder="Player Name" size="35" required
+                    <mat-form-field>
+                        <input matInput #name type="text" placeholder="Player Name" size="35" required
                            [(ngModel)]="model.name" id="name" name="name" formControlName="name" [readOnly]="!editing">
-                        <md-error>The player name is not valid!</md-error>
-                        <md-hint align="end"> {{name.value.length}} / 35</md-hint>
-                    </md-input-container>
+                        <mat-error>The player name is not valid!</mat-error>
+                        <mat-hint align="end"> {{name.value.length}} / 35</mat-hint>
+                    </mat-form-field>
             </div>
             <div>
                 <label><strong>Player Nickname</strong></label>
-                <md-input-container>
-                    <input mdInput #nickname type="text" placeholder="Nickname" size="35" required
+                <mat-form-field>
+                    <input matInput #nickname type="text" placeholder="Nickname" size="35" required
                            [(ngModel)]="model.nickname" id="nickname" name="nickname" formControlName="nickname" [readOnly]="!editing">
-                    <md-error>The nickname is not valid!</md-error>
-                    <md-hint align="end"> {{nickname.value.length}} / 35</md-hint>
-                </md-input-container>
+                    <mat-error>The nickname is not valid!</mat-error>
+                    <mat-hint align="end"> {{nickname.value.length}} / 35</mat-hint>
+                </mat-form-field>
             </div>
 
             <div>
                 <label for="bornAddress"><strong>Born Address of the player:</strong></label>
-                <md-input-container>
-                    <input mdInput #bornAddress type="text" placeholder="Born Address" size="55"
+                <mat-form-field>
+                    <input matInput #bornAddress type="text" placeholder="Born Address" size="55"
                            [(ngModel)]="model.bornAddress" id="bornAddress" name="bornAddress" formControlName="bornAddress" [readOnly]="!editing">
-                    <md-error>The born address is not valid!</md-error>
-                </md-input-container>
+                    <mat-error>The born address is not valid!</mat-error>
+                </mat-form-field>
             </div>
         </section>
 
         <div *ngIf="editing" class="col-lg-6 col-md-4 col-sm-10 col-xs-12">
             <label><strong>Player Image:</strong></label>
-            <md-input-container>
-                <input mdInput #imageLink type="url" placeholder="Player Image" size="100"
+            <mat-form-field>
+                <input matInput #imageLink type="url" placeholder="Player Image" size="100"
                        [(ngModel)]="model.imageLink" id="imageLink" name="imageLink" formControlName="imageLink">
-                <md-error>The image link is not valid!</md-error>
-                <md-hint align="end"> {{imageLink.value.length}} / 100</md-hint>
-            </md-input-container>
+                <mat-error>The image link is not valid!</mat-error>
+                <mat-hint align="end"> {{imageLink.value.length}} / 100</mat-hint>
+            </mat-form-field>
         </div>
 
     </div>

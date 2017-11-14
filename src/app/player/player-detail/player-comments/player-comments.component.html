@@ -33,7 +33,7 @@
 
 </section>
 <ng-template #commentsNotLoaded>
-    <md-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate">
-    </md-progress-spinner>
+    <mat-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate">
+    </mat-progress-spinner>
     <p-messages *ngIf="errorLoadingComments" [value]="[{severity:'warn', summary:'The comments could not be loaded.', detail:''}]" [closable]="false"></p-messages>
 </ng-template>

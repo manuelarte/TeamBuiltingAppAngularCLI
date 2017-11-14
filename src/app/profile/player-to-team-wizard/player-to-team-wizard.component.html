@@ -1,15 +1,15 @@
-<h3 md-dialog-title>Add Player History:</h3>
-<md-dialog-content>
-    <md-tab-group [selectedIndex]="selectedIndex">
-        <md-tab>
-            <ng-template md-tab-label>
-                <md-icon svgIcon="team"></md-icon> Select the Team
+<h3 matDialogTitle>Add Player History:</h3>
+<mat-dialog-content>
+    <mat-tab-group [selectedIndex]="selectedIndex">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="team"></mat-icon> Select the Team
             </ng-template>
 
             <div class="row flex-items-xs-center">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <team-search (teamClicked)="setTeam($event)"></team-search>
-                    <md-icon *ngIf = "team != null" class="clickable" (click)="team = null">highlight_off</md-icon>
+                    <mat-icon *ngIf = "team != null" class="clickable" (click)="team = null">highlight_off</mat-icon>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div *ngIf="team" class="team-container">
@@ -19,10 +19,10 @@
                 </div>
             </div>
 
-        </md-tab>
-        <md-tab>
-            <ng-template md-tab-label>
-                <md-icon svgIcon="shorts-with-number-12"></md-icon> Add Dates
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="shorts-with-number-12"></mat-icon> Add Dates
             </ng-template>
 
             <div>
@@ -38,13 +38,13 @@
                 </div>
             </div>
 
-        </md-tab>
-    </md-tab-group>
-</md-dialog-content>
-<md-dialog-actions class="footer">
-    <button md-button color="primary" [disabled]="submitting" (click)="cancel()">Cancel</button>
-    <button md-raised-button color="primary" [disabled]="!isValidForm() || submitting" (click)="submitEntry()">Submit</button>
-</md-dialog-actions>
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions class="footer">
+    <button mat-button color="primary" [disabled]="submitting" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!isValidForm() || submitting" (click)="submitEntry()">Submit</button>
+</mat-dialog-actions>
 
 <!--
 <clr-wizard #wizard [(clrWizardOpen)]="open" (clrWizardOnCancel)="closeWizard()">

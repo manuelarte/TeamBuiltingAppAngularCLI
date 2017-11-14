@@ -13,7 +13,6 @@ import {AppRoutingModule} from './app-routing.module';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import {ErrorHandlingModule} from './error-handling/error-handling.module';
-import {MaterialModule} from '@angular/material';
 import { ProfileSidenavComponent } from './profile-sidenav/profile-sidenav.component';
 import { ToolbarMenuComponent } from './toolbar-menu/toolbar-menu.component';
 import {TeamCudDialogComponent} from './team-cud-dialog/team-cud-dialog.component';
@@ -29,6 +28,11 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {UserService} from './services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import {
+    MatAutocompleteModule, MatDialogModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatToolbarModule
+} from '@angular/material';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -44,7 +48,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         CdkTableModule,
         FlexLayoutModule,
-        MaterialModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAnvqOUmUsKviVfAP6TDv6eTj6nAzaCmw4'
         }),
@@ -52,6 +55,15 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ProfileModule,
         TeambuiltingSharedModule,
         ErrorHandlingModule,
+        // MaterialModule
+        MatAutocompleteModule,
+        MatDialogModule,
+        MatMenuModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatProgressSpinnerModule,
+        MatToolbarModule,
     ],
     declarations: [
         AppComponent,

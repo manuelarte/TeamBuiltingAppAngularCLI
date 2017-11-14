@@ -3,23 +3,23 @@
 
     <div class="row">
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-            <md-input-container>
-                <input mdInput type="text" #searchInput id="search_input" placeholder="Search for a Player..."
-                       [formControl]="myControl" [mdAutocomplete]="auto">
-            </md-input-container>
+            <mat-form-field>
+                <input matInput type="text" #searchInput id="search_input" placeholder="Search for a Player..."
+                       [formControl]="myControl" [matAutocomplete]="auto">
+            </mat-form-field>
 
-            <md-autocomplete #auto="mdAutocomplete">
-                <md-option *ngIf="(playersPage | async)?.content?.length == 0" disabled>Players not found</md-option>
-                <md-option *ngFor="let player of (playersPage | async)?.content" [value]="player.name"
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngIf="(playersPage | async)?.content?.length == 0" disabled>Players not found</mat-option>
+                <mat-option *ngFor="let player of (playersPage | async)?.content" [value]="player.name"
                            (click)="searchInput.value = '';onPlayerClicked(player)" [disabled]="isDisabled(player)">
                     <img class="entry-img" [src]="player.imageLink">{{ player.name }}
-                </md-option>
-            </md-autocomplete>
+                </mat-option>
+            </mat-autocomplete>
         </div>
 
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <md-progress-spinner class="adjust" *ngIf="myControl.value && (playersPage | async)?.content == null"
-                                 mode="indeterminate"></md-progress-spinner>
+            <mat-progress-spinner class="adjust" *ngIf="myControl.value && (playersPage | async)?.content == null"
+                                 mode="indeterminate"></mat-progress-spinner>
         </div>
     </div>
 

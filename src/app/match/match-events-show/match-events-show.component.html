@@ -1,40 +1,40 @@
 <ng-container *ngIf="!loadingSchemaAndUiMatchEvents && !isBusy()">
-    <md-input-container floatPlaceholder="never">
-        <input mdInput #filter placeholder="Filter event">
-    </md-input-container>
+    <mat-form-field floatPlaceholder="never">
+        <input matInput #filter placeholder="Filter event">
+    </mat-form-field>
 
-    <md-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource">
 
         <ng-container cdkColumnDef="type">
-            <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
-            <md-cell *cdkCellDef="let row">
-                <md-icon [svgIcon]="getEventType(row)" mdTooltip="{{getEventType(row)}}"></md-icon>
-            </md-cell>
+            <mat-header-cell *cdkHeaderCellDef> Type </mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
+                <mat-icon [svgIcon]="getEventType(row)" matTooltip="{{getEventType(row)}}"></mat-icon>
+            </mat-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="team">
-            <md-header-cell *cdkHeaderCellDef> Team </md-header-cell>
-            <md-cell *cdkCellDef="let row">
+            <mat-header-cell *cdkHeaderCellDef> Team </mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
                 <ng-container *ngIf="isATeamEvent(row); else noTeamEventDom">
                     {{getTeam(row)?.name}}
                 </ng-container>
                 <ng-template #noTeamEventDom>
                     N/A
                 </ng-template>
-            </md-cell>
+            </mat-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="when">
-            <md-header-cell *cdkHeaderCellDef> When </md-header-cell>
-            <md-cell *cdkCellDef="let row">
+            <mat-header-cell *cdkHeaderCellDef> When </mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
                 {{getWhenOrStartingTime(row) | date:"hh:mm"}}
-            </md-cell>
+            </mat-cell>
         </ng-container>
 
         <!--
         <ng-container cdkColumnDef="info">
-            <md-header-cell *cdkHeaderCellDef> Info </md-header-cell>
-            <md-cell *cdkCellDef="let row">
+            <mat-header-cell *cdkHeaderCellDef> Info </mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
 
                 <ng-container *ngFor="let property of getTableProperties(row)">
                     <ng-container *ngIf="row[getEventType(row)][property]">
@@ -43,19 +43,19 @@
                     </ng-container>
                 </ng-container>
 
-            </md-cell>
+            </mat-cell>
         </ng-container>
         -->
 
         <ng-container cdkColumnDef="actions">
-            <md-header-cell *cdkHeaderCellDef> Action </md-header-cell>
-            <md-cell *cdkCellDef="let row">
-                <button md-button [disabled]="!isEditable()"><md-icon>mode_edit</md-icon></button>
-                <button md-button [disabled]="row.type === 'goal' || !isEditable()"><md-icon>delete</md-icon></button>
-            </md-cell>
+            <mat-header-cell *cdkHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
+                <button mat-button [disabled]="!isEditable()"><mat-icon>mode_edit</mat-icon></button>
+                <button mat-button [disabled]="row.type === 'goal' || !isEditable()"><mat-icon>delete</mat-icon></button>
+            </mat-cell>
         </ng-container>
 
-        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-    </md-table>
+        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
 </ng-container>

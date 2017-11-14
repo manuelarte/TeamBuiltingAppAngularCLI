@@ -1,9 +1,9 @@
 {{schema.description?schema.description:'Player'}}:
-<md-select [placeholder]="schema.title" [formControl]="control" name="name">
-    <md-option value="Select a Player" disabled>Select a player</md-option>
-    <md-option *ngFor="let playerRepresentation of playersRepresentation" [value]="playerRepresentation.id">
+<mat-select [placeholder]="schema.title" [formControl]="control" name="name">
+    <mat-option value="Select a Player" disabled>Select a player</mat-option>
+    <mat-option *ngFor="let playerRepresentation of playersRepresentation" [value]="playerRepresentation.id">
         <img class="entry-img" [src]="playerRepresentation.teamEmblem">
         <img class="entry-img" [src]="playerRepresentation.playerImage">
         {{ playerRepresentation.name }}
-    </md-option>
-</md-select>
+    </mat-option>
+</mat-select>

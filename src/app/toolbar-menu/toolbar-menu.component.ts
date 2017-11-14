@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {PlayerToSportDetailsModalComponent} from '../profile/player-to-sport-details-modal/player-to-sport-details-modal.component';
 import {TeamCudDialogComponent} from '../team-cud-dialog/team-cud-dialog.component';
 import {PlayerToTeamWizardComponent} from '../profile/player-to-team-wizard/player-to-team-wizard.component';
@@ -12,7 +12,7 @@ import {Team} from '../team';
 })
 export class ToolbarMenuComponent implements OnInit {
 
-  constructor(public dialog: MdDialog) {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {

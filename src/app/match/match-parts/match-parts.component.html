@@ -5,8 +5,8 @@
     <p-dataTable [value]="matchParts" [editable]="isEditable()" [responsive]="true" immutable="false">
         <ng-container *ngIf="isEditable()">
             <p-footer>Match Parts. Click on the rows to edit them.
-                <button md-icon-button (click)="addMatchPart()"
-                        mdTooltip="Click to add a new part" mdTooltipPosition="above"><md-icon>add</md-icon></button>
+                <button mat-icon-button (click)="addMatchPart()"
+                        matTooltip="Click to add a new part" matTooltipPosition="above"><mat-icon>add</mat-icon></button>
             </p-footer>
         </ng-container>
 
@@ -45,7 +45,7 @@
         </p-column>
         <p-column *ngIf="isEditable()" header="Actions">
             <ng-template let-col let-matchPart="rowData" let-ri="rowIndex" pTemplate="body">
-                <button md-icon-button *ngIf="ri !== 0" (click)="deleteMatchPartInIndex(ri)" mdTooltip="Click to add a new part" mdTooltipPosition="above"><md-icon>delete</md-icon></button>
+                <button mat-icon-button *ngIf="ri !== 0" (click)="deleteMatchPartInIndex(ri)" matTooltip="Click to add a new part" matTooltipPosition="above"><mat-icon>delete</mat-icon></button>
             </ng-template>
         </p-column>
     </p-dataTable>

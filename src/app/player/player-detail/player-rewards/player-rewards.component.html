@@ -14,6 +14,6 @@
 </div>
 
 <ng-template #rewardsNotLoaded>
-    <md-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate"></md-progress-spinner>
+    <mat-progress-spinner *ngIf="!isEverythingLoaded()" mode="indeterminate"></mat-progress-spinner>
     <p-messages *ngIf="errorLoadingRewards" [value]="[{severity:'warn', summary:'Rewards Not Loaded', detail:'The player rewards could not be loaded.'}]" [closable]="false"></p-messages>
 </ng-template>

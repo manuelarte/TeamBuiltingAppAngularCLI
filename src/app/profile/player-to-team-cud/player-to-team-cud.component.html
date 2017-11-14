@@ -1,23 +1,23 @@
 <form [formGroup]="playerToTeamForm" (change)="emitForm()">
 
     <section class="date-section">
-        <md-input-container>
-            <input #fromDate mdInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
+        <mat-form-field>
+            <input #fromDate matInput placeholder="From date" type="date" [(ngModel)]="model.fromDate" [value]="getFromDate()"
                    formControlName="fromDate" required [readOnly]="!isEditing()">
-            <md-error *ngIf="playerToTeamForm.get('fromDate').invalid">Not valid</md-error>
-        </md-input-container>
+            <mat-error *ngIf="playerToTeamForm.get('fromDate').invalid">Not valid</mat-error>
+        </mat-form-field>
     </section>
 
     <section class="date-section">
-        <md-input-container *ngIf="!isStillActive()">
-            <input #toDate mdInput placeholder="To date" type="date" [(ngModel)]="model.toDate" [value]="getToDate()"
+        <mat-form-field *ngIf="!isStillActive()">
+            <input #toDate matInput placeholder="To date" type="date" [(ngModel)]="model.toDate" [value]="getToDate()"
                    formControlName="toDate" [required]="!isStillActive()" [readOnly]="!isEditing()">
-            <md-error *ngIf="playerToTeamForm.get('toDate').invalid">Not valid</md-error>
-            <md-error *ngIf="!isStillActive() && toDate.value == null">Required</md-error>
-            <md-error *ngIf="!toDateIsAfterFromDate()">To Date is before From Date</md-error>
-        </md-input-container>
+            <mat-error *ngIf="playerToTeamForm.get('toDate').invalid">Not valid</mat-error>
+            <mat-error *ngIf="!isStillActive() && toDate.value == null">Required</mat-error>
+            <mat-error *ngIf="!toDateIsAfterFromDate()">To Date is before From Date</mat-error>
+        </mat-form-field>
 
-        <md-checkbox *ngIf="isEditing() || (!isEditing() && !model.toDate)" [disabled]="!isEditing()" [checked]="isStillActive()" (change)="changeStillActive()">Still Playing</md-checkbox>
+        <mat-checkbox *ngIf="isEditing() || (!isEditing() && !model.toDate)" [disabled]="!isEditing()" [checked]="isStillActive()" (change)="changeStillActive()">Still Playing</mat-checkbox>
     </section>
 </form>
 

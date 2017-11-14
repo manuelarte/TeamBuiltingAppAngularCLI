@@ -9,41 +9,41 @@
             {{getUserProfile().given_name}} {{getUserProfile().family_name}}
         </p>
 
-        <md-nav-list>
-            <md-list-item>
-                <md-icon md-list-icon>home</md-icon>
-                <a md-line href="/home">Home</a>
-            </md-list-item>
-            <md-list-item>
-                <md-icon md-list-icon>accessibility</md-icon>
-                <a md-line [href]="'/player/' + getPlayerId()">My Profile</a>
-            </md-list-item>
-            <md-list-item (click)="logout()">
-                <md-icon md-list-icon>share</md-icon>
+        <mat-nav-list>
+            <mat-list-item>
+                <mat-icon mat-list-icon>home</mat-icon>
+                <a matLine href="/home">Home</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>accessibility</mat-icon>
+                <a matLine [href]="'/player/' + getPlayerId()">My Profile</a>
+            </mat-list-item>
+            <mat-list-item (click)="logout()">
+                <mat-icon mat-list-icon>share</mat-icon>
                 Log out
-            </md-list-item>
-        </md-nav-list>
+            </mat-list-item>
+        </mat-nav-list>
 
         <hr class="line">
 
-        <md-nav-list>
-            <md-list-item>
-                <md-icon md-list-icon>settings</md-icon>
-                <a md-line href="/home">Settings</a>
-            </md-list-item>
-        </md-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <mat-icon mat-list-icon>settings</mat-icon>
+                <a matLine href="/home">Settings</a>
+            </mat-list-item>
+        </mat-nav-list>
     </div>
 
 </div>
 <ng-template #notAuthenticated>
-    <md-progress-spinner *ngIf="isBusyLoadingSports" mode="indeterminate">
-    </md-progress-spinner>
+    <mat-progress-spinner *ngIf="isBusyLoadingSports" mode="indeterminate">
+    </mat-progress-spinner>
     You are not authenticated!
 </ng-template>
 
 <ng-template #userDataNotLoaded>
-    <md-progress-spinner *ngIf="userDataLoadingFlag" mode="indeterminate">
-    </md-progress-spinner>
+    <mat-progress-spinner *ngIf="userDataLoadingFlag" mode="indeterminate">
+    </mat-progress-spinner>
     <div *ngIf="!userDataLoadingFlag">
         Error loading User Data...
     </div>

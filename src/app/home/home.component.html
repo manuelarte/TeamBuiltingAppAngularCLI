@@ -2,28 +2,28 @@
 
 <div class="ui-g">
     <div class="ui-g-12 ui-md-3 ui-lg-4">
-        <md-card class="search-card">
-            <md-card-header>
-                <md-card-title>Search Team</md-card-title>
-            </md-card-header>
-            <md-card-content>
+        <mat-card class="search-card">
+            <mat-card-header>
+                <mat-card-title>Search Team</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
                 <team-search (teamClicked)="routerUtils.gotoTeamDetails($event)">Loading the search team component...
                 </team-search>
-            </md-card-content>
-        </md-card>
+            </mat-card-content>
+        </mat-card>
     </div>
 
     <div class="ui-g-12 ui-md-3 ui-lg-4">
-        <md-card class="search-card">
-            <md-card-header>
-                <md-card-title>Search Player</md-card-title>
-            </md-card-header>
-            <md-card-content>
+        <mat-card class="search-card">
+            <mat-card-header>
+                <mat-card-title>Search Player</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
                 <player-search (playerClicked)="routerUtils.gotoPlayerDetails($event)">Loading the search player
                     component...
                 </player-search>
-            </md-card-content>
-        </md-card>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>
 <!--<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">

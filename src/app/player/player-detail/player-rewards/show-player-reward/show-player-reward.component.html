@@ -1,9 +1,9 @@
-<md-card>
-    <md-card-header>
-        <div md-card-avatar [ngStyle]="{'background-image': 'url(' + team.emblemLink + ')'}" class="example-header-image"></div>
-        <md-card-title>Reward received in {{team.name}} {{getSeason(playerReward.fromDate)}}</md-card-title>
-    </md-card-header>
-    <md-card-content>
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + team.emblemLink + ')'}" class="example-header-image"></div>
+        <mat-card-title>Reward received in {{team.name}} {{getSeason(playerReward.fromDate)}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
         <hr class="line">
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
@@ -15,5 +15,5 @@
                 <blockquote>{{playerReward.comment}}</blockquote>
             </div>
         </div>
-    </md-card-content>
-</md-card>
+    </mat-card-content>
+</mat-card>

@@ -9,7 +9,7 @@ import {RateAndCommentsComponent} from '../rate-and-comments/rate-and-comments.c
 import {PodiumComponent} from '../statistics/podium/podium.component';
 import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
-import {MdButtonModule, MdCardModule, MdCheckboxModule, MdInputModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProfileModule} from '../profile/profile.module';
@@ -31,10 +31,10 @@ import {HttpClientModule} from '@angular/common/http';
         PlayerModule,
         ProfileModule,
         // Material Modules
-        MdCardModule,
-        MdButtonModule,
-        MdCheckboxModule,
-        MdInputModule,
+        MatCardModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatInputModule,
     ],
     declarations: [
         HomeComponent,

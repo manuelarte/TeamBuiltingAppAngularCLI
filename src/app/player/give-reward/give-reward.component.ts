@@ -7,7 +7,7 @@ import {Team} from "../../team";
 import {Season} from "../../services/season-utils.service";
 import {PlayerReward} from '../../player-reward';
 import {Auth} from "../../services/auth-service";
-import {MdDialogRef, MdIconRegistry, MdSnackBar} from "@angular/material";
+import {MatDialogRef, MatIconRegistry, MatSnackBar} from "@angular/material";
 import {Reward, Rewards} from "../../rewards";
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -37,9 +37,9 @@ export class GiveRewardComponent implements OnInit  {
     constructor(
         private auth: Auth,
         private playerRewardService: PlayerRewardsService,
-        public dialogRef: MdDialogRef<GiveRewardComponent>,
-        public snackBar: MdSnackBar,
-        private iconRegistry: MdIconRegistry, private sanitizer: DomSanitizer
+        public dialogRef: MatDialogRef<GiveRewardComponent>,
+        public snackBar: MatSnackBar,
+        private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer
     ) {
         iconRegistry.addSvgIconInNamespace('reward', 'best-player', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-player-with-the-ball-under-the-feet.svg'));
         iconRegistry.addSvgIconInNamespace('reward', 'top-scorer', sanitizer.bypassSecurityTrustResourceUrl('/images/icons/football/football-in-midair.svg'));

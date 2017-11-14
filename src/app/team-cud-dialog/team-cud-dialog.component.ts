@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {MdDialogRef, MdSnackBar} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {TeamSportService} from '../services/sports-service';
 import {TeamService} from '../services/team.service';
 import {FormGroup} from '@angular/forms';
@@ -18,7 +18,7 @@ export class TeamCudDialogComponent implements OnInit {
     flagSubmittingTeam = false;
     flagErrorSubmittingTeam = false;
 
-    constructor(private teamService: TeamService, public dialogRef: MdDialogRef<TeamCudDialogComponent>, public snackBar: MdSnackBar) {
+    constructor(private teamService: TeamService, public dialogRef: MatDialogRef<TeamCudDialogComponent>, public snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {

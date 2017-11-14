@@ -5,7 +5,7 @@ import {FormGroup} from '@angular/forms';
 import {PlayerService} from '../../services/player.service';
 import {Player} from '../../player';
 import {TeamService} from '../../services/team.service';
-import {MdDialogRef, MdSnackBar} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {UserDataService} from '../../services/user-data.service';
 import {PlayerHistoryService} from '../../services/player-history.service';
 
@@ -30,7 +30,7 @@ export class PlayerToTeamWizardComponent implements OnInit {
 
   constructor(private playerService: PlayerService, private userDataService: UserDataService,
               private playerHistoryService: PlayerHistoryService,
-              public dialogRef: MdDialogRef<PlayerToTeamWizardComponent>, public snackBar: MdSnackBar) { }
+              public dialogRef: MatDialogRef<PlayerToTeamWizardComponent>, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
       this.userDataService.getUserPlayerData().then(userData => {

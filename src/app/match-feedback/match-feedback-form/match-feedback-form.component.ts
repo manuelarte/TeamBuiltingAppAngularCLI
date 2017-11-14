@@ -9,7 +9,7 @@ import {TeamInfoUtilService} from '../../team-info-util.service';
 import {MatchService} from '../../services/match.service';
 import {DisplayableItemInfo, ItemInfo} from '../../match/team-in-match';
 import {Auth} from '../../services/auth-service';
-import {MdSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-match-feedback-form',
@@ -33,7 +33,7 @@ export class MatchFeedbackFormComponent implements OnInit, OnChanges {
 
   constructor(private auth: Auth, private matchService: MatchService, private matchUtilsService: MatchUtilsService,
               private playerInfoUtilsService: PlayerInfoUtilService, private teamInfoUtilsService: TeamInfoUtilService,
-              public snackBar: MdSnackBar) { }
+              public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.msgs.push({severity:'warn', summary:'Not Authenticated', detail:'You have to be authenticated to give feedback'});

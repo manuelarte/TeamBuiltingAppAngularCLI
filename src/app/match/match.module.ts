@@ -5,11 +5,11 @@ import {TeamModule} from '../team/team.module';
 import {CommonModule} from '@angular/common';
 import {PlayerModule} from '../player/player.module';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdChipsModule, MdDatepickerModule, MdIconModule, MdInputModule,
-    MdNativeDateModule,
-    MdOptionModule,
-    MdProgressSpinnerModule, MdSelectModule,
-    MdSliderModule, MdTableModule, MdTabsModule, MdTooltipModule
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatIconModule, MatInputModule,
+    MatNativeDateModule,
+    MatOptionModule,
+    MatProgressSpinnerModule, MatSelectModule,
+    MatSliderModule, MatTableModule, MatTabsModule, MatTooltipModule
 } from '@angular/material';
 
 import {ProfileModule} from '../profile/profile.module';
@@ -66,21 +66,21 @@ import {HttpClientModule} from '@angular/common/http';
         MatchFeedbackModule,
         SharedModule,
         // Material Modules
-        MdButtonModule,
-        MdCardModule,
-        MdCheckboxModule,
-        MdChipsModule,
-        MdDatepickerModule,
-        MdNativeDateModule,
-        MdIconModule,
-        MdInputModule,
-        MdOptionModule,
-        MdSelectModule,
-        MdSliderModule,
-        MdTableModule,
-        MdTabsModule,
-        MdTooltipModule,
-        MdProgressSpinnerModule
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule,
+        MatInputModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatSliderModule,
+        MatTableModule,
+        MatTabsModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule
     ],
     declarations: [
         MatchCudComponent,
