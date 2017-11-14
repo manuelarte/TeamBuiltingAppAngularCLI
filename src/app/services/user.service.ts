@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
 export class UserService {
 
     private backendUrl: string = `${environment.backendUsersUrl}`;
-    private usersUrl = this.backendUrl + '/users/';
+    private usersUrl = this.backendUrl + '/users';
 
     constructor(private httpClient: HttpClient) {}
 
