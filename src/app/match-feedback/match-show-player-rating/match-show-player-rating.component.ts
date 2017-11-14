@@ -9,7 +9,7 @@ import {AppConstants} from '../../app-constants';
   selector: 'app-match-show-player-rating',
   templateUrl: './match-show-player-rating.component.html',
   styleUrls: ['./match-show-player-rating.component.scss'],
-  providers: [UserService]
+  providers: []
 })
 export class MatchShowPlayerRatingComponent implements OnInit {
 

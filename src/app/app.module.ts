@@ -26,6 +26,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {TeambuiltingSharedModule} from './shared/shared.module';
 import { UUID } from 'angular2-uuid';
 import {CdkTableModule} from '@angular/cdk';
+import {UserService} from './services/user.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -64,6 +65,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         LoginService,
         PlayerHistoryService,
         PlayerToTeamSportService,
+        UserService,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,
