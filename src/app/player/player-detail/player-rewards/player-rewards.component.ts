@@ -44,7 +44,7 @@ export class PlayerRewardsComponent implements OnInit {
     this.errorLoadingRewards = false;
     this.playerRewardsService.getPlayerRewards(this.player.id).then(playerRewards => {
         playerRewards.forEach(playerReward => {
-            this.userService.getUser(playerReward.userId).then(user => {
+            this.userService.getUser$(playerReward.userId).subscribe(user => {
                 this.teamService.getTeam(playerReward.teamId).then(team => {
                     this.userAndReward.set(playerReward.userId,
                         {user: user, playerRewards: this.addAndRetrievePlayerRewardForUser(playerReward)});

@@ -46,7 +46,7 @@ export class PlayerCommentsComponent implements OnInit {
     this.loadingCommentsFlag = true;
     this.playerCommentService.getPlayerComments(this.player.id).then(comments => {
         comments.forEach(comment => {
-            this.userService.getUser(comment.userId).then(user => {
+            this.userService.getUser$(comment.userId).subscribe(user => {
                 this.userAndComment[comment.userId] = {user: user, playerComment: comment};
                 this.loadingCommentsFlag = Object.keys(this.userAndComment).length !== comments.length;
             });
