@@ -52,7 +52,7 @@ import {PlayerService} from '../services/player.service';
     providers: [
         TeamService,
         PlayerService,
-        {provide: LOCALE_ID, useValue: 'nl'},
+        {provide: LOCALE_ID, useValue: 'en'},
     ],
     entryComponents: [MyStringWidgetComponent, MyPlayerInMatchWidgetComponent, MyTeamInMatchWidgetComponent, MyTimeInMatchWidgetComponent],
     exports: [GoogleChartDirective, Ng2GoogleChartsModule, MyStringWidgetComponent, MyPlayerInMatchWidgetComponent,

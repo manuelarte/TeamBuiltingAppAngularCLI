@@ -80,7 +80,7 @@ import {Ng2GoogleChartsModule} from 'ng2-google-charts';
       ShowPlayerRewardComponent,
   ],
   providers: [ UserRightsService,
-      { provide: LOCALE_ID, useValue: 'nl' },
+      { provide: LOCALE_ID, useValue: 'en' },
   ],
     entryComponents: [GiveRewardComponent],
     exports: [PlayerInTeamComponent, PlayerDetailComponent, PlayerCudCardComponent, PlayerToTeamCardComponent ]

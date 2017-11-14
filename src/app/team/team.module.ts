@@ -36,7 +36,7 @@ import {MdProgressSpinnerModule, MdProgressBarModule} from '@angular/material';
         TeamInGoogleMapsComponent,
     ],
     providers: [
-        {provide: LOCALE_ID, useValue: 'nl'},
+        {provide: LOCALE_ID, useValue: 'en'},
     ],
     exports: [TeamDetailComponent]
 })

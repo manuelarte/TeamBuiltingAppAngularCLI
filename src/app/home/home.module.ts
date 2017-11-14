@@ -44,7 +44,7 @@ import {HomeIntroComponent} from './home-intro/home-intro.component';
         PodiumComponent
     ],
     providers: [
-        {provide: LOCALE_ID, useValue: 'nl'},
+        {provide: LOCALE_ID, useValue: 'en'},
     ],
     exports: [HomeComponent]
 })

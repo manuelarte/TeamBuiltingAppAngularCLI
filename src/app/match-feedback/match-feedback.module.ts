@@ -81,7 +81,7 @@ import {MatchFeedbackUtilsService} from '../services/match-feedback-utils.servic
         MatchFeedbackUtilsService,
         TeamService,
         PlayerService,
-        {provide: LOCALE_ID, useValue: 'nl'},
+        {provide: LOCALE_ID, useValue: 'en'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],
     exports: [MatchFeedbackFormComponent, MatchFeedbackRewardsDisplayComponent, MatchShowPlayerRatingComponent]

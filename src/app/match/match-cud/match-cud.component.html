@@ -11,7 +11,7 @@
     <md-input-container>
         <input mdInput placeholder="Date" [mdDatepicker]="picker" [ngModel]="matchDate"
                (ngModelChange)="onMatchDateChange($event)" [disabled]="!isEditable()">
-        <button mdSuffix *ngIf="isEditable()" [mdDatepickerToggle]="picker"></button>
+        <md-datepicker-toggle mdSuffix [for]="picker" *ngIf="isEditable()"></md-datepicker-toggle>
     </md-input-container>
     <md-datepicker #picker></md-datepicker>
 </div>

@@ -106,7 +106,7 @@ import {CanActivateViaAuthGuard} from '../shared/can-activate-via-auth-guard';
         TeamSearchService,
         UtilsService,
         CanActivateViaAuthGuard,
-        {provide: LOCALE_ID, useValue: 'nl'},
+        {provide: LOCALE_ID, useValue: 'en'},
         {provide: WidgetRegistry, useClass: MyWidgetRegistry}
     ],
     exports: []

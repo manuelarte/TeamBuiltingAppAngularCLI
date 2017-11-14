@@ -56,7 +56,7 @@ import {PlayerSearchComponent} from './player-search/player-search.component';
     ],
     entryComponents: [PlayerToSportDetailsModalComponent, PlayerToTeamWizardComponent],
     providers: [
-        {provide: LOCALE_ID, useValue: 'nl'},
+        {provide: LOCALE_ID, useValue: 'en'},
     ],
     exports: [TeamSearchComponent, PlayerSearchComponent, PlayerCudComponent, PlayerToTeamCudComponent,
         PlayerToSportDetailsCudComponent, PlayerToSportDetailsCommonCudComponent, TeamCudComponent]
