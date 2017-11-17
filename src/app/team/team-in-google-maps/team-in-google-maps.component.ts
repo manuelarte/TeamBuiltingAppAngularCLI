@@ -25,9 +25,9 @@ export class TeamInGoogleMapsComponent implements OnInit  {
     ) {}
 
     ngOnInit(): void {
-        this.googleMapGeocodingService.getGeocoding(this.team.location).then(geocoding => this.center = geocoding.results[0].geometry.location);
+        this.googleMapGeocodingService.getGeocoding$(this.team.location).subscribe(geocoding => this.center = geocoding.results[0].geometry.location);
         for (let player of this.players.filter(player => player.bornAddress)) {
-            this.googleMapGeocodingService.getGeocoding(player.bornAddress).then(geocoding => this.markersInfoToDisplay.push(this.createMarker(player, geocoding.results[0].geometry.location)));
+            this.googleMapGeocodingService.getGeocoding$(player.bornAddress).subscribe(geocoding => this.markersInfoToDisplay.push(this.createMarker(player, geocoding.results[0].geometry.location)));
         }
     }
 

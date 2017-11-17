@@ -1,9 +1,8 @@
 import { Injectable }    from '@angular/core';
 
-import 'rxjs/add/operator/toPromise';
-
 import {GoogleMapGeocoding} from "../google-map-geocoding";
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class GoogleMapGeocodingService {
@@ -12,10 +11,10 @@ export class GoogleMapGeocodingService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getGeocoding(address: string): Promise<GoogleMapGeocoding> {
+    getGeocoding$(address: string): Observable<GoogleMapGeocoding> {
         const params: HttpParams = new HttpParams();
         params.append('address', address);
-        return this.httpClient.get<GoogleMapGeocoding>(this.googleMapGeocodingUrl + "?address=" + address).toPromise();
+        return this.httpClient.get<GoogleMapGeocoding>(this.googleMapGeocodingUrl + "?address=" + address);
     }
 
 }

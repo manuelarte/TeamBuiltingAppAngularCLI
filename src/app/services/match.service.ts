@@ -49,7 +49,9 @@ export class MatchService {
   }
 
   getMatchRewardsForSport(sportName: string): Promise<string[]> {
-    const options = {params: {sport: sportName}};
+    const params: HttpParams = new HttpParams();
+    params.append('sport', sportName);
+    const options = {params: params};
     return this.httpClient.get<string[]>(`${this.matchFeedbackUrl}/rewards`, options).toPromise();
   }
 

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RegisteredTeamInfo, TeamInfo} from '../teamInfo';
-import {UtilsService} from '../../services/utils.service';
 import {TeamService} from '../../services/team.service';
 import {PlayerInfo, RegisteredPlayerInfo} from '../playerInfo';
 import {PlayerToTeam} from '../../player-to-team';
